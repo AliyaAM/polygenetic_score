@@ -1,17 +1,37 @@
 library(dplyr)
 
-SOURCE_ROOT = "/Users/aliya/my_docs/KCL_postDoc/Data_analysis/"
-OUTPUT_ROOT = "/Users/aliya/my_docs/KCL_postDoc/Data_analysis/"
+directory = "/Users/aliyaamirova/Documents/KCL_postDoc/"
+
+SOURCE_ROOT = "Data_analysis/"
+OUTPUT_ROOT = "Data_analysis/"
 
 
-HRS_2008_data = read.csv(paste(SOURCE_ROOT, "HRS_2008_data/HRS2008_dataset_latest.csv", sep=""))
-HRS_2010_data = read.csv(paste(SOURCE_ROOT, "HRS_2010_data/HRS2010_dataset_latest.csv", sep=""))
-HRS_2012_data =  read.csv(paste(SOURCE_ROOT, "HRS_2012_data/HRS2012_dataset_latest.csv", sep=""))
-HRS_2014_data =  read.csv(paste(SOURCE_ROOT, "HRS_2014_data/HRS2014_dataset_latest.csv", sep=""))
-HRS_2016_data =  read.csv(paste(SOURCE_ROOT, "HRS_2016_data/HRS2016_dataset_latest.csv", sep=""))
-HRS_2018_data =  read.csv(paste(SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest.csv", sep=""))
+HRS_2008_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS2008_dataset_latest.csv", sep=""))
+HRS_2010_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2010_data/HRS2010_dataset_latest.csv", sep=""))
+HRS_2012_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2012_data/HRS2012_dataset_latest.csv", sep=""))
+HRS_2014_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2014_data/HRS2014_dataset_latest.csv", sep=""))
+HRS_2016_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS2016_dataset_latest.csv", sep=""))
+HRS_2018_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest.csv", sep=""))
 
-ELSA_data = read.csv("/Users/aliya/my_docs/KCL_postDoc/polygenetic_score/ELSA_PGS_data/PGS_ELSA_2021.csv")
+
+ELSA_data = read.csv(paste(directory, SOURCE_ROOT, "DATA_ELSA/ELSAdiscrimination_data_wave5.csv", sep = ""))
+
+#HRS polygenic scores data: 
+polygenic_scores_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2012_data/pgenscore4e_r.csv", sep = ""))
+
+#ELSA polygenic scores data: 
+polygenic_scores_ELSA_data = read.csv(paste(directory, SOURCE_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
+
+
+ID_ELSA = unique(polygenic_scores_ELSA_data$idauniq)
+
+#polygenic_scores_data$HHIDPN = subset(polygenic_scores_data, polygenic_scores_data$HHIDPN == c(ID))
+
+#HRS_2008_data_with_PGS = subset(HRS_2008_data, HRS_2008_data$)
+
+ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
+ELSA_data_with_PGS = left_join(ELSA_data, ELSA_data_polygenic_scores) 
+
 
 #need to add hypertension_bin to 2018 
 #need to add alcohol_days_week to 2008 
@@ -32,9 +52,8 @@ HRS_2008_data$HRS2008_checklist_depression_bin
 unique(HRS_2008_data$smokes_now_bin)
 
 
-polygenetic_scores_data = read.csv(paste(SOURCE_ROOT, "HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
 
-polygenetic_scores_data$E4_ADHD_PGC17
+polygenic_scores_data$E4_ADHD_PGC17
 
 #check minimum age: 
 
@@ -52,12 +71,12 @@ print(min(HRS_2018_data$continious_age))
 
 
 #HRS_2008_data$HHIDPN example: 16870011
-#polygenetic_scores_data$HHID example: 16700
-#polygenetic_scores_data$PN example: 11
+#polygenic_scores_data$HHID example: 16700
+#polygenic_scores_data$PN example: 11
 
 #check how HRS HHIDPN were coded 
-polygenetic_scores_data$HHIDPN = paste(polygenetic_scores_data$HHID, 0, polygenetic_scores_data$PN, sep = "")
-polygenetic_scores_data$HHIDPN = as.numeric(polygenetic_scores_data$HHIDPN)
+polygenic_scores_data$HHIDPN = paste(polygenic_scores_data$HHID, 0, polygenic_scores_data$PN, sep = "")
+polygenic_scores_data$HHIDPN = as.numeric(polygenic_scores_data$HHIDPN)
 
 
 all_cases = c(HRS_2008_data$HHIDPN, 
@@ -67,40 +86,40 @@ all_cases = c(HRS_2008_data$HHIDPN,
               HRS_2016_data$HHIDPN,
               HRS_2016_data$HHIDPN)
 
-ID = unique(polygenetic_scores_data$HHIDPN)
+ID = unique(polygenic_scores_data$HHIDPN)
 
-#polygenetic_scores_data$HHIDPN = subset(polygenetic_scores_data, polygenetic_scores_data$HHIDPN == c(ID))
+#polygenic_scores_data$HHIDPN = subset(polygenic_scores_data, polygenic_scores_data$HHIDPN == c(ID))
 
 #HRS_2008_data_with_PGS = subset(HRS_2008_data, HRS_2008_data$)
 
-HRS_2008_data_polygenetic_scores = polygenetic_scores_data[HRS_2008_data$HHIDPN %in% ID,]
-HRS_2010_data_polygenetic_scores = polygenetic_scores_data[HRS_2010_data$HHIDPN %in% ID,]
-HRS_2012_data_polygenetic_scores = polygenetic_scores_data[HRS_2012_data$HHIDPN %in% ID,]
-HRS_2014_data_polygenetic_scores = polygenetic_scores_data[HRS_2014_data$HHIDPN %in% ID,]
-HRS_2016_data_polygenetic_scores = polygenetic_scores_data[HRS_2016_data$HHIDPN %in% ID,]
-HRS_2018_data_polygenetic_scores = polygenetic_scores_data[HRS_2018_data$HHIDPN %in% ID,]
+HRS_2008_data_polygenic_scores = polygenic_scores_data[HRS_2008_data$HHIDPN %in% ID,]
+HRS_2010_data_polygenic_scores = polygenic_scores_data[HRS_2010_data$HHIDPN %in% ID,]
+HRS_2012_data_polygenic_scores = polygenic_scores_data[HRS_2012_data$HHIDPN %in% ID,]
+HRS_2014_data_polygenic_scores = polygenic_scores_data[HRS_2014_data$HHIDPN %in% ID,]
+HRS_2016_data_polygenic_scores = polygenic_scores_data[HRS_2016_data$HHIDPN %in% ID,]
+HRS_2018_data_polygenic_scores = polygenic_scores_data[HRS_2018_data$HHIDPN %in% ID,]
 
 
 ########
-all_polygenetic_scores = rbind(HRS_2008_data_polygenetic_scores, 
-                               HRS_2010_data_polygenetic_scores, 
-                               HRS_2012_data_polygenetic_scores, 
-                               HRS_2014_data_polygenetic_scores, 
-                               HRS_2016_data_polygenetic_scores, 
-                               HRS_2018_data_polygenetic_scores) 
+all_polygenic_scores = rbind(HRS_2008_data_polygenic_scores, 
+                               HRS_2010_data_polygenic_scores, 
+                               HRS_2012_data_polygenic_scores, 
+                               HRS_2014_data_polygenic_scores, 
+                               HRS_2016_data_polygenic_scores, 
+                               HRS_2018_data_polygenic_scores) 
 
 #154 people out of those who took part in the HRS study between 2008 and 2018 provided their DNA sample 
-people_with_PGS = unique(all_polygenetic_scores$HHIDPN)
+people_with_PGS = unique(all_polygenic_scores$HHIDPN)
 
 # add these 154 individual PGS to appropriate dataframes 
 
 
-HRS_2008_data_with_PGS = left_join(HRS_2008_data, HRS_2008_data_polygenetic_scores) 
-HRS_2010_data_with_PGS = left_join(HRS_2010_data, HRS_2010_data_polygenetic_scores) 
-HRS_2012_data_with_PGS = left_join(HRS_2012_data, HRS_2012_data_polygenetic_scores) 
-HRS_2014_data_with_PGS = left_join(HRS_2014_data, HRS_2014_data_polygenetic_scores) 
-HRS_2016_data_with_PGS = left_join(HRS_2016_data, HRS_2016_data_polygenetic_scores) 
-HRS_2018_data_with_PGS = left_join(HRS_2018_data, HRS_2018_data_polygenetic_scores) 
+HRS_2008_data_with_PGS = left_join(HRS_2008_data, HRS_2008_data_polygenic_scores) 
+HRS_2010_data_with_PGS = left_join(HRS_2010_data, HRS_2010_data_polygenic_scores) 
+HRS_2012_data_with_PGS = left_join(HRS_2012_data, HRS_2012_data_polygenic_scores) 
+HRS_2014_data_with_PGS = left_join(HRS_2014_data, HRS_2014_data_polygenic_scores) 
+HRS_2016_data_with_PGS = left_join(HRS_2016_data, HRS_2016_data_polygenic_scores) 
+HRS_2018_data_with_PGS = left_join(HRS_2018_data, HRS_2018_data_polygenic_scores) 
 
 
 nrow(HRS_2008_data_with_PGS)
@@ -111,9 +130,9 @@ nrow(HRS_2016_data_with_PGS)
 nrow(HRS_2018_data_with_PGS)
 
 
-nrow(all_polygenetic_scores)
+nrow(all_polygenic_scores)
 
-unique(all_polygenetic_scores$HHIDPN)
+unique(all_polygenic_scores$HHIDPN)
 
 #ageism
 HRS_2008_data_with_PGS$reason_discrim1_reason_age
@@ -147,6 +166,8 @@ HRS_2008_data_with_PGS$E4_T2D_DIAGRAM12
 #coranary heart disease (no separate question on coronary heart disease)
 #Did a doctor ever tell [FIRST NAME] that [he/she] had a heart attack, coronary heart disease, angina, congestive heart failure, or other heart problems?
 HRS_2008_data_with_PGS$heartcondition_bin
+
+
 #add new
 HRS_2008_data_with_PGS$heartcondition_new_bin
 
