@@ -11,7 +11,7 @@ HRS_2014_data =  read.csv(paste(SOURCE_ROOT, "HRS_2014_data/HRS2014_dataset_late
 HRS_2016_data =  read.csv(paste(SOURCE_ROOT, "HRS_2016_data/HRS2016_dataset_latest.csv", sep=""))
 HRS_2018_data =  read.csv(paste(SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest.csv", sep=""))
 
-
+ELSA_data = read.csv("/Users/aliya/my_docs/KCL_postDoc/polygenetic_score/ELSA_PGS_data/PGS_ELSA_2021.csv")
 
 #need to add hypertension_bin to 2018 
 #need to add alcohol_days_week to 2008 
@@ -34,6 +34,7 @@ unique(HRS_2008_data$smokes_now_bin)
 
 polygenetic_scores_data = read.csv(paste(SOURCE_ROOT, "HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
 
+polygenetic_scores_data$E4_ADHD_PGC17
 
 #check minimum age: 
 
