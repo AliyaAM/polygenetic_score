@@ -23,16 +23,13 @@ directory = "/Users/aliyaamirova/Documents/KCL_postDoc/"
 SOURCE_ROOT = "Data_analysis/"
 OUTPUT_ROOT = "Data_analysis/"
 
-HRS_2008_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS2008_dataset_latest.csv", sep=""))
-HRS_2010_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2010_data/HRS2010_dataset_latest.csv", sep=""))
-HRS_2012_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2012_data/HRS2012_dataset_latest.csv", sep=""))
-HRS_2014_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2014_data/HRS2014_dataset_latest.csv", sep=""))
-HRS_2016_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS2016_dataset_latest.csv", sep=""))
-HRS_2018_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest.csv", sep=""))
+HRS_2008_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS2008_dataset_latest_renamed_vars.csv", sep=""))
+HRS_2010_data = read.csv(paste(directory, SOURCE_ROOT, "HRS_2010_data/HRS2010_dataset_latest_renamed_vars.csv", sep=""))
+HRS_2012_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2012_data/HRS2012_dataset_latest_renamed_vars.csv", sep=""))
+HRS_2014_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2014_data/HRS2014_dataset_latest_renamed_vars.csv", sep=""))
+HRS_2016_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS2016_dataset_latest_renamed_vars.csv", sep=""))
+HRS_2018_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest_renamed_vars.csv", sep=""))
 
-vars_names_2016 =ls(HRS_2016_data)
-
-write.csv(vars_names_2016, file = paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS2016_vars_names.csv", sep=""))
 
 ELSA_data = read.csv(paste(directory, SOURCE_ROOT, "DATA_ELSA/ELSAdiscrimination_data_wave5.csv", sep = ""))
 
@@ -50,12 +47,12 @@ ELSA_data_with_PGS = left_join(ELSA_data, ELSA_data_polygenic_scores)
 
 #check minimum age is above 50: 
 
-print(min(HRS_2008_data$continious_age))
-print(min(HRS_2010_data$continious_age))
-print(min(HRS_2012_data$continious_age))
-print(min(HRS_2014_data$continious_age))
-print(min(HRS_2016_data$continious_age))
-print(min(HRS_2018_data$continious_age))
+print(min(HRS_2008_data$HRS2008_continious_age))
+print(min(HRS_2010_data$HRS2010_continious_age))
+print(min(HRS_2012_data$HRS2012_continious_age))
+print(min(HRS_2014_data$HRS2014_continious_age))
+print(min(HRS_2016_data$HRS2016_continious_age))
+print(min(HRS_2018_data$HRS2018_continious_age))
 
 #ELSA_data_with_PGS$age (check min age is above 50 in ELSA)
 print(min(ELSA_data_with_PGS$w8age, na.rm = TRUE))
@@ -91,6 +88,16 @@ ID = unique(polygenic_scores_data$HHIDPN)
 
 
 
+#create HHIDPN so they match the names in the polygenic score 
+
+HRS_2008_data$HHIDPN = HRS_2008_data$HRS_2008_data.HHIDPN
+HRS_2010_data$HHIDPN = HRS_2010_data$HRS_2010_data.HHIDPN
+HRS_2012_data$HHIDPN = HRS_2012_data$HRS_2012_data.HHIDPN
+HRS_2014_data$HHIDPN = HRS_2014_data$HRS_2014_data.HHIDPN
+HRS_2016_data$HHIDPN = HRS_2016_data$HRS_2016_data.HHIDPN
+HRS_2018_data$HHIDPN = HRS_2018_data$HRS_2018_data.HHIDPN
+
+
 HRS_2008_data_polygenic_scores = polygenic_scores_data[HRS_2008_data$HHIDPN %in% ID,]
 HRS_2010_data_polygenic_scores = polygenic_scores_data[HRS_2010_data$HHIDPN %in% ID,]
 HRS_2012_data_polygenic_scores = polygenic_scores_data[HRS_2012_data$HHIDPN %in% ID,]
@@ -109,6 +116,8 @@ all_polygenic_scores = rbind(HRS_2008_data_polygenic_scores,
 
 
 people_with_PGS = unique(all_polygenic_scores$HHIDPN)
+
+
 
 # add  PGSs to appropriate dataframes 
 
