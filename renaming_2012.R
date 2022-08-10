@@ -101,4 +101,76 @@ HRS_2012$HRS2012_weight_kg = HRS_2012_data$HRS2012_weight_kg
 HRS_2012$HRS2012_weight_pounds = HRS_2012_data$HRS2012_weight_pounds
 HRS_2012$HRS2012_obese_bin = HRS_2012_data$HRS2012obese_bin
 
+
+
+
+HRS_2012$HRS2012_discrim_harassed_bin = case_when(HRS_2012$HRS2012_discrim_harassed == 1 ~ 1, 
+                                                  HRS_2012$HRS2012_discrim_harassed == 2 ~ 1, 
+                                                  HRS_2012$HRS2012_discrim_harassed == 3 ~ 1, 
+                                                  HRS_2012$HRS2012_discrim_harassed == 4 ~ 1, 
+                                                  HRS_2012$HRS2012_discrim_harassed == 5 ~ 0, 
+                                                  HRS_2012$HRS2012_discrim_harassed == 6 ~ 0,
+                                                  HRS_2012$HRS2012_discrim_harassed == 0 ~ 0) 
+
+
+
+HRS_2012$HRS2012_discrim_lessrespect_bin = case_when(HRS_2012$HRS2012_discrim_lessrespect == 1 ~ 1, 
+                                                     HRS_2012$HRS2012_discrim_lessrespect == 2 ~ 1, 
+                                                     HRS_2012$HRS2012_discrim_lessrespect == 3 ~ 1, 
+                                                     HRS_2012$HRS2012_discrim_lessrespect == 4 ~ 1, 
+                                                     HRS_2012$HRS2012_discrim_lessrespect == 5 ~ 0, 
+                                                     HRS_2012$HRS2012_discrim_lessrespect == 6 ~ 0,
+                                                     HRS_2012$HRS2012_discrim_lessrespect == 0 ~ 0) 
+
+
+
+HRS_2012$HRS2012_discrim_medical_bin = case_when(HRS_2012$HRS2012_discrim_medical == 1 ~ 1, 
+                                                 HRS_2012$HRS2012_discrim_medical == 2 ~ 1, 
+                                                 HRS_2012$HRS2012_discrim_medical == 3 ~ 1, 
+                                                 HRS_2012$HRS2012_discrim_medical == 4 ~ 1, 
+                                                 HRS_2012$HRS2012_discrim_medical == 5 ~ 0, 
+                                                 HRS_2012$HRS2012_discrim_medical == 6 ~ 0,
+                                                 HRS_2012$HRS2012_discrim_medical == 0 ~ 0) 
+
+
+
+
+
+HRS_2012$HRS2012_discrim_notclever_bin = case_when(HRS_2012$HRS2012_discrim_notclever == 1 ~ 1, 
+                                                   HRS_2012$HRS2012_discrim_notclever == 2 ~ 1, 
+                                                   HRS_2012$HRS2012_discrim_notclever == 3 ~ 1, 
+                                                   HRS_2012$HRS2012_discrim_notclever == 4 ~ 1, 
+                                                   HRS_2012$HRS2012_discrim_notclever == 5 ~ 0, 
+                                                   HRS_2012$HRS2012_discrim_notclever == 6 ~ 0,
+                                                   HRS_2012$HRS2012_discrim_notclever == 0 ~ 0) 
+
+
+
+
+
+
+HRS_2012$HRS2012_discrim_poorerservice_bin = case_when(HRS_2012$HRS2012_discrim_poorerservice == 1 ~ 1, 
+                                                       HRS_2012$HRS2012_discrim_poorerservice == 2 ~ 1, 
+                                                       HRS_2012$HRS2012_discrim_poorerservice == 3 ~ 1, 
+                                                       HRS_2012$HRS2012_discrim_poorerservice == 4 ~ 1, 
+                                                       HRS_2012$HRS2012_discrim_poorerservice == 5 ~ 0, 
+                                                       HRS_2012$HRS2012_discrim_poorerservice == 6 ~ 0) 
+
+
+
+
+HRS_2012$HRS2012_discrim_afraidothers_bin = case_when(HRS_2012$HRS2012_discrim_afraidothers == 1 ~ 1,
+                                                      HRS_2012$HRS2012_discrim_afraidothers == 2 ~ 1, 
+                                                      HRS_2012$HRS2012_discrim_afraidothers == 3 ~ 1, 
+                                                      HRS_2012$HRS2012_discrim_afraidothers == 4 ~ 1, 
+                                                      HRS_2012$HRS2012_discrim_afraidothers == 5 ~ 0, 
+                                                      HRS_2012$HRS2012_discrim_afraidothers == 6 ~ 0,
+                                                      HRS_2012$HRS2012_discrim_afraidothers == 0 ~ 0) 
+
+
+
+HRS_2012$HRS2012_discrim_bin = case_when(HRS_2012$HRS2012_discrim_harassed_bin== 1 | HRS_2012$HRS2012_discrim_lessrespect_bin == 1 | HRS_2012$HRS2012_discrim_medical_bin  == 1 | HRS_2012$HRS2012_discrim_notclever_bin == 1 | HRS_2012$HRS2012_discrim_afraidothers_bin== 1 | HRS_2012$HRS2012_discrim_poorerservice_bin == 1 ~ 1, 
+                                         HRS_2012$HRS2012_discrim_harassed_bin== 0 & HRS_2012$HRS2012_discrim_lessrespect_bin == 0 & HRS_2012$HRS2012_discrim_medical_bin  == 0 & HRS_2012$HRS2012_discrim_notclever_bin == 0 & HRS_2012$HRS2012_discrim_afraidothers_bin== 0 & HRS_2012$HRS2012_discrim_poorerservice_bin == 0 ~ 0) 
+
+
 write.csv(HRS_2012, file = paste(directory, SOURCE_ROOT, "HRS_2012_data/HRS2012_dataset_latest_renamed_vars.csv", sep=""))
