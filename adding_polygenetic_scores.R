@@ -172,7 +172,7 @@ write.csv(HRS_all_data_SORTED, file =  paste(directory, DATA_ROOT, "HRS_2008_dat
 
 nrow(HRS_all_data_SORTED) #39588 
 #write.csv(HRS_all_data_SORTED_drop_na, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_SORTED_drop_na.csv", sep = "")) 
-vars = c("discrim_bin", "checklist_depression_bin") 
+vars = c("discrim_bin", "checklist_depression_bin", "wealth_noIRA") 
 
 drop_na(HRS_all_data_SORTED, any_of(vars))
 HRS_all_data_SORTED$discrim_bin
@@ -180,6 +180,7 @@ HRS_all_data_SORTED$discrim_bin
 ############# depression arranged by timepoint 
 ############# 
 ############# 
+
 
 HRS_all_data_SORTED$checklist_depression_bin_t0 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 0 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 0 ~ 1)
@@ -247,9 +248,9 @@ HRS_all_data_SORTED_selected_vars = data.frame(HRS_all_data_SORTED$HHIDPN,
                                          HRS_all_data_SORTED$discrim_bin_t2,          
                                          HRS_all_data_SORTED$discrim_bin_t3,            
                                          HRS_all_data_SORTED$discrim_bin_t4,          
-                                         HRS_all_data_SORTED$discrim_bin_t5)              
+                                         HRS_all_data_SORTED$discrim_bin_t5,              
                                          
-                                         #HRS_all_data_SORTED$wealth_noIRA)
+                                         HRS_all_data_SORTED$wealth_noIRA)
 
 
 colnames(HRS_all_data_SORTED_selected_vars) = c("HHIDPN", 
@@ -266,12 +267,14 @@ colnames(HRS_all_data_SORTED_selected_vars) = c("HHIDPN",
                                           "discrim_bin_t2",       
                                           "discrim_bin_t3",            
                                           "discrim_bin_t4",          
-                                          "discrim_bin_t5")          
+                                          "discrim_bin_t5",           
                                                  
-                                          #"wealth_noIRA")    
+                                          "wealth_noIRA")    
 
 ls(HRS_all_data_SORTED_selected_vars)
 nrow(HRS_all_data_SORTED_selected_vars)
+
+
 
 
 #RS_all_data_SORTED_selected_vars_drop_na = na.omit(HRS_all_data_SORTED_selected_vars)
