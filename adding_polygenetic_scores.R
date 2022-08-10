@@ -458,41 +458,41 @@ polygenic_scores_data$HHIDPN = as.numeric(polygenic_scores_data$HHIDPN)
 
 #######
 #######
-
-print("add European ancesterary PGS")
-
-polygenic_scores_data = data.frame(polygenic_scores_data$HHIDPN, 
-                                    polygenic_scores_data$E4_EDU2_SSGAC16, 
-                                    polygenic_scores_data$E4_BMI_GIANT15, 
-                                    polygenic_scores_data$E4_SCZ_PGC14, 
-                                    polygenic_scores_data$E4_EVRSMK_TAG10, 
-                                    polygenic_scores_data$E4_AD2_IGAP13, 
-                                    polygenic_scores_data$E4_WC_GIANT15, 
-                                    polygenic_scores_data$E4_NEUROT_SSGAC16, 
-                                    polygenic_scores_data$E4_WELLB_SSGAC16, 
-                                    polygenic_scores_data$E4_DEPSYMP_SSGAC16, 
-                                    polygenic_scores_data$E4_CD_CARDIOGRAM11, 
-                                    polygenic_scores_data$E4_MI_CARDIOGRAM15, 
-                                    polygenic_scores_data$E4_T2D_DIAGRAM12, 
-                                    polygenic_scores_data$E4_ANXFS_ANGST16, 
-                                    polygenic_scores_data$E4_ALC_PGC18) 
-
-
-colnames(polygenic_scores_data) = c("HHIDPN", 
-                                     "E4_EDU2_SSGAC16", 
-                                     "E4_BMI_GIANT15", 
-                                     "E4_SCZ_PGC14", 
-                                     "E4_EVRSMK_TAG10", 
-                                     "E4_AD2_IGAP13", 
-                                     "E4_WC_GIANT15", 
-                                     "E4_NEUROT_SSGAC16", 
-                                     "E4_WELLB_SSGAC16", 
-                                      "E4_DEPSYMP_SSGAC16",
-                                      "E4_CD_CARDIOGRAM11", 
-                                      "E4_MI_CARDIOGRAM15", 
-                                      "E4_T2D_DIAGRAM12", 
-                                      "E4_ANXFS_ANGST16", 
-                                      "E4_ALC_PGC18") 
+# 
+# print("add European ancesterary PGS")
+# 
+# polygenic_scores_data = data.frame(polygenic_scores_data$HHIDPN, 
+#                                     polygenic_scores_data$E4_EDU2_SSGAC16, 
+#                                     polygenic_scores_data$E4_BMI_GIANT15, 
+#                                     polygenic_scores_data$E4_SCZ_PGC14, 
+#                                     polygenic_scores_data$E4_EVRSMK_TAG10, 
+#                                     polygenic_scores_data$E4_AD2_IGAP13, 
+#                                     polygenic_scores_data$E4_WC_GIANT15, 
+#                                     polygenic_scores_data$E4_NEUROT_SSGAC16, 
+#                                     polygenic_scores_data$E4_WELLB_SSGAC16, 
+#                                     polygenic_scores_data$E4_DEPSYMP_SSGAC16, 
+#                                     polygenic_scores_data$E4_CD_CARDIOGRAM11, 
+#                                     polygenic_scores_data$E4_MI_CARDIOGRAM15, 
+#                                     polygenic_scores_data$E4_T2D_DIAGRAM12, 
+#                                     polygenic_scores_data$E4_ANXFS_ANGST16, 
+#                                     polygenic_scores_data$E4_ALC_PGC18) 
+# 
+# 
+# colnames(polygenic_scores_data) = c("HHIDPN", 
+#                                      "E4_EDU2_SSGAC16", 
+#                                      "E4_BMI_GIANT15", 
+#                                      "E4_SCZ_PGC14", 
+#                                      "E4_EVRSMK_TAG10", 
+#                                      "E4_AD2_IGAP13", 
+#                                      "E4_WC_GIANT15", 
+#                                      "E4_NEUROT_SSGAC16", 
+#                                      "E4_WELLB_SSGAC16", 
+#                                       "E4_DEPSYMP_SSGAC16",
+#                                       "E4_CD_CARDIOGRAM11", 
+#                                       "E4_MI_CARDIOGRAM15", 
+#                                       "E4_T2D_DIAGRAM12", 
+#                                       "E4_ANXFS_ANGST16", 
+#                                       "E4_ALC_PGC18") 
 
 nrow(polygenic_scores_data)
 
@@ -513,14 +513,25 @@ HRS_all_data_PGS = HRS_all_data_PGS[HRS_all_data_PGS_unique_cases, ]
 
 nrow(HRS_all_data_PGS) #12090 cases 
 
+HRS_all_data_PGS$wealth_noIRA
+
 unique(HRS_all_data_PGS$E4_ALC_PGC18) 
-na = is.na(HRS_all_data_PGS$E4_ALC_PGC18)
+na = is.na(HRS_all_data_PGS$wealth_noIRA)
 unique(na)
 
 ls(HRS_all_data_PGS)
 
+varswealth = "wealth_noIRA"
+
+HRS_all_data_PGS 
+
+HRS_all_data_PGS = drop_na(HRS_all_data_PGS, any_of(varswealth))
+
+nrow(HRS_all_data_PGS) #11742 cases 
+
+
 write.csv(HRS_all_data_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS.csv", sep = "")) 
-write.csv(HRS_all_data_PGS_drop_na, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS_drop_na.csv", sep = "")) 
+#write.csv(HRS_all_data_PGS_drop_na, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS_drop_na.csv", sep = "")) 
 
 ##########
 ##########
