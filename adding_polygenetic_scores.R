@@ -154,6 +154,148 @@ HRS_all_data = rbind(HRS_2008_data,
 
 HRS_all_data_SORTED = sort_timepoints(data = HRS_all_data)
 
+write.csv(HRS_all_data_SORTED, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_SORTED.csv", sep = "")) 
+HRS_all_data_SORTED_drop_na = na.omit(HRS_all_data_SORTED)
+write.csv(HRS_all_data_SORTED_drop_na, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_SORTED_drop_na.csv", sep = "")) 
+
+case_ID = unique(HRS_all_data_SORTED_drop_na$HHIDPN) #5923
+unique(HRS_all_data_SORTED_drop_na$start_new)
+
+
+#### all responses at timepoint 5: 
+
+timepoint_5 = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$start_new==5)
+nrow(timepoint_5)
+
+
+
+checklist_depression_bin_t5 = timepoint_5$checklist_depression_bin
+discrim_bin_t5 = timepoint_5$discrim_bin
+timepoints_indiv_t5 = timepoint_5$timepoints_indiv
+
+
+
+timepoint_4 = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$start_new==4)
+nrow(timepoint_4)
+
+checklist_depression_bin_t4 = timepoint_4$checklist_depression_bin
+discrim_bin_t4 = timepoint_4$discrim_bin
+timepoints_indiv_t4 = timepoint_4$timepoints_indiv
+
+
+
+timepoint_3 = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$start_new==3)
+nrow(timepoint_3) 
+
+checklist_depression_bin_t3 = timepoint_3$checklist_depression_bin
+discrim_bin_t3 = timepoint_3$discrim_bin
+timepoints_indiv_t3 = timepoint_3$timepoints_indiv
+
+
+#### all responses at timepoint 0 but restricted to those in who took part in timepoint 5
+ID_timepoint_3 = unique(timepoint_3$HHIDPN)
+
+
+timepoint_0_subset = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$start_new==0)
+nrow(timepoint_0_subset)
+
+timepoint_0 = subset(timepoint_0_subset, timepoint_0_subset$HHIDPN %in% ID_timepoint_3)
+nrow(timepoint_0)
+
+checklist_depression_bin_t0 = timepoint_0$checklist_depression_bin
+discrim_bin_t0 = timepoint_0$discrim_bin
+timepoints_indiv_t0 = timepoint_0$timepoints_indiv
+
+ID_timepoint_0 = unique(timepoint_0$HHIDPN)
+#############
+
+timepoint_1_subset = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$start_new==1)
+nrow(timepoint_1)
+
+timepoint_1 = subset(timepoint_1_subset, timepoint_1_subset$HHIDPN %in% ID_timepoint_3)
+nrow(timepoint_1)
+
+checklist_depression_bin_t1 = timepoint_1$checklist_depression_bin
+discrim_bin_t1 = timepoint_1$discrim_bin
+timepoints_indiv_t1 = timepoint_1$timepoints_indiv
+
+
+timepoint_2 = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$start_new==2)
+nrow(timepoint_2)
+
+checklist_depression_bin_t2 = timepoint_2$checklist_depression_bin
+discrim_bin_t2 = timepoint_2$discrim_bin
+timepoints_indiv_t2 = timepoint_2$timepoints_indiv
+
+
+
+############
+# 
+# (checklist_depression_bin_t1, 
+#   checklist_depression_bin_t2, 
+#   checklist_depression_bin_t3, 
+#   checklist_depression_bin_t4, 
+#   checklist_depression_bin_t5, 
+#   discrim_bin_t1, 
+#   discrim_bin_t2, 
+#   discrim_bin_t3, 
+#   discrim_bin_t4, 
+#   discrim_bin_t5, 
+#   timepoints_indiv_t1, 
+#   timepoints_indiv_t2, 
+#   timepoints_indiv_t3, 
+#   timepoints_indiv_t4, 
+#   timepoints_indiv_t5)
+
+
+
+#"E4_EDU2_SSGAC16", 
+#"E4_BMI_GIANT15", 
+#"E4_SCZ_PGC14", 
+#"E4_EVRSMK_TAG10", 
+#"E4_AD2_IGAP13", 
+#"E4_WC_GIANT15", 
+#"E4_NEUROT_SSGAC16", 
+#"E4_WELLB_SSGAC16", 
+#"E4_DEPSYMP_SSGAC16",
+#"E4_CD_CARDIOGRAM11", 
+#"E4_MI_CARDIOGRAM15", 
+#"E4_T2D_DIAGRAM12", 
+#"E4_ANXFS_ANGST16", 
+#"E4_ALC_PGC18"
+
+
+#################
+six_timepoints = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$timepoints_indiv==6)
+nrow(six_timepoints) #7949
+unique(six_timepoints$HHIDPN) #2949 cases with six data points 
+
+five_timepoints = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$timepoints_indiv==5)
+nrow(five_timepoints) #
+unique(five_timepoints$HHIDPN) # 1251
+
+four_timepoints = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$timepoints_indiv==4)
+nrow(four_timepoints) #
+unique(four_timepoints$HHIDPN) # 756
+
+three_timepoints = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$timepoints_indiv==3)
+nrow(three_timepoints) #
+unique(three_timepoints$HHIDPN) # 473
+
+two_timepoints = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$timepoints_indiv==2)
+nrow(two_timepoints) #
+unique(two_timepoints$HHIDPN) #320
+
+one_timepoints = subset(HRS_all_data_SORTED_drop_na, HRS_all_data_SORTED_drop_na$timepoints_indiv==1)
+nrow(one_timepoints) #
+unique(one_timepoints$HHIDPN) #167
+
+
+#######
+####### ADD PGS
+#######
+
+
 #drop NAs
 polygenic_scores_data = na.omit(polygenic_scores_data)
 nrow(polygenic_scores_data)
@@ -206,58 +348,6 @@ people_with_PGS = unique(all_polygenic_scores$HHIDPN)
 #HRS_2018_data_with_PGS = left_join(HRS_2018_data, HRS_2018_data_polygenic_scores) 
 
 
-#only take depression, discrimination_bin, 
-
-
-
-one = full_join(HRS_2008_data,
-            HRS_2010_data)
-
-two = full_join(HRS_2012_data,
-            HRS_2014_data)
-
-three = full_join(HRS_2016_data,
-              HRS_2018_data)
-
-
-one_and_two =  full_join(one,
-                     two)
-
-HRS_all_data = full_join(one_and_two, 
-                     three)
-
-
-
-na.omit(HRS_2008_data) #3201+ (ageism) 6263+ (discrim_bin any)
-
-na.omit(HRS_2010_data) #3748, 7278
-
-na.omit(HRS_2012_data) #3312
-
-na.omit(HRS_2014_data) #3400
-
-na.omit(HRS_2016_data) #3089
-
-na.omit(HRS_2018_data) #2839, 5142
-
-print("not enough cases with complete data across all years")
-
-HRS_all_data_SORTED_noNAs = na.omit(HRS_all_data_SORTED) 
-unique(HRS_all_data_SORTED_noNAs$HHIDPN)
-
-
-
-na.omit(one) 
-na.omit(two) 
-na.omit(three) 
-na.omit(one_and_two)
-
-
-
-
-one[complete.cases(one), ]
-complete.cases(one)
-
 
 #######
 #######
@@ -298,121 +388,19 @@ nrow(polygenic_scores_data)
 
 na.omit(polygenic_scores_data)
 
-HRS_all_data_PGS = right_join(HRS_all_data_SORTED_noNAs, polygenic_scores_data)
+HRS_all_data_PGS = right_join(HRS_all_data_SORTED_drop_na, polygenic_scores_data)
 
 
 HRS_all_data_PGS$HHIDPN
 
-write.csv(HRS_all_data_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS.csv", sep = "")) 
-
-
 HRS_all_data_PGS_drop_na = na.omit(HRS_all_data_PGS)
 
-case_ID = unique(HRS_all_data_PGS_drop_na$HHIDPN) #5923
-
-unique(HRS_all_data_PGS_drop_na$start_new)
-
-timepoint_0 = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$start_new==0 & HRS_all_data_PGS_drop_na$HHIDPN case_ID
-)
-nrow(timepoint_0)
-
-
-checklist_depression_bin_t0 = timepoint_0$checklist_depression_bin
-discrim_bin_t0 = timepoint_0$discrim_bin
-timepoints_indiv_t0 = timepoint_0$timepoints_indiv
-
-
-#############
-
-timepoint_1 = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$start_new==1)
-nrow(timepoint_1)
-
-
-timepoint_2 = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$start_new==2)
-nrow(timepoint_2)
-
-timepoint_3 = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$start_new==3)
-nrow(timepoint_3) 
-
-timepoint_4 = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$start_new==4)
-nrow(timepoint_4)
-
-timepoint_5 = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$start_new==5)
-nrow(timepoint_5)
-
-
-HHIDPN = c(timepoint_0$HHIDPN, 
-           timepoint_1$HHIDPN,
-           timepoint_2$HHIDPN,
-           timepoint_3$HHIDPN,
-           timepoint_4$HHIDPN,
-           timepoint_5$HHIDPN)
-
-unique(HHIDPN)
-
-E4_EDU2_SSGAC16 = c(timepoint_0$E4_EDU2_SSGAC16, 
-                    timepoint_1$E4_EDU2_SSGAC16,
-                    timepoint_2$E4_EDU2_SSGAC16,
-                    timepoint_3$E4_EDU2_SSGAC16,
-                    timepoint_4$E4_EDU2_SSGAC16,
-                    timepoint_5$E4_EDU2_SSGAC16)
-
-
-"E4_EDU2_SSGAC16", 
-"E4_BMI_GIANT15", 
-"E4_SCZ_PGC14", 
-"E4_EVRSMK_TAG10", 
-"E4_AD2_IGAP13", 
-"E4_WC_GIANT15", 
-"E4_NEUROT_SSGAC16", 
-"E4_WELLB_SSGAC16", 
-"E4_DEPSYMP_SSGAC16",
-"E4_CD_CARDIOGRAM11", 
-"E4_MI_CARDIOGRAM15", 
-"E4_T2D_DIAGRAM12", 
-"E4_ANXFS_ANGST16", 
-"E4_ALC_PGC18"
-
-# how to add the id for all time points and merge it 
-
-timepoint_0$start_new
-timepoint_0$stop_new
-timepoint_0$HHIDPN
-
-unique(HRS_all_data_PGS_drop_na$timepoints_indiv)
-
-
-
-#################
-six_timepoints = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$timepoints_indiv==6)
-nrow(six_timepoints) #7949
-unique(six_timepoints$HHIDPN) #2949 cases with six data points 
-
-five_timepoints = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$timepoints_indiv==5)
-nrow(five_timepoints) #
-unique(five_timepoints$HHIDPN) # 1251
-
-four_timepoints = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$timepoints_indiv==4)
-nrow(four_timepoints) #
-unique(four_timepoints$HHIDPN) # 756
-
-three_timepoints = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$timepoints_indiv==3)
-nrow(three_timepoints) #
-unique(three_timepoints$HHIDPN) # 473
-
-two_timepoints = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$timepoints_indiv==2)
-nrow(two_timepoints) #
-unique(two_timepoints$HHIDPN) #320
-
-one_timepoints = subset(HRS_all_data_PGS_drop_na, HRS_all_data_PGS_drop_na$timepoints_indiv==1)
-nrow(one_timepoints) #
-unique(one_timepoints$HHIDPN) #167
-
-
-##########
-##########
-
+write.csv(HRS_all_data_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS.csv", sep = "")) 
 write.csv(HRS_all_data_PGS_drop_na, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS_drop_na.csv", sep = "")) 
+
+##########
+##########
+
 
 
 
