@@ -235,38 +235,38 @@ ls(HRS_all_data_SORTED)
 
 HRS_all_data_SORTED_selected_vars = data.frame(HRS_all_data_SORTED$HHIDPN,   
                                          
-                                         #HRS_all_data_SORTED$checklist_depression_bin_t0, 
-                                         #HRS_all_data_SORTED$checklist_depression_bin_t1, 
-                                         #HRS_all_data_SORTED$checklist_depression_bin_t2, 
-                                         #HRS_all_data_SORTED$checklist_depression_bin_t3,
-                                         #HRS_all_data_SORTED$checklist_depression_bin_t4,
-                                         #HRS_all_data_SORTED$checklist_depression_bin_t5,
+                                         HRS_all_data_SORTED$checklist_depression_bin_t0, 
+                                         HRS_all_data_SORTED$checklist_depression_bin_t1, 
+                                         HRS_all_data_SORTED$checklist_depression_bin_t2, 
+                                         HRS_all_data_SORTED$checklist_depression_bin_t3,
+                                         HRS_all_data_SORTED$checklist_depression_bin_t4,
+                                         HRS_all_data_SORTED$checklist_depression_bin_t5,
                                          
                                          HRS_all_data_SORTED$discrim_bin_t0,        
-                                         HRS_all_data_SORTED$discrim_bin_t1)           
-                                         #HRS_all_data_SORTED$discrim_bin_t2,          
-                                         #HRS_all_data_SORTED$discrim_bin_t3,            
-                                         #HRS_all_data_SORTED$discrim_bin_t4,          
-                                         #HRS_all_data_SORTED$discrim_bin_t5)             
+                                         HRS_all_data_SORTED$discrim_bin_t1,           
+                                         HRS_all_data_SORTED$discrim_bin_t2,          
+                                         HRS_all_data_SORTED$discrim_bin_t3,            
+                                         HRS_all_data_SORTED$discrim_bin_t4,          
+                                         HRS_all_data_SORTED$discrim_bin_t5)              
                                          
                                          #HRS_all_data_SORTED$wealth_noIRA)
 
 
 colnames(HRS_all_data_SORTED_selected_vars) = c("HHIDPN", 
                                           
-                                          #"checklist_depression_bin_t0", 
-                                          #"checklist_depression_bin_t1",  
-                                          #"checklist_depression_bin_t2",
-                                          #"checklist_depression_bin_t3",
-                                          #"checklist_depression_bin_t4",
-                                          #"checklist_depression_bin_t5",
+                                          "checklist_depression_bin_t0", 
+                                          "checklist_depression_bin_t1",  
+                                          "checklist_depression_bin_t2",
+                                          "checklist_depression_bin_t3",
+                                          "checklist_depression_bin_t4",
+                                          "checklist_depression_bin_t5",
                                           
                                           "discrim_bin_t0",             
-                                          "discrim_bin_t1")            
-                                          #"discrim_bin_t2",       
-                                          #"discrim_bin_t3",            
-                                          #"discrim_bin_t4",          
-                                          #"discrim_bin_t5")            
+                                          "discrim_bin_t1",            
+                                          "discrim_bin_t2",       
+                                          "discrim_bin_t3",            
+                                          "discrim_bin_t4",          
+                                          "discrim_bin_t5")          
                                                  
                                           #"wealth_noIRA")    
 
