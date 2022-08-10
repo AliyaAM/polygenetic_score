@@ -527,7 +527,7 @@ HRS_all_data_PGS
 
 HRS_all_data_PGS = drop_na(HRS_all_data_PGS, any_of(varswealth))
 
-nrow(HRS_all_data_PGS) #11742 cases 
+nrow(HRS_all_data_PGS) #11742 cases when only a few GS are available 
 
 
 write.csv(HRS_all_data_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS.csv", sep = "")) 
