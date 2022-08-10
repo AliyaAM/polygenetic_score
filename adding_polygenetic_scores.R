@@ -67,8 +67,7 @@ HRS_2016_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS2016_d
 HRS_2018_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest_renamed_vars.csv", sep=""))
 
 #create HHIDPN so they match the names in the polygenic score 
-
-HRS_2008_data$HHIDPN = HRS_2008_data$HRS_2008_data.HHIDPN
+HRS_2008_data$HHIDPN = HRS_2008_data$HRS2008_data.HHIDPN
 HRS_2010_data$HHIDPN = HRS_2010_data$HRS_2010_data.HHIDPN
 HRS_2012_data$HHIDPN = HRS_2012_data$HRS_2012_data.HHIDPN
 HRS_2014_data$HHIDPN = HRS_2014_data$HRS_2014_data.HHIDPN
@@ -85,65 +84,68 @@ print(min(HRS_2014_data$HRS2014_continious_age))
 print(min(HRS_2016_data$HRS2016_continious_age))
 print(min(HRS_2018_data$HRS2018_continious_age))
 
-
+HRS_2008_data$HRS2008_discrim_harassed
 
 # only include the variables of interest, because later we need ot drop the NAs. 
 HRS_2008_data = data.frame(HRS_2008_data$HHIDPN,  
                            HRS_2008_data$HRS2008_checklist_depression_bin, 
-                           HRS_2008_data$discrim_bin) 
+                           HRS_2008_data$HRS2008_discrim_bin) 
 
 colnames(HRS_2008_data) = c("HHIDPN", 
                             "HRS2008_checklist_depression_bin", 
-                            "HRS2008_reason_discrim1_reason_age")
+                            "HRS2008_discrim_bin")
 
 HRS_2010_data = data.frame(HRS_2010_data$HHIDPN,
                            HRS_2010_data$HRS2010_checklist_depression_bin, 
-                           HRS_2010_data$HRS2010_reason_discrim1_reason_age) 
+                           HRS_2010_data$HRS2010_discrim_bin) 
 
 
 colnames(HRS_2010_data) = c("HHIDPN", 
                             "HRS2010_checklist_depression_bin", 
-                            "HRS2010_reason_discrim1_reason_age")
+                            "HRS2010_discrim_bin")
 
 HRS_2012_data = data.frame(HRS_2012_data$HHIDPN,
                            HRS_2012_data$HRS2012_checklist_depression_bin, 
-                           HRS_2012_data$HRS2012_reason_discrim1_reason_age) 
+                           HRS_2012_data$HRS2012_discrim_bin) 
 
 
 
 colnames(HRS_2012_data) = c("HHIDPN", 
                             "HRS2012_checklist_depression_bin", 
-                            "HRS2012_reason_discrim1_reason_age")
+                            "HRS2012_discrim_bin")
 
 
 HRS_2014_data = data.frame(HRS_2014_data$HHIDPN,
                            HRS_2014_data$HRS2014_checklist_depression_bin, 
-                           HRS_2014_data$HRS2014_reason_discrim1_reason_age) 
+                           HRS_2014_data$HRS2014_discrim_bin) 
 
 
 colnames(HRS_2014_data) = c("HHIDPN", 
                             "HRS2014_checklist_depression_bin", 
-                            "HRS2014_reason_discrim1_reason_age")
+                            "HRS2014_discrim_bin")
 
 
 HRS_2016_data = data.frame(HRS_2016_data$HHIDPN,
                            HRS_2016_data$HRS2016_checklist_depression_bin, 
-                           HRS_2016_data$HRS2016_reason_discrim1_reason_age) 
+                           HRS_2016_data$HRS2016_discrim_bin) 
 
 
 colnames(HRS_2016_data) = c("HHIDPN", 
                             "HRS2016_checklist_depression_bin", 
-                            "HRS2016_reason_discrim1_reason_age")
+                            "HRS2016_discrim_bin")
 
 
 HRS_2018_data = data.frame(HRS_2018_data$HHIDPN,
                            HRS_2018_data$HRS2018_checklist_depression_bin, 
-                           HRS_2018_data$HRS2018_reason_discrim1_reason_age) 
+                           HRS_2018_data$HRS2018_discrim_bin) 
         
 
 colnames(HRS_2018_data) = c("HHIDPN", 
                             "HRS2018_checklist_depression_bin", 
-                            "HRS2018_reason_discrim1_reason_age")
+                            "HRS2018_discrim_bin")
+
+
+
 
 #drop NAs
 polygenic_scores_data = na.omit(polygenic_scores_data)
@@ -201,29 +203,27 @@ people_with_PGS = unique(all_polygenic_scores$HHIDPN)
 
 
 
-one = merge(HRS_2008_data,
-            HRS_2010_data, by = c("HHIDPN"))
+one = full_join(HRS_2008_data,
+            HRS_2010_data)
 
-two = merge(HRS_2012_data,
-            HRS_2014_data, by = c("HHIDPN"))
+two = full_join(HRS_2012_data,
+            HRS_2014_data)
 
-three = merge(HRS_2016_data,
-              HRS_2018_data, by = c("HHIDPN"))
-
-
-one_and_two =  merge(one,
-                     two, by = c("HHIDPN"))
-
-HRS_all_data = merge(one_and_two,
-                     three, by = "HHIDPN")
+three = full_join(HRS_2016_data,
+              HRS_2018_data)
 
 
-stop()
-print("not enough cases with complete data")
+one_and_two =  full_join(one,
+                     two)
 
-na.omit(HRS_2008_data) #3201
+HRS_all_data = full_join(one_and_two, 
+                     three)
 
-na.omit(HRS_2010_data) #3748 
+
+
+na.omit(HRS_2008_data) #3201+ (ageism) 6263+ (discrim_bin any)
+
+na.omit(HRS_2010_data) #3748, 7278
 
 na.omit(HRS_2012_data) #3312
 
@@ -231,7 +231,18 @@ na.omit(HRS_2014_data) #3400
 
 na.omit(HRS_2016_data) #3089
 
-na.omit(HRS_2018_data) #2839
+na.omit(HRS_2018_data) #2839, 5142
+
+print("not enough cases with complete data across all years")
+
+na.omit(HRS_all_data) 
+na.omit(one) 
+na.omit(two) 
+na.omit(three) 
+na.omit(one_and_two)
+
+
+
 
 one[complete.cases(one), ]
 complete.cases(one)
@@ -287,12 +298,12 @@ write.csv(HRS_all_data_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2008_data
 
 HRS_all_data_PGS_drop_na = na.omit(HRS_all_data_PGS)
 
-write.csv(HRS_2008_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS_2008_data_with_PGS.csv", sep = "")) 
-write.csv(HRS_2010_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2010_data/HRS_2010_data_with_PGS.csv", sep = "")) 
-write.csv(HRS_2012_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2012_data/HRS_2012_data_with_PGS.csv", sep = "")) 
-write.csv(HRS_2014_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2014_data/HRS_2014_data_with_PGS.csv", sep = "")) 
-write.csv(HRS_2016_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS_2016_data_with_PGS.csv", sep = "")) 
-write.csv(HRS_2018_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS_2018_data_with_PGS.csv", sep = "")) 
+#write.csv(HRS_2008_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS_2008_data_with_PGS.csv", sep = "")) 
+#write.csv(HRS_2010_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2010_data/HRS_2010_data_with_PGS.csv", sep = "")) 
+#write.csv(HRS_2012_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2012_data/HRS_2012_data_with_PGS.csv", sep = "")) 
+#write.csv(HRS_2014_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2014_data/HRS_2014_data_with_PGS.csv", sep = "")) 
+#write.csv(HRS_2016_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2016_data/HRS_2016_data_with_PGS.csv", sep = "")) 
+#write.csv(HRS_2018_data_with_PGS, file =  paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS_2018_data_with_PGS.csv", sep = "")) 
 
 
 
