@@ -18,14 +18,20 @@ library(dplyr)
 
 
 
+directory = "/Users/aliya/my_docs"
 
-directory = "/Users/aliyaamirova/Documents/KCL_postDoc/"
+#"/Users/aliyaamirova/"
 
-SOURCE_ROOT = "Data_analysis/"
-OUTPUT_ROOT = "Data_analysis/"
+DATA_ROOT = "/KCL_postDoc/Data_analysis/"
+#SOURCE_ROOT = "/proj/Cumulative_effects_HRS/Version_2_analysis/"
+
+#directory = "/Users/aliyaamirova/Documents/KCL_postDoc/"
+
+#SOURCE_ROOT = "Data_analysis/"
+#OUTPUT_ROOT = "Data_analysis/"
 
 
-HRS_2018_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest.csv", sep=""))
+HRS_2018_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2018_data/HRS2018_dataset_latest.csv", sep=""))
 
 HRS_2018 = data.frame(HRS_2018_data$HHIDPN)
 
@@ -179,6 +185,6 @@ HRS_2018$HRS2018_discrim_bin = case_when(HRS_2018$HRS2018_discrim_harassed_bin==
                                          HRS_2018$HRS2018_discrim_harassed_bin== 0 & HRS_2018$HRS2018_discrim_lessrespect_bin == 0 & HRS_2018$HRS2018_discrim_medical_bin  == 0 & HRS_2018$HRS2018_discrim_notclever_bin == 0 & HRS_2018$HRS2018_discrim_afraidothers_bin== 0 & HRS_2018$HRS2018_discrim_poorerservice_bin == 0 ~ 0) 
 
 
-write.csv(HRS_2018, file = paste(directory, SOURCE_ROOT, "HRS_2018_data/HRS2018_dataset_latest_renamed_vars.csv", sep=""))
+write.csv(HRS_2018, file = paste(directory, DATA_ROOT, "HRS_2018_data/HRS2018_dataset_latest_renamed_vars.csv", sep=""))
 
 ls(HRS_2018)

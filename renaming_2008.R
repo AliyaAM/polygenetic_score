@@ -12,14 +12,20 @@ library(dplyr)
 #limiting longstanding condition (recode to bin)
 
 
+directory = "/Users/aliya/my_docs"
 
-directory = "/Users/aliyaamirova/Documents/KCL_postDoc/"
+#"/Users/aliyaamirova/"
 
-SOURCE_ROOT = "Data_analysis/"
-OUTPUT_ROOT = "Data_analysis/"
+DATA_ROOT = "/KCL_postDoc/Data_analysis/"
+#SOURCE_ROOT = "/proj/Cumulative_effects_HRS/Version_2_analysis/"
+
+#directory = "/Users/aliyaamirova/Documents/KCL_postDoc/"
+
+#SOURCE_ROOT = "Data_analysis/"
+#OUTPUT_ROOT = "Data_analysis/"
 
 
-HRS2008_data =  read.csv(paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS2008_dataset_latest.csv", sep=""))
+HRS2008_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/HRS2008_dataset_latest.csv", sep=""))
 
 HRS_2008 = data.frame(HRS2008_data$HHIDPN)
 
@@ -173,4 +179,4 @@ HRS_2008$HRS2008_discrim_bin = case_when(HRS_2008$HRS2008_discrim_harassed_bin==
                              HRS_2008$HRS2008_discrim_harassed_bin== 0 & HRS_2008$HRS2008_discrim_lessrespect_bin == 0 & HRS_2008$HRS2008_discrim_medical_bin  == 0 & HRS_2008$HRS2008_discrim_notclever_bin == 0 & HRS_2008$HRS2008_discrim_afraidothers_bin== 0 & HRS_2008$HRS2008_discrim_poorerservice_bin == 0 ~ 0) 
 
 
-write.csv(HRS_2008, file = paste(directory, SOURCE_ROOT, "HRS_2008_data/HRS2008_dataset_latest_renamed_vars.csv", sep=""))
+write.csv(HRS_2008, file = paste(directory, DATA_ROOT, "HRS_2008_data/HRS2008_dataset_latest_renamed_vars.csv", sep=""))

@@ -23,24 +23,35 @@ library(survminer)
 
 
 
-directory = "/Users/aliyaamirova/"
+directory = "/Users/aliya/my_docs"
+  
+  #"/Users/aliyaamirova/"
 
-DATA_ROOT = "Documents/KCL_postDoc/Data_analysis/"
+DATA_ROOT = "/KCL_postDoc/Data_analysis/"
 SOURCE_ROOT = "/proj/Cumulative_effects_HRS/Version_2_analysis/"
 
 source((paste(directory, SOURCE_ROOT, "sort_timepoints.R", sep="")))
 
+#/Users/aliya/my_docs/KCL_postDoc/Data_analysis/HRS_2008_data
+#/Users/aliya/my_docs/proj/Cumulative_effects_HRS/Version_2_analysis
 
 ###########
 ###########
 
 ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSAdiscrimination_data_wave5.csv", sep = ""))
+#/Users/aliya/my_docs/KCL_postDoc/Data_analysis/DATA_ELSA
 
 #HRS polygenic scores data: 
-polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "HRS_2012_data/pgenscore4e_r.csv", sep = ""))
+polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
+
+#polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "HRS_2012_data/pgenscore4e_r.csv", sep = ""))
 
 #ELSA polygenic scores data: 
+
+
 polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
+
+#polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
 ID_ELSA = unique(polygenic_scores_ELSA_data$idauniq)
 
 ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
