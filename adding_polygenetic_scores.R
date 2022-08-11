@@ -2,6 +2,9 @@ library(dplyr)
 library(tidyr)
 library(stats)
 
+library(survival)
+library(survminer)
+
 
 
 
@@ -185,21 +188,37 @@ HRS_all_data_SORTED$discrim_bin
 HRS_all_data_SORTED$checklist_depression_bin_t0 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 0 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 0 ~ 1)
 
+na.omit(HRS_all_data_SORTED$checklist_depression_bin_t0)
+
+
 HRS_all_data_SORTED$checklist_depression_bin_t1 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 1 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 1 ~ 1)
+
+na.omit(HRS_all_data_SORTED$checklist_depression_bin_t1)
+
 
 HRS_all_data_SORTED$checklist_depression_bin_t2 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 2 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 2 ~ 1)
 
+na.omit(HRS_all_data_SORTED$checklist_depression_bin_t2)
+
+
 HRS_all_data_SORTED$checklist_depression_bin_t3 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 3 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 3 ~ 1)
+
+na.omit(HRS_all_data_SORTED$checklist_depression_bin_t3)
 
 
 HRS_all_data_SORTED$checklist_depression_bin_t4 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 4 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 4 ~ 1)
 
+na.omit(HRS_all_data_SORTED$checklist_depression_bin_t4)
+
+
 HRS_all_data_SORTED$checklist_depression_bin_t5 = case_when(HRS_all_data_SORTED$checklist_depression_bin == 0 & HRS_all_data_SORTED$start_new == 5 ~ 0, 
                                                                     HRS_all_data_SORTED$checklist_depression_bin == 1 & HRS_all_data_SORTED$start_new == 5 ~ 1)
+
+na.omit(HRS_all_data_SORTED$checklist_depression_bin_t5)
 
 
 ############# discrim_bin arranged by timepoint 
@@ -209,24 +228,37 @@ HRS_all_data_SORTED$checklist_depression_bin_t5 = case_when(HRS_all_data_SORTED$
 HRS_all_data_SORTED$discrim_bin_t0 = case_when(HRS_all_data_SORTED$discrim_bin == 0 & HRS_all_data_SORTED$start_new == 0 ~ 0, 
                                                                     HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 0 ~ 1)
 
+na.omit(HRS_all_data_SORTED$discrim_bin_t0)
+
 
 HRS_all_data_SORTED$discrim_bin_t1 = case_when(HRS_all_data_SORTED$discrim_bin == 0 & HRS_all_data_SORTED$start_new == 1 ~ 0, 
-                                                                    HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 1 ~ 1)
+                                                                    HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 1 ~ 1) 
 
-
+na.omit(HRS_all_data_SORTED$discrim_bin_t1)
 
 HRS_all_data_SORTED$discrim_bin_t2 = case_when(HRS_all_data_SORTED$discrim_bin == 0 & HRS_all_data_SORTED$start_new == 2 ~ 0, 
                                                                     HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 2 ~ 1)
+
+na.omit(HRS_all_data_SORTED$discrim_bin_t2)
+
 
 HRS_all_data_SORTED$discrim_bin_t3 = case_when(HRS_all_data_SORTED$discrim_bin == 0 & HRS_all_data_SORTED$start_new == 3 ~ 0, 
                                                                     HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 3 ~ 1)
 
 
+na.omit(HRS_all_data_SORTED$discrim_bin_t3)
+
+
 HRS_all_data_SORTED$discrim_bin_t4 = case_when(HRS_all_data_SORTED$discrim_bin == 0 & HRS_all_data_SORTED$start_new == 4 ~ 0, 
                                                                     HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 4 ~ 1)
 
+na.omit(HRS_all_data_SORTED$discrim_bin_t4)
+
+
 HRS_all_data_SORTED$discrim_bin_t5 = case_when(HRS_all_data_SORTED$discrim_bin == 0 & HRS_all_data_SORTED$start_new == 5 ~ 0, 
                                                                     HRS_all_data_SORTED$discrim_bin == 1 & HRS_all_data_SORTED$start_new == 5 ~ 1)
+
+na.omit(HRS_all_data_SORTED$discrim_bin_t5)
 
 
 
@@ -497,12 +529,12 @@ polygenic_scores_data$HHIDPN = as.numeric(polygenic_scores_data$HHIDPN)
 nrow(polygenic_scores_data)
 
 # drop missing cases in PGS
-drop_na(polygenic_scores_data) 
+polygenic_scores_data = drop_na(polygenic_scores_data) 
 
 
 # join the HRs data with the polygenic scores
 
-HRS_all_data_PGS = right_join(HRS_all_data_SORTED_selected_vars, polygenic_scores_data)
+HRS_all_data_PGS = full_join(HRS_all_data_SORTED_selected_vars, polygenic_scores_data)
 
 unique_ID = unique(HRS_all_data_PGS$HHIDPN)
 
@@ -516,7 +548,7 @@ nrow(HRS_all_data_PGS) #12090 cases
 HRS_all_data_PGS$wealth_noIRA
 
 unique(HRS_all_data_PGS$E4_ALC_PGC18) 
-na = is.na(HRS_all_data_PGS$wealth_noIRA)
+na = is.na(HRS_all_data_PGS$E4_LONG_CHARGE15)
 unique(na)
 
 ls(HRS_all_data_PGS)
@@ -529,6 +561,13 @@ HRS_all_data_PGS = drop_na(HRS_all_data_PGS, any_of(varswealth))
 
 nrow(HRS_all_data_PGS) #11742 cases when only a few GS are available 
 
+nrow(ELSA_data_with_PGS) #3414 
+
+#check that the vectors are not empty 
+
+print("check that the vectors are not empty ")
+
+unique(HRS_all_data_PGS$checklist_depression_bin_t2) 
 
 write.csv(HRS_all_data_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS.csv", sep = "")) 
 #write.csv(HRS_all_data_PGS_drop_na, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_all_data_PGS_drop_na.csv", sep = "")) 
@@ -536,8 +575,22 @@ write.csv(HRS_all_data_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/H
 ##########
 ##########
 
+HRS_all_data_PGS$discrim_bin_t0 
+HRS_all_data_PGS$E4_DEPSYMP_SSGAC16
+
+HRS_all_data_PGS$checklist_depression_bin_t0
+HRS_all_data_PGS$checklist_depression_bin_t1
+HRS_all_data_PGS$checklist_depression_bin_t2
+HRS_all_data_PGS$checklist_depression_bin_t3
+HRS_all_data_PGS$checklist_depression_bin_t4
+HRS_all_data_PGS$checklist_depression_bin_t5
 
 
+
+depression_t1_discrim <- glm(checklist_depression_bin_t1 ~ discrim_bin_t0, data = HRS_all_data_PGS, family = binomial)
+depression_t1_discrim_summary = summary(depression_t1_discrim)
+
+depression_t1_gene = glm(checklist_depression_bin_t1 ~ E4_DEPSYMP_SSGAC16, data = HRS_all_data_PGS, family = poisson) 
 
 #write.csv(HRS_2008_data_with_PGS, file =  paste(directory, DATA_ROOT, "HRS_2008_data/HRS_2008_data_with_PGS.csv", sep = "")) 
 #write.csv(HRS_2010_data_with_PGS, file =  paste(directory, DATA_ROOT, "HRS_2010_data/HRS_2010_data_with_PGS.csv", sep = "")) 
