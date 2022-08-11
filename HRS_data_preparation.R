@@ -35,9 +35,11 @@ HRS_2014_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2014_data/HRS2014_dat
 HRS_2016_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2016_data/HRS2016_dataset_latest_renamed_vars.csv", sep=""))
 HRS_2018_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2018_data/HRS2018_dataset_latest_renamed_vars.csv", sep="")) 
 
+polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
 
 
 
+# match ID names 
 
 HRS_2008_data$HHIDPN = HRS_2008_data$HRS2008_data.HHIDPN
 HRS_2010_data$HHIDPN = HRS_2010_data$HRS_2010_data.HHIDPN
@@ -46,113 +48,44 @@ HRS_2014_data$HHIDPN = HRS_2014_data$HRS_2014_data.HHIDPN
 HRS_2016_data$HHIDPN = HRS_2016_data$HRS_2016_data.HHIDPN
 HRS_2018_data$HHIDPN = HRS_2018_data$HRS_2018_data.HHIDPN
 
-print("renamed")
+# join dataframes 
 
-# only include the variables of interest, because later we need ot drop the NAs. 
-HRS_2008_data = data.frame(HRS_2008_data$HHIDPN,  
-                           HRS_2008_data$HRS2008_checklist_depression_bin, 
-                           HRS_2008_data$HRS2008_discrim_bin,
-                           HRS_2008_data$HRS2008_wealth_noIRA)
+one =  full_join(HRS_2008_data, 
+                         HRS_2010_data) 
 
-print("done 1")
+two =  full_join(HRS_2012_data, 
+                 HRS_2014_data)
 
+three = full_join(HRS_2016_data, 
+         HRS_2018_data) 
 
-colnames(HRS_2008_data) = c("HHIDPN", 
-                            "checklist_depression_bin_2008", 
-                            "discrim_bin_2008",
-                            "wealth_noIRA_2008")
+one_two = full_join(one, two)
 
-
-HRS_2010_data = data.frame(HRS_2010_data$HHIDPN,
-                           HRS_2010_data$HRS2010_checklist_depression_bin, 
-                           HRS_2010_data$HRS2010_discrim_bin,
-                           HRS_2010_data$HRS2010_wealth_noIRA) 
-
-colnames(HRS_2010_data) = c("HHIDPN", 
-                            "checklist_depression_bin_2010", 
-                            "discrim_bin_2010",
-                            "wealth_noIRA_2010")
+all_HRS = full_join(one_two, three)
 
 
-print("done 2")
+#included cases with unique IDs across the years
 
-HRS_2012_data = data.frame(HRS_2012_data$HHIDPN,
-                           HRS_2012_data$HRS2012_checklist_depression_bin, 
-                           HRS_2012_data$HRS2012_discrim_bin,
-                           HRS_2012_data$HRS2012_wealth_noIRA) 
+nrow(all_HRS)
+length(unique(all_HRS$HHIDPN))
+ID = unique(all_HRS$HHIDPN)
 
+all_HRS_unique = subset(all_HRS, all_HRS$HHIDPN == ID)
 
+#check the variable list and the numbre of cases 
+ls(all_HRS_unique)
+nrow(all_HRS_unique)
 
-colnames(HRS_2012_data) = c("HHIDPN", 
-                            "checklist_depression_bin_2012", 
-                            "discrim_bin_2012",
-                            "wealth_noIRA_2012")
+# write the csv file where the HRS is arranged by year (var1 = HRS2008_age, var2 = HRS2010_age etc)
 
-print("done 3")
-HRS_2014_data = data.frame(HRS_2014_data$HHIDPN,
-                           HRS_2014_data$HRS2014_checklist_depression_bin, 
-                           HRS_2014_data$HRS2014_discrim_bin,
-                           HRS_2014_data$HRS2014_wealth_noIRA) 
+write.csv(all_HRS_unique, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years.csv", sep = "")) 
 
-colnames(HRS_2014_data) = c("HHIDPN", 
-                            "checklist_depression_bin_2014", 
-                            "discrim_bin_2014",
-                            "wealth_noIRA_2014")
+polygenic_scores_data$HHIDPN = paste(polygenic_scores_data$HHID, 0, polygenic_scores_data$PN, sep = "")
+polygenic_scores_data$HHIDPN = as.numeric(polygenic_scores_data$HHIDPN)
 
-print("done 4")
-HRS_2016_data = data.frame(HRS_2016_data$HHIDPN,
-                           HRS_2016_data$HRS2016_checklist_depression_bin, 
-                           HRS_2016_data$HRS2016_discrim_bin,
-                           HRS_2016_data$HRS2016_wealth_noIRA) 
+all_HRS_by_years_PGS = left_join(all_HRS_unique, polygenic_scores_data)
 
-
-colnames(HRS_2016_data) = c("HHIDPN", 
-                            "checklist_depression_bin_2016", 
-                            "discrim_bin_2016",
-                            "wealth_noIRA_2016")
-
-
-print("done 5")
-
-HRS_2018_data = data.frame(HRS_2018_data$HHIDPN,
-                           HRS_2018_data$HRS2018_checklist_depression_bin, 
-                           HRS_2018_data$HRS2018_discrim_bin,
-                           HRS_2018_data$HRS2018_wealth_noIRA)
-
-
-colnames(HRS_2018_data) = c("HHIDPN", 
-                            "checklist_depression_bin_2018", 
-                            "discrim_bin_2018",
-                            "wealth_noIRA_2018")
+write.csv(all_HRS_by_years_PGS, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
 
 
-print("done 6")
-
-
-HRS_2008_data$HHIDPN
-HRS_2010_data$HHIDPN
-HRS_2012_data$HHIDPN
-HRS_2014_data$HHIDPN
-HRS_2016_data$HHIDPN
-HRS_2018_data$HHIDPN
-
-
-
-ls(HRS_2008_data)
-ls(HRS_2010_data)
-ls(HRS_2012_data)
-ls(HRS_2014_data)
-ls(HRS_2016_data)
-ls(HRS_2018_data)
-
-all_HRS =  full_join(HRS_2008_data, 
-                         HRS_2010_data, 
-                         HRS_2012_data, 
-                         HRS_2014_data,
-                         HRS_2016_data, 
-                         HRS_2018_data) 
-
-
-          
-          
