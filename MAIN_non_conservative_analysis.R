@@ -31,11 +31,6 @@ DATA_ROOT = "/KCL_postDoc/Data_analysis/"
 ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
 all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
-#ELSA PGS data
-#polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
-
-#HRS PGS data 
-polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
 
 #covariates
 
@@ -95,23 +90,22 @@ ELSA_data_with_PGS$w5weightdiscrimination2
 
 
 # polygenic scores
-ls(polygenic_scores_ELSA_data)
 ELSA_data_with_PGS$BMI
 
 #PGS for diseases 
 unique(ELSA_data_with_PGS$RA) #empty vector 
 unique(ELSA_data_with_PGS$CAD)
-       unique(ELSA_data_with_PGS$CAD_2018)
-              unique(ELSA_data_with_PGS$MI)
-                     unique(ELSA_data_with_PGS$T2D_2018)
+unique(ELSA_data_with_PGS$CAD_2018)
+unique(ELSA_data_with_PGS$MI)
+unique(ELSA_data_with_PGS$T2D_2018)
 unique(ELSA_data_with_PGS$Diabetes)
 unique(ELSA_data_with_PGS$MDD19)
 unique(ELSA_data_with_PGS$DS)
 unique(ELSA_data_with_PGS$ANXIETY_CC)
-       unique(ELSA_data_with_PGS$ANXIETY_FC)
-              unique(ELSA_data_with_PGS$chronic_pain_2018)
-                     unique(ELSA_data_with_PGS$ALZ_2013)
-                            unique(ELSA_data_with_PGS$INS_COM)
+unique(ELSA_data_with_PGS$ANXIETY_FC)
+unique(ELSA_data_with_PGS$chronic_pain_2018)
+unique(ELSA_data_with_PGS$ALZ_2013)
+unique(ELSA_data_with_PGS$INS_COM)
 
 #PGS for health behaviours
 ELSA_data_with_PGS$SMK_NUMBER
@@ -127,12 +121,11 @@ summary(arthritis_gene)
 ########################################
 ########################################
 
-print("when renaming the vars we lost chronic conditions outcomes, add back (HRS)")
 
 #HRS 
 all_HRS_by_years_PGS$HRS2012_checklist_depression_bin
 
-unique(all_HRS_by_years_PGS$HRS2010_discrim_bin)
+unique(all_HRS_by_years_PGS$HRS2012_checklist_depression_bin)
 
 unique(all_HRS_by_years_PGS$E4_HBA1CAA_MAGIC17)
 
@@ -169,8 +162,7 @@ all_HRS_by_years_PGS$HRS2012
 
 ##########
 print("add to ELSA anxiety phenotype, MI, CAD, chronic pain, ALZ, insomnia")
-print("al the PGS for ELSA are empty")
-print("when renaming the vars we lost chronic conditions outcomes, add back (HRS)")
+
 print("for HRS: add hypertension_bin to 2018, add alcohol_days_week to 2008, anxiety to all years, add depression new bin to all years (NEW), add Alzheimer's for all years, add kidney disease for all years")
 
 
