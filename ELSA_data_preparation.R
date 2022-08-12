@@ -87,12 +87,12 @@ print("ELSA MI is below for wave 5")
 #3 3 or more
 print("ELSA MI add for wave6, wave7, wave8")
 
-ID_data_with_PGS =unique(ELSA_data_with_PGS$idauniq)
+ID_data_with_PGS =unique(ELSA_data$idauniq)
 
 
-ELSA_data_wave_6 = ELSA_data_wave_6[ELSA_data_with_PGS$idauniq %in% ID_data_with_PGS,]
-ELSA_data_wave_7 = ELSA_data_wave_7[ELSA_data_with_PGS$idauniq %in% ID_data_with_PGS,]
-ELSA_data_wave_8 = ELSA_data_wave_8[ELSA_data_with_PGS$idauniq %in% ID_data_with_PGS,]
+ELSA_data_wave_6 = ELSA_data_wave_6[ELSA_data$idauniq %in% ID_ELSA,]
+ELSA_data_wave_7 = ELSA_data_wave_7[ELSA_data$idauniq %in% ID_ELSA,]
+ELSA_data_wave_8 = ELSA_data_wave_8[ELSA_data$idauniq %in% ID_ELSA,]
 
 unique(ELSA_data$henmmi)
 
