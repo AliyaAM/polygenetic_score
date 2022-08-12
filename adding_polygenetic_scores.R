@@ -55,7 +55,7 @@ polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/pol
 ID_ELSA = unique(polygenic_scores_ELSA_data$idauniq)
 
 ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
-ELSA_data_with_PGS = right_join(ELSA_data, ELSA_data_polygenic_scores) 
+ELSA_data_with_PGS = bind_cols(ELSA_data, ELSA_data_polygenic_scores) 
 
 #ELSA_data_with_PGS$age (check min age is above 50 in ELSA)
 print(min(ELSA_data_with_PGS$w8age, na.rm = TRUE))

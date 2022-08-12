@@ -101,18 +101,18 @@ ELSA_data_with_PGS$BMI
 
 #PGS for diseases 
 unique(ELSA_data_with_PGS$RA) #empty vector 
-ELSA_data_with_PGS$CAD
-ELSA_data_with_PGS$CAD_2018
-ELSA_data_with_PGS$MI
-ELSA_data_with_PGS$T2D_2018
+unique(ELSA_data_with_PGS$CAD)
+       unique(ELSA_data_with_PGS$CAD_2018)
+              unique(ELSA_data_with_PGS$MI)
+                     unique(ELSA_data_with_PGS$T2D_2018)
 unique(ELSA_data_with_PGS$Diabetes)
-ELSA_data_with_PGS$MDD19
+unique(ELSA_data_with_PGS$MDD19)
 unique(ELSA_data_with_PGS$DS)
-ELSA_data_with_PGS$ANXIETY_CC
-ELSA_data_with_PGS$ANXIETY_FC
-ELSA_data_with_PGS$chronic_pain_2018
-ELSA_data_with_PGS$ALZ_2013
-ELSA_data_with_PGS$INS_COM
+unique(ELSA_data_with_PGS$ANXIETY_CC)
+       unique(ELSA_data_with_PGS$ANXIETY_FC)
+              unique(ELSA_data_with_PGS$chronic_pain_2018)
+                     unique(ELSA_data_with_PGS$ALZ_2013)
+                            unique(ELSA_data_with_PGS$INS_COM)
 
 #PGS for health behaviours
 ELSA_data_with_PGS$SMK_NUMBER
@@ -183,3 +183,5 @@ print("for HRS: add hypertension_bin to 2018, add alcohol_days_week to 2008, anx
 #add Alzheimer's for all years   
 #add kidney disease for all years    
 #limiting longstanding condition (recode to bin)
+
+ls(ELSA_data_with_PGS)
