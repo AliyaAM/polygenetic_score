@@ -1,0 +1,185 @@
+
+
+library(dplyr)
+library(tidyr)
+library(stats)
+library(survival)
+library(survminer)
+
+#in this analysis cases are included by merging dataframes by year/wave not by personal baseline 
+
+
+#need to add hypertension_bin to 2018 
+#need to add alcohol_days_week to 2008 
+#add anxiety to all years 
+#add depression new bin to all years (NEW)
+#need to add CVD to all years 
+#check smoking 
+#add PTSD for all years  
+#add Alzheimer's for all years   
+#add kidney disease for all years    
+#limiting longstanding condition (recode to bin)
+
+
+
+directory = "/Users/aliya/my_docs"
+
+#"/Users/aliyaamirova/"
+
+DATA_ROOT = "/KCL_postDoc/Data_analysis/"
+
+ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
+
+#ELSA PGS data
+polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
+
+#HRS PGS data 
+polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
+
+#covariates
+
+ELSA_data_with_PGS$w5age
+ELSA_data_with_PGS$w5ethnicity
+ELSA_data_with_PGS$w5sex
+ELSA_data_with_PGS$w5wealth
+ELSA_data_with_PGS$w5wealthq
+ELSA_data_with_PGS$w5limill
+ELSA_data_with_PGS$w4bmi_clean
+ELSA_data_with_PGS$w5married
+ELSA_data_with_PGS$ELSA_Education
+
+#outcomes w5
+
+ELSA_data_with_PGS$w5arthritis_new
+ELSA_data_with_PGS$w5asthma_new
+ELSA_data_with_PGS$w5cancer_new
+ELSA_data_with_PGS$w5diabetes_new
+ELSA_data_with_PGS$w5lungdis_new
+ELSA_data_with_PGS$w5cesd_bin
+ELSA_data_with_PGS$w5cesd
+ELSA_data_with_PGS$w5srh
+ELSA_data_with_PGS$w5stroke_new
+
+print("add anxiety phenotype, MI, CAD, chronic pain, ALZ, insomnia")
+
+#outcomes w6
+ELSA_data_with_PGS$w6arthritis_new
+#ELSA_data_with_PGS$w6asthma_new
+#ELSA_data_with_PGS$w6cancer_new
+ELSA_data_with_PGS$w6diabetes_new
+#ELSA_data_with_PGS$w6lungdis_new
+ELSA_data_with_PGS$w6cesd_bin
+ELSA_data_with_PGS$w6cesd
+#ELSA_data_with_PGS$w6srh
+#ELSA_data_with_PGS$w6stroke_new
+
+
+# health behaviours   
+ELSA_data_with_PGS$w5smokenum
+ELSA_data_with_PGS$w5alcunits
+ELSA_data_with_PGS$w6pa5level
+
+
+#predictor discrimination: 
+
+ELSA_data_with_PGS$w5discrim_bin
+ELSA_data_with_PGS$w5discrim_bin2
+ELSA_data_with_PGS$w5agediscrimination2
+ELSA_data_with_PGS$w5sexdiscrimination2
+ELSA_data_with_PGS$w5racediscrimination2
+ELSA_data_with_PGS$w5disabilitydiscrimination2
+ELSA_data_with_PGS$w5discrim_sexuality2
+ELSA_data_with_PGS$w5weightdiscrimination2
+
+
+print("al the PGS for ELSA are empty")
+
+# polygenic scores
+ls(polygenic_scores_ELSA_data)
+ELSA_data_with_PGS$BMI
+
+#PGS for diseases 
+unique(ELSA_data_with_PGS$RA) #empty vector 
+ELSA_data_with_PGS$CAD
+ELSA_data_with_PGS$CAD_2018
+ELSA_data_with_PGS$MI
+ELSA_data_with_PGS$T2D_2018
+unique(ELSA_data_with_PGS$Diabetes)
+ELSA_data_with_PGS$MDD19
+unique(ELSA_data_with_PGS$DS)
+ELSA_data_with_PGS$ANXIETY_CC
+ELSA_data_with_PGS$ANXIETY_FC
+ELSA_data_with_PGS$chronic_pain_2018
+ELSA_data_with_PGS$ALZ_2013
+ELSA_data_with_PGS$INS_COM
+
+#PGS for health behaviours
+ELSA_data_with_PGS$SMK_NUMBER
+ELSA_data_with_PGS$DrinksPerWeek19
+
+  
+arthritis_discrim = glm(w6arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_discrim)
+
+arthritis_gene = glm(w6arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_gene)
+
+########################################
+########################################
+
+print("when renaming the vars we lost chronic conditions outcomes, add back (HRS)")
+
+#HRS 
+all_HRS_by_years_PGS$HRS2012_checklist_depression_bin
+
+unique(all_HRS_by_years_PGS$HRS2010_discrim_bin)
+
+depression_discrim <- glm(HRS2012_checklist_depression_bin ~ HRS2010_discrim_bin, data = all_HRS_by_years_PGS, family = binomial)
+depression_discrim_summary = summary(depression_discrim)
+
+######
+var_1 = "E4_DEPSYMP_SSGAC16"
+drop_na(all_HRS_by_years_PGS, any_of(var_1))
+
+depression_gene = lm(HRS2012_checklist_depression_bin ~ E4_DEPSYMP_SSGAC16, data = all_HRS_by_years_PGS) 
+depression_gene_summary = summary(depression_gene)
+
+#####
+
+
+depression_gene = glm(HRS2012_checklist_depression_bin ~ E4_DEPSYMP_SSGAC16, data = all_HRS_by_years_PGS, family = poisson) 
+depression_gene_summary = summary(depression_gene)
+
+
+
+depression_discrimXgene = glm(HRS2012_checklist_depression_bin ~ E4_DEPSYMP_SSGAC16 * HRS2010_discrim_bin, data = all_HRS_by_years_PGS, family = poisson) 
+depression_discrimXgene_summary = summary(depression_discrimXgene)
+
+
+#########
+##########
+
+all_HRS_by_years_PGS$HRS2012_diabetes_new
+
+
+all_HRS_by_years_PGS$HRS2012_BMI
+all_HRS_by_years_PGS$HRS2012
+
+##########
+print("add to ELSA anxiety phenotype, MI, CAD, chronic pain, ALZ, insomnia")
+print("al the PGS for ELSA are empty")
+print("when renaming the vars we lost chronic conditions outcomes, add back (HRS)")
+print("for HRS: add hypertension_bin to 2018, add alcohol_days_week to 2008, anxiety to all years, add depression new bin to all years (NEW), add Alzheimer's for all years, add kidney disease for all years")
+
+
+#need to add hypertension_bin to 2018 
+#need to add alcohol_days_week to 2008 
+#add anxiety to all years 
+#add depression new bin to all years (NEW)
+#need to add CVD to all years 
+#check smoking 
+#add PTSD for all years  
+#add Alzheimer's for all years   
+#add kidney disease for all years    
+#limiting longstanding condition (recode to bin)

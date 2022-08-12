@@ -27,7 +27,6 @@ directory = "/Users/aliya/my_docs"
 DATA_ROOT = "/KCL_postDoc/Data_analysis/"
 #SOURCE_ROOT = "/proj/Cumulative_effects_HRS/Version_2_analysis/"
 
-
 HRS_2008_data = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/HRS2008_dataset_latest_renamed_vars.csv", sep=""))
 HRS_2010_data = read.csv(paste(directory, DATA_ROOT, "HRS_2010_data/HRS2010_dataset_latest_renamed_vars.csv", sep=""))
 HRS_2012_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2012_data/HRS2012_dataset_latest_renamed_vars.csv", sep=""))
