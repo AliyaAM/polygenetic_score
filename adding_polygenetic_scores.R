@@ -47,21 +47,28 @@ polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_s
 #polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "HRS_2012_data/pgenscore4e_r.csv", sep = ""))
 
 #ELSA polygenic scores data: 
-
-
 polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
 
 #polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
-ID_ELSA = unique(polygenic_scores_ELSA_data$idauniq)
 
+#subset polygenic scores data to those who provided data for the main survey 
+ID_ELSA = unique(ELSA_data$idauniq)
 ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
+
+#subset main ELSA data to thos ewho provided PGS data 
+ID_ELSA_PGS_unique =unique(polygenic_scores_data$idauniq)
+#ELSA_data_PGS_subset = ELSA_data[polygenic_scores_data$idauniq %in% ID_ELSA_PGS_unique, ]
+
+nrow(ELSA_data_PGS_subset)
+nrow(ELSA_data_polygenic_scores)
+
+#join PGS scores with ELSA main dataset 
 ELSA_data_with_PGS = bind_cols(ELSA_data, ELSA_data_polygenic_scores) 
 
 #ELSA_data_with_PGS$age (check min age is above 50 in ELSA)
 print(min(ELSA_data_with_PGS$w8age, na.rm = TRUE))
 
 #subset the data to those aged 50 and over: 
-
 ELSA_data_with_PGS = subset(ELSA_data_with_PGS, 
                             ELSA_data_with_PGS$w1age >=50 & 
                               ELSA_data_with_PGS$w2age >=50 & 
