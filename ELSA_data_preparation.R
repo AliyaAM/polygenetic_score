@@ -38,8 +38,11 @@ source((paste(directory, SOURCE_ROOT, "sort_timepoints.R", sep="")))
 ###########
 ###########
 
+#ELSA wave 5: 
 ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSAdiscrimination_data_wave5.csv", sep = ""))
 #/Users/aliya/my_docs/KCL_postDoc/Data_analysis/DATA_ELSA
+
+
 
 #HRS polygenic scores data: 
 polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
