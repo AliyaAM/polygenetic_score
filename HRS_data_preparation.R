@@ -47,20 +47,31 @@ HRS_2014_data$HHIDPN = HRS_2014_data$HRS_2014_data.HHIDPN
 HRS_2016_data$HHIDPN = HRS_2016_data$HRS_2016_data.HHIDPN
 HRS_2018_data$HHIDPN = HRS_2018_data$HRS_2018_data.HHIDPN
 
+#use this to subset each HRS by id: ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
+
 # join dataframes 
 
-one =  full_join(HRS_2008_data, 
-                         HRS_2010_data) 
+one =  inner_join(HRS_2008_data, 
+                         HRS_2010_data, 
+                  by = c("HHIDPN")) 
 
-two =  full_join(HRS_2012_data, 
-                 HRS_2014_data)
+two =  inner_join(HRS_2012_data, 
+                 HRS_2014_data,
+                 
+                 by = c("HHIDPN"))
 
-three = full_join(HRS_2016_data, 
-         HRS_2018_data) 
+three = inner_join(HRS_2016_data, 
+         HRS_2018_data, 
+         
+         by = c("HHIDPN")) 
 
-one_two = full_join(one, two)
+one_two = inner_join(one, two, 
+                     
+                     by = c("HHIDPN"))
 
-all_HRS = full_join(one_two, three)
+all_HRS = inner_join(one_two, three, 
+                     
+                     by = c("HHIDPN"))
 
 
 #included cases with unique IDs across the years
@@ -82,9 +93,10 @@ write.csv(all_HRS_unique, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_
 polygenic_scores_data$HHIDPN = paste(polygenic_scores_data$HHID, 0, polygenic_scores_data$PN, sep = "")
 polygenic_scores_data$HHIDPN = as.numeric(polygenic_scores_data$HHIDPN)
 
-all_HRS_by_years_PGS = left_join(all_HRS_unique, polygenic_scores_data)
+all_HRS_by_years_PGS = inner_join(all_HRS, polygenic_scores_data, 
+                                  by = c("HHIDPN"))
 
-write.csv(all_HRS_by_years_PGS, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
+#write.csv(all_HRS_by_years_PGS, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
 
 

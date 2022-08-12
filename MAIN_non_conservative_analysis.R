@@ -32,7 +32,7 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_w
 all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
 #ELSA PGS data
-polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
+#polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
 
 #HRS PGS data 
 polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
@@ -93,7 +93,6 @@ ELSA_data_with_PGS$w5discrim_sexuality2
 ELSA_data_with_PGS$w5weightdiscrimination2
 
 
-print("al the PGS for ELSA are empty")
 
 # polygenic scores
 ls(polygenic_scores_ELSA_data)
@@ -134,6 +133,8 @@ print("when renaming the vars we lost chronic conditions outcomes, add back (HRS
 all_HRS_by_years_PGS$HRS2012_checklist_depression_bin
 
 unique(all_HRS_by_years_PGS$HRS2010_discrim_bin)
+
+unique(all_HRS_by_years_PGS$E4_HBA1CAA_MAGIC17)
 
 depression_discrim <- glm(HRS2012_checklist_depression_bin ~ HRS2010_discrim_bin, data = all_HRS_by_years_PGS, family = binomial)
 depression_discrim_summary = summary(depression_discrim)
