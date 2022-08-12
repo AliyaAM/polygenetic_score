@@ -41,7 +41,15 @@ source((paste(directory, SOURCE_ROOT, "sort_timepoints.R", sep="")))
 #ELSA wave 5: 
 ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSAdiscrimination_data_wave5.csv", sep = ""))
 #/Users/aliya/my_docs/KCL_postDoc/Data_analysis/DATA_ELSA
-
+ELSA_data_age = subset(ELSA_data, 
+                       ELSA_data$w1age >=50 & 
+                         ELSA_data$w2age >=50 & 
+                         ELSA_data$w3age >=50 & 
+                         ELSA_data$w4age >=50 & 
+                         ELSA_data$w5age >=50 & 
+                         ELSA_data$w6age >=50 & 
+                         ELSA_data$w7age >=50 & 
+                         ELSA_data$w8age >=50) 
 
 ELSA_data_wave_6 = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_all/wave_6_elsa_data_v2.csv", sep = ""))
 ELSA_data_wave_7 = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_all/wave_7_elsa_data.csv", sep = ""))
@@ -198,118 +206,126 @@ print("the names for chronic pain and insomnia are below")
 #hepawba	Numeric	2	0	Whether feel pain in back	
 unique(ELSA_data_wave_6$hepawba) 
 
-w8_back_pain_bin = case_when(ELSA_data_wave_6$hepawba == 0 ~ 0, 
+w6_back_pain_bin = case_when(ELSA_data_wave_6$hepawba == 0 ~ 0, 
                              ELSA_data_wave_6$hepawba == 1 ~ 1)
 
 w7_back_pain_bin = case_when(ELSA_data_wave_7$hepawba == 0 ~ 0, 
                              ELSA_data_wave_7$hepawba == 1 ~ 1)
 
-w6_back_pain_bin = case_when(ELSA_data_wave_6$hepawba == 0 ~ 0, 
-                             ELSA_data_wave_6$hepawba == 1 ~ 1)
+w8_back_pain_bin = case_when(ELSA_data_wave_8$hepawba == 0 ~ 0, 
+                             ELSA_data_wave_8$hepawba == 1 ~ 1)
 
-w5_back_pain_bin = case_when(ELSA_data$hepawba == 0 ~ 0, 
-                             ELSA_data$hepawba == 1 ~ 1)
+ELSA_data$hepawba.x
+w5_back_pain_bin = case_when(ELSA_data$hepawba.x == 0 ~ 0, 
+                             ELSA_data$hepawba.x == 1 ~ 1)
 
 #hepawhi	Numeric	2	0	Whether feel pain in hips	
 unique(ELSA_data_wave_6$hepawhi) 
 
 
-w8_hip_pain_bin = case_when(ELSA_data_wave_6$hepawhi == 0 ~ 0, 
+w6_hip_pain_bin = case_when(ELSA_data_wave_6$hepawhi == 0 ~ 0, 
                              ELSA_data_wave_6$hepawhi == 1 ~ 1)
 
 w7_hip_pain_bin = case_when(ELSA_data_wave_7$hepawhi == 0 ~ 0, 
                              ELSA_data_wave_7$hepawhi == 1 ~ 1)
 
-w6_hip_pain_bin = case_when(ELSA_data_wave_6$hepawhi == 0 ~ 0, 
-                             ELSA_data_wave_6$hepawhi == 1 ~ 1)
+w8_hip_pain_bin = case_when(ELSA_data_wave_8$hepawhi == 0 ~ 0, 
+                             ELSA_data_wave_8$hepawhi == 1 ~ 1)
 
-w5_hip_pain_bin = case_when(ELSA_data$hepawhi == 0 ~ 0, 
-                             ELSA_data$hepawhi == 1 ~ 1)
+w5_hip_pain_bin = case_when(ELSA_data$hepawhi.x == 0 ~ 0, 
+                             ELSA_data$hepawhi.x == 1 ~ 1)
 
 #hepawkn	Numeric	2	0	Whether feel pain in knees	
 
-w8_knees_pain_bin = case_when(ELSA_data_wave_6$hepawkn == 0 ~ 0, 
+w6_knees_pain_bin = case_when(ELSA_data_wave_6$hepawkn == 0 ~ 0, 
                             ELSA_data_wave_6$hepawkn == 1 ~ 1)
 
 w7_knees_pain_bin = case_when(ELSA_data_wave_7$hepawkn == 0 ~ 0, 
                             ELSA_data_wave_7$hepawkn == 1 ~ 1)
 
-w6_knees_pain_bin = case_when(ELSA_data_wave_6$hepawkn == 0 ~ 0, 
-                            ELSA_data_wave_6$hepawkn == 1 ~ 1)
+w8_knees_pain_bin = case_when(ELSA_data_wave_8$hepawkn == 0 ~ 0, 
+                            ELSA_data_wave_8$hepawkn == 1 ~ 1)
 
-w5_knees_pain_bin = case_when(ELSA_data$hepawkn == 0 ~ 0, 
-                            ELSA_data$hepawkn == 1 ~ 1)
+w5_knees_pain_bin = case_when(ELSA_data$hepawkn.x == 0 ~ 0, 
+                            ELSA_data$hepawkn.x == 1 ~ 1)
 
 #hepawfe	Numeric	2	0	Whether feel pain in feet	
 
 
-w8_feet_pain_bin = case_when(ELSA_data_wave_6$hepawfe == 0 ~ 0, 
+w6_feet_pain_bin = case_when(ELSA_data_wave_6$hepawfe == 0 ~ 0, 
                               ELSA_data_wave_6$hepawfe == 1 ~ 1)
 
 w7_feet_pain_bin = case_when(ELSA_data_wave_7$hepawfe == 0 ~ 0, 
                               ELSA_data_wave_7$hepawfe == 1 ~ 1)
 
-w6_feet_pain_bin = case_when(ELSA_data_wave_6$hepawfe == 0 ~ 0, 
-                              ELSA_data_wave_6$hepawfe == 1 ~ 1)
+w8_feet_pain_bin = case_when(ELSA_data_wave_8$hepawfe == 0 ~ 0, 
+                              ELSA_data_wave_8$hepawfe == 1 ~ 1)
 
-w5_feet_pain_bin = case_when(ELSA_data$hepawfe == 0 ~ 0, 
-                              ELSA_data$hepawfe == 1 ~ 1)
+w5_feet_pain_bin = case_when(ELSA_data$hepawfe.x == 0 ~ 0, 
+                              ELSA_data$hepawfe.x == 1 ~ 1)
 
 #hepawmo	Numeric	2	0	Whether feel pain in mouth or teeth	
 	
-w8_mouth_teeth_pain_bin = case_when(ELSA_data_wave_6$hepawmo == 0 ~ 0, 
+w6_mouth_teeth_pain_bin = case_when(ELSA_data_wave_6$hepawmo == 0 ~ 0, 
                              ELSA_data_wave_6$hepawmo == 1 ~ 1)
 
 w7_mouth_teeth_pain_bin = case_when(ELSA_data_wave_7$hepawmo == 0 ~ 0, 
                              ELSA_data_wave_7$hepawmo == 1 ~ 1)
 
-w6_mouth_teeth_pain_bin = case_when(ELSA_data_wave_6$hepawmo == 0 ~ 0, 
-                             ELSA_data_wave_6$hepawmo == 1 ~ 1)
+w8_mouth_teeth_pain_bin = case_when(ELSA_data_wave_8$hepawmo == 0 ~ 0, 
+                             ELSA_data_wave_8$hepawmo == 1 ~ 1)
 
-w5_mouth_teeth_pain_bin = case_when(ELSA_data$hepawmo == 0 ~ 0, 
-                             ELSA_data$hepawmo == 1 ~ 1)
+w5_mouth_teeth_pain_bin = case_when(ELSA_data$hepawmo.x == 0 ~ 0, 
+                             ELSA_data$hepawmo.x == 1 ~ 1)
 
 #hepawot	Numeric	2	0	Whether feel pain elsewhere	
 
 
-w8_elsewhere_pain_bin = case_when(ELSA_data_wave_6$hepawot == 0 ~ 0, 
+w6_elsewhere_pain_bin = case_when(ELSA_data_wave_6$hepawot == 0 ~ 0, 
                              ELSA_data_wave_6$hepawot == 1 ~ 1)
 
 w7_elsewhere_pain_bin = case_when(ELSA_data_wave_7$hepawot == 0 ~ 0, 
                              ELSA_data_wave_7$hepawot == 1 ~ 1)
 
-w6_elsewhere_pain_bin = case_when(ELSA_data_wave_6$hepawot == 0 ~ 0, 
-                             ELSA_data_wave_6$hepawot == 1 ~ 1)
+w8_elsewhere_pain_bin = case_when(ELSA_data_wave_8$hepawot == 0 ~ 0, 
+                             ELSA_data_wave_8$hepawot == 1 ~ 1)
 
-w5_elsewhere_pain_bin = case_when(ELSA_data$hepawot == 0 ~ 0, 
-                             ELSA_data$hepawot == 1 ~ 1)
+w5_elsewhere_pain_bin = case_when(ELSA_data$hepawot.x == 0 ~ 0, 
+                             ELSA_data$hepawot.x == 1 ~ 1)
 
 #hepawal	Numeric	2	0	Whether feel pain all over	
-w8_widespread_pain_bin = case_when(ELSA_data_wave_6$hepawal == 0 ~ 0, 
+w6_widespread_pain_bin = case_when(ELSA_data_wave_6$hepawal == 0 ~ 0, 
                                   ELSA_data_wave_6$hepawal == 1 ~ 1)
 
 w7_widespread_pain_bin = case_when(ELSA_data_wave_7$hepawal == 0 ~ 0, 
                                   ELSA_data_wave_7$hepawal == 1 ~ 1)
 
-w6_widespread_pain_bin = case_when(ELSA_data_wave_6$hepawal == 0 ~ 0, 
-                                  ELSA_data_wave_6$hepawal == 1 ~ 1)
+w8_widespread_pain_bin = case_when(ELSA_data_wave_8$hepawal == 0 ~ 0, 
+                                  ELSA_data_wave_8$hepawal == 1 ~ 1)
 
-w5_widespread_pain_bin = case_when(ELSA_data$hepawal == 0 ~ 0, 
-                                  ELSA_data$hepawal == 1 ~ 1)
+w5_widespread_pain_bin = case_when(ELSA_data$hepawal.x == 0 ~ 0, 
+                                  ELSA_data$hepawal.x == 1 ~ 1)
 
 
-w5_pain_bin = case_when(w5_widespread_pain_bin == 0 & w5_elsewhere_pain_bin == 0 &  w5_mouth_teeth_pain_bin == 0 & w5_feet_pain_bin == 0 & w5_knees_pain_bin == 0 & w5_hip_pain_bin == 0 &  w5_back_pain_bin == 0 ~ 0, 
-                        w5_widespread_pain_bin == 1 | w5_elsewhere_pain_bin == 1 | w5_mouth_teeth_pain_bin == 1 | w5_feet_pain_bin == 1 | w5_knees_pain_bin == 1 | w5_hip_pain_bin == 1 |  w5_back_pain_bin == 1 ~ 1)  
+w5_pain_bin = case_when(w5_widespread_pain_bin == 0 & w5_elsewhere_pain_bin == 0 &  w5_feet_pain_bin == 0 & w5_knees_pain_bin == 0 & w5_hip_pain_bin == 0 &  w5_back_pain_bin == 0 ~ 0, 
+                        w5_widespread_pain_bin == 1 | w5_elsewhere_pain_bin == 1 | w5_feet_pain_bin == 1 | w5_knees_pain_bin == 1 | w5_hip_pain_bin == 1 |  w5_back_pain_bin == 1 ~ 1)  
 
-w6_pain_bin = case_when(w6_widespread_pain_bin == 0 & w6_elsewhere_pain_bin == 0 & w6_mouth_teeth_pain_bin == 0 & w6_feet_pain_bin == 0 & w6_knees_pain_bin == 0 & w6_hip_pain_bin == 0 &  w6_back_pain_bin == 0 ~ 0, 
-                        w6_widespread_pain_bin == 1 | w6_elsewhere_pain_bin == 1 | w6_mouth_teeth_pain_bin == 1 | w6_feet_pain_bin == 1 | w6_knees_pain_bin == 1 | w6_hip_pain_bin == 1 |  w6_back_pain_bin == 1 ~ 1)  
+unique(w5_pain_bin)
 
-w7_pain_bin = case_when(w7_widespread_pain_bin == 0 & w7_elsewhere_pain_bin == 0 & w7_mouth_teeth_pain_bin == 0 & w7_feet_pain_bin == 0 & w7_knees_pain_bin == 0 & w7_hip_pain_bin == 0 &  w7_back_pain_bin == 0 ~ 0, 
-                        w7_widespread_pain_bin == 1 | w7_elsewhere_pain_bin == 1 | w7_mouth_teeth_pain_bin == 1 | w7_feet_pain_bin == 1 | w7_knees_pain_bin == 1 | w7_hip_pain_bin == 1 |  w7_back_pain_bin == 1 ~ 1)  
+w6_pain_bin = case_when(w6_widespread_pain_bin == 0 & w6_elsewhere_pain_bin == 0  & w6_feet_pain_bin == 0 & w6_knees_pain_bin == 0 & w6_hip_pain_bin == 0 &  w6_back_pain_bin == 0 ~ 0, 
+                        w6_widespread_pain_bin == 1 | w6_elsewhere_pain_bin == 1  | w6_feet_pain_bin == 1 | w6_knees_pain_bin == 1 | w6_hip_pain_bin == 1 |  w6_back_pain_bin == 1 ~ 1)  
+unique(w6_pain_bin)
 
-w8_pain_bin = case_when(w8_widespread_pain_bin == 0 & w8_elsewhere_pain_bin == 0 & w8_mouth_teeth_pain_bin == 0 & w8_feet_pain_bin == 0 & w8_knees_pain_bin == 0 & w8_hip_pain_bin == 0 &  w8_back_pain_bin == 0 ~ 0, 
-                        w8_widespread_pain_bin == 1 | w8_elsewhere_pain_bin == 1 | w8_mouth_teeth_pain_bin == 1 | w8_feet_pain_bin == 1 | w8_knees_pain_bin == 1 | w8_hip_pain_bin == 1 |  w8_back_pain_bin == 1 ~ 1)  
+w7_pain_bin = case_when(w7_widespread_pain_bin == 0 & w7_elsewhere_pain_bin == 0  & w7_feet_pain_bin == 0 & w7_knees_pain_bin == 0 & w7_hip_pain_bin == 0 &  w7_back_pain_bin == 0 ~ 0, 
+                        w7_widespread_pain_bin == 1 | w7_elsewhere_pain_bin == 1  | w7_feet_pain_bin == 1 | w7_knees_pain_bin == 1 | w7_hip_pain_bin == 1 |  w7_back_pain_bin == 1 ~ 1)  
 
+unique(w7_pain_bin)
+
+w8_pain_bin = case_when(w8_widespread_pain_bin == 0 & w8_elsewhere_pain_bin == 0  & w8_feet_pain_bin == 0 & w8_knees_pain_bin == 0 & w8_hip_pain_bin == 0 &  w8_back_pain_bin == 0 ~ 0, 
+                        w8_widespread_pain_bin == 1 | w8_elsewhere_pain_bin == 1  | w8_feet_pain_bin == 1 | w8_knees_pain_bin == 1 | w8_hip_pain_bin == 1 |  w8_back_pain_bin == 1 ~ 1)  
+
+
+unique(w8_pain_bin)
 
 pain_all = data.frame(w5_widespread_pain_bin, 
                       w5_elsewhere_pain_bin, 
@@ -386,14 +402,37 @@ colnames(pain_all) = c("w5_widespread_pain_bin",
 
 ELSA_data_with_PGS = bind_cols(ELSA_data_with_PGS, pain_all) 
 
+unique(ELSA_data_with_PGS$w5_pain_bin)
+unique(ELSA_data_with_PGS$w6_pain_bin) # no 0 
+unique(ELSA_data_with_PGS$w7_pain_bin)
+unique(ELSA_data_with_PGS$w8_pain_bin) # no 0
+
+# widespread pain has 0 and 1s 
+unique(ELSA_data_with_PGS$w5_widespread_pain_bin)
+unique(ELSA_data_with_PGS$w6_widespread_pain_bin) 
+unique(ELSA_data_with_PGS$w7_widespread_pain_bin)
+unique(ELSA_data_with_PGS$w8_widespread_pain_bin) 
+
+# widespread pain has 0 and 1s 
+unique(ELSA_data_with_PGS$w5_elsewhere_pain_bin)
+unique(ELSA_data_with_PGS$w6_elsewhere_pain_bin) 
+unique(ELSA_data_with_PGS$w7_elsewhere_pain_bin)
+unique(ELSA_data_with_PGS$w8_elsewhere_pain_bin) 
+
 
 #SLEEP	Numeric	8	2		
 #w6heslpar	Numeric	8	0	Difficulty falling asleep wave 6	
+
+w8_back_pain_bin = case_when(ELSA_data_wave_6$hepawba == 0 ~ 0, 
+                             ELSA_data_wave_6$hepawba == 1 ~ 1)
+
+
 #w6heslpbr	Numeric	8	0	Waking in night wave 6	
 #w6heslpdr	Numeric	8	0	Wake up feeling tired wave 6	
 #w6sleepm	Numeric	8	0	Sleep problems wave 6	
 #w6slqual	Numeric	8	0	Sleep quality rating wave 6	
 #w6sldur	Numeric	8	0	Sleep duration category wave 6	
+
 
 #subset the data to those aged 50 and over: 
 ELSA_data_with_PGS = subset(ELSA_data_with_PGS, 
