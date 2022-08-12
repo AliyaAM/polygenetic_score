@@ -240,6 +240,45 @@ diabetes_gene_interaction_w8 = glm(w8diabetes_new ~ Diabetes * w5discrim_bin2, d
 summary(diabetes_gene_interaction_w8)
 
 ########################################
+
+########################################
+
+######### cesd_bin  (w 6)
+
+cesd_bin_discrim = glm(w6cesd_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_discrim)
+
+cesd_bin_gene = glm(w6cesd_bin ~ DS, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene)
+
+cesd_bin_gene_interaction = glm(w6cesd_bin ~ DS * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene_interaction)
+
+###########
+
+######### diabetes  (w 7)
+
+cesd_bins_discrim__w7 = glm(w7cesd_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bins_discrim__w7)
+
+cesd_bin_gene_w7 = glm(w7cesd_bin ~ DS, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene_w7)
+
+cesd_bin_gene_interaction_w7 = glm(w7cesd_bin ~ DS * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene_interaction_w7)
+
+
+######### diabetes  (w 8)
+
+cesd_bin_discrim__w8 = glm(w8cesd_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_discrim__w8)
+
+cesd_bin_gene_w8 = glm(w8cesd_bin ~ DS, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene_w8)
+
+cesd_bin_gene_interaction_w8 = glm(w8cesd_bin ~ DS * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene_interaction_w8)
+
 ########################################
 ########################################
 ########################################
@@ -287,10 +326,30 @@ all_HRS_by_years_PGS$HRS2012_BMI
 all_HRS_by_years_PGS$HRS2012
 
 ##########
-print("add to ELSA anxiety phenotype, MI, CAD, chronic pain, ALZ, insomnia")
+print("ELSA anxiety: now new var, but wha ttype emotional psychiatric problem do you have")  
+print("no _new vars for CAD, ALZ, only: how old were you when you were diagnosed with CAD and ALZ") 
+
+
+
+
+print("ELSA MI is below for wave 5")
+#MI in ELSA: 
+#wave 5: ELSA_data_with_PGS$henmmi
+#add other waves from different files (also called henmmi)
+#number of heart attacks in the last two years
+#Responses:
+  #1 None
+  #1 1
+  #2 2
+ #3 3 or more
+print("ELSA MI add for wave6, wave7, wave8")
+
+
+######################################
+######################################
+
 
 print("for HRS: add hypertension_bin to 2018, add alcohol_days_week to 2008, anxiety to all years, add depression new bin to all years (NEW), add Alzheimer's for all years, add kidney disease for all years")
-
 
 #need to add hypertension_bin to 2018 
 #need to add alcohol_days_week to 2008 
@@ -302,5 +361,40 @@ print("for HRS: add hypertension_bin to 2018, add alcohol_days_week to 2008, anx
 #add Alzheimer's for all years   
 #add kidney disease for all years    
 #limiting longstanding condition (recode to bin)
+
+
+
+print("the names for chronic pain and insomnia are below")
+
+# # # # # # NEW_VARIABLES	in ELSA: 
+
+#w8incidentcancer	Incident cancer between w5 and w8	
+#w8incidentdiabetes	Numeric	8	2	Incident diabetes between w5 and w8	
+#w8incidentarthritis	Numeric	8	2	Incident arthritis between w5 and w8	
+#w8incidentlungdis	Numeric	8	2	Incident lung disease between w5 and w8	
+#w8incidentstroke	Numeric	8	2	Incident stroke between w5 and w8	
+
+
+
+#hepain	Numeric	2	0	Whether often troubled with pain	
+#hepaa	Numeric	2	0	Severity of pain most of the time	
+#hepawba	Numeric	2	0	Whether feel pain in back	
+#hepawhi	Numeric	2	0	Whether feel pain in hips	
+#hepawkn	Numeric	2	0	Whether feel pain in knees	
+#hepawfe	Numeric	2	0	Whether feel pain in feet	
+#hepawmo	Numeric	2	0	Whether feel pain in mouth or teeth	
+#hepawot	Numeric	2	0	Whether feel pain elsewhere	
+#hepawal	Numeric	2	0	Whether feel pain all over	
+
+
+#SLEEP	Numeric	8	2		
+#w6heslpar	Numeric	8	0	Difficulty falling asleep wave 6	
+#w6heslpbr	Numeric	8	0	Waking in night wave 6	
+#w6heslpdr	Numeric	8	0	Wake up feeling tired wave 6	
+#w6sleepm	Numeric	8	0	Sleep problems wave 6	
+#w6slqual	Numeric	8	0	Sleep quality rating wave 6	
+#w6sldur	Numeric	8	0	Sleep duration category wave 6	
+
+
 
 ls(ELSA_data_with_PGS)
