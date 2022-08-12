@@ -47,27 +47,41 @@ ELSA_data_with_PGS$ELSA_Education
 #outcomes w5
 
 ELSA_data_with_PGS$w5arthritis_new
-ELSA_data_with_PGS$w5asthma_new
-ELSA_data_with_PGS$w5cancer_new
+#ELSA_data_with_PGS$w5asthma_new no asthma PGS 
+#ELSA_data_with_PGS$w5cancer_new no cancer PGS 
 ELSA_data_with_PGS$w5diabetes_new
-ELSA_data_with_PGS$w5lungdis_new
+#ELSA_data_with_PGS$w5lungdis_new no lungdis PGS 
 ELSA_data_with_PGS$w5cesd_bin
 ELSA_data_with_PGS$w5cesd
-ELSA_data_with_PGS$w5srh
-ELSA_data_with_PGS$w5stroke_new
+#ELSA_data_with_PGS$w5srh no srh PGS 
+#ELSA_data_with_PGS$w5stroke_new no stroke PGS 
 
 print("add anxiety phenotype, MI, CAD, chronic pain, ALZ, insomnia")
 
 #outcomes w6
 ELSA_data_with_PGS$w6arthritis_new
-#ELSA_data_with_PGS$w6asthma_new
-#ELSA_data_with_PGS$w6cancer_new
+#ELSA_data_with_PGS$w6asthma_new no asthma PGS 
+#ELSA_data_with_PGS$w6cancer_new  no cancer PGS 
 ELSA_data_with_PGS$w6diabetes_new
-#ELSA_data_with_PGS$w6lungdis_new
+#ELSA_data_with_PGS$w6lungdis_new no lungdis PGS 
 ELSA_data_with_PGS$w6cesd_bin
 ELSA_data_with_PGS$w6cesd
-#ELSA_data_with_PGS$w6srh
-#ELSA_data_with_PGS$w6stroke_new
+#ELSA_data_with_PGS$w6srh no srh PGS 
+#ELSA_data_with_PGS$w6stroke_new no stroke PGS 
+
+#outcome w7 
+ELSA_data_with_PGS$w7arthritis_new
+ELSA_data_with_PGS$w7diabetes_new
+ELSA_data_with_PGS$w7cesd_bin
+ELSA_data_with_PGS$w7cesd
+
+#outcome w8 
+ELSA_data_with_PGS$w8arthritis_new
+ELSA_data_with_PGS$w8diabetes_new
+ELSA_data_with_PGS$w8cesd_bin
+ELSA_data_with_PGS$w8cesd
+
+
 
 
 # health behaviours   
@@ -77,7 +91,6 @@ ELSA_data_with_PGS$w6pa5level
 
 
 #predictor discrimination: 
-
 ELSA_data_with_PGS$w5discrim_bin
 ELSA_data_with_PGS$w5discrim_bin2
 ELSA_data_with_PGS$w5agediscrimination2
@@ -86,8 +99,6 @@ ELSA_data_with_PGS$w5racediscrimination2
 ELSA_data_with_PGS$w5disabilitydiscrimination2
 ELSA_data_with_PGS$w5discrim_sexuality2
 ELSA_data_with_PGS$w5weightdiscrimination2
-
-
 
 # polygenic scores
 ELSA_data_with_PGS$BMI
@@ -112,12 +123,127 @@ ELSA_data_with_PGS$SMK_NUMBER
 ELSA_data_with_PGS$DrinksPerWeek19
 
   
+########################################
+######################################## data analysis 
+
+######### arthritis  (w 6)
+
 arthritis_discrim = glm(w6arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_discrim)
 
 arthritis_gene = glm(w6arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_gene)
 
+arthritis_gene_interaction = glm(w6arthritis_new ~ RA * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_gene_interaction)
+
+###########
+
+######### arthritis  (w 7)
+
+arthritis_discrim__w7 = glm(w7arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_discrim__w7)
+
+arthritis_gene_w7 = glm(w7arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_gene_w7)
+
+arthritis_gene_interaction_w7 = glm(w7arthritis_new ~ RA * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_gene_interaction_w7)
+
+
+######### arthritis  (w 8)
+
+arthritis_discrim__w8 = glm(w8arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_discrim__w8)
+
+arthritis_gene_w8 = glm(w8arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_gene_w8)
+
+arthritis_gene_interaction_w8 = glm(w8arthritis_new ~ RA * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(arthritis_gene_interaction_w8)
+
+
+########################################
+
+######### diabetes  (w 6)
+
+diabetes_discrim = glm(w6diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_discrim)
+
+diabetes_gene = glm(w6adiabetes_new ~ T2D_2018, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene)
+
+diabetes_gene_interaction = glm(w6diabetes_new ~ T2D_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_interaction)
+
+###########
+
+######### diabetes  (w 7)
+
+diabetes_discrim__w7 = glm(w7diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_discrim__w7)
+
+diabetes_gene_w7 = glm(w7diabetes_new ~ T2D_2018, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_w7)
+
+diabetes_gene_interaction_w7 = glm(w7diabetes_new ~ T2D_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_interaction_w7)
+
+
+######### diabetes  (w 8)
+
+diabetes_discrim__w8 = glm(w8diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_discrim__w8)
+
+diabetes_gene_w8 = glm(w8diabetes_new ~ T2D_2018, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_w8)
+
+diabetes_gene_interaction_w8 = glm(w8diabetes_new ~ T2D_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_interaction_w8)
+
+########################################
+
+######### diabetes (PGS v2)  (w 6)
+
+diabetes_discrim = glm(w6diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_discrim)
+
+diabetes_gene = glm(w6adiabetes_new ~ Diabetes, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene)
+
+diabetes_gene_interaction = glm(w6diabetes_new ~ Diabetes * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_interaction)
+
+###########
+
+######### diabetes  (PGS v2) (w 7)
+
+diabetes_discrim__w7 = glm(w7diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_discrim__w7)
+
+diabetes_gene_w7 = glm(w7diabetes_new ~ Diabetes, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_w7)
+
+diabetes_gene_interaction_w7 = glm(w7diabetes_new ~ Diabetes * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_interaction_w7)
+
+
+######### diabetes (PGS v2) (w 8)
+
+diabetes_discrim__w8 = glm(w8diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_discrim__w8)
+
+diabetes_gene_w8 = glm(w8diabetes_new ~ Diabetes, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_w8)
+
+diabetes_gene_interaction_w8 = glm(w8diabetes_new ~ Diabetes * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+summary(diabetes_gene_interaction_w8)
+
+########################################
+########################################
+########################################
+########################################
+########################################
 ########################################
 ########################################
 
