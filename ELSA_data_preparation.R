@@ -184,4 +184,4 @@ ELSA_data_with_PGS = subset(ELSA_data_with_PGS,
                               ELSA_data_with_PGS$w7age >=50 & 
                               ELSA_data_with_PGS$w8age >=50) 
 
-#write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
