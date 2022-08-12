@@ -405,7 +405,7 @@ ELSA_data_with_PGS = bind_cols(ELSA_data_with_PGS, pain_all)
 unique(ELSA_data_with_PGS$w5_pain_bin)
 unique(ELSA_data_with_PGS$w6_pain_bin) # no 0 
 unique(ELSA_data_with_PGS$w7_pain_bin)
-unique(ELSA_data_with_PGS$w8_pain_bin) # no 0
+unique(ELSA_data_with_PGS$w8_pain_bin) 
 
 # widespread pain has 0 and 1s 
 unique(ELSA_data_with_PGS$w5_widespread_pain_bin)
@@ -422,10 +422,6 @@ unique(ELSA_data_with_PGS$w8_elsewhere_pain_bin)
 
 #SLEEP	Numeric	8	2		
 #w6heslpar	Numeric	8	0	Difficulty falling asleep wave 6	
-
-w8_back_pain_bin = case_when(ELSA_data_wave_6$hepawba == 0 ~ 0, 
-                             ELSA_data_wave_6$hepawba == 1 ~ 1)
-
 
 #w6heslpbr	Numeric	8	0	Waking in night wave 6	
 #w6heslpdr	Numeric	8	0	Wake up feeling tired wave 6	
