@@ -168,7 +168,7 @@ colnames(MI_data) = c("w5_MI_new",
 
 ELSA_data_with_PGS = bind_cols(ELSA_data_with_PGS, MI_data) 
 
-unique(ELSA_data_with_PGS$w5_MI_new)
+unique(ELSA_data_with_PGS$w5_MI_new_bin)
 
 #ELSA_data_with_PGS$age (check min age is above 50 in ELSA)
 print(min(ELSA_data_with_PGS$w8age, na.rm = TRUE))
