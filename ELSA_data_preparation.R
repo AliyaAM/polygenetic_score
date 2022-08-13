@@ -421,14 +421,270 @@ unique(ELSA_data_with_PGS$w8_elsewhere_pain_bin)
 
 
 #SLEEP	Numeric	8	2		
-#w6heslpar	Numeric	8	0	Difficulty falling asleep wave 6	
-
+#w6heslpar	Numeric	8	0	Difficulty falling asleep wave 6
+#1 Not during the last month
+#2 Less than once a week
+#3 Once or twice a week
+#4 Three or more times a week
+#ELSA_data_wave_7$heslpar null 
+#ELSA_data_wave_8$heslpar
 #w6heslpbr	Numeric	8	0	Waking in night wave 6	
 #w6heslpdr	Numeric	8	0	Wake up feeling tired wave 6	
 #w6sleepm	Numeric	8	0	Sleep problems wave 6	
 #w6slqual	Numeric	8	0	Sleep quality rating wave 6	
 #w6sldur	Numeric	8	0	Sleep duration category wave 6	
 
+############
+############
+############
+
+#HESLPF	ELSA 2012	HE. Health	
+#Description:
+#  During the last month, how would you rate your sleep quality overall. Would you say it was... INTERVIEWER: Read out...
+#Text:
+#  During the last month, how would you rate your sleep quality overall. Would you say it was... INTERVIEWER: Read out...
+#Response type:
+#  Enumerated
+#Responses:
+#  1 ...Very good,
+#2 Good,
+#3 Fairly bad,
+#4 or, Very bad?
+  
+w6_sleep_qual = case_when(ELSA_data_wave_6$heslpf == 1 ~ 4, 
+                                   ELSA_data_wave_6$heslpf == 2 ~ 3, 
+                                   ELSA_data_wave_6$heslpf == 3 ~ 2, 
+                                   ELSA_data_wave_6$heslpf == 4 ~ 1)
+
+#FROM: Jackowska, Kumari, Steptoe  (2013) Sleep disturbance was assessed with three questions that are the most common symptoms of insomnia.Specifically, participants were requested to indicate whether in the past month
+#they had difficulties falling sleep, staying asleep, and
+#whether they felt tired upon waking up in the mornin
+
+
+
+
+#HESLPE	ELSA 2012: how many hours of sleep do you have on average 
+
+w6_hrs_sleep = ELSA_data_wave_6$heslpe
+
+
+
+
+#HESLPA	ELSA 2012:  How often do you have difficulty falling asleep? INTERVIEWER: Count as yes if cannot get to sleep for at least 30 minutes.
+#1 Not during the last month
+#2 Less than once a week
+#3 Once or twice a week
+#4 Three or more times a week
+
+
+w6_diff_sleep_onset = case_when(ELSA_data_wave_6$heslpa == 1 ~ 1, 
+                          ELSA_data_wave_6$heslpa == 2 ~ 2, 
+                          ELSA_data_wave_6$heslpa == 3 ~ 3, 
+                          ELSA_data_wave_6$heslpa == 4 ~ 4)
+
+
+
+
+w6_diff_sleep_onset_bin  = case_when(ELSA_data_wave_6$heslpa == 1 ~ 0, 
+                              ELSA_data_wave_6$heslpa == 2 ~ 0, 
+                              ELSA_data_wave_6$heslpa == 3 ~ 1, 
+                              ELSA_data_wave_6$heslpa == 4 ~ 1)
+
+
+
+#HESLPC	ELSA 2012: How often in the past month did you have trouble staying asleep (including waking far too early)?
+#1 Not at all
+#2 1-3 days
+#3 4-7 days
+#4 8-14 days
+#5 15-21 days
+#6 22-31 days
+
+
+w6_asleep_prob = case_when(ELSA_data_wave_6$heslpc == 1 ~ 0, 
+                           ELSA_data_wave_6$heslpc == 2 ~ 1, 
+                           ELSA_data_wave_6$heslpc == 3 ~ 2, 
+                           ELSA_data_wave_6$heslpc == 4 ~ 3, 
+                           ELSA_data_wave_6$heslpc == 5 ~ 4, 
+                           ELSA_data_wave_6$heslpc == 6 ~ 5)
+
+w6_asleep_prob_bin = case_when(ELSA_data_wave_6$heslpc == 1 ~ 0, 
+                               ELSA_data_wave_6$heslpc == 2 ~ 0, 
+                               ELSA_data_wave_6$heslpc == 3 ~ 1, 
+                               ELSA_data_wave_6$heslpc == 4 ~ 1, 
+                               ELSA_data_wave_6$heslpc == 5 ~ 1, 
+                               ELSA_data_wave_6$heslpc == 6 ~ 1)
+
+#HESLPD (2012) waking up feeling tired 
+#1 Not during the last month
+#2 Less than once a week
+#3 Once or twice a week
+#4 Three or more times a week
+
+w6_wkup_tired = case_when(ELSA_data_wave_6$heslpd == 1 ~ 1, 
+                          ELSA_data_wave_6$heslpd == 2 ~ 2, 
+                          ELSA_data_wave_6$heslpd == 3 ~ 3, 
+                          ELSA_data_wave_6$heslpd == 4 ~ 4)
+
+w6_wkup_tired_bin = case_when(ELSA_data_wave_6$heslpd == 1 ~ 0, 
+                              ELSA_data_wave_6$heslpd == 2 ~ 0, 
+                              ELSA_data_wave_6$heslpd == 3 ~ 1, 
+                              ELSA_data_wave_6$heslpd == 4 ~ 1)
+
+
+
+
+w6_sleep_disturbance = (w6_diff_sleep_onset + w6_asleep_prob + w6_wkup_tired)/3 
+
+
+
+
+########### 2016: 
+
+#HESLPA	ELSA 2016: difficulty falling asleep 
+#1 Not during the last month
+#2 Less than once a week
+#3 Once or twice a week
+#4 Three or more times a week
+
+w8_diff_sleep_onset = case_when(ELSA_data_wave_8$heslpa == 1 ~ 1, 
+                                ELSA_data_wave_8$heslpa == 2 ~ 2, 
+                                ELSA_data_wave_8$heslpa == 3 ~ 3, 
+                                ELSA_data_wave_8$heslpa == 4 ~ 4)
+
+w8_diff_sleep_onset_bin  = case_when(ELSA_data_wave_8$heslpa == 1 ~ 0, 
+                                     ELSA_data_wave_8$heslpa == 2 ~ 0, 
+                                     ELSA_data_wave_8$heslpa == 3 ~ 1, 
+                                     ELSA_data_wave_8$heslpa == 4 ~ 1)
+
+
+#HESLPC	ELSA 2016: staying asleep 
+#1 Not at all
+#2 1-3 days
+#3 4-7 days
+#4 8-14 days
+#5 15-21 days
+#6 22-31 days
+
+
+w8_asleep_prob = case_when(ELSA_data_wave_8$heslpc == 1 ~ 0, 
+                           ELSA_data_wave_8$heslpc == 2 ~ 1, 
+                           ELSA_data_wave_8$heslpc == 3 ~ 2, 
+                           ELSA_data_wave_8$heslpc == 4 ~ 3, 
+                           ELSA_data_wave_8$heslpc == 5 ~ 4, 
+                           ELSA_data_wave_8$heslpc == 6 ~ 5)
+
+
+
+
+w8_asleep_prob_bin = case_when(ELSA_data_wave_8$heslpc == 1 ~ 0, 
+                               ELSA_data_wave_8$heslpc == 2 ~ 0, 
+                               ELSA_data_wave_8$heslpc == 3 ~ 1, 
+                               ELSA_data_wave_8$heslpc == 4 ~ 1, 
+                               ELSA_data_wave_8$heslpc == 5 ~ 1, 
+                               ELSA_data_wave_8$heslpc == 6 ~ 1)
+
+
+#HESLPD	ELSA 2016: How often do you wake up after your usual amount of sleep feeling tired and worn out?
+
+
+w8_wkup_tired = case_when(ELSA_data_wave_8$heslpd == 1 ~ 1, 
+                          ELSA_data_wave_8$heslpd == 2 ~ 2, 
+                          ELSA_data_wave_8$heslpd == 3 ~ 3, 
+                          ELSA_data_wave_8$heslpd == 4 ~ 4)
+
+
+
+
+w8_wkup_tired_bin = case_when(ELSA_data_wave_8$heslpd == 1 ~ 0, 
+                              ELSA_data_wave_8$heslpd == 2 ~ 0, 
+                              ELSA_data_wave_8$heslpd == 3 ~ 1, 
+                              ELSA_data_wave_8$heslpd == 4 ~ 1)
+
+
+#HESLPE	ELSA 2016 (hours of sleep)
+
+
+
+
+w8_hrs_sleep = ELSA_data_wave_8$heslpe
+
+#HESLPF	ELSA 2016 (sleep quality) 
+
+
+w8_sleep_qual = case_when(ELSA_data_wave_8$heslpf == 1 ~ 4, 
+                          ELSA_data_wave_8$heslpf == 2 ~ 3, 
+                          ELSA_data_wave_8$heslpf == 3 ~ 2, 
+                          ELSA_data_wave_8$heslpf == 4 ~ 1)
+
+
+w8_sleep_disturbance = (w8_diff_sleep_onset + w8_asleep_prob + w8_wkup_tired)/3 
+
+
+sleep_data = data.frame(w6_sleep_qual, 
+                        w6_wkup_tired, 
+                        w6_wkup_tired_bin, 
+                        w6_hrs_sleep, 
+                        w6_asleep_prob, 
+                        w6_asleep_prob_bin, 
+                        w6_diff_sleep_onset, 
+                        w6_diff_sleep_onset_bin,  
+                        w6_sleep_disturbance,
+                        w8_diff_sleep_onset, 
+                        w8_diff_sleep_onset_bin, 
+                        w8_asleep_prob, 
+                        w8_asleep_prob_bin, 
+                        w8_wkup_tired, 
+                        w8_wkup_tired_bin, 
+                        w8_hrs_sleep, 
+                        w8_sleep_qual,
+                        w8_sleep_disturbance)
+
+
+colnames(sleep_data) = c("w6_sleep_qual", 
+                         "w6_wkup_tired",  
+                         "w6_wkup_tired_bin", 
+                         "w6_hrs_sleep", 
+                         "w6_asleep_prob", 
+                         "w6_asleep_prob_bin", 
+                         "w6_diff_sleep_onset", 
+                         "w6_diff_sleep_onset_bin", 
+                         "w6_sleep_disturbance",
+                         "w8_diff_sleep_onset", 
+                         "w8_diff_sleep_onset_bin", 
+                         "w8_asleep_prob", 
+                         'w8_asleep_prob_bin', 
+                         "w8_wkup_tired", 
+                         "w8_wkup_tired_bin", 
+                         "w8_hrs_sleep", 
+                         "w8_sleep_qual",
+                         "w8_sleep_disturbance")
+
+
+ELSA_data_with_PGS = bind_cols(ELSA_data_with_PGS, sleep_data) 
+
+unique(ELSA_data_with_PGS$w8_sleep_disturbance)
+#1 Not during the last month
+#2 Less than once a week
+#3 Once or twice a week
+#4 Three or more times a week
+
+ELSA_data_with_PGS$w8_sleep_disturbance_bin = case_when(ELSA_data_with_PGS$w8_sleep_disturbance == 1 ~ 0, 
+                                                        ELSA_data_with_PGS$w8_sleep_disturbance == 2 ~ 0,
+                                                        ELSA_data_with_PGS$w8_sleep_disturbance == 3 ~ 1, 
+                                                        ELSA_data_with_PGS$w8_sleep_disturbance == 4 ~ 1)
+
+
+
+
+ELSA_data_with_PGS$w6_sleep_disturbance_bin = case_when(ELSA_data_with_PGS$w6_sleep_disturbance == 1 ~ 0, 
+                                                        ELSA_data_with_PGS$w6_sleep_disturbance == 2 ~ 0,
+                                                        ELSA_data_with_PGS$w6_sleep_disturbance == 3 ~ 1, 
+                                                        ELSA_data_with_PGS$w6_sleep_disturbance == 4 ~ 1)
+
+
+unique(ELSA_data_with_PGS$w6_sleep_disturbance_bin)
+unique(ELSA_data_with_PGS$w8_sleep_disturbance_bin)
 
 #subset the data to those aged 50 and over: 
 ELSA_data_with_PGS = subset(ELSA_data_with_PGS, 
@@ -441,4 +697,4 @@ ELSA_data_with_PGS = subset(ELSA_data_with_PGS,
                               ELSA_data_with_PGS$w7age >=50 & 
                               ELSA_data_with_PGS$w8age >=50) 
 
-#write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
