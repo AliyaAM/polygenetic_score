@@ -2,6 +2,7 @@
 PGS_glm_function = function (data_ELSA, 
                              data_HRS,
                             analysis_variable_name, 
+                            
                             subsetting_VAR1_ELSA, 
                             subsetting_VAR1_HRS,
                             subsetting_VAR2_ELSA,
@@ -13,10 +14,19 @@ PGS_glm_function = function (data_ELSA,
                             ELSA_var2_value,
                             HRS_var2_value,
                             
+                            wave_number,
+                            
+                            outcome_ELSA, 
+                            outcome_HRS, 
+                            
+                            gene_ELSA, 
+                            gene_HRS, 
+                            
                             covariate1, 
                             covariate2,
                             covariate3, 
                             covariate4, 
+                            
                             wealth_gradient_cov1, 
                             wealth_gradient_cov2, 
                             wealth_gradient_cov3, 
@@ -78,6 +88,14 @@ PGS_glm_function = function (data_ELSA,
   data_both_countries$discrimination = c(data_ELSA_subset[ , discrimination_VAR_elsa],
                                          data_HRS_subset[ , discrimination_VAR_hrs] )
   
+  
+  data_both_countries$outcome = c(data_ELSA_subset[ , outcome_ELSA],
+                                  data_HRS_subset[ , outcome_HRS] )
+  
+  
+  data_both_countries$gene = c(data_ELSA_subset[ , gene_ELSA],
+                               data_HRS_subset[ , gene_HRS])
+  
   #data_both_countries$discrimination = as.factor(data_both_countries$discrimination)
   
   data_both_countries$wealth = c(data_ELSA_subset$wealth,
@@ -86,25 +104,75 @@ PGS_glm_function = function (data_ELSA,
   data_both_countries$age =  c(data_ELSA_subset$age,
                                data_HRS_subset$age)
   
+  
+  
   # if then rule for a number of covariates, if the covariates are NA then a different glm model is passed 
   
   # when only covariate 1 is included (i.e, not NA, !=NA)  and the rest are NA then take the glm in the if statement below 
   
+  if(covariate1 == "NA" & covariate2 == "NA" &  covariate3 == "NA" &  covariate4 == "NA" ){
+    
+    # print("we are in test 1")
+    # data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
+    #                                          data_HRS_subset[ ,   covariate1])
+    # 
+    # 
+    # fm1 <- glm(discrimination ~  data_both_countries[ ,   covariate1], 
+    #            
+    #            data = data_both_countries)
+    # 
+    # fm2 <- glm(discrimination ~ country_cat 
+    #            + data_both_countries[ ,   covariate1] , 
+    #            
+    #            data = data_both_countries)
+    
+    
+      
+    glm_outcome_discrim =  glm(outcome ~  discrimination, 
+                                 data = data_both_countries, 
+                                 family = binomial)
+                                                  
+      
+    glm_outcome_gene =  glm(outcome ~  gene, 
+                                  data = data_both_countries, 
+                                  family = binomial)
+       
+      
+     glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination, 
+                                           data = data_both_countries, 
+                                           family = binomial)
+  }
+  
+
+  
+  
   if(covariate1 != "NA" & covariate2 == "NA" &  covariate3 == "NA" &  covariate4 == "NA" ){
     
-    print("we are in test 1")
-    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
+
+        data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
                                              data_HRS_subset[ ,   covariate1])
     
     
-    fm1 <- glm(discrimination ~  data_both_countries[ ,   covariate1], 
-               
-               data = data_both_countries)
+   
+         glm_outcome_discrim =  glm(outcome ~  discrimination
+                                    + data_both_countries[ ,   covariate1], 
+                                    
+                               data = data_both_countries, 
+                               family = binomial)
     
-    fm2 <- glm(discrimination ~ country_cat 
-               + data_both_countries[ ,   covariate1] , 
-               
-               data = data_both_countries)
+  
+          glm_outcome_gene =  glm(outcome ~  gene
+                                  + data_both_countries[ ,   covariate1], 
+                                  
+                            data = data_both_countries, 
+                            family = binomial)
+    
+    
+          glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+                                              + data_both_countries[ ,   covariate1], 
+                                              
+                                        data = data_both_countries, 
+                                        family = binomial)
     
     
     
@@ -123,18 +191,28 @@ PGS_glm_function = function (data_ELSA,
                                              data_HRS_subset[ ,   covariate2])
     
     
+    glm_outcome_discrim =  glm(outcome ~  discrimination
+                               + data_both_countries[ ,   covariate1]
+                               + data_both_countries[ ,   covariate2], 
+                               
+                               data = data_both_countries, 
+                               family = binomial)
     
-    fm1 <- glm(discrimination ~  data_both_countries[ ,   covariate1]
-               + data_both_countries[ ,   covariate2], 
-               
-               data = data_both_countries)
     
-    fm2 <- glm(discrimination ~ country_cat 
-               + data_both_countries[ ,   covariate1]
-               + data_both_countries[ ,   covariate2] , 
-               
-               data = data_both_countries)
+    glm_outcome_gene =  glm(outcome ~  gene
+                            + data_both_countries[ ,   covariate1]
+                            + data_both_countries[ ,   covariate2], 
+                            
+                            data = data_both_countries, 
+                            family = binomial)
     
+    
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+                                        + data_both_countries[ ,   covariate1]
+                                        + data_both_countries[ ,   covariate2], 
+                                        
+                                        data = data_both_countries, 
+                                        family = binomial)
     
     
   }
@@ -156,18 +234,31 @@ PGS_glm_function = function (data_ELSA,
                                             data_HRS_subset[ ,   covariate3])
     
     
-    fm1 <- glm(discrimination ~  data_both_countries[ ,   covariate1]
-               + data_both_countries[ ,   covariate2]
-               + data_both_countries[ ,   covariate3], 
-               
-               data = data_both_countries)
+    glm_outcome_discrim =  glm(outcome ~  discrimination
+                               + data_both_countries[ ,   covariate1]
+                               + data_both_countries[ ,   covariate2]
+                               + data_both_countries[ ,   covariate3], 
+                               
+                               data = data_both_countries, 
+                               family = binomial)
     
-    fm2 <- glm(discrimination ~ country_cat 
-               + data_both_countries[ ,   covariate1]
-               + data_both_countries[ ,   covariate2]
-               + data_both_countries[ ,   covariate3], 
-               
-               data = data_both_countries)
+    
+    glm_outcome_gene =  glm(outcome ~  gene
+                            + data_both_countries[ ,   covariate1]
+                            + data_both_countries[ ,   covariate2]
+                            + data_both_countries[ ,   covariate3], 
+                            
+                            data = data_both_countries, 
+                            family = binomial)
+    
+    
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+                                        + data_both_countries[ ,   covariate1]
+                                        + data_both_countries[ ,   covariate2]
+                                        + data_both_countries[ ,   covariate3], 
+                                        
+                                        data = data_both_countries, 
+                                        family = binomial)
     
     
   } 
@@ -194,20 +285,35 @@ PGS_glm_function = function (data_ELSA,
                                             data_HRS_subset[ ,   covariate4])
     
     
-    fm1 <- glm(discrimination ~  data_both_countries[ ,   covariate1]
-               + data_both_countries[ ,   covariate2]
-               + data_both_countries[ ,   covariate3]
-               + data_both_countries[ ,   covariate4], 
-               
-               data = data_both_countries)
+    glm_outcome_discrim =  glm(outcome ~  discrimination
+                               + data_both_countries[ ,   covariate1]
+                               + data_both_countries[ ,   covariate2]
+                               + data_both_countries[ ,   covariate3]
+                               + data_HRS_subset[ ,   covariate4], 
+                               
+                               data = data_both_countries, 
+                               family = binomial)
     
-    fm2 <- glm(discrimination ~ country_cat 
-               + data_both_countries[ ,   covariate1]
-               + data_both_countries[ ,   covariate2]
-               + data_both_countries[ ,   covariate3]
-               + data_both_countries[ ,   covariate4], 
-               
-               data = data_both_countries)
+    
+    glm_outcome_gene =  glm(outcome ~  gene
+                            + data_both_countries[ ,   covariate1]
+                            + data_both_countries[ ,   covariate2]
+                            + data_both_countries[ ,   covariate3]
+                            + data_HRS_subset[ ,   covariate4], 
+                            
+                            data = data_both_countries, 
+                            family = binomial)
+    
+    
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+                                        + data_both_countries[ ,   covariate1]
+                                        + data_both_countries[ ,   covariate2]
+                                        + data_both_countries[ ,   covariate3]
+                                        + data_HRS_subset[ ,   covariate4], 
+                                        
+                                        data = data_both_countries, 
+                                        family = binomial)
+    
     
     
     
