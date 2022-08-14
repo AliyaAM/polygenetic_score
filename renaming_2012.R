@@ -30,6 +30,26 @@ HRS_2012_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2012_data/HRS2012_dat
 HRS_2012 = data.frame(HRS_2012_data$HHIDPN)
 
 
+HRS_2012$HRS2012_self_rated_health = HRS_2012_data$self_rated_health
+HRS_2012$HRS2012_life_satisfaction = HRS_2012_data$HRS2012_life_satisfaction 
+HRS_2012$HRS2012_alzheimer_bin = HRS_2012_data$HRS2012_alzheimer_bin
+HRS_2012$HRS2012_angina_new_bin = HRS_2012_data$HRS2012_angina2yrs_bin
+
+HRS_2012$HRS2012_arthritis_new = HRS_2012_data$HRS2012_arthritis_new
+unique(HRS_2012$HRS2012_arthritis_new)
+HRS_2012$HRS2012_arthritis_new_bin = case_when(HRS_2012$HRS2012_arthritis_new == 0 ~ 0, 
+                                               HRS_2012$HRS2012_arthritis_new == 1 ~ 1)
+unique(HRS_2012$HRS2012_arthritis_new_bin)
+
+
+HRS_2012$HRS2012_hypertension_new =  HRS_2012_data$HRS2012_hypertension_new 
+unique(HRS_2012$HRS2012_hypertension_new)
+HRS_2012$HRS2012_hypertension_new_bin = case_when(HRS_2012$HRS2012_hypertension_new == 0 ~ 0,
+                                                  HRS_2012$HRS2012_hypertension_new == 1 ~ 1)
+
+HRS_2012$HRS2012_mi = HRS_2012_data$HRS2012_heartattack2yrs_bin
+HRS_2012$HRS2012_depression_bin = HRS_2012_data$HRS2012_depression_bin
+
 HRS_2012$HRS2012_alcohol_days_week = HRS_2012_data$alcohol_days_week
 HRS_2012$HRS2012_LGB_2012 = HRS_2012_data$LGB_2012
 HRS_2012$HRS2012_marital_status = HRS_2012_data$marital_status2012
