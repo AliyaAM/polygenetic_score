@@ -571,7 +571,7 @@ print("done SD8")
 
 Depression_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                          
-                                         analysis_variable_name = "w6cesd_bin", 
+                                         analysis_variable_name = "w6_depression_bin", 
                                          wave_number = "wave 6",
                                          outcome_name = "Depression", 
                                          dataset = "ELSA", 
@@ -583,8 +583,9 @@ Depression_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          
                                          ELSA_var2_value = "NA",
                                          
-                                         outcome_ELSA = "w6cesd_bin", 
-                                         
+                                         #outcome_ELSA = "w6cesd_bin", 
+                                      outcome_ELSA = "w6_depression_bin", 
+                                      
                                          gene_ELSA = "MDD19", 
                                          
                                          covariate1 = "NA", 
@@ -598,7 +599,7 @@ print("done D6")
 
 Depression_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                          
-                                         analysis_variable_name = "w7cesd_bin", 
+                                         analysis_variable_name = "w7_depression_bin", 
                                          wave_number = "wave 7",
                                          outcome_name = "Depression", 
                                          dataset = "ELSA", 
@@ -610,7 +611,8 @@ Depression_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          
                                          ELSA_var2_value = "NA",
                                          
-                                         outcome_ELSA = "w7cesd_bin", 
+                                      #outcome_ELSA = "w7cesd_bin", 
+                                      outcome_ELSA = "w7_depression_bin", 
                                          
                                          gene_ELSA = "MDD19", 
                                          
@@ -625,7 +627,7 @@ print("done D7")
 
 Depression_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                          
-                                         analysis_variable_name = "w8cesd_bin", 
+                                         analysis_variable_name = "w8_depression_bin", 
                                          wave_number = "wave 8",
                                          outcome_name = "Depression", 
                                          dataset = "ELSA", 
@@ -637,7 +639,8 @@ Depression_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          
                                          ELSA_var2_value = "NA",
                                          
-                                         outcome_ELSA = "w8cesd_bin", 
+                                      #outcome_ELSA = "w8cesd_bin", 
+                                      outcome_ELSA = "w8_depression_bin",  
                                          
                                          gene_ELSA = "MDD19", 
                                          
@@ -653,7 +656,7 @@ print("done D8")
 
 Depression_w6_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                    
-                                   analysis_variable_name = "w6cesd_bin", 
+                                   analysis_variable_name = "w6_depression_bin", 
                                    wave_number = "wave 6",
                                    outcome_name = "Depression", 
                                    dataset = "ELSA", 
@@ -665,7 +668,8 @@ Depression_w6_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    
                                    ELSA_var2_value = "NA",
                                    
-                                   outcome_ELSA = "w6cesd_bin", 
+                                   #outcome_ELSA = "w8cesd_bin", 
+                                   outcome_ELSA = "w6_depression_bin",  
                                    
                                    gene_ELSA = "DS", 
                                    
@@ -680,7 +684,7 @@ print("done D6 v2")
 
 Depression_w7_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                    
-                                   analysis_variable_name = "w7cesd_bin", 
+                                   analysis_variable_name = "w7_depression_bin", 
                                    wave_number = "wave 7",
                                    outcome_name = "Depression", 
                                    dataset = "ELSA", 
@@ -692,7 +696,8 @@ Depression_w7_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    
                                    ELSA_var2_value = "NA",
                                    
-                                   outcome_ELSA = "w7cesd_bin", 
+                                   #outcome_ELSA = "w7cesd_bin", 
+                                   outcome_ELSA = "w7_depression_bin",  
                                    
                                    gene_ELSA = "DS", 
                                    
@@ -708,7 +713,7 @@ unique(ELSA_data_with_PGS$w8cesd_bin)
 
 Depression_w8_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                    
-                                   analysis_variable_name = "w8cesd_bin", 
+                                   analysis_variable_name = "w8_depression_bin", 
                                    wave_number = "wave 8",
                                    outcome_name = "Depression", 
                                    dataset = "ELSA", 
@@ -720,7 +725,9 @@ Depression_w8_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    
                                    ELSA_var2_value = "NA",
                                    
-                                   outcome_ELSA = "w8cesd_bin", 
+                                   #outcome_ELSA = "w8cesd_bin", 
+                                   outcome_ELSA = "w8_depression_bin",  
+                                   
                                    
                                    gene_ELSA = "DS", 
                                    
@@ -735,7 +742,7 @@ print("done D8 v2")
 
 ELSA_unadjusted_results_wave_6 = rbind(arthritis_w6, 
                                         T2DM_w6,
-                                        #T2DM_w6_v2,
+                                        T2DM_w6_v2,
                                         MI_w6,
                                         #pain_w6, p value = 1
                                         sleep_disturbance_w6,
@@ -746,7 +753,7 @@ ELSA_unadjusted_results_wave_6 = rbind(arthritis_w6,
 
 ELSA_unadjusted_results_wave_7 = rbind(arthritis_w7, 
                                        T2DM_w7,
-                                       #T2DM_w7_v2,
+                                       T2DM_w7_v2,
                                        MI_w7,
                                        pain_w7,
                                        #sleep_disturbance_w7,
@@ -757,7 +764,7 @@ ELSA_unadjusted_results_wave_7 = rbind(arthritis_w7,
 
 ELSA_unadjusted_results_wave_8 = rbind(arthritis_w8, 
                                        T2DM_w8,
-                                       #T2DM_w8_v2,
+                                       T2DM_w8_v2,
                                        MI_w8,
                                        pain_w8,
                                        sleep_disturbance_w8,
