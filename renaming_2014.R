@@ -31,6 +31,30 @@ HRS_2014_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2014_data/HRS2014_dat
 HRS_2014 = data.frame(HRS_2014_data$HHIDPN)
 
 
+HRS_2014$HRS2014_Percvd_cntrl_health = HRS_2014_data$Percvd_cntrl_health 
+
+
+HRS_2014$HRS2014_self_rated_health = HRS_2014_data$self_rated_health
+HRS_2014$HRS2014_life_satisfaction = HRS_2014_data$HRS2014_life_satisfaction 
+HRS_2014$HRS2014_alzheimer_bin = HRS_2014_data$HRS2014_alzheimer_bin
+HRS_2014$HRS2014_angina_new_bin = HRS_2014_data$HRS2014_angina2yrs_bin
+
+HRS_2014$HRS2014_arthritis_new = HRS_2014_data$HRS2014_arthritis_new
+unique(HRS_2014$HRS2014_arthritis_new)
+HRS_2014$HRS2014_arthritis_new_bin = case_when(HRS_2014$HRS2014_arthritis_new == 0 ~ 0, 
+                                               HRS_2014$HRS2014_arthritis_new == 1 ~ 1)
+unique(HRS_2014$HRS2014_arthritis_new_bin)
+
+
+HRS_2014$HRS2014_hypertension_new =  HRS_2014_data$HRS2014_hypertension_new 
+unique(HRS_2014$HRS2014_hypertension_new)
+HRS_2014$HRS2014_hypertension_new_bin = case_when(HRS_2014$HRS2014_hypertension_new == 0 ~ 0,
+                                                  HRS_2014$HRS2014_hypertension_new == 1 ~ 1)
+
+HRS_2014$HRS2014_mi = HRS_2014_data$HRS2014_heartattack2yrs_bin
+HRS_2014$HRS2014_depression_bin = HRS_2014_data$HRS2014_depression_bin
+
+
 HRS_2014$HRS2014_alcohol_days_week = HRS_2014_data$alcohol_days_week
 HRS_2014$HRS2014_LGB_2014 = HRS_2014_data$LGB_2014
 HRS_2014$HRS2014_marital_status = HRS_2014_data$marital_status2014
