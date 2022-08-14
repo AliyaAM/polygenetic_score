@@ -4,6 +4,7 @@ PGS_glm_function_ELSA = function (data_ELSA,
                              analysis_variable_name, 
                              wave_number,
                              outcome_name, 
+                             dataset, 
                              
                              subsetting_VAR1_ELSA, 
                              subsetting_VAR2_ELSA,
@@ -28,7 +29,7 @@ PGS_glm_function_ELSA = function (data_ELSA,
   #list the subsetting var name inside the function 
   
   analysis_variable_name = analysis_variable_name
-  
+  dataset = dataset
   wave_number = wave_number
   outcome_name = outcome_name
   
@@ -328,21 +329,27 @@ PGS_glm_function_ELSA = function (data_ELSA,
   write.csv(results_interaction, file = paste(OUTPUT_ROOT, folder,  "results_interaction.csv", sep=""))
   
   
-  results_interaction_other = as.data.frame(summary_interaction$aic, 
-                                            summary_interaction$deviance,
-                                            summary_interaction$df.residual,
-                                            summary_interaction$df.null,
-                                            summary_interaction$dispersion) 
+  # add other diagnostic statistic 
   
+  # results_interaction_other = as.data.frame(summary_interaction$aic, 
+  #                                           summary_interaction$deviance,
+  #                                           summary_interaction$df.residual,
+  #                                           summary_interaction$df.null,
+  #                                           summary_interaction$dispersion) 
+  # 
+  # 
+  # colnames(results_interaction_other) = c("aic", 
+  #                                         "deviance",
+  #                                         "df.residual",
+  #                                         "df.null",
+  #                                         "dispersion") 
+  # 
+  # write.csv(results_interaction_other, file = paste(OUTPUT_ROOT, folder,  "results_interaction_other.csv", sep=""))
   
-  colnames(results_interaction_other) = c("aic", 
-                                          "deviance",
-                                          "df.residual",
-                                          "df.null",
-                                          "dispersion") 
+  logOR_CI_outcome_gene_interaction = cbind(OR = coef(glm_outcome_gene_interaction), confint(glm_outcome_gene_interaction))
   
-  write.csv(results_interaction_other, file = paste(OUTPUT_ROOT, folder,  "results_interaction_other.csv", sep=""))
-  
+  p_values = summary_interaction$coefficients[,4]
+  logOR_results_all = cbind(logOR_CI_outcome_gene_interaction, p_values)
   
   ##########################
   ##########################
@@ -351,6 +358,9 @@ PGS_glm_function_ELSA = function (data_ELSA,
   
   p_values = summary_interaction$coefficients[,4]
   results_all = cbind(OR_CI_outcome_gene_interaction, p_values)
+  
+  
+  
   
   # cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
   # cross_country_OR_UK = cross_country_OR[2, 1]
@@ -372,18 +382,73 @@ PGS_glm_function_ELSA = function (data_ELSA,
   
   interaction_OR_CI_pvalue = tail(results_all, n = 1)
   
-  Interaction_findings = cbind(analysis_variable_name, 
-                               
-                               wave_number,
-                               outcome_name, 
-                               
-                               N_ELSA_subset, 
-
-                               N_ELSA_discrimYES, 
-
-                               
-                               interaction_OR_CI_pvalue)
   
+  interaction_logOR_CI_pvalue = tail(logOR_results_all, n = 1)
+  
+  print("done 1")
+  
+  Interaction_log_OR_findings = data.frame(analysis_variable_name, 
+                                       dataset, 
+                                       wave_number,
+                                       outcome_name, 
+                                       
+                                       N_ELSA_subset, 
+        
+                                       N_ELSA_discrimYES, 
+        
+                                       
+                                    interaction_logOR_CI_pvalue)
+  
+  
+  colnames(Interaction_log_OR_findings) = c("analysis_variable_name", 
+                                     "dataset", 
+                                     
+                                     "wave_number",
+                                     "outcome_name", 
+                                     
+                                     "N_subset", 
+                                     
+                                     "N_discrimYES", 
+                                     
+                                     #"interaction_OR_CI_pvalue")
+                                      "log OR", 
+                                      "CI1", 
+                                      "CI2",
+                                     "p_value")
+  
+  
+  Interaction_findings = data.frame(analysis_variable_name, 
+                                           dataset, 
+                                           wave_number,
+                                           outcome_name, 
+                                           
+                                           N_ELSA_subset, 
+                                           
+                                           N_ELSA_discrimYES, 
+                                           
+                                           
+                                    interaction_OR_CI_pvalue)
+  
+  
+  colnames(Interaction_findings) = c("analysis_variable_name", 
+                                            "dataset", 
+                                            
+                                            "wave_number",
+                                            "outcome_name", 
+                                            
+                                            "N_subset", 
+                                            
+                                            "N_discrimYES", 
+                                            
+                                            #"interaction_OR_CI_pvalue")
+                                            "OR", 
+                                            "CI1", 
+                                            "CI2",
+                                            "p_value")
+  
+  
+  print("completed")
+
   #ELSA_OR_value,
   #ELSA_CI1,
   #ELSA_CI2,

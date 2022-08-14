@@ -380,7 +380,7 @@ pain_bin_gene_w8  = glm(w8_pain_bin ~ chronic_pain_2018, data = ELSA_data_with_P
 summary(pain_bin_gene_w8)
 
 pain_bin_gene_interaction_w8  = glm(w8_pain_bin ~ chronic_pain_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
-summary(pain_bin_gene_interaction_w8) #sig 
+summary(pain_bin_gene_interaction_w8) 
 
 #ELSA_data_with_PGS$w8_pain_bin
 

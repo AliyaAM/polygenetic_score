@@ -81,6 +81,29 @@ ID_ELSA_PGS_unique =unique(polygenic_scores_data$idauniq)
 ELSA_data_with_PGS = bind_cols(ELSA_data, ELSA_data_polygenic_scores) 
 
 
+unique(ELSA_data_with_PGS$w5discrim_bin2)
+unique(ELSA_data_with_PGS$w5discrim_bin)
+
+ELSA_data_with_PGS$w5agediscrimination2
+ELSA_data_with_PGS$w5disabilitydiscrimination2
+ELSA_data_with_PGS$w5sexdiscrimination2
+ELSA_data_with_PGS$w5discrim_sexuality2
+ELSA_data_with_PGS$w5racediscrimination2
+ELSA_data_with_PGS$w5discrim_financial2
+ELSA_data_with_PGS$w5weightdiscrimination2
+
+
+unique(ELSA_data_with_PGS$w5discrim_continuous)
+
+
+
+unique(ELSA_data_with_PGS$w5discrim_age) 
+ELSA_data_with_PGS$w5discrim_disability
+ELSA_data_with_PGS$w5discrim_financial
+ELSA_data_with_PGS$w5discrim_gender
+ELSA_data_with_PGS$w5discrim_race
+ELSA_data_with_PGS$w5discrim_sexuality
+ELSA_data_with_PGS$w5discrim_weight
 
 
 print("ELSA MI is below for wave 5")
@@ -697,4 +720,4 @@ ELSA_data_with_PGS = subset(ELSA_data_with_PGS,
                               ELSA_data_with_PGS$w7age >=50 & 
                               ELSA_data_with_PGS$w8age >=50) 
 
-write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+#write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
