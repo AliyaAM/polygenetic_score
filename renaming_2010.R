@@ -49,7 +49,7 @@ HRS_2010$HRS2010_hypertension_new =  HRS_2010_data$HRS2010_hypertension_new
 unique(HRS_2010$HRS2010_hypertension_new)
 HRS_2010$HRS2010_hypertension_new_bin = case_when(HRS_2010$HRS2010_hypertension_new == 0 ~ 0,
                                                   HRS_2010$HRS2010_hypertension_new == 1 ~ 1)
-
+unique(HRS_2010$HRS2010_hypertension_new_bin)
 HRS_2010$HRS2010_mi = HRS_2010_data$HRS2010_heartattack2yrs_bin
 HRS_2010$HRS2010_depression_bin = HRS_2010_data$HRS2010_depression_bin
 

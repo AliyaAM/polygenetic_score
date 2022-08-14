@@ -96,7 +96,7 @@ polygenic_scores_data$HHIDPN = as.numeric(polygenic_scores_data$HHIDPN)
 all_HRS_by_years_PGS = inner_join(all_HRS, polygenic_scores_data, 
                                   by = c("HHIDPN"))
 
-#write.csv(all_HRS_by_years_PGS, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
+write.csv(all_HRS_by_years_PGS, file = paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
 
 

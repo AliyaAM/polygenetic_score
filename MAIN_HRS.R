@@ -36,20 +36,28 @@ DATA_ROOT = "KCL_postDoc/Data_analysis/"
 all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
 
-
 ######  Set the root location on the user's local machine to save output files.
 OUTPUT_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
-discrimination_var = "w5discrim_bin2" 
+
+
+######### HRS 
+#all_HRS_by_years_PGS$HRS2010_discrim_bin
+
+discrimination_var = "HRS2010_discrim_bin" 
+
+print("unique(all_HRS_by_years_PGS$HRS2012_hypertension_new_bin) # all answers are either 1 or N, check") 
+
+
+
+
+######## ELSA: 
 
 #discrimination_var  = "w5agediscrimination2" 
-
 #discrimination_var  = "w5disabilitydiscrimination2" #not enough data when run on the total sample
-
 #discrimination_var  = "w5sexdiscrimination2" nothing is significant when run on the total sample
-
 #discrimination_var = "w5racediscrimination2" #MI is coming out as sig. when run on the total sample
 #discrimination_var = "w5discrim_financial2"
 #discrimination_var = "w5weightdiscrimination2"
@@ -60,6 +68,25 @@ source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 
 source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
+
+
+#print("add all_HRS_by_years_PGS:  PTSD, anxiety, alcohol dependence,  smoking cessation, smoking initiation, sig per day, drinks per day" )
+
+############### Add analysis of PGS x discrimination on the following outcomes: 
+
+# all_HRS_by_years_PGS$HRS2010_self_rated_health
+# all_HRS_by_years_PGS$HRS2010_life_satisfaction 
+# all_HRS_by_years_PGS$HRS2010_alzheimer_bin 
+
+#polygenic scores (already added)
+#E4_WELLB_SSGAC16 - subjective wellbeing 
+#E4_PTSDEA_PGC18  - PTSD   
+#"E4_ANXFS_ANGST16", #anxiety factor 
+#E4_ANXCC_ANGST16#anxiety control 
+##"E4_ALC_PGC18" # alcohol dependence 
+#E4_BMI2_GIANT18 # BMI 
+
+###################
 
 #"E4_EDU2_SSGAC16", 
 #"E4_BMI_GIANT15", 
@@ -73,36 +100,26 @@ source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
 
 #ADD to HRS: 
-
-print("add all_HRS_by_years_PGS: heart attack (myocardial infarction),subjective wellbeing, PTSD, anxiety, alcohol dependence, hypertension, smoking cessation, smoking initiation, sig per day, drinks per day" )
-
-unique(all_HRS_by_years_PGS$w6diabetes_new)
-all_HRS_by_years_PGS$HRS2008_BMI
-all_HRS_by_years_PGS$HRS2008_smokes_now
-all_HRS_by_years_PGS$HRS2008_diabetes_new
-all_HRS_by_years_PGS$HRS2008_checklist_depression_bin
-all_HRS_by_years_PGS$HRS2010_alcohol_days_week
-all_HRS_by_years_PGS$HRS2008_discrim_bin
-all_HRS_by_years_PGS$HRS2008_reason_discrim1_reason_age
-all_HRS_by_years_PGS$HRS2012_race_white
-all_HRS_by_years_PGS$HRS2012_obese_bin
-
-#polygenic scores (already added)
-
-#E4_WELLB_SSGAC16 - subjective wellbeing 
-#E4_PTSDEA_PGC18  - PTSD   
-#"E4_ANXFS_ANGST16", #anxiety factor 
-#E4_ANXCC_ANGST16#anxiety control 
-##"E4_ALC_PGC18" # alcohol dependence 
-#E4_BMI2_GIANT18 # BMI 
-#E4_HTN_COGENT17 #hypertension 
-
-
+print('separately add health behaviours: discrimination x PGS analysis ')
 #health behaviour: 
 #E4_SCP_GSCAN19  smoking cessation 
 #E4_SI_GSCAN19 smoking initiation 
 #E4_CPD_GSCAN19 sig per day 
 #E4_DPW_GSCAN19 drinks per week  
+
+
+# unique(all_HRS_by_years_PGS$w6diabetes_new)
+# all_HRS_by_years_PGS$HRS2008_BMI
+# all_HRS_by_years_PGS$HRS2008_smokes_now
+# all_HRS_by_years_PGS$HRS2008_diabetes_new
+# all_HRS_by_years_PGS$HRS2008_checklist_depression_bin
+# all_HRS_by_years_PGS$HRS2010_alcohol_days_week
+# all_HRS_by_years_PGS$HRS2008_discrim_bin
+# all_HRS_by_years_PGS$HRS2008_reason_discrim1_reason_age
+# all_HRS_by_years_PGS$HRS2012_race_white
+# all_HRS_by_years_PGS$HRS2012_obese_bin
+
+
 
 
 
@@ -113,7 +130,7 @@ all_HRS_by_years_PGS = subsetting_function(data_ELSA =all_HRS_by_years_PGS,
                                          ELSA_var2_value = "NA")
 
 
-unique(all_HRS_by_years_PGS$w6arthritis_new)
+
 # 
 # arthritis_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
 #                                      
@@ -182,6 +199,74 @@ unique(all_HRS_by_years_PGS$w6arthritis_new)
 
 ############
 
+#hypertension_new_bin 
+#E4_HTN_COGENT17 #hypertension 
+
+# 
+# hypertension_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
+#                                 
+#                                 analysis_variable_name = "hypertension", 
+#                                 wave_number = "wave 6",
+#                                 outcome_name = "hypertension", 
+#                                 dataset = "HRS", 
+#                                 
+#                                 
+#                                 outcome_ELSA = "HRS2012_hypertension_new_bin", 
+#                                 
+#                                 gene_ELSA = "E4_HTN_COGENT17", 
+#                                 
+#                                 covariate1 = "NA", 
+#                                 covariate2 = "NA",
+#                                 covariate3 = "NA", 
+#                                 covariate4 = "NA", 
+#                                 discrimination_VAR_elsa = discrimination_var)
+# 
+# print("done hypertension_w6")
+# 
+# 
+# hypertension_w7 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
+#                                         
+#                                         analysis_variable_name = "hypertension", 
+#                                         wave_number = "wave 7",
+#                                         outcome_name = "hypertension", 
+#                                         dataset = "HRS", 
+#                                         
+#                                         
+#                                         outcome_ELSA = "HRS2014_hypertension_new_bin", 
+#                                         
+#                                         gene_ELSA = "E4_HTN_COGENT17", 
+#                                         
+#                                         covariate1 = "NA", 
+#                                         covariate2 = "NA",
+#                                         covariate3 = "NA", 
+#                                         covariate4 = "NA", 
+#                                         discrimination_VAR_elsa = discrimination_var)
+# 
+# print("done hypertension_w7")
+# 
+# 
+# 
+# hypertension_w8 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
+#                                         
+#                                         analysis_variable_name = "hypertension", 
+#                                         wave_number = "wave 8",
+#                                         outcome_name = "hypertension", 
+#                                         dataset = "HRS", 
+#                                         
+#                                         
+#                                         outcome_ELSA = "HRS2016_hypertension_new_bin", 
+#                                         
+#                                         gene_ELSA = "E4_HTN_COGENT17", 
+#                                         
+#                                         covariate1 = "NA", 
+#                                         covariate2 = "NA",
+#                                         covariate3 = "NA", 
+#                                         covariate4 = "NA", 
+#                                         discrimination_VAR_elsa = discrimination_var)
+# 
+# print("done hypertension_w8")
+
+########################
 
 
 T2DM_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
@@ -321,71 +406,71 @@ print("done T2DM8")
 
 ######### MI
 
-
-MI_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
-                              
-                              analysis_variable_name = "MI_wave6", 
-                              wave_number = "wave 6",
-                              outcome_name = "MI", 
-                              dataset = "ELSA", 
-                              
-                              
-                              
-                              outcome_ELSA = "w6_MI_new_bin", 
-                              
-                              gene_ELSA = "E4_MI_CARDIOGRAM15", 
-                              
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
-                              discrimination_VAR_elsa = discrimination_var)
-
-print("done MI6 v2")
-
-
-MI_w7 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
-                              
-                              analysis_variable_name = "MI_wave7", 
-                              wave_number = "wave 7",
-                              outcome_name = "MI", 
-                              dataset = "ELSA", 
-                              
-                              
-                              
-                              outcome_ELSA = "w7_MI_new_bin", 
-                              
-                              gene_ELSA = "E4_MI_CARDIOGRAM15", 
-                              
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
-                              discrimination_VAR_elsa = discrimination_var)
-
-print("done MI7 v2")
-
-
-MI_w8 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
-                              
-                              analysis_variable_name = "MI_wave8", 
-                              wave_number = "wave 8",
-                              outcome_name = "MI", 
-                              dataset = "ELSA", 
-                              
-                              
-                              
-                              outcome_ELSA = "w8_MI_new_bin", 
-                              
-                              gene_ELSA = "E4_MI_CARDIOGRAM15", 
-                              
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
-                              discrimination_VAR_elsa = discrimination_var)
-
-print("done MI8 v2")
+# 
+# MI_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
+#                               
+#                               analysis_variable_name = "HRS2012_mi", 
+#                               wave_number = "wave 6",
+#                               outcome_name = "MI", 
+#                               dataset = "HRS", 
+#                               
+#                               
+#                               
+#                               outcome_ELSA = "HRS2012_mi", 
+#                               
+#                               gene_ELSA = "E4_MI_CARDIOGRAM15", 
+#                               
+#                               covariate1 = "NA", 
+#                               covariate2 = "NA",
+#                               covariate3 = "NA", 
+#                               covariate4 = "NA", 
+#                               discrimination_VAR_elsa = discrimination_var)
+# 
+# print("done MI6 v2")
+# 
+# 
+# MI_w7 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
+#                               
+#                               analysis_variable_name = "HRS2014_mi", 
+#                               wave_number = "wave 7",
+#                               outcome_name = "MI", 
+#                               dataset = "HRS", 
+#                               
+#                               
+#                               
+#                               outcome_ELSA = "HRS2014_mi", 
+#                               
+#                               gene_ELSA = "E4_MI_CARDIOGRAM15", 
+#                               
+#                               covariate1 = "NA", 
+#                               covariate2 = "NA",
+#                               covariate3 = "NA", 
+#                               covariate4 = "NA", 
+#                               discrimination_VAR_elsa = discrimination_var)
+# 
+# print("done MI7 v2")
+# 
+# 
+# MI_w8 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
+#                               
+#                               analysis_variable_name = "HRS2014_mi", 
+#                               wave_number = "wave 8",
+#                               outcome_name = "MI", 
+#                               dataset = "HRS", 
+#                               
+#                               
+#                               
+#                               outcome_ELSA = "HRS2016_mi", 
+#                               
+#                               gene_ELSA = "E4_MI_CARDIOGRAM15", 
+#                               
+#                               covariate1 = "NA", 
+#                               covariate2 = "NA",
+#                               covariate3 = "NA", 
+#                               covariate4 = "NA", 
+#                               discrimination_VAR_elsa = discrimination_var)
+# 
+# print("done MI8 v2")
 
 ########################################
 
@@ -737,10 +822,11 @@ Depression_w8_v2 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
 print("done D8 v2")
 
 
-ELSA_unadjusted_results_wave_6 = rbind(#arthritis_w6, 
+unadjusted_results_wave_6 = rbind(#arthritis_w6,
+  #hypertension_w6, 
   T2DM_w6,
   #T2DM_w6_v2,
-  MI_w6,
+  #MI_w6,
   #pain_w6, p value = 1
   #widespread_pain_bin_w6, 
   #sleep_disturbance_w6,
@@ -749,10 +835,11 @@ ELSA_unadjusted_results_wave_6 = rbind(#arthritis_w6,
 
 
 
-ELSA_unadjusted_results_wave_7 = rbind(#arthritis_w7, 
+unadjusted_results_wave_7 = rbind(#arthritis_w7, 
+  #hypertension_w7,
   T2DM_w7,
   #T2DM_w7_v2,
-  MI_w7,
+  #MI_w7,
   #pain_w7,
   #widespread_pain_bin_w7, 
   #sleep_disturbance_w7,
@@ -761,10 +848,11 @@ ELSA_unadjusted_results_wave_7 = rbind(#arthritis_w7,
 
 
 
-ELSA_unadjusted_results_wave_8 = rbind(#arthritis_w8, 
+unadjusted_results_wave_8 = rbind(#arthritis_w8, 
+  #hypertension_w8,
   T2DM_w8,
   #T2DM_w8_v2,
-  MI_w8,
+  #MI_w8,
   #widespread_pain_bin_w8, 
   #pain_w8,
   #sleep_disturbance_w8,
@@ -782,6 +870,12 @@ ELSA_unadjusted_results_wave_8 = rbind(#arthritis_w8,
 ###########
 ###########
 
+# hypertension_results = rbind(hypertension_w6,
+#                              hypertension_w7,
+#                              hypertension_w8)
+
+
+
 diabetes_results = rbind(T2DM_w6, 
                          T2DM_w7, 
                          T2DM_w8)
@@ -791,10 +885,10 @@ diabetes_results = rbind(T2DM_w6,
 #                             T2DM_w7_v2, 
 #                             T2DM_w8_v2)
 # 
-
-mi_results = rbind(MI_w6, 
-                   MI_w7, 
-                   MI_w8)
+# 
+# mi_results = rbind(MI_w6, 
+#                    MI_w7, 
+#                    MI_w8)
 # 
 # pain_w6 = c("Pain_w6", "ELSA", "wave 6", "Pain", "NA", "NA", "NA", "NA", "NA", "NA") 
 # 
@@ -828,9 +922,10 @@ depression_results_v2 = rbind(Depression_w6_v2,
 
 
 
-HRS_results_all_discrim_bin_unadjusted = rbind(diabetes_results,  
+HRS_results_all_discrim_bin_unadjusted = rbind(#hypertension_results, 
+                                               diabetes_results,  
                                           
-                                                mi_results,  
+                                                #mi_results,  
                                 
                                                 depression_results, 
                                                 depression_results_v2) 
