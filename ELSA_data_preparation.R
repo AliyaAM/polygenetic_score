@@ -70,6 +70,9 @@ polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/pol
 ID_ELSA = unique(ELSA_data$idauniq)
 ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
 
+
+
+
 #subset main ELSA data to thos ewho provided PGS data 
 ID_ELSA_PGS_unique =unique(polygenic_scores_data$idauniq)
 #ELSA_data_PGS_subset = ELSA_data[polygenic_scores_data$idauniq %in% ID_ELSA_PGS_unique, ]
@@ -106,6 +109,14 @@ ELSA_data_with_PGS$w5discrim_sexuality
 ELSA_data_with_PGS$w5discrim_weight
 
 
+
+###################
+###################
+
+###################
+###################
+
+
 print("ELSA MI is below for wave 5")
 #MI in ELSA: 
 #wave 5: ELSA_data_with_PGS$henmmi
@@ -119,7 +130,6 @@ print("ELSA MI is below for wave 5")
 print("ELSA MI add for wave6, wave7, wave8")
 
 ID_data_with_PGS =unique(ELSA_data$idauniq)
-
 
 ELSA_data_wave_6 = ELSA_data_wave_6[ELSA_data$idauniq %in% ID_ELSA,]
 ELSA_data_wave_7 = ELSA_data_wave_7[ELSA_data$idauniq %in% ID_ELSA,]
@@ -708,6 +718,37 @@ ELSA_data_with_PGS$w6_sleep_disturbance_bin = case_when(ELSA_data_with_PGS$w6_sl
 
 unique(ELSA_data_with_PGS$w6_sleep_disturbance_bin)
 unique(ELSA_data_with_PGS$w8_sleep_disturbance_bin)
+
+
+
+
+#PSCEDA whether depressed in the past week. 
+#1 Yes
+#2 No
+unique(ELSA_data_wave_6$PScedA)
+unique(ELSA_data_wave_7$PScedA)
+unique(ELSA_data_wave_8$psceda)
+
+w6_depression_bin = case_when(ELSA_data_wave_6$PScedA == 1 ~ 1, 
+                              ELSA_data_wave_6$PScedA == 2 ~ 0) 
+
+w7_depression_bin = case_when(ELSA_data_wave_7$PScedA == 1 ~ 1, 
+                              ELSA_data_wave_7$PScedA == 2 ~ 0)                            
+
+w8_depression_bin = case_when(ELSA_data_wave_8$psceda == 1 ~ 1, 
+                              ELSA_data_wave_8$psceda == 2 ~ 0)  
+
+
+depression_data =data.frame(w6_depression_bin, 
+                            w7_depression_bin, 
+                            w8_depression_bin)
+
+colnames(depression_data) = c("w6_depression_bin",
+                              "w7_depression_bin",
+                              "w8_depression_bin")
+
+
+ELSA_data_with_PGS = bind_cols(ELSA_data_with_PGS, depression_data) 
 
 #subset the data to those aged 50 and over: 
 ELSA_data_with_PGS = subset(ELSA_data_with_PGS, 
