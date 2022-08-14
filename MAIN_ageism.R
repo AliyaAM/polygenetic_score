@@ -728,6 +728,68 @@ ELSA_unadjusted_results_wave_8 = rbind(#arthritis_w8,
   sleep_disturbance_w8,
   Depression_w8,
   Depression_w8_v2) 
+
+
+
+diabetes_results = rbind(T2DM_w6, 
+                         T2DM_w7, 
+                         T2DM_w8)
+
+
+diabetes_results_v2 = rbind(T2DM_w6_v2, 
+                            T2DM_w7_v2, 
+                            T2DM_w8_v2)
+
+
+mi_results = rbind(MI_w6, 
+                   MI_w7, 
+                   MI_w8)
+
+pain_w6 = c("Pain_w6", "ELSA", "wave 6", "Pain", "NA", "NA", "NA", "NA", "NA", "NA") 
+
+
+pain_results = rbind(pain_w6, 
+                     pain_w7,
+                     pain_w8)
+
+widespread_pain_results = rbind(widespread_pain_bin_w6, 
+                                widespread_pain_bin_w7, 
+                                widespread_pain_bin_w8) 
+
+sleep_disturbance_w7 = c("sleep_disturbance_w7", "ELSA", "wave 7", "sleep_disturbance", "NA", "NA", "NA", "NA", "NA", "NA") 
+
+sleep_disturbance_results = rbind(sleep_disturbance_w6,
+                                  sleep_disturbance_w7, 
+                                  sleep_disturbance_w8)
+
+
+depression_results = rbind(Depression_w6, 
+                           Depression_w7, 
+                           Depression_w8)
+
+
+depression_results_v2 = rbind(Depression_w6_v2, 
+                              Depression_w7_v2, 
+                              Depression_w8_v2)
+
+##############################
+##############################
+
+
+
+ELSA_results_ageism_unadjusted = rbind(diabetes_results,  
+                                                diabetes_results_v2, 
+                                                mi_results,  
+                                                pain_results,  
+                                                widespread_pain_results,
+                                                sleep_disturbance_results, 
+                                                depression_results, 
+                                                depression_results_v2) 
+
+write.csv(ELSA_results_ageism_unadjusted, file = paste(SOURCE_ROOT, "ELSA_results_ageism_unadjusted.csv", sep=""))
+
+
+
 #   round results 
 
 # arthritis_discrim_w6 %>% round(arthritis_discrim_w6$OR, digits = 2)

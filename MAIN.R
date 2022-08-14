@@ -786,7 +786,7 @@ depression_results_v2 = rbind(Depression_w6_v2,
 
 
 
-results_all_discrim_bin_unadjusted = rbind(diabetes_results,  
+ELSA_results_all_discrim_bin_unadjusted = rbind(diabetes_results,  
                                        diabetes_results_v2, 
                                        mi_results,  
                                        pain_results,  
@@ -795,7 +795,7 @@ results_all_discrim_bin_unadjusted = rbind(diabetes_results,
                                        depression_results, 
                                        depression_results_v2) 
 
-write.csv(results_all_discrim_bin_unadjusted, file = paste(SOURCE_ROOT, "results_all_discrim_bin_unadjusted.csv", sep=""))
+write.csv(ELSA_results_all_discrim_bin_unadjusted, file = paste(SOURCE_ROOT, "ELSA_results_all_discrim_bin_unadjusted.csv", sep=""))
 
 
 ##############################

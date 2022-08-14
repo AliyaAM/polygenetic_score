@@ -569,7 +569,35 @@ w6_wkup_tired_bin = case_when(ELSA_data_wave_6$heslpd == 1 ~ 0,
 
 w6_sleep_disturbance = (w6_diff_sleep_onset + w6_asleep_prob + w6_wkup_tired)/3 
 
+#################
+print(" sleep disturbance wave 7 was not collected, for sleep onset (heslpa), asleep_prob (heslpc), and wkup_tired (heslpd)")
 
+# 
+# w7_diff_sleep_onset = case_when(ELSA_data_wave_7$heslpa == 1 ~ 1, 
+#                                 ELSA_data_wave_7$heslpa == 2 ~ 2, 
+#                                 ELSA_data_wave_7$heslpa == 3 ~ 3, 
+#                                 ELSA_data_wave_7$heslpa == 4 ~ 4)
+# 
+# 
+# 
+# 
+# w7_asleep_prob = case_when(ELSA_data_wave_7$heslpc == 1 ~ 0, 
+#                            ELSA_data_wave_7$heslpc == 2 ~ 1, 
+#                            ELSA_data_wave_7$heslpc == 3 ~ 2, 
+#                            ELSA_data_wave_7$heslpc == 4 ~ 3, 
+#                            ELSA_data_wave_7$heslpc == 5 ~ 4, 
+#                            ELSA_data_wave_7$heslpc == 6 ~ 5)
+# 
+# 
+# 
+# w7_wkup_tired = case_when(ELSA_data_wave_7$heslpd == 1 ~ 1, 
+#                           ELSA_data_wave_7$heslpd == 2 ~ 2, 
+#                           ELSA_data_wave_7$heslpd == 3 ~ 3, 
+#                           ELSA_data_wave_7$heslpd == 4 ~ 4)
+# 
+# 
+# 
+# w7_sleep_disturbance = (w7_diff_sleep_onset + w7_asleep_prob + w7_wkup_tired)/3 
 
 
 ########### 2016: 
@@ -760,5 +788,7 @@ ELSA_data_with_PGS = subset(ELSA_data_with_PGS,
                               ELSA_data_with_PGS$w6age >=50 & 
                               ELSA_data_with_PGS$w7age >=50 & 
                               ELSA_data_with_PGS$w8age >=50) 
+
+unique(ELSA_data_with_PGS$w6_pain_bin)
 
 #write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 

@@ -763,6 +763,163 @@ ELSA_unadjusted_results_wave_8 = rbind(#arthritis_w8,
   #Depression_w8_v2) 
 #   round results 
 
+
+
+
+diabetes_results = rbind(T2DM_w6[1,], 
+                         T2DM_w6[2,], 
+                         T2DM_w6[3,], 
+                         T2DM_w6[7,], 
+                         T2DM_w7[1,], 
+                         T2DM_w7[2,], 
+                         T2DM_w7[3,], 
+                         T2DM_w7[7,], 
+                         T2DM_w8[1,], 
+                         T2DM_w8[2,], 
+                         T2DM_w8[3,], 
+                         T2DM_w8[7,])
+
+
+# 
+# diabetes_results_v2 = rbind(T2DM_w6_v2, 
+#                             T2DM_w7_v2, 
+#                             T2DM_w8_v2)
+
+
+diabetes_results_v2 = rbind(T2DM_w6_v2[1,], 
+                            T2DM_w6_v2[2,], 
+                            T2DM_w6_v2[3,], 
+                            T2DM_w6_v2[7,], 
+                            T2DM_w7_v2[1,], 
+                            T2DM_w7_v2[2,], 
+                            T2DM_w7_v2[3,], 
+                            T2DM_w7_v2[7,], 
+                            T2DM_w8_v2[1,], 
+                            T2DM_w8_v2[2,], 
+                            T2DM_w8_v2[3,], 
+                            T2DM_w8_v2[7,])
+
+
+# 
+# mi_results = rbind(MI_w6, 
+#                    MI_w7, 
+#                    MI_w8)
+
+
+MI_w6 = c("MI_w6", "ELSA", "wave 6", "MI", "NA", "NA", "NA", "NA", "NA", "NA") 
+
+mi_results = rbind(MI_w6, 
+                 
+                   MI_w7[1,], 
+                   MI_w7[2,], 
+                   MI_w7[3,], 
+                   MI_w7[7,], 
+                   MI_w8[1,], 
+                   MI_w8[2,], 
+                   MI_w8[3,], 
+                   MI_w8[7,])
+
+pain_w6 = c("Pain_w6", "ELSA", "wave 6", "Pain", "NA", "NA", "NA", "NA", "NA", "NA") 
+
+
+#pain_results = rbind(pain_w6, 
+#                     pain_w7,
+#                     pain_w8)
+
+pain_results = rbind(pain_w6, 
+                     pain_w7[1,], 
+                     pain_w7[2,], 
+                     pain_w7[3,], 
+                     pain_w7[7,], 
+                     pain_w8[1,], 
+                     pain_w8[2,], 
+                     pain_w8[3,], 
+                     pain_w8[7,])
+
+
+#widespread_pain_results = rbind(widespread_pain_bin_w6, 
+#                                widespread_pain_bin_w7, 
+#                                widespread_pain_bin_w8) 
+
+
+widespread_pain_results = rbind(widespread_pain_bin_w6[1,], 
+                                widespread_pain_bin_w6[2,], 
+                                widespread_pain_bin_w6[3,], 
+                                widespread_pain_bin_w6[7,], 
+                                widespread_pain_bin_w7[1,], 
+                                widespread_pain_bin_w7[2,], 
+                                widespread_pain_bin_w7[3,], 
+                                widespread_pain_bin_w7[7,], 
+                                widespread_pain_bin_w8[1,], 
+                                widespread_pain_bin_w8[2,], 
+                                widespread_pain_bin_w8[3,], 
+                                widespread_pain_bin_w8[7,])
+
+sleep_disturbance_w7 = c("sleep_disturbance_w7", "ELSA", "wave 7", "sleep_disturbance", "NA", "NA", "NA", "NA", "NA", "NA") 
+
+#sleep_disturbance_results = rbind(sleep_disturbance_w6,
+#                                  sleep_disturbance_w7, 
+#                                 sleep_disturbance_w8)
+
+sleep_disturbance_results = rbind(sleep_disturbance_w6[1,], 
+                                  sleep_disturbance_w6[2,], 
+                                  sleep_disturbance_w6[3,], 
+                                  sleep_disturbance_w6[7,], 
+                                  sleep_disturbance_w7, 
+                                  sleep_disturbance_w8[1,], 
+                                  sleep_disturbance_w8[2,], 
+                                  sleep_disturbance_w8[3,], 
+                                  sleep_disturbance_w8[7,])
+
+
+depression_results = rbind(Depression_w6[1,], 
+                           Depression_w6[2,], 
+                           Depression_w6[3,], 
+                           Depression_w6[7,], 
+                           Depression_w7[1,], 
+                           Depression_w7[2,], 
+                           Depression_w7[3,], 
+                           Depression_w7[7,], 
+                           Depression_w8[1,], 
+                           Depression_w8[2,], 
+                           Depression_w8[3,], 
+                           Depression_w8[7,])
+
+
+#depression_results_v2 = rbind(Depression_w6_v2, 
+#                             Depression_w7_v2, 
+#                            Depression_w8_v2)
+
+Depression_w8_v2 = c("Depression_w8_v2", "ELSA", "wave  8", "Depression", "NA", "NA", "NA", "NA", "NA", "NA") 
+
+depression_results_v2 = rbind(Depression_w6_v2[1,], 
+                              Depression_w6_v2[2,], 
+                              Depression_w6_v2[3,], 
+                              Depression_w6_v2[7,], 
+                              Depression_w7_v2[1,], 
+                              Depression_w7_v2[2,], 
+                              Depression_w7_v2[3,], 
+                              Depression_w7_v2[7,], 
+                              Depression_w8_v2)
+
+##############################
+##############################
+
+
+
+ELSA_results_sexism_adjusted = rbind(diabetes_results,  
+                                              diabetes_results_v2, 
+                                              mi_results,  
+                                              pain_results,  
+                                              widespread_pain_results,
+                                              sleep_disturbance_results, 
+                                              depression_results, 
+                                              depression_results_v2) 
+
+write.csv(ELSA_results_sexism_adjusted, file = paste(SOURCE_ROOT, "ELSA_results_sexism_adjusted.csv", sep=""))
+
+
+
 # arthritis_discrim_w6 %>% round(arthritis_discrim_w6$OR, digits = 2)
 # 
 # round(arthritis_discrim_w6$CI1, digits = 2)
