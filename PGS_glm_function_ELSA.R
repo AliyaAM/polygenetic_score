@@ -1,19 +1,13 @@
 
 
-PGS_glm_function_ELSA = function (data_ELSA, 
+PGS_glm_function_ELSA = function (data_ELSA_subset, 
 
                              analysis_variable_name, 
                              wave_number,
                              outcome_name, 
                              dataset, 
                              
-                             subsetting_VAR1_ELSA, 
-                             subsetting_VAR2_ELSA,
-
-                             ELSA_var1_value,
-
-                             ELSA_var2_value,
-
+                      
                              outcome_ELSA, 
 
                              gene_ELSA, 
@@ -33,39 +27,13 @@ PGS_glm_function_ELSA = function (data_ELSA,
   dataset = dataset
   wave_number = wave_number
   outcome_name = outcome_name
-  
-  #data_HRS <- data_HRS[ , subsetting_VAR_HRS]
-  #data_ELSA <- data_ELSA[ , subsetting_VAR_ELSA]
-  
-  
-  # subsetting data to the right variable for the analysis (eg, sex, physical lim.)
-  # if there is only one subsetting var: subsetting_VAR1_ELSA and subsetting_VAR1_HRS
-  if (subsetting_VAR1_ELSA == "NA" & subsetting_VAR2_ELSA =="NA"){
-    
-    data_ELSA_subset = data_ELSA 
-  } 
-  
-  if (subsetting_VAR1_ELSA != "NA" & subsetting_VAR2_ELSA =="NA"){
-    
-    data_ELSA_subset = subset(data_ELSA, data_ELSA[ , subsetting_VAR1_ELSA] == ELSA_var1_value)
-    
-    print("done 1")
-  } 
-  
-  if (subsetting_VAR1_ELSA != "NA" & subsetting_VAR2_ELSA !="NA"){
-    
-    data_ELSA_subset = subset(data_ELSA, data_ELSA[ , subsetting_VAR1_ELSA] == ELSA_var1_value & data_ELSA[subsetting_VAR2_ELSA] == ELSA_var2_value)
-    print("done 2")
-    
-  }
-  
   # calculate the number of cases for this subset 
+  
   N_ELSA_subset = nrow(data_ELSA_subset)
   print("done 3")
   
   print("total n")
   print(N_ELSA_subset)
-  
   
   #calculate the number of people who perceived this type of discrimination 
   
@@ -369,135 +337,137 @@ PGS_glm_function_ELSA = function (data_ELSA,
   print(results_interaction)
   
   print("done 11")
-  print(glm_outcome_gene_interaction)
+  #print(glm_outcome_gene_interaction)
   #logOR_CI_outcome_gene_interaction = cbind(OR = coef(glm_outcome_gene_interaction), confint(glm_outcome_gene_interaction))
   print("done 11a")
   
-  gene = gene_ELSA
-  discrimination_var = discrimination_VAR_elsa
-  term = paste(gene, ":", discrimination_var, sep = "")
+  #gene = gene_ELSA
+  #discrimination_var = discrimination_VAR_elsa
+  #term = paste(gene, ":", discrimination_var, sep = "")
   #p_values = summary_interaction$coefficients[,4]
   print("done 11b")
   
-  print(term)
+  #print(term)
+  #print(glm_outcome_gene_interaction)
   
-  CI_interval_inter = confint(glm_outcome_gene_interaction, term)
-  
-  print(CI_interval_inter)
-  
-  CI_interval_inter = exp(CI_interval_inter)
+
+  #CI_interval_inter = confint(glm_outcome_gene_interaction, "gene:discrimination")
+
+  #print(CI_interval_inter)
+
+  #CI_interval_inter = exp(CI_interval_inter)
   #logOR_results_all = cbind(logOR_CI_outcome_gene_interaction, p_values)
   print("done 11c")
   ##########################
   ##########################
 
-  coefficient_inter = glm_outcome_gene_interaction$coefficients[length(glm_outcome_gene_interaction$coefficients)]
-  coefficient_inter = exp(coefficient_inter)
+  #coefficient_inter = glm_outcome_gene_interaction$coefficients[length(glm_outcome_gene_interaction$coefficients)]
+  #coefficient_inter = exp(coefficient_inter)
+
+
+  #OR_CI_outcome_gene_interaction = c(coefficient_inter, CI_interval_inter)
+
   
-  
-  OR_CI_outcome_gene_interaction = c(coefficient_inter, CI_interval_inter)
-  
-  
-  #OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(glm_outcome_gene_interaction), confint(glm_outcome_gene_interaction)))
+  OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(glm_outcome_gene_interaction), confint(glm_outcome_gene_interaction)))
   print("done 11d")
-  
-  print(OR_CI_outcome_gene_interaction)
- # p_values = ****  tail ***** (summary_interaction$coefficients[,4] **** , n = 1) **** 
-  p_values = summary_interaction$coefficients[,4] 
-  p_values = tail(p_values, n = 1)
+
+  #print(OR_CI_outcome_gene_interaction)
+ # p_values = ****  tail ***** (summary_interaction$coefficients[,4] **** , n = 1) ****
+  p_values = summary_interaction$coefficients[,4]
+  #p_value = tail(p_values, n = 1)
   print("done 11e")
-  
-  results_all = cbind(OR_CI_outcome_gene_interaction, p_values)
- 
-  
+
+  interaction_OR_CI_pvalue = cbind(OR_CI_outcome_gene_interaction, p_values)
+
+
   print("done 12")
-  
-  
+
+
   # cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
   # cross_country_OR_UK = cross_country_OR[2, 1]
   # CI1_UK = cross_country_OR[2, 2]
   # CI2_UK = cross_country_OR[2, 3]
-  # 
-  # 
+  #
+  #
   # cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
   # cross_country_OR_USA = cross_country_OR[1, 1]
   # CI1_USA = cross_country_OR[1, 2]
   # CI2_USA = cross_country_OR[1, 3]
-  # 
+  #
   # ## various equivalent specifications of the LR test
   # cross_national_diff = lrtest(fm1, fm2)
-  # 
+  #
   # chi_value_cross_national = cross_national_diff$stats[1]
   # pvalue_cross_national = cross_national_diff$stats[3]
-  # 
-  
+  #
 
-  
-  
+
+
+
   #interaction_logOR_CI_pvalue = tail(logOR_results_all, n = 1)
-  
+
   print("done 13")
-  
-  # Interaction_log_OR_findings = data.frame(analysis_variable_name, 
-  #                                      dataset, 
+
+  # Interaction_log_OR_findings = data.frame(analysis_variable_name,
+  #                                      dataset,
   #                                      wave_number,
-  #                                      outcome_name, 
-  #                                      
-  #                                      N_ELSA_subset, 
-  #       
-  #                                      N_ELSA_discrimYES, 
-  #       
-  #                                      
+  #                                      outcome_name,
+  #
+  #                                      N_ELSA_subset,
+  #
+  #                                      N_ELSA_discrimYES,
+  #
+  #
   #                                   interaction_logOR_CI_pvalue)
-  # 
-  # 
-  # colnames(Interaction_log_OR_findings) = c("analysis_variable_name", 
-  #                                    "dataset", 
-  #                                    
+  #
+  #
+  # colnames(Interaction_log_OR_findings) = c("analysis_variable_name",
+  #                                    "dataset",
+  #
   #                                    "wave_number",
-  #                                    "outcome_name", 
-  #                                    
-  #                                    "N_subset", 
-  #                                    
-  #                                    "N_discrimYES", 
-  #                                    
+  #                                    "outcome_name",
+  #
+  #                                    "N_subset",
+  #
+  #                                    "N_discrimYES",
+  #
   #                                    #"interaction_OR_CI_pvalue")
-  #                                     "log OR", 
-  #                                     "CI1", 
+  #                                     "log OR",
+  #                                     "CI1",
   #                                     "CI2",
   #                                    "p_value")
-  
-  
-  Interaction_findings = data.frame(analysis_variable_name, 
-                                           dataset, 
+
+
+  Interaction_findings = data.frame(analysis_variable_name,
+                                           dataset,
                                            wave_number,
-                                           outcome_name, 
-                                           
-                                           N_ELSA_subset, 
-                                           
-                                           N_ELSA_discrimYES, 
-                                           
-                                           
+                                           outcome_name,
+
+                                           N_ELSA_subset,
+
+                                           N_ELSA_discrimYES,
+
+
                                     interaction_OR_CI_pvalue)
-  
-  
-  colnames(Interaction_findings) = c("analysis_variable_name", 
-                                            "dataset", 
-                                            
+
+
+  colnames(Interaction_findings) = c("analysis_variable_name",
+                                            "dataset",
+
                                             "wave_number",
-                                            "outcome_name", 
-                                            
-                                            "N_subset", 
-                                            
-                                            "N_discrimYES", 
-                                            
+                                            "outcome_name",
+
+                                            "N_subset",
+
+                                            "N_discrimYES",
+
                                             #"interaction_OR_CI_pvalue")
-                                            "OR", 
-                                            "CI1", 
+                                            "OR",
+                                            "CI1",
                                             "CI2",
                                             "p_value")
-  
-  
+
+
   print("completed")
 
   #ELSA_OR_value,
@@ -506,8 +476,8 @@ PGS_glm_function_ELSA = function (data_ELSA,
   #HRS_OR_value,
   #HRS_CI1,
   #HRS_CI2)
-  
-  
+
+
   return(Interaction_findings)
 }
 
@@ -517,5 +487,5 @@ PGS_glm_function_ELSA = function (data_ELSA,
 
 
 
-#glm plotting logit regression 
-#http://www.sthda.com/english/articles/36-classification-methods-essentials/151-logistic-regression-essentials-in-r/
+# #glm plotting logit regression
+# #http://www.sthda.com/english/articles/36-classification-methods-essentials/151-logistic-regression-essentials-in-r/

@@ -59,6 +59,17 @@ discrimination_var = "w5discrim_bin2"
 ###### sourcing code for the unadjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 
+source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
+
+
+
+ELSA_data_with_PGS = subsetting_function(data_ELSA =ELSA_data_with_PGS, 
+                                         subsetting_VAR1_ELSA = "NA",
+                                         subsetting_VAR2_ELSA = "NA",
+                                         ELSA_var1_value = "NA",
+                                         ELSA_var2_value = "NA")
+
+
 unique(ELSA_data_with_PGS$w6arthritis_new)
 
 arthritis_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
@@ -68,12 +79,7 @@ arthritis_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                              outcome_name = "Arthritis", 
                                              dataset = "ELSA", 
                                              
-                                             subsetting_VAR1_ELSA = "NA", 
-                                             subsetting_VAR2_ELSA = "NA",
-                                             
-                                             ELSA_var1_value = "NA",
-                                             
-                                             ELSA_var2_value = "NA",
+                                            
                                              
                                              outcome_ELSA = "w6arthritis_new", 
                                              
@@ -95,12 +101,7 @@ arthritis_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                              outcome_name = "Arthritis", 
                                              dataset = "ELSA", 
                                              
-                                             subsetting_VAR1_ELSA = "NA", 
-                                             subsetting_VAR2_ELSA = "NA",
-                                             
-                                             ELSA_var1_value = "NA",
-                                             
-                                             ELSA_var2_value = "NA",
+                                            
                                              
                                              outcome_ELSA = "w7arthritis_new", 
                                              
@@ -122,12 +123,7 @@ arthritis_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                              outcome_name = "Arthritis", 
                                              dataset = "ELSA", 
                                              
-                                             subsetting_VAR1_ELSA = "NA", 
-                                             subsetting_VAR2_ELSA = "NA",
-                                             
-                                             ELSA_var1_value = "NA",
-                                             
-                                             ELSA_var2_value = "NA",
+                                           
                                              
                                              outcome_ELSA = "w8arthritis_new", 
                                              
@@ -153,12 +149,6 @@ T2DM_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                              outcome_name = "T2DM", 
                                              dataset = "ELSA", 
                                              
-                                             subsetting_VAR1_ELSA = "NA", 
-                                             subsetting_VAR2_ELSA = "NA",
-                                             
-                                             ELSA_var1_value = "NA",
-                                             
-                                             ELSA_var2_value = "NA",
                                              
                                              outcome_ELSA = "w6diabetes_new", 
                                              
@@ -180,12 +170,6 @@ T2DM_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 outcome_name = "T2DM", 
                                 dataset = "ELSA", 
                                 
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
                                 
                                 outcome_ELSA = "w6diabetes_new", 
                                 
@@ -207,12 +191,7 @@ T2DM_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 outcome_name = "T2DM", 
                                 dataset = "ELSA", 
                                 
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
+                             
                                 
                                 outcome_ELSA = "w8diabetes_new", 
                                 
@@ -237,12 +216,7 @@ T2DM_w6_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 outcome_name = "T2DM", 
                                 dataset = "ELSA", 
                                 
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
+                           
                                 
                                 outcome_ELSA = "w6diabetes_new", 
                                 
@@ -264,12 +238,7 @@ T2DM_w7_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 outcome_name = "T2DM", 
                                 dataset = "ELSA", 
                                 
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
+                             
                                 
                                 outcome_ELSA = "w6diabetes_new", 
                                 
@@ -291,12 +260,7 @@ T2DM_w8_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 outcome_name = "T2DM", 
                                 dataset = "ELSA", 
                                 
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
+                    
                                 
                                 outcome_ELSA = "w8diabetes_new", 
                                 
@@ -323,12 +287,7 @@ MI_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "MI", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                                
                                      
                                      outcome_ELSA = "w6_MI_new_bin", 
                                      
@@ -350,12 +309,7 @@ MI_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "MI", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                               
                                      
                                      outcome_ELSA = "w7_MI_new_bin", 
                                      
@@ -377,12 +331,7 @@ MI_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "MI", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                               
                                      
                                      outcome_ELSA = "w8_MI_new_bin", 
                                      
@@ -407,13 +356,7 @@ widespread_pain_bin_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                       outcome_name = "widespread_pain_bin", 
                                       dataset = "ELSA", 
                                       
-                                      subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                      
-                                      ELSA_var1_value = "NA",
-                                      
-                                      ELSA_var2_value = "NA",
-                                      
+                          
                                       outcome_ELSA = "w6_widespread_pain_bin", 
                                      
                                       gene_ELSA = "chronic_pain_2018", 
@@ -434,12 +377,7 @@ widespread_pain_bin_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 outcome_name = "widespread_pain_bin", 
                                 dataset = "ELSA", 
                                 
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
+                              
                                 
                                 outcome_ELSA = "w7_widespread_pain_bin", 
                                 
@@ -460,13 +398,7 @@ widespread_pain_bin_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 wave_number = "wave 8",
                                 outcome_name = "widespread_pain_bin", 
                                 dataset = "ELSA", 
-                                
-                                subsetting_VAR1_ELSA = "NA", 
-                                subsetting_VAR2_ELSA = "NA",
-                                
-                                ELSA_var1_value = "NA",
-                                
-                                ELSA_var2_value = "NA",
+                            
                                 
                                 outcome_ELSA = "w8_widespread_pain_bin", 
                                 
@@ -490,12 +422,7 @@ print("done widespread_pain_bin8 v2")
 #                                      outcome_name = "Pain", 
 #                                      dataset = "ELSA", 
 #                                      
-#                                      subsetting_VAR1_ELSA = "NA", 
-#                                      subsetting_VAR2_ELSA = "NA",
-#                                      
-#                                      ELSA_var1_value = "NA",
-#                                      
-#                                      ELSA_var2_value = "NA",
+#                             
 #                                      
 #                                      outcome_ELSA = "w6_pain_bin", 
 #                                      
@@ -517,12 +444,7 @@ pain_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "Pain", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                                 
                                      
                                      outcome_ELSA = "w7_pain_bin", 
                                      
@@ -544,12 +466,7 @@ pain_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "Pain", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                                   
                                      
                                      outcome_ELSA = "w8_pain_bin", 
                                      
@@ -574,12 +491,7 @@ sleep_disturbance_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "sleep_disturbance", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                                  
                                      
                                      outcome_ELSA = "w6_sleep_disturbance_bin", 
                                      
@@ -601,12 +513,7 @@ print("done SD6")
 #                                      outcome_name = "sleep_disturbance", 
 #                                      dataset = "ELSA", 
 #                                      
-#                                      subsetting_VAR1_ELSA = "NA", 
-#                                      subsetting_VAR2_ELSA = "NA",
-#                                      
-#                                      ELSA_var1_value = "NA",
-#                                      
-#                                      ELSA_var2_value = "NA",
+#                                     
 #                                      
 #                                      outcome_ELSA = "w7_sleep_disturbance_bin", 
 #                                      
@@ -627,12 +534,7 @@ sleep_disturbance_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      outcome_name = "sleep_disturbance", 
                                      dataset = "ELSA", 
                                      
-                                     subsetting_VAR1_ELSA = "NA", 
-                                     subsetting_VAR2_ELSA = "NA",
-                                     
-                                     ELSA_var1_value = "NA",
-                                     
-                                     ELSA_var2_value = "NA",
+                             
                                      
                                      outcome_ELSA = "w8_sleep_disturbance_bin", 
                                      
@@ -661,12 +563,7 @@ Depression_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          outcome_name = "Depression", 
                                          dataset = "ELSA", 
                                          
-                                         subsetting_VAR1_ELSA = "NA", 
-                                         subsetting_VAR2_ELSA = "NA",
-                                         
-                                         ELSA_var1_value = "NA",
-                                         
-                                         ELSA_var2_value = "NA",
+                                 
                                          
                                          #outcome_ELSA = "w6cesd_bin", 
                                       outcome_ELSA = "w6_depression_bin", 
@@ -689,13 +586,7 @@ Depression_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          outcome_name = "Depression", 
                                          dataset = "ELSA", 
                                          
-                                         subsetting_VAR1_ELSA = "NA", 
-                                         subsetting_VAR2_ELSA = "NA",
-                                         
-                                         ELSA_var1_value = "NA",
-                                         
-                                         ELSA_var2_value = "NA",
-                                         
+                                 
                                       #outcome_ELSA = "w7cesd_bin", 
                                       outcome_ELSA = "w7_depression_bin", 
                                          
@@ -717,12 +608,7 @@ Depression_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          outcome_name = "Depression", 
                                          dataset = "ELSA", 
                                          
-                                         subsetting_VAR1_ELSA = "NA", 
-                                         subsetting_VAR2_ELSA = "NA",
-                                         
-                                         ELSA_var1_value = "NA",
-                                         
-                                         ELSA_var2_value = "NA",
+                                    
                                          
                                       #outcome_ELSA = "w8cesd_bin", 
                                       outcome_ELSA = "w8_depression_bin",  
@@ -745,13 +631,7 @@ Depression_w6_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    wave_number = "wave 6",
                                    outcome_name = "Depression", 
                                    dataset = "ELSA", 
-                                   
-                                   subsetting_VAR1_ELSA = "NA", 
-                                   subsetting_VAR2_ELSA = "NA",
-                                   
-                                   ELSA_var1_value = "NA",
-                                   
-                                   ELSA_var2_value = "NA",
+                        
                                    
                                    #outcome_ELSA = "w8cesd_bin", 
                                    outcome_ELSA = "w6_depression_bin",  
@@ -774,12 +654,7 @@ Depression_w7_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    outcome_name = "Depression", 
                                    dataset = "ELSA", 
                                    
-                                   subsetting_VAR1_ELSA = "NA", 
-                                   subsetting_VAR2_ELSA = "NA",
-                                   
-                                   ELSA_var1_value = "NA",
-                                   
-                                   ELSA_var2_value = "NA",
+                        
                                    
                                    #outcome_ELSA = "w7cesd_bin", 
                                    outcome_ELSA = "w7_depression_bin",  
@@ -803,12 +678,7 @@ Depression_w8_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    outcome_name = "Depression", 
                                    dataset = "ELSA", 
                                    
-                                   subsetting_VAR1_ELSA = "NA", 
-                                   subsetting_VAR2_ELSA = "NA",
-                                   
-                                   ELSA_var1_value = "NA",
-                                   
-                                   ELSA_var2_value = "NA",
+                            
                                    
                                    #outcome_ELSA = "w8cesd_bin", 
                                    outcome_ELSA = "w8_depression_bin",  

@@ -160,22 +160,15 @@ OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(arthritis_gene_interaction_
 print("done 11d")
 
 gene = "RA" 
-
 discrimination_var = "w5sexdiscrimination2"
-
 term = paste(gene, ":", discrimination_var, sep = "")
 
+CI_interval_inter = confint(arthritis_gene_interaction_w6, term)
+CI_interval_inter = exp(CI_interval_inter)
 
-#arthritis_gene_interaction_w6$terms[length(arthritis_gene_interaction_w6$terms)][1]
-
-confint(arthritis_gene_interaction_w6, term)
-
-confint(arthritis_gene_interaction_w6)
-
-
-arthritis_gene_interaction_w6$coefficients[length(arthritis_gene_interaction_w6$coefficients)]
-
-arthritis_gene_interaction_w6$coefficients[length(arthritis_gene_interaction_w6$coefficients)]
+coefficient_inter = arthritis_gene_interaction_w6$coefficients[length(arthritis_gene_interaction_w6$coefficients)]
+coefficient_inter = exp(coefficient_inter)
+OR_CI_outcome_gene_interaction = c(coefficient_inter, CI_interval_inter)
 
 coef(arthritis_gene_interaction_w6)
 
