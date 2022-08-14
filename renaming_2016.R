@@ -30,6 +30,31 @@ HRS_2016_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2016_data/HRS2016_dat
 HRS_2016 = data.frame(HRS_2016_data$HHIDPN)
 
 
+print("add all_HRS_by_years_PGS:  arthritis_new, PTSD, anxiety, alcohol dependence,  smoking cessation, smoking initiation, sig per day, drinks per day" )
+
+HRS_2016$HRS2016_Percvd_cntrl_health = HRS_2016_data$Percvd_cntrl_health 
+
+
+HRS_2016$HRS2016_self_rated_health = HRS_2016_data$self_rated_health
+HRS_2016$HRS2016_life_satisfaction = HRS_2016_data$HRS2016_life_satisfaction 
+HRS_2016$HRS2016_alzheimer_bin = HRS_2016_data$HRS2016_alzheimer_bin
+HRS_2016$HRS2016_angina_new_bin = HRS_2016_data$HRS2016_angina2yrs_bin
+
+# HRS_2016$HRS2016_arthritis_new = HRS_2016_data$HRS2016_arthritis_new
+# unique(HRS_2016$HRS2016_arthritis_new)
+# HRS_2016$HRS2016_arthritis_new_bin = case_when(HRS_2016$HRS2016_arthritis_new == 0 ~ 0, 
+#                                                HRS_2016$HRS2016_arthritis_new == 1 ~ 1)
+# unique(HRS_2016$HRS2016_arthritis_new_bin)
+
+
+HRS_2016$HRS2016_hypertension_new =  HRS_2016_data$HRS2016_hypertension_new 
+unique(HRS_2016$HRS2016_hypertension_new)
+HRS_2016$HRS2016_hypertension_new_bin = case_when(HRS_2016$HRS2016_hypertension_new == 0 ~ 0,
+                                                  HRS_2016$HRS2016_hypertension_new == 1 ~ 1)
+
+HRS_2016$HRS2016_mi = HRS_2016_data$HRS2016_heartattack2yrs_bin
+HRS_2016$HRS2016_depression_bin = HRS_2016_data$HRS2016_depression_bin
+
 HRS_2016$HRS2016_alcohol_days_week = HRS_2016_data$alcohol_days_week
 HRS_2016$HRS2016_LGB_2016 = HRS_2016_data$LGB_2016
 HRS_2016$HRS2016_marital_status = HRS_2016_data$marital_status2016
