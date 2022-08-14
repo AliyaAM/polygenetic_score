@@ -106,7 +106,7 @@ ELSA_data_with_PGS$w6pa5level
 
 #predictor discrimination: 
 ELSA_data_with_PGS$w5discrim_bin
-ELSA_data_with_PGS$w5discrim_bin2
+ELSA_data_with_PGS$w5sexdiscrimination2
 ELSA_data_with_PGS$w5agediscrimination2
 ELSA_data_with_PGS$w5sexdiscrimination2
 ELSA_data_with_PGS$w5racediscrimination2
@@ -140,40 +140,72 @@ ELSA_data_with_PGS$DrinksPerWeek19
 ########################################
 ######################################## data analysis 
 
+ELSA_data_with_PGS = subset(ELSA_data_with_PGS, ELSA_data_with_PGS$w5sex_1_0 ==0)
+nrow(ELSA_data_with_PGS) 
+
 ######### arthritis  (w 6)
 
-arthritis_discrim_w6 = glm(w6arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+arthritis_discrim_w6 = glm(w6arthritis_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_discrim_w6)
 
 arthritis_gene_w6 = glm(w6arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_gene_w6)
 
-arthritis_gene_interaction_w6 = glm(w6arthritis_new ~ RA * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
-summary(arthritis_gene_interaction_w6)
+arthritis_gene_interaction_w6 = glm(w6arthritis_new ~ RA * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
+summary = summary(arthritis_gene_interaction_w6)
+
+#stopped here 
+print("stopped here to debug the code")
+OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(arthritis_gene_interaction_w6), confint(arthritis_gene_interaction_w6)))
+print("done 11d")
+
+gene = "RA" 
+
+discrimination_var = "w5sexdiscrimination2"
+
+term = paste(gene, ":", discrimination_var, sep = "")
+
+
+#arthritis_gene_interaction_w6$terms[length(arthritis_gene_interaction_w6$terms)][1]
+
+confint(arthritis_gene_interaction_w6, term)
+
+confint(arthritis_gene_interaction_w6)
+
+
+arthritis_gene_interaction_w6$coefficients[length(arthritis_gene_interaction_w6$coefficients)]
+
+arthritis_gene_interaction_w6$coefficients[length(arthritis_gene_interaction_w6$coefficients)]
+
+coef(arthritis_gene_interaction_w6)
+
+p_values = summary$coefficients[,4]
+print("done 11e")
+results_all = cbind(OR_CI_outcome_gene_interaction, p_values)
 
 ###########
 
 ######### arthritis  (w 7)
 
-arthritis_discrim_w7 = glm(w7arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+arthritis_discrim_w7 = glm(w7arthritis_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_discrim_w7)
 
 arthritis_gene_w7 = glm(w7arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_gene_w7)
 
-arthritis_gene_interaction_w7 = glm(w7arthritis_new ~ RA * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+arthritis_gene_interaction_w7 = glm(w7arthritis_new ~ RA * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_gene_interaction_w7)
 
 
 ######### arthritis  (w 8)
 
-arthritis_discrim_w8 = glm(w8arthritis_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+arthritis_discrim_w8 = glm(w8arthritis_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_discrim_w8)
 
 arthritis_gene_w8 = glm(w8arthritis_new ~ RA, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_gene_w8)
 
-arthritis_gene_interaction_w8 = glm(w8arthritis_new ~ RA * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+arthritis_gene_interaction_w8 = glm(w8arthritis_new ~ RA * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(arthritis_gene_interaction_w8)
 
 
@@ -181,76 +213,76 @@ summary(arthritis_gene_interaction_w8)
 
 ######### diabetes  (w 6)
 
-diabetes_discrim_w6 = glm(w6diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetes_discrim_w6 = glm(w6diabetes_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_discrim_w6)
 
 diabetes_gene_w6 = glm(w6diabetes_new ~ T2D_2018, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_gene_w6)
 
-diabetes_gene_interaction_w6 = glm(w6diabetes_new ~ T2D_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetes_gene_interaction_w6 = glm(w6diabetes_new ~ T2D_2018 * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_gene_interaction_w6)
 
 ###########
 
 ######### diabetes  (w 7)
 
-diabetes_discrim_w7 = glm(w7diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetes_discrim_w7 = glm(w7diabetes_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_discrim_w7)
 
 diabetes_gene_w7 = glm(w7diabetes_new ~ T2D_2018, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_gene_w7)
 
-diabetes_gene_interaction_w7 = glm(w7diabetes_new ~ T2D_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetes_gene_interaction_w7 = glm(w7diabetes_new ~ T2D_2018 * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_gene_interaction_w7)
 
 
 ######### diabetes  (w 8)
 
-diabetes_discrim_w8 = glm(w8diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetes_discrim_w8 = glm(w8diabetes_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_discrim_w8)
 
 diabetes_gene_w8 = glm(w8diabetes_new ~ T2D_2018, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_gene_w8)
 
-diabetes_gene_interaction_w8 = glm(w8diabetes_new ~ T2D_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetes_gene_interaction_w8 = glm(w8diabetes_new ~ T2D_2018 * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetes_gene_interaction_w8)
 
 ########################################
 
 ######### diabetes (PGS v2)  (w 6)
 
-diabetesv2_discrim_w6 = glm(w6diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetesv2_discrim_w6 = glm(w6diabetes_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_discrim_w6)
 
 diabetesv2_gene_w6 = glm(w6diabetes_new ~ Diabetes, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_gene_w6)
 
-diabetesv2_gene_interaction_w6 = glm(w6diabetes_new ~ Diabetes * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetesv2_gene_interaction_w6 = glm(w6diabetes_new ~ Diabetes * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_gene_interaction_w6)
 
 ###########
 
 ######### diabetes  (PGS v2) (w 7)
 
-diabetesv2_discrim_w7 = glm(w7diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetesv2_discrim_w7 = glm(w7diabetes_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_discrim_w7)
 
 diabetesv2_gene_w7 = glm(w7diabetes_new ~ Diabetes, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_gene_w7)
 
-diabetesv2_gene_interaction_w7 = glm(w7diabetes_new ~ Diabetes * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetesv2_gene_interaction_w7 = glm(w7diabetes_new ~ Diabetes * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_gene_interaction_w7)
 
 
 ######### diabetes (PGS v2) (w 8)
 
-diabetesv2_discrim_w8 = glm(w8diabetes_new ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetesv2_discrim_w8 = glm(w8diabetes_new ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_discrim_w8)
 
 diabetesv2_gene_w8 = glm(w8diabetes_new ~ Diabetes, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_gene_w8)
 
-diabetesv2_gene_interaction_w8 = glm(w8diabetes_new ~ Diabetes * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+diabetesv2_gene_interaction_w8 = glm(w8diabetes_new ~ Diabetes * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(diabetesv2_gene_interaction_w8)
 
 ########################################
@@ -259,55 +291,55 @@ summary(diabetesv2_gene_interaction_w8)
 
 ######### cesd_bin  (w 6)
 
-cesd_bin_discrim_w6 = glm(w6cesd_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
-summary(cesd_bin_discrim)
+cesd_bin_discrim_w6 = glm(w6cesd_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_discrim_w6)
 
 cesd_bin_gene_w6 = glm(w6cesd_bin ~ DS, data = ELSA_data_with_PGS, family = binomial)
-summary(cesd_bin_gene)
+summary(cesd_bin_gene_w6)
 
-cesd_bin_gene_interaction_w6 = glm(w6cesd_bin ~ DS * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
-summary(cesd_bin_gene_interaction)
+cesd_bin_gene_interaction_w6 = glm(w6cesd_bin ~ DS * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
+summary(cesd_bin_gene_interaction_w6)
 
 ###########
 
 ######### cesd_bin  (w 7)
 
-cesd_bins_discrim_w7 = glm(w7cesd_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+cesd_bins_discrim_w7 = glm(w7cesd_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(cesd_bins_discrim_w7)
 
 cesd_bin_gene_w7 = glm(w7cesd_bin ~ DS, data = ELSA_data_with_PGS, family = binomial)
 summary(cesd_bin_gene_w7)
 
-cesd_bin_gene_interaction_w7 = glm(w7cesd_bin ~ DS * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+cesd_bin_gene_interaction_w7 = glm(w7cesd_bin ~ DS * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(cesd_bin_gene_interaction_w7)
 
 
 ######### cesd_bin  (w 8)
 
-cesd_bin_discrim_w8 = glm(w8cesd_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+cesd_bin_discrim_w8 = glm(w8cesd_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(cesd_bin_discrim_w8)
 
 cesd_bin_gene_w8 = glm(w8cesd_bin ~ DS, data = ELSA_data_with_PGS, family = binomial)
 summary(cesd_bin_gene_w8)
 
-cesd_bin_gene_interaction_w8 = glm(w8cesd_bin ~ DS * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+cesd_bin_gene_interaction_w8 = glm(w8cesd_bin ~ DS * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(cesd_bin_gene_interaction_w8) #sig. 
 
 
 ######### MI (wave 6) 
 
-MI_discrim_w6 = glm(w6_MI_new_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+MI_discrim_w6 = glm(w6_MI_new_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(MI_discrim_w6)
 
 MI_gene_w6 = glm(w6_MI_new_bin ~ MI, data = ELSA_data_with_PGS, family = binomial)
 summary(MI_gene_w6)
 
-MI_gene_interaction_w6 = glm(w6_MI_new_bin ~ MI * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+MI_gene_interaction_w6 = glm(w6_MI_new_bin ~ MI * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(MI_gene_interaction_w6)
 
 ######### MI (wave 7) 
 
-MI_discrim_w7 = glm(w7_MI_new_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+MI_discrim_w7 = glm(w7_MI_new_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary_discrim = summary(MI_discrim_w7)
 
 summary_discrim$coefficients
@@ -317,7 +349,7 @@ summary_gene = summary(MI_gene_w7)
 
 summary_gene$coefficients
 ELSA_data_with_PGS$w5age
-MI_gene_interaction_w7  = glm(w7_MI_new_bin ~ w5age + MI * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+MI_gene_interaction_w7  = glm(w7_MI_new_bin ~ w5age + MI * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 
 summary = summary(MI_gene_interaction_w7) #sig. 
 
@@ -337,13 +369,13 @@ summary$dispersion
 
 ######### MI (wave 8) 
 
-MI_discrim_w8 = glm(w8_MI_new_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+MI_discrim_w8 = glm(w8_MI_new_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(MI_discrim_w8)
 
 MI_gene_w8  = glm(w8_MI_new_bin ~ MI, data = ELSA_data_with_PGS, family = binomial)
 summary(MI_gene_w8)
 
-MI_gene_interaction_w8  = glm(w8_MI_new_bin ~ MI * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+MI_gene_interaction_w8  = glm(w8_MI_new_bin ~ MI * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(MI_gene_interaction_w8)
 
 #ELSA_data_with_PGS$w8_MI_new_bin
@@ -351,35 +383,35 @@ summary(MI_gene_interaction_w8)
 
 ######### pain_bin (wave 6) 
 
-pain_bin_discrim_w6 = glm(w6_pain_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_discrim_w6 = glm(w6_pain_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_discrim_w6)
 
 pain_bin_gene_w6 = glm(w6_pain_bin ~ chronic_pain_2018, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_gene_w6)
 
-pain_bin_gene_interaction_w6 = glm(w6_pain_bin ~ chronic_pain_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_gene_interaction_w6 = glm(w6_pain_bin ~ chronic_pain_2018 * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_gene_interaction_w6)
 
 ######### pain_bin (wave 7) 
 
-pain_bin_discrim_w7 = glm(w7_pain_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_discrim_w7 = glm(w7_pain_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_discrim_w7)
 
 pain_bin_gene_w7  = glm(w7_pain_bin ~ chronic_pain_2018, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_gene_w7)
 
-pain_bin_gene_interaction_w7  = glm(w7_pain_bin ~ chronic_pain_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_gene_interaction_w7  = glm(w7_pain_bin ~ chronic_pain_2018 * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_gene_interaction_w7)
 
 ######### pain_bin (wave 8) 
 
-pain_bin_discrim_w8 = glm(w8_pain_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_discrim_w8 = glm(w8_pain_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_discrim_w8)
 
 pain_bin_gene_w8  = glm(w8_pain_bin ~ chronic_pain_2018, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_gene_w8)
 
-pain_bin_gene_interaction_w8  = glm(w8_pain_bin ~ chronic_pain_2018 * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_gene_interaction_w8  = glm(w8_pain_bin ~ chronic_pain_2018 * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_gene_interaction_w8) 
 
 #ELSA_data_with_PGS$w8_pain_bin
@@ -388,13 +420,13 @@ summary(pain_bin_gene_interaction_w8)
 
 ELSA_data_with_PGS$w6_sleep_disturbance_bin
 
-sleep_disturbance_discrim_w6 = glm(w6_sleep_disturbance_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+sleep_disturbance_discrim_w6 = glm(w6_sleep_disturbance_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(sleep_disturbance_discrim_w6)
 
 sleep_disturbance_gene_w6 = glm(w6_sleep_disturbance_bin ~ INS_COM, data = ELSA_data_with_PGS, family = binomial)
 summary(sleep_disturbance_gene_w6)
 
-sleep_disturbance_gene_interaction_w6 = glm(w6_sleep_disturbance_bin ~ INS_COM * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+sleep_disturbance_gene_interaction_w6 = glm(w6_sleep_disturbance_bin ~ INS_COM * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(sleep_disturbance_gene_interaction_w6)
 
 ######### sleep disturbance (wave 7)  (no sleep disturbance data for this wave)
@@ -402,13 +434,13 @@ summary(sleep_disturbance_gene_interaction_w6)
 
 ELSA_data_with_PGS$w6_sleep_disturbance_bin
 
-sleep_disturbance_discrim_w8 = glm(w8_sleep_disturbance_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+sleep_disturbance_discrim_w8 = glm(w8_sleep_disturbance_bin ~ w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(sleep_disturbance_discrim_w8)
 
 sleep_disturbance_gene_w8 = glm(w8_sleep_disturbance_bin ~ INS_COM, data = ELSA_data_with_PGS, family = binomial)
 summary(sleep_disturbance_gene_w8)
 
-sleep_disturbance_gene_interaction_w8 = glm(w8_sleep_disturbance_bin ~ INS_COM * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+sleep_disturbance_gene_interaction_w8 = glm(w8_sleep_disturbance_bin ~ INS_COM * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(sleep_disturbance_gene_interaction_w8)
 
 #ELSA_data_with_PGS$w8_sleep_disturbance_bin
@@ -418,7 +450,7 @@ summary(sleep_disturbance_gene_interaction_w8)
 
 #below is sig: 
 
-pain_bin_geneMI_interaction_w8  = glm(w8_pain_bin ~ MI * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+pain_bin_geneMI_interaction_w8  = glm(w8_pain_bin ~ MI * w5sexdiscrimination2, data = ELSA_data_with_PGS, family = binomial)
 summary(pain_bin_geneMI_interaction_w8)
 
 
