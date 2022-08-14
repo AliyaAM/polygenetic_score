@@ -23,7 +23,8 @@ library(survminer)
 #add Alzheimer's for all years   
 #add kidney disease for all years    
 #limiting longstanding condition (recode to bin)
-
+print("ELSA anxiety: now new var, but wha ttype emotional psychiatric problem do you have")  
+print("no _new vars for CAD, ALZ, only: how old were you when you were diagnosed with CAD and ALZ") 
 
 
 directory = "/Users/aliya/my_docs/"
