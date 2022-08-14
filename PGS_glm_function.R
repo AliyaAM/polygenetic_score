@@ -1,7 +1,10 @@
 
 PGS_glm_function = function (data_ELSA, 
                              data_HRS,
+                             
                             analysis_variable_name, 
+                            wave_number,
+                            outcome_name, 
                             
                             subsetting_VAR1_ELSA, 
                             subsetting_VAR1_HRS,
@@ -13,8 +16,6 @@ PGS_glm_function = function (data_ELSA,
                             
                             ELSA_var2_value,
                             HRS_var2_value,
-                            
-                            wave_number,
                             
                             outcome_ELSA, 
                             outcome_HRS, 
@@ -37,7 +38,9 @@ PGS_glm_function = function (data_ELSA,
   #list the subsetting var name inside the function 
   
   analysis_variable_name = analysis_variable_name
-  
+ 
+  wave_number = wave_number
+  outcome_name = outcome_name
   
   #data_HRS <- data_HRS[ , subsetting_VAR_HRS]
   #data_ELSA <- data_ELSA[ , subsetting_VAR_ELSA]
@@ -131,16 +134,26 @@ PGS_glm_function = function (data_ELSA,
     glm_outcome_discrim =  glm(outcome ~  discrimination, 
                                  data = data_both_countries, 
                                  family = binomial)
-                                                  
+    
       
     glm_outcome_gene =  glm(outcome ~  gene, 
                                   data = data_both_countries, 
                                   family = binomial)
        
+    
+    
+    
       
      glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination, 
                                            data = data_both_countries, 
                                            family = binomial)
+     
+     
+     summary_discrim = summary(glm_outcome_discrim)
+     summary_gene = summary(glm_outcome_gene)
+     summary_interaction = summary(glm_outcome_gene_interaction)
+     
+     
   }
   
 
@@ -174,6 +187,10 @@ PGS_glm_function = function (data_ELSA,
                                         data = data_both_countries, 
                                         family = binomial)
     
+          
+          summary_discrim = summary(glm_outcome_discrim)
+          summary_gene = summary(glm_outcome_gene)
+          summary_interaction = summary(glm_outcome_gene_interaction)
     
     
   }
@@ -213,6 +230,11 @@ PGS_glm_function = function (data_ELSA,
                                         
                                         data = data_both_countries, 
                                         family = binomial)
+    
+    
+    summary_discrim = summary(glm_outcome_discrim)
+    summary_gene = summary(glm_outcome_gene)
+    summary_interaction = summary(glm_outcome_gene_interaction)
     
     
   }
@@ -259,6 +281,10 @@ PGS_glm_function = function (data_ELSA,
                                         
                                         data = data_both_countries, 
                                         family = binomial)
+    
+    summary_discrim = summary(glm_outcome_discrim)
+    summary_gene = summary(glm_outcome_gene)
+    summary_interaction = summary(glm_outcome_gene_interaction)
     
     
   } 
@@ -315,71 +341,75 @@ PGS_glm_function = function (data_ELSA,
                                         family = binomial)
     
     
+    summary_discrim = summary(glm_outcome_discrim)
+    summary_gene = summary(glm_outcome_gene)
+    summary_interaction = summary(glm_outcome_gene_interaction)
+    
+    
     
     
   }
   
-  data_both_countries = na.omit(data_both_countries)
+  
+  path <- OUTPUT_ROOT
+  
+  folder = paste(analysis_variable_name, "/", sep = "")
+  
+  dir.create(paste(path, folder, sep = ""))
+  
+  results_interaction = as.data.frame(summary_interaction$coefficients)
+  write.csv(results_interaction, file = paste(OUTPUT_ROOT, folder,  "results_interaction.csv", sep=""))
   
   
-  # plotting discrimination against wealth and age 
-  
-  plot_wealth = ggplot(data_both_countries, aes(x = wealth, y = discrimination)) +
-    #geom_point(alpha = 0.2) +
-    geom_smooth(aes(colour = country_cat), method = "glm", method.args = list(family = "binomial"), fullrange = TRUE) +
-    scale_colour_discrete(name="country",
-                          breaks = c(0, 1), 
-                          labels=c("United States", "England")) + 
-    labs(
-      title = analysis_variable_name, 
-      x = "wealth excluding pension, USD",
-      y = "Probability of perceived discrimination"
-    )+
-    scale_x_continuous(labels = comma, limits = c(-500000, 500000))+ 
-    scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1), limits = c(0, 1)) + 
-    
-    theme(text = element_text(size = 20), legend.justification=c(1,1), legend.position=c(1,1))
-  
-  plot_age = ggplot(data_both_countries, aes(age, discrimination)) +
-    #geom_point(alpha = 0.2) +
-    geom_smooth(aes(colour = country_cat), method = "glm", method.args = list(family = "binomial"), fullrange = TRUE) +
-    scale_y_continuous(breaks = c(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1), limits = c(0, 1)) + 
-    
-    scale_colour_discrete(name="country",
-                          breaks = c(0, 1), 
-                          labels=c("United States", "England")) + 
-    labs(
-      title = analysis_variable_name, 
-      x = "age, years",
-      y = "Probability of perceived discrimination"
-    )+
-    theme(text = element_text(size = 20), legend.justification=c(1,1), legend.position=c(1,1))
+  results_interaction_other = as.data.frame(summary_interaction$aic, 
+                                summary_interaction$deviance,
+                                summary_interaction$df.residual,
+                                summary_interaction$df.null,
+                                summary_interaction$dispersion) 
   
   
-  ############
-  #outputting wealth gradient results 
+  colnames(results_interaction_other) = c("aic", 
+                              "deviance",
+                              "df.residual",
+                              "df.null",
+                              "dispersion") 
+  
+  write.csv(results_interaction_other, file = paste(OUTPUT_ROOT, folder,  "results_interaction_other.csv", sep=""))
   
   
-  cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
-  cross_country_OR_UK = cross_country_OR[2, 1]
-  CI1_UK = cross_country_OR[2, 2]
-  CI2_UK = cross_country_OR[2, 3]
+  ##########################
+  ##########################
   
+  OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(glm_outcome_gene_interaction), confint(glm_outcome_gene_interaction)))
+ 
+  p_values = summary_interaction$coefficients[,4]
+  results_all = cbind(OR_CI_outcome_gene_interaction, p_values)
   
-  cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
-  cross_country_OR_USA = cross_country_OR[1, 1]
-  CI1_USA = cross_country_OR[1, 2]
-  CI2_USA = cross_country_OR[1, 3]
+  # cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
+  # cross_country_OR_UK = cross_country_OR[2, 1]
+  # CI1_UK = cross_country_OR[2, 2]
+  # CI2_UK = cross_country_OR[2, 3]
+  # 
+  # 
+  # cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
+  # cross_country_OR_USA = cross_country_OR[1, 1]
+  # CI1_USA = cross_country_OR[1, 2]
+  # CI2_USA = cross_country_OR[1, 3]
+  # 
+  # ## various equivalent specifications of the LR test
+  # cross_national_diff = lrtest(fm1, fm2)
+  # 
+  # chi_value_cross_national = cross_national_diff$stats[1]
+  # pvalue_cross_national = cross_national_diff$stats[3]
+  # 
   
-  ## various equivalent specifications of the LR test
-  cross_national_diff = lrtest(fm1, fm2)
+  interaction_OR_CI_pvalue = tail(results_all, n = 1)
   
-  chi_value_cross_national = cross_national_diff$stats[1]
-  pvalue_cross_national = cross_national_diff$stats[3]
-  
-  
-  
-  cross_national_findings = cbind(analysis_variable_name, 
+  Interaction_findings = cbind(analysis_variable_name, 
+                              
+                                  wave_number,
+                                  outcome_name, 
+                                  
                                   N_ELSA_subset, 
                                   N_HRS_subset, 
                                   
@@ -387,16 +417,7 @@ PGS_glm_function = function (data_ELSA,
                                   N_HRS_discrimYES, 
                                   
                                   
-                                  cross_country_OR_UK, 
-                                  CI1_UK, 
-                                  CI2_UK, 
-                                  
-                                  cross_country_OR_USA, 
-                                  CI1_USA, 
-                                  CI2_USA,
-                                  
-                                  chi_value_cross_national,
-                                  pvalue_cross_national)
+                                  interaction_OR_CI_pvalue)
   
   #ELSA_OR_value,
   #ELSA_CI1,
@@ -406,7 +427,7 @@ PGS_glm_function = function (data_ELSA,
   #HRS_CI2)
   
   
-  return(cross_national_findings)
+  return(Interaction_findings)
 }
 
 
