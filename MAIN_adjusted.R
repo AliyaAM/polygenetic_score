@@ -55,6 +55,37 @@ discrimination_var = "w5discrim_bin2"
 #discrimination_var = "w5discrim_financial2"
 #discrimination_var = "w5weightdiscrimination2"
 
+#covariates
+
+#Model 1: age, sex, wealth (basis adjustment)
+#ELSA_data_with_PGS$w5age
+#ELSA_data_with_PGS$w5sex_1_0
+#ELSA_data_with_PGS$w5wealth
+
+covariate1 = "w5age"
+covariate2 = "w5sex_1_0"
+covariate3 = "w5wealth"
+covariate4 = "NA"
+
+#Model 2: age, sex, wealth, physical activity, smoking (yes/no), and alcohol (days/week) (basic adjustment + health behaviours)
+
+
+#all except depression 
+#Model 3: age, sex, wealth, depression (basic adjustment + depression)
+
+#for diabetes
+#Model 4: age, sex, wealth, BMI, hypertension (basic adjustment + known type 2 diabetes risk factors)
+#Model 5: age, sex, wealth, CVD (basic adjustment + CVD)
+
+#for MI 
+
+#for pain
+
+#for sleep disturbance 
+
+#for depression 
+
+
 
 ###### sourcing code for the unadjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
@@ -85,10 +116,10 @@ arthritis_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      
                                      gene_ELSA = "RA", 
                                      
-                                     covariate1 = "NA", 
-                                     covariate2 = "NA",
-                                     covariate3 = "NA", 
-                                     covariate4 = "NA", 
+                                    covariate1 = covariate1, 
+                                    covariate2 = covariate2,
+                                    covariate3 = covariate3, 
+                                    covariate4 = covariate4, 
                                      discrimination_VAR_elsa = discrimination_var)
 
 
@@ -107,10 +138,10 @@ arthritis_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      
                                      gene_ELSA = "RA", 
                                      
-                                     covariate1 = "NA", 
-                                     covariate2 = "NA",
-                                     covariate3 = "NA", 
-                                     covariate4 = "NA", 
+                                    covariate1 = covariate1, 
+                                    covariate2 = covariate2,
+                                    covariate3 = covariate3, 
+                                    covariate4 = covariate4, 
                                      discrimination_VAR_elsa = discrimination_var)
 
 print("done A7")
@@ -129,10 +160,10 @@ arthritis_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                      
                                      gene_ELSA = "RA", 
                                      
-                                     covariate1 = "NA", 
-                                     covariate2 = "NA",
-                                     covariate3 = "NA", 
-                                     covariate4 = "NA", 
+                                    covariate1 = covariate1, 
+                                    covariate2 = covariate2,
+                                    covariate3 = covariate3, 
+                                    covariate4 = covariate4, 
                                      discrimination_VAR_elsa = discrimination_var)
 
 print("done A8")
@@ -154,10 +185,10 @@ T2DM_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 
                                 gene_ELSA = "T2D_2018", 
                                 
-                                covariate1 = "NA", 
-                                covariate2 = "NA",
-                                covariate3 = "NA", 
-                                covariate4 = "NA", 
+                               covariate1 = covariate1, 
+                               covariate2 = covariate2,
+                               covariate3 = covariate3, 
+                               covariate4 = covariate4, 
                                 discrimination_VAR_elsa = discrimination_var)
 
 print("done T2DM6")
@@ -175,10 +206,10 @@ T2DM_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 
                                 gene_ELSA = "T2D_2018", 
                                 
-                                covariate1 = "NA", 
-                                covariate2 = "NA",
-                                covariate3 = "NA", 
-                                covariate4 = "NA", 
+                               covariate1 = covariate1, 
+                               covariate2 = covariate2,
+                               covariate3 = covariate3, 
+                               covariate4 = covariate4, 
                                 discrimination_VAR_elsa = discrimination_var)
 
 print("done T2DM7")
@@ -197,10 +228,10 @@ T2DM_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 
                                 gene_ELSA = "T2D_2018", 
                                 
-                                covariate1 = "NA", 
-                                covariate2 = "NA",
-                                covariate3 = "NA", 
-                                covariate4 = "NA", 
+                               covariate1 = covariate1, 
+                               covariate2 = covariate2,
+                               covariate3 = covariate3, 
+                               covariate4 = covariate4, 
                                 discrimination_VAR_elsa = discrimination_var)
 
 print("done T2DM8")
@@ -222,10 +253,10 @@ T2DM_w6_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    
                                    gene_ELSA = "Diabetes", 
                                    
-                                   covariate1 = "NA", 
-                                   covariate2 = "NA",
-                                   covariate3 = "NA", 
-                                   covariate4 = "NA", 
+                                  covariate1 = covariate1, 
+                                  covariate2 = covariate2,
+                                  covariate3 = covariate3, 
+                                  covariate4 = covariate4, 
                                    discrimination_VAR_elsa = discrimination_var)
 print("done T2DM6 v2")
 
@@ -244,10 +275,10 @@ T2DM_w7_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    
                                    gene_ELSA = "Diabetes", 
                                    
-                                   covariate1 = "NA", 
-                                   covariate2 = "NA",
-                                   covariate3 = "NA", 
-                                   covariate4 = "NA", 
+                                  covariate1 = covariate1, 
+                                  covariate2 = covariate2,
+                                  covariate3 = covariate3, 
+                                  covariate4 = covariate4, 
                                    discrimination_VAR_elsa = discrimination_var)
 
 print("done T2DM7 v2")
@@ -266,10 +297,10 @@ T2DM_w8_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    
                                    gene_ELSA = "Diabetes", 
                                    
-                                   covariate1 = "NA", 
-                                   covariate2 = "NA",
-                                   covariate3 = "NA", 
-                                   covariate4 = "NA", 
+                                  covariate1 = covariate1, 
+                                  covariate2 = covariate2,
+                                  covariate3 = covariate3, 
+                                  covariate4 = covariate4, 
                                    discrimination_VAR_elsa = discrimination_var)
 
 print("done T2DM8 v2")
@@ -293,10 +324,10 @@ MI_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                               
                               gene_ELSA = "MI", 
                               
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
+                             covariate1 = covariate1, 
+                             covariate2 = covariate2,
+                             covariate3 = covariate3, 
+                             covariate4 = covariate4, 
                               discrimination_VAR_elsa = discrimination_var)
 
 print("done MI6 v2")
@@ -315,10 +346,10 @@ MI_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                               
                               gene_ELSA = "MI", 
                               
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
+                             covariate1 = covariate1, 
+                             covariate2 = covariate2,
+                             covariate3 = covariate3, 
+                             covariate4 = covariate4, 
                               discrimination_VAR_elsa = discrimination_var)
 
 print("done MI7 v2")
@@ -337,10 +368,10 @@ MI_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                               
                               gene_ELSA = "MI", 
                               
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
+                             covariate1 = covariate1, 
+                             covariate2 = covariate2,
+                             covariate3 = covariate3, 
+                             covariate4 = covariate4, 
                               discrimination_VAR_elsa = discrimination_var)
 
 print("done MI8 v2")
@@ -361,10 +392,10 @@ widespread_pain_bin_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                                
                                                gene_ELSA = "chronic_pain_2018", 
                                                
-                                               covariate1 = "NA", 
-                                               covariate2 = "NA",
-                                               covariate3 = "NA", 
-                                               covariate4 = "NA", 
+                                              covariate1 = covariate1, 
+                                              covariate2 = covariate2,
+                                              covariate3 = covariate3, 
+                                              covariate4 = covariate4, 
                                                discrimination_VAR_elsa = discrimination_var)
 
 print("done widespread_pain_bin6 v2")
@@ -383,10 +414,10 @@ widespread_pain_bin_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                                
                                                gene_ELSA = "chronic_pain_2018", 
                                                
-                                               covariate1 = "NA", 
-                                               covariate2 = "NA",
-                                               covariate3 = "NA", 
-                                               covariate4 = "NA", 
+                                              covariate1 = covariate1, 
+                                              covariate2 = covariate2,
+                                              covariate3 = covariate3, 
+                                              covariate4 = covariate4, 
                                                discrimination_VAR_elsa = discrimination_var)
 
 
@@ -404,10 +435,10 @@ widespread_pain_bin_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                                
                                                gene_ELSA = "chronic_pain_2018", 
                                                
-                                               covariate1 = "NA", 
-                                               covariate2 = "NA",
-                                               covariate3 = "NA", 
-                                               covariate4 = "NA", 
+                                              covariate1 = covariate1, 
+                                              covariate2 = covariate2,
+                                              covariate3 = covariate3, 
+                                              covariate4 = covariate4, 
                                                discrimination_VAR_elsa = discrimination_var)
 print("done widespread_pain_bin8 v2")
 
@@ -428,10 +459,10 @@ print("done widespread_pain_bin8 v2")
 #                                      
 #                                      gene_ELSA = "chronic_pain_2018", 
 #                                      
-#                                      covariate1 = "NA", 
-#                                      covariate2 = "NA",
-#                                      covariate3 = "NA", 
-#                                      covariate4 = "NA", 
+#                                     covariate1 = covariate1, 
+#                                     covariate2 = covariate2,
+#                                     covariate3 = covariate3, 
+#                                     covariate4 = covariate4, 
 #                                      discrimination_VAR_elsa = discrimination_var)
 # 
 # print("done P6 v2")
@@ -450,10 +481,10 @@ pain_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 
                                 gene_ELSA = "chronic_pain_2018", 
                                 
-                                covariate1 = "NA", 
-                                covariate2 = "NA",
-                                covariate3 = "NA", 
-                                covariate4 = "NA", 
+                               covariate1 = covariate1, 
+                               covariate2 = covariate2,
+                               covariate3 = covariate3, 
+                               covariate4 = covariate4, 
                                 discrimination_VAR_elsa = discrimination_var)
 
 
@@ -472,10 +503,10 @@ pain_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                 
                                 gene_ELSA = "chronic_pain_2018", 
                                 
-                                covariate1 = "NA", 
-                                covariate2 = "NA",
-                                covariate3 = "NA", 
-                                covariate4 = "NA", 
+                               covariate1 = covariate1, 
+                               covariate2 = covariate2,
+                               covariate3 = covariate3, 
+                               covariate4 = covariate4, 
                                 discrimination_VAR_elsa = discrimination_var)
 print("done P8 v2")
 
@@ -497,10 +528,10 @@ sleep_disturbance_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                              
                                              gene_ELSA = "INS_COM", 
                                              
-                                             covariate1 = "NA", 
-                                             covariate2 = "NA",
-                                             covariate3 = "NA", 
-                                             covariate4 = "NA", 
+                                            covariate1 = covariate1, 
+                                            covariate2 = covariate2,
+                                            covariate3 = covariate3, 
+                                            covariate4 = covariate4, 
                                              discrimination_VAR_elsa = discrimination_var)
 
 
@@ -519,10 +550,10 @@ print("done SD6")
 #                                      
 #                                      gene_ELSA = "INS_COM", 
 #                                      
-#                                      covariate1 = "NA", 
-#                                      covariate2 = "NA",
-#                                      covariate3 = "NA", 
-#                                      covariate4 = "NA", 
+#                                     covariate1 = covariate1, 
+#                                     covariate2 = covariate2,
+#                                     covariate3 = covariate3, 
+#                                     covariate4 = covariate4, 
 #                                      discrimination_VAR_elsa = discrimination_var)
 
 
@@ -540,10 +571,10 @@ sleep_disturbance_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                              
                                              gene_ELSA = "INS_COM", 
                                              
-                                             covariate1 = "NA", 
-                                             covariate2 = "NA",
-                                             covariate3 = "NA", 
-                                             covariate4 = "NA", 
+                                            covariate1 = covariate1, 
+                                            covariate2 = covariate2,
+                                            covariate3 = covariate3, 
+                                            covariate4 = covariate4, 
                                              discrimination_VAR_elsa = discrimination_var)
 
 
@@ -570,10 +601,10 @@ Depression_w6 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                       
                                       gene_ELSA = "MDD19", 
                                       
-                                      covariate1 = "NA", 
-                                      covariate2 = "NA",
-                                      covariate3 = "NA", 
-                                      covariate4 = "NA", 
+                                     covariate1 = covariate1, 
+                                     covariate2 = covariate2,
+                                     covariate3 = covariate3, 
+                                     covariate4 = covariate4, 
                                       discrimination_VAR_elsa = discrimination_var)
 
 print("done D6")
@@ -592,10 +623,10 @@ Depression_w7 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                       
                                       gene_ELSA = "MDD19", 
                                       
-                                      covariate1 = "NA", 
-                                      covariate2 = "NA",
-                                      covariate3 = "NA", 
-                                      covariate4 = "NA", 
+                                     covariate1 = covariate1, 
+                                     covariate2 = covariate2,
+                                     covariate3 = covariate3, 
+                                     covariate4 = covariate4, 
                                       discrimination_VAR_elsa = discrimination_var)
 
 print("done D7")
@@ -615,10 +646,10 @@ Depression_w8 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                       
                                       gene_ELSA = "MDD19", 
                                       
-                                      covariate1 = "NA", 
-                                      covariate2 = "NA",
-                                      covariate3 = "NA", 
-                                      covariate4 = "NA", 
+                                     covariate1 = covariate1, 
+                                     covariate2 = covariate2,
+                                     covariate3 = covariate3, 
+                                     covariate4 = covariate4, 
                                       discrimination_VAR_elsa = discrimination_var)
 print("done D8")
 
@@ -638,10 +669,10 @@ Depression_w6_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          
                                          gene_ELSA = "DS", 
                                          
-                                         covariate1 = "NA", 
-                                         covariate2 = "NA",
-                                         covariate3 = "NA", 
-                                         covariate4 = "NA", 
+                                        covariate1 = covariate1, 
+                                        covariate2 = covariate2,
+                                        covariate3 = covariate3, 
+                                        covariate4 = covariate4, 
                                          discrimination_VAR_elsa = discrimination_var)
 
 print("done D6 v2")
@@ -661,10 +692,10 @@ Depression_w7_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          
                                          gene_ELSA = "DS", 
                                          
-                                         covariate1 = "NA", 
-                                         covariate2 = "NA",
-                                         covariate3 = "NA", 
-                                         covariate4 = "NA", 
+                                        covariate1 = covariate1, 
+                                        covariate2 = covariate2,
+                                        covariate3 = covariate3, 
+                                        covariate4 = covariate4, 
                                          discrimination_VAR_elsa = discrimination_var)
 
 
@@ -686,10 +717,10 @@ Depression_w8_v2 = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                          
                                          gene_ELSA = "DS", 
                                          
-                                         covariate1 = "NA", 
-                                         covariate2 = "NA",
-                                         covariate3 = "NA", 
-                                         covariate4 = "NA", 
+                                        covariate1 = covariate1, 
+                                        covariate2 = covariate2,
+                                        covariate3 = covariate3, 
+                                        covariate4 = covariate4, 
                                          discrimination_VAR_elsa = discrimination_var)
 
 print("done D8 v2")

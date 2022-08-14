@@ -118,8 +118,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
   if(covariate1 != "NA" & covariate2 == "NA" &  covariate3 == "NA" &  covariate4 == "NA" ){
     
     
-    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
-                                             data_HRS_subset[ ,   covariate1])
+    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1])
     
     
     
@@ -156,12 +155,10 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
   if(covariate1 != "NA" & covariate2 != "NA" & covariate3 == "NA" &  covariate4 == "NA"){
     
     
-    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
-                                             data_HRS_subset[ ,   covariate1])
+    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1])
     
     
-    data_both_countries[ ,   covariate2] = c(data_ELSA_subset[ ,   covariate2],
-                                             data_HRS_subset[ ,   covariate2])
+    data_both_countries[ ,   covariate2] = c(data_ELSA_subset[ ,   covariate2])
     
     
     glm_outcome_discrim =  glm(outcome ~  discrimination
@@ -201,15 +198,12 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
     
     
     
-    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
-                                             data_HRS_subset[ ,   covariate1])
+    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1])
     
     
-    data_both_countries[ ,   covariate2] = c(data_ELSA_subset[ ,   covariate2],
-                                             data_HRS_subset[ ,   covariate2])
+    data_both_countries[ ,   covariate2] = c(data_ELSA_subset[ ,   covariate2])
     
-    data_both_countries[ ,   covariate3]= c(data_ELSA_subset[ ,   covariate3], 
-                                            data_HRS_subset[ ,   covariate3])
+    data_both_countries[ ,   covariate3]= c(data_ELSA_subset[ ,   covariate3])
     
     
     glm_outcome_discrim =  glm(outcome ~  discrimination
@@ -253,25 +247,21 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
     print("we are in, test 4")
     
     
-    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1],
-                                             data_HRS_subset[ ,   covariate1])
+    data_both_countries[ ,   covariate1] = c(data_ELSA_subset[ ,   covariate1])
     
     
-    data_both_countries[ ,   covariate2] = c(data_ELSA_subset[ ,   covariate2],
-                                             data_HRS_subset[ ,   covariate2])
+    data_both_countries[ ,   covariate2] = c(data_ELSA_subset[ ,   covariate2])
     
-    data_both_countries[ ,   covariate3]= c(data_ELSA_subset[ ,   covariate3], 
-                                            data_HRS_subset[ ,   covariate3])
+    data_both_countries[ ,   covariate3]= c(data_ELSA_subset[ ,   covariate3])
     
-    data_both_countries[ ,   covariate4]= c(data_ELSA_subset[ ,   covariate4], 
-                                            data_HRS_subset[ ,   covariate4])
+    data_both_countries[ ,   covariate4]= c(data_ELSA_subset[ ,   covariate4])
     
     
     glm_outcome_discrim =  glm(outcome ~  discrimination
                                + data_both_countries[ ,   covariate1]
                                + data_both_countries[ ,   covariate2]
                                + data_both_countries[ ,   covariate3]
-                               + data_HRS_subset[ ,   covariate4], 
+                               + data_both_countries[ ,   covariate4], 
                                
                                data = data_both_countries, 
                                family = binomial)
@@ -281,7 +271,8 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                             + data_both_countries[ ,   covariate1]
                             + data_both_countries[ ,   covariate2]
                             + data_both_countries[ ,   covariate3]
-                            + data_HRS_subset[ ,   covariate4], 
+                            + data_both_countries[ ,   covariate4],
+                            
                             
                             data = data_both_countries, 
                             family = binomial)
@@ -291,7 +282,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                         + data_both_countries[ ,   covariate1]
                                         + data_both_countries[ ,   covariate2]
                                         + data_both_countries[ ,   covariate3]
-                                        + data_HRS_subset[ ,   covariate4], 
+                                        + data_both_countries[ ,   covariate4], 
                                         
                                         data = data_both_countries, 
                                         family = binomial)
