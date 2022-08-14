@@ -308,13 +308,32 @@ summary(MI_gene_interaction_w6)
 ######### MI (wave 7) 
 
 MI_discrim_w7 = glm(w7_MI_new_bin ~ w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
-summary(MI_discrim_w7)
+summary_discrim = summary(MI_discrim_w7)
+
+summary_discrim$coefficients
 
 MI_gene_w7  = glm(w7_MI_new_bin ~ MI, data = ELSA_data_with_PGS, family = binomial)
-summary(MI_gene_w7)
+summary_gene = summary(MI_gene_w7)
 
-MI_gene_interaction_w7  = glm(w7_MI_new_bin ~ MI * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
-summary(MI_gene_interaction_w7) #sig. 
+summary_gene$coefficients
+ELSA_data_with_PGS$w5age
+MI_gene_interaction_w7  = glm(w7_MI_new_bin ~ w5age + MI * w5discrim_bin2, data = ELSA_data_with_PGS, family = binomial)
+
+summary = summary(MI_gene_interaction_w7) #sig. 
+
+p_values = summary$coefficients[,4]
+cross_country_OR = exp(cbind(OR = coef(MI_gene_interaction_w7), confint(MI_gene_interaction_w7)))
+
+results_all = cbind(cross_country_OR, p_values)
+
+
+tail(results_all, n = 1)
+
+summary$aic
+summary$deviance
+summary$df.residual
+summary$df.null
+summary$dispersion
 
 ######### MI (wave 8) 
 
