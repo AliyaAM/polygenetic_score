@@ -32,6 +32,7 @@ print("add all_HRS_by_years_PGS:  PTSD, anxiety, alcohol dependence,  smoking ce
 
 HRS_2010$HRS2010_Percvd_cntrl_health = HRS_2010_data$Percvd_cntrl_health 
 
+HRS_2010$HRS2010_sex_1_0 = HRS_2010_data$sex_1_0
 
 HRS_2010$HRS2010_self_rated_health = HRS_2010_data$self_rated_health
 HRS_2010$HRS2010_life_satisfaction = HRS_2010_data$HRS2010_life_satisfaction 

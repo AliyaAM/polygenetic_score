@@ -79,4 +79,35 @@ ELSA_ageism = cbind(ELSA_results_ageism_unadjusted,
 
 write.csv(ELSA_ageism, file = paste(SOURCE_ROOT, "ELSA_ageism.csv", sep=""))
 
+################### HRS 
 
+source(paste(SOURCE_ROOT, "MAIN_HRS.R", sep=""))
+source(paste(SOURCE_ROOT, "MAIN_HRS_adjusted.R", sep=""))
+
+source(paste(SOURCE_ROOT, "MAIN_HRS_ageism.R", sep=""))
+source(paste(SOURCE_ROOT, "MAIN_HRS_ageism_adjusted.R", sep=""))
+
+
+HRS_results_all_discrim_bin_unadjusted
+HRS_results_all_discrim_bin_adjusted
+
+
+HRS_discrim_bin = cbind(HRS_results_all_discrim_bin_unadjusted, 
+                        HRS_results_all_discrim_bin_adjusted$OR, 
+                        HRS_results_all_discrim_bin_adjusted$CI1, 
+                        HRS_results_all_discrim_bin_adjusted$CI2, 
+                        HRS_results_all_discrim_bin_adjusted$p_value)
+
+write.csv(HRS_discrim_bin, file = paste(SOURCE_ROOT, "HRS_discrim_bin.csv", sep=""))
+#######
+
+HRS_results_ageism_unadjusted
+HRS_results_ageism_adjusted
+
+HRS_ageism = cbind(HRS_results_ageism_unadjusted, 
+                    HRS_results_ageism_adjusted$OR, 
+                    HRS_results_ageism_adjusted$CI1, 
+                    HRS_results_ageism_adjusted$CI2, 
+                    HRS_results_ageism_adjusted$p_value) 
+
+write.csv(HRS_ageism, file = paste(SOURCE_ROOT, "HRS_ageism.csv", sep=""))
