@@ -32,6 +32,17 @@ HRS_2016 = data.frame(HRS_2016_data$HHIDPN)
 
 print("add all_HRS_by_years_PGS:  arthritis_new, PTSD, anxiety, alcohol dependence,  smoking cessation, smoking initiation, sig per day, drinks per day" )
 
+
+HRS_2016$HRS2016_mi = HRS_2016_data$HRS2016_heartattack2yrs_bin
+
+unique(HRS_2016_data$HRS2016_heartattack2yrs_bin)
+
+HRS_2016$HRS2016_mi_bin = case_when(HRS_2016$HRS2016_mi == 1 ~ 1,
+                                    HRS_2016$HRS2016_mi == 5 ~ 0)
+unique(HRS_2016$HRS2016_mi_bin)
+
+
+
 HRS_2016$HRS2016_Percvd_cntrl_health = HRS_2016_data$Percvd_cntrl_health 
 
 

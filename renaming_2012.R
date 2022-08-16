@@ -25,6 +25,11 @@ DATA_ROOT = "/KCL_postDoc/Data_analysis/"
 #SOURCE_ROOT = "Data_analysis/"
 #OUTPUT_ROOT = "Data_analysis/"
 
+print("#add reports 2012 heart attack since last wave from the harmonised study
+      
+      #https://g2aging.org/?section=concordance-search&sWords=heart+attack&interval=1992%2C2018&page=1&per_page=50&af_src=33") 
+
+
 
 HRS_2012_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2012_data/HRS2012_dataset_latest.csv", sep=""))
 
@@ -48,9 +53,11 @@ HRS_2012$HRS2012_hypertension_new =  HRS_2012_data$HRS2012_hypertension_new
 unique(HRS_2012$HRS2012_hypertension_new)
 HRS_2012$HRS2012_hypertension_new_bin = case_when(HRS_2012$HRS2012_hypertension_new == 0 ~ 0,
                                                   HRS_2012$HRS2012_hypertension_new == 1 ~ 1)
-
-HRS_2012$HRS2012_mi = HRS_2012_data$HRS2012_heartattack2yrs_bin
+#HRS_2012_data$hear
+#HRS_2012$HRS2012_mi = HRS_2012_data$HRS2012_heartattack2yrs_bin
 HRS_2012$HRS2012_depression_bin = HRS_2012_data$HRS2012_depression_bin
+
+
 
 HRS_2012$HRS2012_alcohol_days_week = HRS_2012_data$alcohol_days_week
 HRS_2012$HRS2012_LGB_2012 = HRS_2012_data$LGB_2012
@@ -78,7 +85,7 @@ HRS_2012$HRS2012_continious_age = HRS_2012_data$continious_age
 HRS_2012$HRS2012_angina_new_bin = HRS_2012_data$angina_new_bin
 HRS_2012$HRS2012_number_reasons_discrimination = HRS_2012_data$number_reasons_discrimination
 HRS_2012$HRS2012_race_white = HRS_2012_data$race_white
-HRS_2012$HRS2012_religion_bin = HRS_2012_data$
+
   HRS_2012$HRS2012_sex_1_0 = HRS_2012_data$sex_1_0_2012
 HRS_2012$HRS2012_sex_1_2 = HRS_2012_data$sex_1_2_2012
 HRS_2012$HRS2012_annual_income_self_employment = HRS_2012_data$annual_income_self_employment2012
@@ -86,6 +93,11 @@ HRS_2012$HRS2012_never_married_bin = HRS_2012_data$never_married2012_bin
 HRS_2012$HRS2012_angina_ever = HRS_2012_data$HRS2012_angina_ever
 HRS_2012$HRS2012_angina_new = HRS_2012_data$HRS2012_angina_new
 HRS_2012$HRS2012_angina2yrs_bin = HRS_2012_data$HRS2012_angina2yrs_bin
+
+# HRS_2012$HRS2012_mi_bin = case_when(HRS_2012$HRS2012_mi == 1 ~ 1,
+#                                     HRS_2012$HRS2012_mi == 0 ~ 0)
+
+
 HRS_2012$HRS2012_BMI = HRS_2012_data$HRS2012_BMI
 HRS_2012$HRS2012_BMI_cat = HRS_2012_data$HRS2012_BMI_cat
 HRS_2012$HRS2012_BMI_category = HRS_2012_data$HRS2012_BMI_category

@@ -11,7 +11,8 @@ library(survival)
 library(survminer)
 
 #in this analysis cases are included by merging dataframes by year/wave not by personal baseline 
-
+unique(all_HRS_by_years_PGS$HRS2018_race_white)
+unique(all_HRS_by_years_PGS$HRS2014_race_white)
 
 #need to add hypertension_bin to 2018 
 #need to add alcohol_days_week to 2008 
@@ -406,71 +407,76 @@ print("done T2DM8")
 
 ######### MI
 
+
+unique(all_HRS_by_years_PGS$HRS2010_mi_bin)
+#unique(all_HRS_by_years_PGS$HRS2012_mi) no data 
+unique(all_HRS_by_years_PGS$HRS2014_mi_bin)
+unique(all_HRS_by_years_PGS$HRS2016_mi_bin)
+
+#all_HRS_by_years_PGS$HRS2012_mi
+# MI_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
 # 
-# MI_w6 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
-#                               
-#                               analysis_variable_name = "HRS2012_mi", 
+#                               analysis_variable_name = "HRS2012_mi",
 #                               wave_number = "wave 6",
-#                               outcome_name = "MI", 
-#                               dataset = "HRS", 
-#                               
-#                               
-#                               
-#                               outcome_ELSA = "HRS2012_mi", 
-#                               
-#                               gene_ELSA = "E4_MI_CARDIOGRAM15", 
-#                               
-#                               covariate1 = "NA", 
+#                               outcome_name = "MI",
+#                               dataset = "HRS",
+# 
+# 
+# 
+#                               outcome_ELSA = "HRS2012_mi",
+# 
+#                               gene_ELSA = "E4_MI_CARDIOGRAM15",
+# 
+#                               covariate1 = "NA",
 #                               covariate2 = "NA",
-#                               covariate3 = "NA", 
-#                               covariate4 = "NA", 
+#                               covariate3 = "NA",
+#                               covariate4 = "NA",
 #                               discrimination_VAR_elsa = discrimination_var)
 # 
 # print("done MI6 v2")
-# 
-# 
-# MI_w7 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
-#                               
-#                               analysis_variable_name = "HRS2014_mi", 
-#                               wave_number = "wave 7",
-#                               outcome_name = "MI", 
-#                               dataset = "HRS", 
-#                               
-#                               
-#                               
-#                               outcome_ELSA = "HRS2014_mi", 
-#                               
-#                               gene_ELSA = "E4_MI_CARDIOGRAM15", 
-#                               
-#                               covariate1 = "NA", 
-#                               covariate2 = "NA",
-#                               covariate3 = "NA", 
-#                               covariate4 = "NA", 
-#                               discrimination_VAR_elsa = discrimination_var)
-# 
-# print("done MI7 v2")
-# 
-# 
-# MI_w8 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS, 
-#                               
-#                               analysis_variable_name = "HRS2014_mi", 
-#                               wave_number = "wave 8",
-#                               outcome_name = "MI", 
-#                               dataset = "HRS", 
-#                               
-#                               
-#                               
-#                               outcome_ELSA = "HRS2016_mi", 
-#                               
-#                               gene_ELSA = "E4_MI_CARDIOGRAM15", 
-#                               
-#                               covariate1 = "NA", 
-#                               covariate2 = "NA",
-#                               covariate3 = "NA", 
-#                               covariate4 = "NA", 
-#                               discrimination_VAR_elsa = discrimination_var)
-# 
-# print("done MI8 v2")
+
+MI_w7 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+
+                              analysis_variable_name = "HRS2014_mi_bin",
+                              wave_number = "wave 7",
+                              outcome_name = "MI",
+                              dataset = "HRS",
+
+
+
+                              outcome_ELSA = "HRS2014_mi_bin",
+
+                              gene_ELSA = "E4_MI_CARDIOGRAM15",
+
+                              covariate1 = "NA",
+                              covariate2 = "NA",
+                              covariate3 = "NA",
+                              covariate4 = "NA",
+                              discrimination_VAR_elsa = discrimination_var)
+
+print("done MI7 v2")
+
+
+MI_w8 = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+
+                              analysis_variable_name = "HRS2016_mi_bin",
+                              wave_number = "wave 8",
+                              outcome_name = "MI",
+                              dataset = "HRS",
+
+
+
+                              outcome_ELSA = "HRS2016_mi_bin",
+
+                              gene_ELSA = "E4_MI_CARDIOGRAM15",
+
+                              covariate1 = "NA",
+                              covariate2 = "NA",
+                              covariate3 = "NA",
+                              covariate4 = "NA",
+                              discrimination_VAR_elsa = discrimination_var)
+
+print("done MI8 v2")
 
 ########################################
 
@@ -967,7 +973,6 @@ print("add arthritis from the harmonised file")
 print("add dibetes from sscratch")
 
 
-print("interesting that there is an interactive effect between MIgene and discrimination on the onset of  pain, see comment below")
 
 # interesting: 
 

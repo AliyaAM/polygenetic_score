@@ -30,6 +30,16 @@ HRS_2010 = data.frame(HRS_2010_data$HHIDPN)
 
 print("add all_HRS_by_years_PGS:  PTSD, anxiety, alcohol dependence,  smoking cessation, smoking initiation, sig per day, drinks per day" )
 
+
+
+
+print("#add reports 2012 heart attack since last wave from the harmonised study
+      
+      #https://g2aging.org/?section=concordance-search&sWords=heart+attack&interval=1992%2C2018&page=1&per_page=50&af_src=33") 
+
+
+
+
 HRS_2010$HRS2010_Percvd_cntrl_health = HRS_2010_data$Percvd_cntrl_health 
 
 HRS_2010$HRS2010_sex_1_0 = HRS_2010_data$sex_1_0
@@ -51,7 +61,14 @@ unique(HRS_2010$HRS2010_hypertension_new)
 HRS_2010$HRS2010_hypertension_new_bin = case_when(HRS_2010$HRS2010_hypertension_new == 0 ~ 0,
                                                   HRS_2010$HRS2010_hypertension_new == 1 ~ 1)
 unique(HRS_2010$HRS2010_hypertension_new_bin)
+
 HRS_2010$HRS2010_mi = HRS_2010_data$HRS2010_heartattack2yrs_bin
+
+unique(HRS_2010_data$HRS2010_heartattack2yrs_bin)
+
+HRS_2010$HRS2010_mi_bin = case_when(HRS_2010$HRS2010_mi == 1 ~ 1,
+                                    HRS_2010$HRS2010_mi == 0 ~ 0)
+unique(HRS_2010$HRS2010_mi_bin)
 HRS_2010$HRS2010_depression_bin = HRS_2010_data$HRS2010_depression_bin
 
 HRS_2010$HRS2010_alcohol_days_week = HRS_2010_data$alcohol_days_week

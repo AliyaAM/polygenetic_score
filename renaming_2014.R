@@ -53,6 +53,14 @@ HRS_2014$HRS2014_hypertension_new_bin = case_when(HRS_2014$HRS2014_hypertension_
                                                   HRS_2014$HRS2014_hypertension_new == 1 ~ 1)
 
 HRS_2014$HRS2014_mi = HRS_2014_data$HRS2014_heartattack2yrs_bin
+
+unique(HRS_2014_data$HRS2014_heartattack2yrs_bin)
+unique(HRS_2014$HRS2014_mi)
+
+HRS_2014$HRS2014_mi_bin = case_when(HRS_2014$HRS2014_mi == 1 ~ 1,
+                                    HRS_2014$HRS2014_mi == 5 ~ 0)
+unique(HRS_2014$HRS2014_mi_bin)
+
 HRS_2014$HRS2014_depression_bin = HRS_2014_data$HRS2014_depression_bin
 
 
@@ -82,7 +90,7 @@ HRS_2014$HRS2014_continious_age = HRS_2014_data$continious_age
 HRS_2014$HRS2014_angina_new_bin = HRS_2014_data$angina_new_bin
 HRS_2014$HRS2014_number_reasons_discrimination = HRS_2014_data$number_reasons_discrimination
 HRS_2014$HRS2014_race_white = HRS_2014_data$race_white
-HRS_2014$HRS2014_religion_bin = HRS_2014_data$
+#HRS_2014$HRS2014_religion_bin = HRS_2014_data$
   HRS_2014$HRS2014_sex_1_0 = HRS_2014_data$sex_1_0_2014
 HRS_2014$HRS2014_sex_1_2 = HRS_2014_data$sex_1_2_2014
 HRS_2014$HRS2014_annual_income_self_employment = HRS_2014_data$annual_income_self_employment2014

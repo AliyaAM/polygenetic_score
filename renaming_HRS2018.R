@@ -40,6 +40,13 @@ print("add all_HRS_by_years_PGS:  hypertension, arthritis, PTSD, anxiety, alcoho
 
 HRS_2018$HRS2018_Percvd_cntrl_health = HRS_2018_data$Percvd_cntrl_health 
 
+# HRS_2018$HRS2018_mi = HRS_2018_data$HRS2018_heartattack2yrs_bin
+# 
+# unique(HRS_2018_data$HRS2018_heartattack2yrs_bin)
+# 
+# HRS_2018$HRS2018_mi_bin = case_when(HRS_2018$HRS2018_mi == 1 ~ 1,
+#                                     HRS_2018$HRS2018_mi == 5 ~ 0)
+# unique(HRS_2018$HRS2018_mi_bin)
 
 HRS_2018$HRS2018_self_rated_health = HRS_2018_data$self_rated_health
 HRS_2018$HRS2018_life_satisfaction = HRS_2018_data$HRS2018_life_satisfaction 
