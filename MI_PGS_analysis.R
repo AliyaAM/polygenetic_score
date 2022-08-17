@@ -62,11 +62,24 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
 
 ######### HRS 
-#all_HRS_by_years_PGS$HRS2010_discrim_bin
+#all_HRS_by_years_PGS$HRS2010_discrim_bin 
+
 discrimination_var_ELSA =  "w5discrim_bin2" 
 
 discrimination_var_HRS = "HRS2010_discrim_bin" 
 
+
+covariate1_ELSA = "pc1"
+covariate2_ELSA = "NA"
+covariate3_ELSA = "NA"
+covariate4_ELSA = "NA"
+
+covariate1_HRS = "PC1_5A"
+covariate2_HRS = "NA"
+covariate3_HRS = "NA"
+covariate4_HRS = "NA"
+
+#covariate4_ELSA = "NA"
 ##### 
 #####   IMPORTANT 
 #####
@@ -132,66 +145,66 @@ print("unique(all_HRS_by_years_PGS$HRS2012_hypertension_new_bin) # all answers a
 
 
 MI_w6_ELSA = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
-                              
-                              analysis_variable_name = "MI_wave6", 
-                              wave_number = "wave 6",
-                              outcome_name = "MI", 
-                              dataset = "ELSA", 
-                              
-                              
-                              
-                              outcome_ELSA = "w6_MI_new_bin", 
-                              
-                              gene_ELSA = "MI", 
-                              
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
-                              discrimination_VAR_elsa = discrimination_var_ELSA)
+                                   
+                                   analysis_variable_name = "MI_wave6", 
+                                   wave_number = "wave 6",
+                                   outcome_name = "MI", 
+                                   dataset = "ELSA", 
+                                   
+                                   
+                                   
+                                   outcome_ELSA = "w6_MI_new_bin", 
+                                   
+                                   gene_ELSA = "MI", 
+                                   
+                                   covariate1 = covariate1_ELSA, 
+                                   covariate2 = covariate2_ELSA,
+                                   covariate3 = covariate3_ELSA, 
+                                   covariate4 = "NA", 
+                                   discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
 
 
 MI_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
-                              
-                              analysis_variable_name = "MI_wave7", 
-                              wave_number = "wave 7",
-                              outcome_name = "MI", 
-                              dataset = "ELSA", 
-                              
-                              
-                              
-                              outcome_ELSA = "w7_MI_new_bin", 
-                              
-                              gene_ELSA = "MI", 
-                              
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
-                              discrimination_VAR_elsa = discrimination_var_ELSA)
+                                    
+                                    analysis_variable_name = "MI_wave7", 
+                                    wave_number = "wave 7",
+                                    outcome_name = "MI", 
+                                    dataset = "ELSA", 
+                                    
+                                    
+                                    
+                                    outcome_ELSA = "w7_MI_new_bin", 
+                                    
+                                    gene_ELSA = "MI", 
+                                    
+                                    covariate1 = covariate1_ELSA, 
+                                    covariate2 = covariate2_ELSA,
+                                    covariate3 = covariate3_ELSA, 
+                                    covariate4 = "NA",  
+                                    discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
 
 MI_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
-                              
-                              analysis_variable_name = "MI_wave8", 
-                              wave_number = "wave 8",
-                              outcome_name = "MI", 
-                              dataset = "ELSA", 
-                              
-                              
-                              
-                              outcome_ELSA = "w8_MI_new_bin", 
-                              
-                              gene_ELSA = "MI", 
-                              
-                              covariate1 = "NA", 
-                              covariate2 = "NA",
-                              covariate3 = "NA", 
-                              covariate4 = "NA", 
-                              discrimination_VAR_elsa = discrimination_var_ELSA)
+                                    
+                                    analysis_variable_name = "MI_wave8", 
+                                    wave_number = "wave 8",
+                                    outcome_name = "MI", 
+                                    dataset = "ELSA", 
+                                    
+                                    
+                                    
+                                    outcome_ELSA = "w8_MI_new_bin", 
+                                    
+                                    gene_ELSA = "MI", 
+                                    
+                                    covariate1 = covariate1_ELSA, 
+                                    covariate2 = covariate2_ELSA,
+                                    covariate3 = covariate3_ELSA, 
+                                    covariate4 = "NA", 
+                                    discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
 
@@ -204,66 +217,68 @@ MI_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
 
 #all_HRS_by_years_PGS$HRS2012_mi
 MI_w6_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-
-                              analysis_variable_name = "HRS2012_mi_bin",
-                              wave_number = "wave 6",
-                              outcome_name = "MI",
-                              dataset = "HRS",
-
-
-
-                              outcome_ELSA = "HRS2012_mi_bin",
-
-                              gene_ELSA = "E4_MI_CARDIOGRAM15",
-
-                              covariate1 = "NA",
-                              covariate2 = "NA",
-                              covariate3 = "NA",
-                              covariate4 = "NA",
-                              discrimination_VAR_elsa = discrimination_var_HRS)
+                                  
+                                  analysis_variable_name = "HRS2012_mi_bin",
+                                  wave_number = "wave 6",
+                                  outcome_name = "MI",
+                                  dataset = "HRS",
+                                  
+                                  
+                                  
+                                  outcome_ELSA = "HRS2012_mi_bin",
+                                  
+                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                  
+                                  covariate1 = covariate1_HRS,
+                                  covariate2 = covariate2_HRS,
+                                  covariate3 = covariate3_HRS,
+                                  covariate4 = "NA",
+                                  
+                                  
+                                  discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 
 MI_w7_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-                              
-                              analysis_variable_name = "HRS2014_mi_bin",
-                              wave_number = "wave 7",
-                              outcome_name = "MI",
-                              dataset = "HRS",
-                              
-                              
-                              
-                              outcome_ELSA = "HRS2014_mi_bin",
-                              
-                              gene_ELSA = "E4_MI_CARDIOGRAM15",
-                              
-                              covariate1 = "NA",
-                              covariate2 = "NA",
-                              covariate3 = "NA",
-                              covariate4 = "NA",
-                              discrimination_VAR_elsa = discrimination_var_HRS)
+                                  
+                                  analysis_variable_name = "HRS2014_mi_bin",
+                                  wave_number = "wave 7",
+                                  outcome_name = "MI",
+                                  dataset = "HRS",
+                                  
+                                  
+                                  
+                                  outcome_ELSA = "HRS2014_mi_bin",
+                                  
+                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                  
+                                  covariate1 = covariate1_HRS,
+                                  covariate2 = covariate2_HRS,
+                                  covariate3 = covariate3_HRS,
+                                  covariate4 = "NA",
+                                  discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 
 
 MI_w8_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-                              
-                              analysis_variable_name = "HRS2016_mi_bin",
-                              wave_number = "wave 8",
-                              outcome_name = "MI",
-                              dataset = "HRS",
-                              
-                              
-                              
-                              outcome_ELSA = "HRS2016_mi_bin",
-                              
-                              gene_ELSA = "E4_MI_CARDIOGRAM15",
-                              
-                              covariate1 = "NA",
-                              covariate2 = "NA",
-                              covariate3 = "NA",
-                              covariate4 = "NA",
-                              discrimination_VAR_elsa = discrimination_var_HRS)
+                                  
+                                  analysis_variable_name = "HRS2016_mi_bin",
+                                  wave_number = "wave 8",
+                                  outcome_name = "MI",
+                                  dataset = "HRS",
+                                  
+                                  
+                                  
+                                  outcome_ELSA = "HRS2016_mi_bin",
+                                  
+                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                  
+                                  covariate1 = covariate1_HRS,
+                                  covariate2 = covariate2_HRS,
+                                  covariate3 = covariate3_HRS,
+                                  covariate4 = "NA",
+                                  discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 ########################################
@@ -277,8 +292,8 @@ MI_w8_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
 ########################################
 
 mi_results_ELSA = data.frame(MI_w6_ELSA, 
-                         MI_w7_ELSA, 
-                         MI_w8_ELSA)
+                             MI_w7_ELSA, 
+                             MI_w8_ELSA)
 
 write.csv(mi_results_ELSA, file = paste(OUTPUT_ROOT, "mi_results_ELSA_unadjusted.csv", sep = ""))
 
@@ -286,8 +301,8 @@ write.csv(mi_results_ELSA, file = paste(OUTPUT_ROOT, "mi_results_ELSA_unadjusted
 
 
 mi_results_HRS = data.frame(MI_w6_HRS, 
-                           MI_w7_HRS, 
-                           MI_w8_HRS)
+                            MI_w7_HRS, 
+                            MI_w8_HRS)
 
 write.csv(mi_results_HRS, file = paste(OUTPUT_ROOT, "mi_results_HRS_unadjusted.csv", sep = ""))
 
@@ -312,66 +327,66 @@ ELSA_data_with_PGS$pc10
 
 
 MI_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
-                                   
-                                   analysis_variable_name = "MI_wave6", 
-                                   wave_number = "wave 6",
-                                   outcome_name = "MI", 
-                                   dataset = "ELSA", 
-                                   
-                                   
-                                   
-                                   outcome_ELSA = "w6_MI_new_bin", 
-                                   
-                                   gene_ELSA = "MI", 
-                                   
-                                   covariate1 = "pc1", 
-                                   covariate2 = "NA",
-                                   covariate3 = "NA", 
-                                   covariate4 = "NA", 
-                                   discrimination_VAR_elsa = discrimination_var_ELSA)
+                                       
+                                       analysis_variable_name = "MI_wave6", 
+                                       wave_number = "wave 6",
+                                       outcome_name = "MI", 
+                                       dataset = "ELSA", 
+                                       
+                                       
+                                       
+                                       outcome_ELSA = "w6_MI_new_bin", 
+                                       
+                                       gene_ELSA = "MI", 
+                                       
+                                       covariate1 = covariate1_ELSA, 
+                                       covariate2 = covariate2_ELSA,
+                                       covariate3 = covariate3_ELSA, 
+                                       covariate4 = covariate4_ELSA, 
+                                       discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
 
 MI_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
-                                    
-                                    analysis_variable_name = "MI_wave7", 
-                                    wave_number = "wave 7",
-                                    outcome_name = "MI", 
-                                    dataset = "ELSA", 
-                                    
-                                    
-                                    
-                                    outcome_ELSA = "w7_MI_new_bin", 
-                                    
-                                    gene_ELSA = "MI", 
-                                    
-                                    covariate1 = "pc1", 
-                                    covariate2 = "NA",
-                                    covariate3 = "NA", 
-                                    covariate4 = "NA", 
-                                    discrimination_VAR_elsa = discrimination_var_ELSA)
+                                        
+                                        analysis_variable_name = "MI_wave7", 
+                                        wave_number = "wave 7",
+                                        outcome_name = "MI", 
+                                        dataset = "ELSA", 
+                                        
+                                        
+                                        
+                                        outcome_ELSA = "w7_MI_new_bin", 
+                                        
+                                        gene_ELSA = "MI", 
+                                        
+                                        covariate1 = covariate1_ELSA, 
+                                        covariate2 = covariate2_ELSA,
+                                        covariate3 = covariate3_ELSA, 
+                                        covariate4 = covariate4_ELSA, 
+                                        discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
 
 
 MI_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
-                                    
-                                    analysis_variable_name = "MI_wave8", 
-                                    wave_number = "wave 8",
-                                    outcome_name = "MI", 
-                                    dataset = "ELSA", 
-                                    
-                                    
-                                    
-                                    outcome_ELSA = "w8_MI_new_bin", 
-                                    
-                                    gene_ELSA = "MI", 
-                                    
-                                    covariate1 = "pc1", 
-                                    covariate2 = "NA",
-                                    covariate3 = "NA", 
-                                    covariate4 = "NA",  
-                                    discrimination_VAR_elsa = discrimination_var_ELSA)
+                                        
+                                        analysis_variable_name = "MI_wave8", 
+                                        wave_number = "wave 8",
+                                        outcome_name = "MI", 
+                                        dataset = "ELSA", 
+                                        
+                                        
+                                        
+                                        outcome_ELSA = "w8_MI_new_bin", 
+                                        
+                                        gene_ELSA = "MI", 
+                                        
+                                        covariate1 = covariate1_ELSA, 
+                                        covariate2 = covariate2_ELSA,
+                                        covariate3 = covariate3_ELSA, 
+                                        covariate4 = covariate4_ELSA,  
+                                        discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
 
@@ -395,67 +410,67 @@ all_HRS_by_years_PGS$PC6_10E
 
 #all_HRS_by_years_PGS$HRS2012_mi
 MI_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-                                  
-                                  analysis_variable_name = "HRS2012_mi_bin",
-                                  wave_number = "wave 6",
-                                  outcome_name = "MI",
-                                  dataset = "HRS",
-                                  
-                                  
-                                  
-                                  outcome_ELSA = "HRS2012_mi_bin",
-                                  
-                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
-                                  
-                                  covariate1 = "PC1_5A",
-                                  covariate2 = "NA",
-                                  covariate3 = "NA",
-                                  covariate4 = "NA",
-                                  discrimination_VAR_elsa = discrimination_var_HRS)
+                                      
+                                      analysis_variable_name = "HRS2012_mi_bin",
+                                      wave_number = "wave 6",
+                                      outcome_name = "MI",
+                                      dataset = "HRS",
+                                      
+                                      
+                                      
+                                      outcome_ELSA = "HRS2012_mi_bin",
+                                      
+                                      gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                      
+                                      covariate1 = covariate1_HRS,
+                                      covariate2 = covariate2_HRS,
+                                      covariate3 = covariate3_HRS,
+                                      covariate4 = covariate4_HRS,
+                                      discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 
 #gene is positively asssociated with MI phenotype (when only PC1_5A is included as a covariate), when al four are included still associated 
 MI_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-                                  
-                                  analysis_variable_name = "HRS2014_mi_bin",
-                                  wave_number = "wave 7",
-                                  outcome_name = "MI",
-                                  dataset = "HRS",
-                                  
-                                  
-                                  
-                                  outcome_ELSA = "HRS2014_mi_bin",
-                                  
-                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
-                                  
-                                  covariate1 = "PC1_5A",
-                                  covariate2 = "NA",
-                                  covariate3 = "NA",
-                                  covariate4 = "NA",
-                                  discrimination_VAR_elsa = discrimination_var_HRS)
+                                      
+                                      analysis_variable_name = "HRS2014_mi_bin",
+                                      wave_number = "wave 7",
+                                      outcome_name = "MI",
+                                      dataset = "HRS",
+                                      
+                                      
+                                      
+                                      outcome_ELSA = "HRS2014_mi_bin",
+                                      
+                                      gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                      
+                                      covariate1 = covariate1_HRS,
+                                      covariate2 = covariate2_HRS,
+                                      covariate3 = covariate3_HRS,
+                                      covariate4 = covariate4_HRS,
+                                      discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 
 
 MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-                                  
-                                  analysis_variable_name = "HRS2016_mi_bin",
-                                  wave_number = "wave 8",
-                                  outcome_name = "MI",
-                                  dataset = "HRS",
-                                  
-                                  
-                                  
-                                  outcome_ELSA = "HRS2016_mi_bin",
-                                  
-                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
-                                  
-                                  covariate1 = "PC1_5A",
-                                  covariate2 = "NA",
-                                  covariate3 = "NA",
-                                  covariate4 = "NA",
-                                  discrimination_VAR_elsa = discrimination_var_HRS)
+                                      
+                                      analysis_variable_name = "HRS2016_mi_bin",
+                                      wave_number = "wave 8",
+                                      outcome_name = "MI",
+                                      dataset = "HRS",
+                                      
+                                      
+                                      
+                                      outcome_ELSA = "HRS2016_mi_bin",
+                                      
+                                      gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                      
+                                      covariate1 = covariate1_HRS,
+                                      covariate2 = covariate2_HRS,
+                                      covariate3 = covariate3_HRS,
+                                      covariate4 = covariate4_HRS,
+                                      discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 ########################################
@@ -465,16 +480,16 @@ MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
 ########################################
 
 mi_results_ELSA_pca = rbind(MI_w6_ELSA_pca, 
-                        MI_w7_ELSA_pca, 
-                        MI_w8_ELSA_pca)
+                            MI_w7_ELSA_pca, 
+                            MI_w8_ELSA_pca)
 
 
 write.csv(mi_results_ELSA_pca, file = paste(OUTPUT_ROOT, "mi_results_ELSA_pca_unadjusted.csv", sep = ""))
 
 
 mi_results_HRS_pca = rbind(MI_w6_HRS_pca, 
-                         MI_w7_HRS_pca, 
-                         MI_w8_HRS_pca)
+                           MI_w7_HRS_pca, 
+                           MI_w8_HRS_pca)
 
 write.csv(mi_results_HRS_pca, file = paste(OUTPUT_ROOT, "mi_results_HRS_pca_unadjusted.csv", sep = ""))
 
@@ -498,29 +513,6 @@ table(all_HRS_by_years_PGS$HRS2012_mi_bin)
 
 #all_HRS_by_years_PGS$HRS2012_mi
 MI_HRS_composite = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
-                                      
-                                      analysis_variable_name = "MI_composite",
-                                      wave_number = "wave 6",
-                                      outcome_name = "MI",
-                                      dataset = "HRS",
-                                      
-                                      
-                                      
-                                      outcome_ELSA = "MI_composite",
-                                      
-                                      gene_ELSA = "E4_MI_CARDIOGRAM15",
-                                      
-                                      covariate1 = "NA",
-                                      covariate2 = "NA",
-                                      covariate3 = "NA",
-                                      covariate4 = "NA",
-                                      discrimination_VAR_elsa = discrimination_var_HRS)
-
-write.csv(MI_HRS_composite, file = paste(OUTPUT_ROOT, "MI_HRS_composite_unadjusted.csv", sep = ""))
-
-
-#all_HRS_by_years_PGS$HRS2012_mi
-MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                          
                                          analysis_variable_name = "MI_composite",
                                          wave_number = "wave 6",
@@ -533,11 +525,34 @@ MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                          
                                          gene_ELSA = "E4_MI_CARDIOGRAM15",
                                          
-                                         covariate1 = "PC1_5A",
-                                         covariate2 = "NA",
-                                         covariate3 = "NA",
+                                         covariate1 = covariate1_HRS,
+                                         covariate2 = covariate2_HRS,
+                                         covariate3 = covariate3_HRS,
                                          covariate4 = "NA",
                                          discrimination_VAR_elsa = discrimination_var_HRS)
+
+write.csv(MI_HRS_composite, file = paste(OUTPUT_ROOT, "MI_HRS_composite_unadjusted.csv", sep = ""))
+
+
+#all_HRS_by_years_PGS$HRS2012_mi
+MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+                                             
+                                             analysis_variable_name = "MI_composite",
+                                             wave_number = "wave 6",
+                                             outcome_name = "MI",
+                                             dataset = "HRS",
+                                             
+                                             
+                                             
+                                             outcome_ELSA = "MI_composite",
+                                             
+                                             gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                             
+                                             covariate1 = covariate1_HRS,
+                                             covariate2 = covariate2_HRS,
+                                             covariate3 = covariate3_HRS,
+                                             covariate4 = covariate4_HRS,
+                                             discrimination_VAR_elsa = discrimination_var_HRS)
 
 
 ########################################
