@@ -69,12 +69,16 @@ discrimination_var_ELSA =  "w5discrim_bin2"
 discrimination_var_HRS = "HRS2010_discrim_bin" 
 
 
-covariate1_ELSA = "pc1"
+covariate1_ELSA_pca = "pc1"
+
+covariate1_ELSA = "NA"
 covariate2_ELSA = "NA"
 covariate3_ELSA = "NA"
 covariate4_ELSA = "NA"
 
-covariate1_HRS = "PC1_5A"
+covariate1_HRS_pca = "PC1_5A"
+
+covariate1_HRS = "NA"
 covariate2_HRS = "NA"
 covariate3_HRS = "NA"
 covariate4_HRS = "NA"
@@ -182,7 +186,7 @@ MI_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                     covariate1 = covariate1_ELSA, 
                                     covariate2 = covariate2_ELSA,
                                     covariate3 = covariate3_ELSA, 
-                                    covariate4 = "NA",  
+                                    covariate4 = covariate4_ELSA,  
                                     discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
@@ -203,7 +207,7 @@ MI_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                     covariate1 = covariate1_ELSA, 
                                     covariate2 = covariate2_ELSA,
                                     covariate3 = covariate3_ELSA, 
-                                    covariate4 = "NA", 
+                                    covariate4 = covariate4_ELSA, 
                                     discrimination_VAR_elsa = discrimination_var_ELSA)
 
 
@@ -232,7 +236,7 @@ MI_w6_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   covariate1 = covariate1_HRS,
                                   covariate2 = covariate2_HRS,
                                   covariate3 = covariate3_HRS,
-                                  covariate4 = "NA",
+                                  covariate4 = covariate4_ELSA,
                                   
                                   
                                   discrimination_VAR_elsa = discrimination_var_HRS)
@@ -255,7 +259,7 @@ MI_w7_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   covariate1 = covariate1_HRS,
                                   covariate2 = covariate2_HRS,
                                   covariate3 = covariate3_HRS,
-                                  covariate4 = "NA",
+                                  covariate4 = covariate4_HRS,
                                   discrimination_VAR_elsa = discrimination_var_HRS)
 
 
@@ -277,7 +281,7 @@ MI_w8_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   covariate1 = covariate1_HRS,
                                   covariate2 = covariate2_HRS,
                                   covariate3 = covariate3_HRS,
-                                  covariate4 = "NA",
+                                  covariate4 = covariate4_HRS,
                                   discrimination_VAR_elsa = discrimination_var_HRS)
 
 
@@ -339,7 +343,7 @@ MI_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                        
                                        gene_ELSA = "MI", 
                                        
-                                       covariate1 = covariate1_ELSA, 
+                                       covariate1 = covariate1_ELSA_pca, 
                                        covariate2 = covariate2_ELSA,
                                        covariate3 = covariate3_ELSA, 
                                        covariate4 = covariate4_ELSA, 
@@ -360,7 +364,7 @@ MI_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                         
                                         gene_ELSA = "MI", 
                                         
-                                        covariate1 = covariate1_ELSA, 
+                                        covariate1 = covariate1_ELSA_pca, 
                                         covariate2 = covariate2_ELSA,
                                         covariate3 = covariate3_ELSA, 
                                         covariate4 = covariate4_ELSA, 
@@ -382,7 +386,7 @@ MI_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                         
                                         gene_ELSA = "MI", 
                                         
-                                        covariate1 = covariate1_ELSA, 
+                                        covariate1 = covariate1_ELSA_pca, 
                                         covariate2 = covariate2_ELSA,
                                         covariate3 = covariate3_ELSA, 
                                         covariate4 = covariate4_ELSA,  
@@ -422,7 +426,7 @@ MI_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                       
                                       gene_ELSA = "E4_MI_CARDIOGRAM15",
                                       
-                                      covariate1 = covariate1_HRS,
+                                      covariate1 = covariate1_HRS_pca,
                                       covariate2 = covariate2_HRS,
                                       covariate3 = covariate3_HRS,
                                       covariate4 = covariate4_HRS,
@@ -444,7 +448,7 @@ MI_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                       
                                       gene_ELSA = "E4_MI_CARDIOGRAM15",
                                       
-                                      covariate1 = covariate1_HRS,
+                                      covariate1 = covariate1_HRS_pca,
                                       covariate2 = covariate2_HRS,
                                       covariate3 = covariate3_HRS,
                                       covariate4 = covariate4_HRS,
@@ -466,7 +470,7 @@ MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                       
                                       gene_ELSA = "E4_MI_CARDIOGRAM15",
                                       
-                                      covariate1 = covariate1_HRS,
+                                      covariate1 = covariate1_HRS_pca,
                                       covariate2 = covariate2_HRS,
                                       covariate3 = covariate3_HRS,
                                       covariate4 = covariate4_HRS,
@@ -528,7 +532,7 @@ MI_HRS_composite = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                          covariate1 = covariate1_HRS,
                                          covariate2 = covariate2_HRS,
                                          covariate3 = covariate3_HRS,
-                                         covariate4 = "NA",
+                                         covariate4 = covariate4_HRS,
                                          discrimination_VAR_elsa = discrimination_var_HRS)
 
 write.csv(MI_HRS_composite, file = paste(OUTPUT_ROOT, "MI_HRS_composite_unadjusted.csv", sep = ""))
@@ -548,7 +552,7 @@ MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                              
                                              gene_ELSA = "E4_MI_CARDIOGRAM15",
                                              
-                                             covariate1 = covariate1_HRS,
+                                             covariate1 = covariate1_HRS_pca,
                                              covariate2 = covariate2_HRS,
                                              covariate3 = covariate3_HRS,
                                              covariate4 = covariate4_HRS,
