@@ -20,6 +20,11 @@ library(survminer)
 print("ELSA anxiety: now new var, but wha ttype emotional psychiatric problem do you have")  
 print("no _new vars for CAD, ALZ, only: how old were you when you were diagnosed with CAD and ALZ") 
 
+######### to do: 
+
+#Simply control for age, sex and wealth (done) 
+#Once you introduce the polygenic score control for principal components 
+#Derive a binary variable (new MI over waves 6-8) 
 
 directory = "/Users/aliya/my_docs/"
 
@@ -45,6 +50,9 @@ DATA_ROOT = "KCL_postDoc/Data_analysis/"
 
 all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+
+#unique(all_HRS_by_years_PGS$HRS2012_race_nonwhite)
+#all_HRS_by_years_PGS = subset(all_HRS_by_years_PGS, all_HRS_by_years_PGS$HRS2012_race 
 
 ######  Set the root location on the user's local machine to save output files.
 OUTPUT_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
@@ -257,6 +265,9 @@ MI_w8_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                               discrimination_VAR_elsa = discrimination_var_HRS)
 
 print("done MI8 v2")
+########################################
+
+
 
 ########################################
 
@@ -268,3 +279,170 @@ mi_results_HRS = rbind(MI_w6_HRS,
                        MI_w7_HRS, 
                        MI_w8_HRS)
 
+
+########################################
+
+#some literature adjust for top one (ELSA): https://www.cambridge.org/core/journals/psychological-medicine/article/longterm-effects-of-a-polygenetic-predisposition-to-general-cognition-on-healthy-cognitive-ageing-evidence-from-the-english-longitudinal-study-of-ageing/091461C7CA0BA6FC54DAA69A8BBD6CB8
+#some adjust for top four (ELSA): https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002827
+
+
+#adjusting for principal components 
+ELSA_data_with_PGS$pc1
+ELSA_data_with_PGS$pc2
+ELSA_data_with_PGS$pc3
+ELSA_data_with_PGS$pc4
+ELSA_data_with_PGS$pc5
+ELSA_data_with_PGS$pc6
+ELSA_data_with_PGS$pc7
+ELSA_data_with_PGS$pc8
+ELSA_data_with_PGS$pc9
+ELSA_data_with_PGS$pc10
+
+
+
+MI_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
+                                   
+                                   analysis_variable_name = "MI_wave6", 
+                                   wave_number = "wave 6",
+                                   outcome_name = "MI", 
+                                   dataset = "ELSA", 
+                                   
+                                   
+                                   
+                                   outcome_ELSA = "w6_MI_new_bin", 
+                                   
+                                   gene_ELSA = "MI", 
+                                   
+                                   covariate1 = "pc1", 
+                                   covariate2 = "NA",
+                                   covariate3 = "NA", 
+                                   covariate4 = "NA", 
+                                   discrimination_VAR_elsa = discrimination_var_ELSA)
+
+print("done MI6 v2")
+
+
+MI_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
+                                    
+                                    analysis_variable_name = "MI_wave7", 
+                                    wave_number = "wave 7",
+                                    outcome_name = "MI", 
+                                    dataset = "ELSA", 
+                                    
+                                    
+                                    
+                                    outcome_ELSA = "w7_MI_new_bin", 
+                                    
+                                    gene_ELSA = "MI", 
+                                    
+                                    covariate1 = "pc1", 
+                                    covariate2 = "NA",
+                                    covariate3 = "NA", 
+                                    covariate4 = "NA", 
+                                    discrimination_VAR_elsa = discrimination_var_ELSA)
+
+print("done MI7 v2")
+
+
+MI_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
+                                    
+                                    analysis_variable_name = "MI_wave8", 
+                                    wave_number = "wave 8",
+                                    outcome_name = "MI", 
+                                    dataset = "ELSA", 
+                                    
+                                    
+                                    
+                                    outcome_ELSA = "w8_MI_new_bin", 
+                                    
+                                    gene_ELSA = "MI", 
+                                    
+                                    covariate1 = "pc1", 
+                                    covariate2 = "NA",
+                                    covariate3 = "NA", 
+                                    covariate4 = "NA",  
+                                    discrimination_VAR_elsa = discrimination_var_ELSA)
+
+print("done MI8 v2")
+
+
+########################################
+
+#adjusting for principal components 
+all_HRS_by_years_PGS$PC1_5A
+all_HRS_by_years_PGS$PC1_5B
+all_HRS_by_years_PGS$PC1_5C
+all_HRS_by_years_PGS$PC1_5D
+all_HRS_by_years_PGS$PC1_5E
+all_HRS_by_years_PGS$PC6_10A
+all_HRS_by_years_PGS$PC6_10B
+all_HRS_by_years_PGS$PC6_10C
+all_HRS_by_years_PGS$PC6_10D
+all_HRS_by_years_PGS$PC6_10E
+
+
+#all_HRS_by_years_PGS$HRS2012_mi
+MI_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+                                  
+                                  analysis_variable_name = "HRS2012_mi_bin",
+                                  wave_number = "wave 6",
+                                  outcome_name = "MI",
+                                  dataset = "HRS",
+                                  
+                                  
+                                  
+                                  outcome_ELSA = "HRS2012_mi_bin",
+                                  
+                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                  
+                                  covariate1 = "PC1_5A",
+                                  covariate2 = "PC1_5B",
+                                  covariate3 = "PC1_5C",
+                                  covariate4 = "PC1_5D",
+                                  discrimination_VAR_elsa = discrimination_var_HRS)
+
+print("done MI6 v2")
+
+#gene is positively asssociated with MI phenotype (when only PC1_5A is included as a covariate), when al four are included still associated 
+MI_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+                                  
+                                  analysis_variable_name = "HRS2014_mi_bin",
+                                  wave_number = "wave 7",
+                                  outcome_name = "MI",
+                                  dataset = "HRS",
+                                  
+                                  
+                                  
+                                  outcome_ELSA = "HRS2014_mi_bin",
+                                  
+                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                  
+                                  covariate1 = "PC1_5A",
+                                  covariate2 = "PC1_5B",
+                                  covariate3 = "PC1_5C",
+                                  covariate4 = "PC1_5D",
+                                  discrimination_VAR_elsa = discrimination_var_HRS)
+
+print("done MI7 v2")
+
+
+MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+                                  
+                                  analysis_variable_name = "HRS2016_mi_bin",
+                                  wave_number = "wave 8",
+                                  outcome_name = "MI",
+                                  dataset = "HRS",
+                                  
+                                  
+                                  
+                                  outcome_ELSA = "HRS2016_mi_bin",
+                                  
+                                  gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                  
+                                  covariate1 = "PC1_5A",
+                                  covariate2 = "PC1_5B",
+                                  covariate3 = "PC1_5C",
+                                  covariate4 = "PC1_5D",
+                                  discrimination_VAR_elsa = discrimination_var_HRS)
+
+print("done MI8 v2")
