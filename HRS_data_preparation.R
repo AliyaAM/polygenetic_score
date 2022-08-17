@@ -32,7 +32,7 @@ HRS_2018_data =  read.csv(paste(directory, DATA_ROOT, "HRS_2018_data/HRS2018_dat
 
 polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
 
-
+harmonised_data_all_waves = read.csv(paste(directory, DATA_ROOT, "H_HRS_c.csv", sep=""))
 
 # match ID names 
 
@@ -45,7 +45,7 @@ HRS_2018_data$HHIDPN = HRS_2018_data$HRS_2018_data.HHIDPN
 
 #use this to subset each HRS by id: ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
 
-# join dataframes 
+
 
 one =  inner_join(HRS_2008_data, 
                          HRS_2010_data, 
@@ -96,3 +96,31 @@ write.csv(all_HRS_by_years_PGS, file = paste(directory, DATA_ROOT, "HRS_2008_dat
 
 
 
+# join dataframes 
+
+harmonised_data_all_waves$HHIDPN = harmonised_data_all_waves$hhidpn
+
+ID_hhidpn = unique(all_HRS_by_years_PGS$HHIDPN)
+
+harmonised_data_all_waves = subset(harmonised_data_all_waves, harmonised_data_all_waves$HHIDPN %in% c(ID_hhidpn))
+
+#harmonised_data_all_waves = case_when(harmonised_data_all_waves, harmonised_data_all_waves$hhidpn == )
+
+all_HRS_by_years_PGS$HRS2010_mi_bin = case_when(harmonised_data_all_waves$r10hrtatt == 0 ~ 0, 
+                                                harmonised_data_all_waves$r10hrtatt == 1 ~ 1)
+
+
+all_HRS_by_years_PGS$HRS2012_mi_bin = case_when(harmonised_data_all_waves$r11hrtatt == 0 ~ 0, 
+                                                harmonised_data_all_waves$r11hrtatt == 1 ~ 1)
+
+
+all_HRS_by_years_PGS$HRS2014_mi_bin = case_when(harmonised_data_all_waves$r12hrtatt == 0 ~ 0, 
+                                                harmonised_data_all_waves$r12hrtatt == 1 ~ 1)
+
+
+all_HRS_by_years_PGS$HRS2016_mi_bin = case_when(harmonised_data_all_waves$r13hrtatt == 0 ~ 0, 
+                                                harmonised_data_all_waves$r13hrtatt == 1 ~ 1)
+
+
+all_HRS_by_years_PGS$HRS2018_mi_bin = case_when(harmonised_data_all_waves$r14hrtatt == 0 ~ 0, 
+                                                harmonised_data_all_waves$r14hrtatt == 1 ~ 1)
