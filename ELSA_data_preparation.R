@@ -86,6 +86,8 @@ ID_ELSA_PGS_unique =unique(polygenic_scores_data$idauniq)
 #join PGS scores with ELSA main dataset 
 ELSA_data_with_PGS = bind_cols(ELSA_data, ELSA_data_polygenic_scores) 
 
+
+ELSA_data_with_PGS$pc1
 ###add principal components 
 
 
@@ -804,4 +806,5 @@ ELSA_data_with_PGS = subset(ELSA_data_with_PGS,
 
 unique(ELSA_data_with_PGS$w6_pain_bin)
 
-#write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+
+write.csv(ELSA_data_with_PGS, file =  paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
