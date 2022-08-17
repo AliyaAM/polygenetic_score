@@ -66,22 +66,35 @@ polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/pol
 
 #polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
 
+
+principal_component_ELSA = read.csv("/Users/aliya/my_docs/KCL_postDoc/polygenetic_score/ELSA_PGS_data/Principal_Component_ELSA_2019.csv") 
+#principal_component_ELSA = principal_component_ELSA[principal_component_ELSA$IQAUNIQ %in% ID_ELSA,]
+polygenic_scores_ELSA_data = bind_cols(polygenic_scores_ELSA_data, principal_component_ELSA) 
+
+
 #subset polygenic scores data to those who provided data for the main survey 
 ID_ELSA = unique(ELSA_data$idauniq)
 ELSA_data_polygenic_scores = polygenic_scores_ELSA_data[ELSA_data$idauniq %in% ID_ELSA,]
 
 
-
-
 #subset main ELSA data to thos ewho provided PGS data 
 ID_ELSA_PGS_unique =unique(polygenic_scores_data$idauniq)
-#ELSA_data_PGS_subset = ELSA_data[polygenic_scores_data$idauniq %in% ID_ELSA_PGS_unique, ]
 
 #nrow(ELSA_data_PGS_subset)
 #nrow(ELSA_data_polygenic_scores)
 
 #join PGS scores with ELSA main dataset 
 ELSA_data_with_PGS = bind_cols(ELSA_data, ELSA_data_polygenic_scores) 
+
+###add principal components 
+
+
+
+
+
+###################
+###################
+
 
 
 unique(ELSA_data_with_PGS$w5discrim_bin2)
