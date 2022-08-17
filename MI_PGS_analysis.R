@@ -55,7 +55,7 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_w
 #all_HRS_by_years_PGS = subset(all_HRS_by_years_PGS, all_HRS_by_years_PGS$HRS2012_race 
 
 ######  Set the root location on the user's local machine to save output files.
-OUTPUT_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
+OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/MI/", sep = "")
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
@@ -150,7 +150,7 @@ MI_w6_ELSA = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                               covariate4 = "NA", 
                               discrimination_VAR_elsa = discrimination_var_ELSA)
 
-print("done MI6 v2")
+
 
 
 MI_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
@@ -172,7 +172,6 @@ MI_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                               covariate4 = "NA", 
                               discrimination_VAR_elsa = discrimination_var_ELSA)
 
-print("done MI7 v2")
 
 
 MI_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
@@ -194,7 +193,9 @@ MI_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                               covariate4 = "NA", 
                               discrimination_VAR_elsa = discrimination_var_ELSA)
 
-print("done MI8 v2")
+
+
+
 
 ########################################
 
@@ -221,7 +222,7 @@ MI_w6_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                               covariate4 = "NA",
                               discrimination_VAR_elsa = discrimination_var_HRS)
 
-print("done MI6 v2")
+
 
 MI_w7_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                               
@@ -242,7 +243,7 @@ MI_w7_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                               covariate4 = "NA",
                               discrimination_VAR_elsa = discrimination_var_HRS)
 
-print("done MI7 v2")
+
 
 
 MI_w8_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
@@ -264,21 +265,31 @@ MI_w8_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                               covariate4 = "NA",
                               discrimination_VAR_elsa = discrimination_var_HRS)
 
-print("done MI8 v2")
-########################################
-
-
 
 ########################################
 
-mi_results_ELSA = rbind(MI_w6_ELSA, 
+
+
+########################################
+########################################
+######################################## Unadjusted results 
+########################################
+########################################
+
+mi_results_ELSA = data.frame(MI_w6_ELSA, 
                          MI_w7_ELSA, 
                          MI_w8_ELSA)
 
-mi_results_HRS = rbind(MI_w6_HRS, 
-                       MI_w7_HRS, 
-                       MI_w8_HRS)
+write.csv(mi_results_ELSA, file = paste(OUTPUT_ROOT, "mi_results_ELSA_unadjusted.csv", sep = ""))
 
+
+
+
+mi_results_HRS = data.frame(MI_w6_HRS, 
+                           MI_w7_HRS, 
+                           MI_w8_HRS)
+
+write.csv(mi_results_HRS, file = paste(OUTPUT_ROOT, "mi_results_HRS_unadjusted.csv", sep = ""))
 
 ########################################
 
@@ -319,7 +330,6 @@ MI_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                    covariate4 = "NA", 
                                    discrimination_VAR_elsa = discrimination_var_ELSA)
 
-print("done MI6 v2")
 
 
 MI_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
@@ -341,7 +351,7 @@ MI_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                     covariate4 = "NA", 
                                     discrimination_VAR_elsa = discrimination_var_ELSA)
 
-print("done MI7 v2")
+
 
 
 MI_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
@@ -363,7 +373,9 @@ MI_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
                                     covariate4 = "NA",  
                                     discrimination_VAR_elsa = discrimination_var_ELSA)
 
-print("done MI8 v2")
+
+
+
 
 
 ########################################
@@ -396,12 +408,12 @@ MI_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   gene_ELSA = "E4_MI_CARDIOGRAM15",
                                   
                                   covariate1 = "PC1_5A",
-                                  covariate2 = "PC1_5B",
-                                  covariate3 = "PC1_5C",
-                                  covariate4 = "PC1_5D",
+                                  covariate2 = "NA",
+                                  covariate3 = "NA",
+                                  covariate4 = "NA",
                                   discrimination_VAR_elsa = discrimination_var_HRS)
 
-print("done MI6 v2")
+
 
 #gene is positively asssociated with MI phenotype (when only PC1_5A is included as a covariate), when al four are included still associated 
 MI_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
@@ -418,12 +430,12 @@ MI_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   gene_ELSA = "E4_MI_CARDIOGRAM15",
                                   
                                   covariate1 = "PC1_5A",
-                                  covariate2 = "PC1_5B",
-                                  covariate3 = "PC1_5C",
-                                  covariate4 = "PC1_5D",
+                                  covariate2 = "NA",
+                                  covariate3 = "NA",
+                                  covariate4 = "NA",
                                   discrimination_VAR_elsa = discrimination_var_HRS)
 
-print("done MI7 v2")
+
 
 
 MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
@@ -440,14 +452,15 @@ MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   gene_ELSA = "E4_MI_CARDIOGRAM15",
                                   
                                   covariate1 = "PC1_5A",
-                                  covariate2 = "PC1_5B",
-                                  covariate3 = "PC1_5C",
-                                  covariate4 = "PC1_5D",
+                                  covariate2 = "NA",
+                                  covariate3 = "NA",
+                                  covariate4 = "NA",
                                   discrimination_VAR_elsa = discrimination_var_HRS)
 
-print("done MI8 v2")
 
-
+########################################
+########################################
+######################################## Unadjusted results (pca) 
 ########################################
 ########################################
 
@@ -455,10 +468,15 @@ mi_results_ELSA_pca = rbind(MI_w6_ELSA_pca,
                         MI_w7_ELSA_pca, 
                         MI_w8_ELSA_pca)
 
+
+write.csv(mi_results_ELSA_pca, file = paste(OUTPUT_ROOT, "mi_results_ELSA_pca_unadjusted.csv", sep = ""))
+
+
 mi_results_HRS_pca = rbind(MI_w6_HRS_pca, 
                          MI_w7_HRS_pca, 
                          MI_w8_HRS_pca)
 
+write.csv(mi_results_HRS_pca, file = paste(OUTPUT_ROOT, "mi_results_HRS_pca_unadjusted.csv", sep = ""))
 
 ########################################
 ########################################
@@ -498,6 +516,9 @@ MI_HRS_composite = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                       covariate4 = "NA",
                                       discrimination_VAR_elsa = discrimination_var_HRS)
 
+write.csv(MI_HRS_composite, file = paste(OUTPUT_ROOT, "MI_HRS_composite_unadjusted.csv", sep = ""))
+
+
 #all_HRS_by_years_PGS$HRS2012_mi
 MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                          
@@ -513,8 +534,17 @@ MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                          gene_ELSA = "E4_MI_CARDIOGRAM15",
                                          
                                          covariate1 = "PC1_5A",
-                                         covariate2 = "PC1_5B",
-                                         covariate3 = "PC1_5C",
-                                         covariate4 = "PC1_5D",
+                                         covariate2 = "NA",
+                                         covariate3 = "NA",
+                                         covariate4 = "NA",
                                          discrimination_VAR_elsa = discrimination_var_HRS)
+
+
+########################################
+########################################
+######################################## Unadjusted results, composite (pca) 
+########################################
+########################################
+
+write.csv(MI_HRS_composite_pca, file = paste(OUTPUT_ROOT, "MI_HRS_composite_pca_unadjusted.csv", sep = ""))
 
