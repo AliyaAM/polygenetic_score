@@ -446,3 +446,75 @@ MI_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
                                   discrimination_VAR_elsa = discrimination_var_HRS)
 
 print("done MI8 v2")
+
+
+########################################
+########################################
+
+mi_results_ELSA_pca = rbind(MI_w6_ELSA_pca, 
+                        MI_w7_ELSA_pca, 
+                        MI_w8_ELSA_pca)
+
+mi_results_HRS_pca = rbind(MI_w6_HRS_pca, 
+                         MI_w7_HRS_pca, 
+                         MI_w8_HRS_pca)
+
+
+########################################
+########################################
+unique(all_HRS_by_years_PGS$HRS2016_mi_bin)
+unique(all_HRS_by_years_PGS$HRS2014_mi_bin)
+unique(all_HRS_by_years_PGS$HRS2012_mi_bin)
+
+all_HRS_by_years_PGS$MI_composite = case_when(all_HRS_by_years_PGS$HRS2016_mi_bin == 0 & all_HRS_by_years_PGS$HRS2014_mi_bin == 0 & all_HRS_by_years_PGS$HRS2012_mi_bin == 0 ~ 0, 
+                                              all_HRS_by_years_PGS$HRS2016_mi_bin == 1 | all_HRS_by_years_PGS$HRS2014_mi_bin == 1 | all_HRS_by_years_PGS$HRS2012_mi_bin == 1 ~ 1) 
+
+unique(all_HRS_by_years_PGS$MI_composite) 
+
+table(all_HRS_by_years_PGS$MI_composite)
+table(all_HRS_by_years_PGS$HRS2016_mi_bin)
+table(all_HRS_by_years_PGS$HRS2014_mi_bin)
+table(all_HRS_by_years_PGS$HRS2012_mi_bin)
+
+
+
+#all_HRS_by_years_PGS$HRS2012_mi
+MI_HRS_composite = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+                                      
+                                      analysis_variable_name = "MI_composite",
+                                      wave_number = "wave 6",
+                                      outcome_name = "MI",
+                                      dataset = "HRS",
+                                      
+                                      
+                                      
+                                      outcome_ELSA = "MI_composite",
+                                      
+                                      gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                      
+                                      covariate1 = "NA",
+                                      covariate2 = "NA",
+                                      covariate3 = "NA",
+                                      covariate4 = "NA",
+                                      discrimination_VAR_elsa = discrimination_var_HRS)
+
+#all_HRS_by_years_PGS$HRS2012_mi
+MI_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_PGS,
+                                         
+                                         analysis_variable_name = "MI_composite",
+                                         wave_number = "wave 6",
+                                         outcome_name = "MI",
+                                         dataset = "HRS",
+                                         
+                                         
+                                         
+                                         outcome_ELSA = "MI_composite",
+                                         
+                                         gene_ELSA = "E4_MI_CARDIOGRAM15",
+                                         
+                                         covariate1 = "PC1_5A",
+                                         covariate2 = "PC1_5B",
+                                         covariate3 = "PC1_5C",
+                                         covariate4 = "PC1_5D",
+                                         discrimination_VAR_elsa = discrimination_var_HRS)
+
