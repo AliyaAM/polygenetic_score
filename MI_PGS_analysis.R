@@ -55,7 +55,9 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_w
 #all_HRS_by_years_PGS = subset(all_HRS_by_years_PGS, all_HRS_by_years_PGS$HRS2012_race 
 
 ######  Set the root location on the user's local machine to save output files.
-OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/MI/", sep = "")
+
+OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/MI/MI_unadjusted_discrim_bin/", sep = "")
+
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
@@ -498,6 +500,63 @@ mi_results_HRS_pca = rbind(MI_w6_HRS_pca,
 write.csv(mi_results_HRS_pca, file = paste(OUTPUT_ROOT, "mi_results_HRS_pca_unadjusted.csv", sep = ""))
 
 ########################################
+
+
+
+###### ELSA composite 
+
+ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 & ELSA_data_with_PGS$w7_MI_new_bin == 0 & ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
+                                            ELSA_data_with_PGS$w6_MI_new_bin == 1 | ELSA_data_with_PGS$w7_MI_new_bin == 1 | ELSA_data_with_PGS$w8_MI_new_bin == 1 ~ 1) 
+
+unique(ELSA_data_with_PGS$MI_composite)
+unique(ELSA_data_with_PGS$w6_MI_new_bin)
+unique(ELSA_data_with_PGS$w7_MI_new_bin)
+unique(ELSA_data_with_PGS$w8_MI_new_bin)
+
+MI_ELSA_composite = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
+                                          
+                                          analysis_variable_name = "MI_composite", 
+                                          wave_number = "wave 6",
+                                          outcome_name = "MI", 
+                                          dataset = "ELSA", 
+                                          
+                                          
+                                          
+                                          outcome_ELSA = "MI_composite", 
+                                          
+                                          gene_ELSA = "MI", 
+                                          
+                                          covariate1 = covariate1_ELSA, 
+                                          covariate2 = covariate2_ELSA,
+                                          covariate3 = covariate3_ELSA, 
+                                          covariate4 = covariate4_ELSA, 
+                                          discrimination_VAR_elsa = discrimination_var_ELSA)
+
+write.csv(MI_ELSA_composite, file = paste(OUTPUT_ROOT, "MI_ELSA_composite_unadjusted.csv", sep = ""))
+
+
+
+MI_ELSA_composite_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
+                                          
+                                          analysis_variable_name = "MI_composite", 
+                                          wave_number = "wave 6",
+                                          outcome_name = "MI", 
+                                          dataset = "ELSA", 
+                                          
+                                          
+                                          
+                                          outcome_ELSA = "MI_composite", 
+                                          
+                                          gene_ELSA = "MI", 
+                                          
+                                          covariate1 = covariate1_ELSA_pca, 
+                                          covariate2 = covariate2_ELSA,
+                                          covariate3 = covariate3_ELSA, 
+                                          covariate4 = covariate4_ELSA, 
+                                          discrimination_VAR_elsa = discrimination_var_ELSA)
+
+write.csv(MI_ELSA_composite_pca, file = paste(OUTPUT_ROOT, "MI_ELSA_composite_pca_unadjusted.csv", sep = ""))
+
 ########################################
 unique(all_HRS_by_years_PGS$HRS2016_mi_bin)
 unique(all_HRS_by_years_PGS$HRS2014_mi_bin)

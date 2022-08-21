@@ -55,7 +55,7 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_w
 #all_HRS_by_years_PGS = subset(all_HRS_by_years_PGS, all_HRS_by_years_PGS$HRS2012_race 
 
 ######  Set the root location on the user's local machine to save output files.
-OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/MI/MI_adjusted_discrim_bin/", sep = "")
+OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/MI/MI_adjusted_ageism/", sep = "")
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
@@ -64,9 +64,8 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 ######### HRS 
 #all_HRS_by_years_PGS$HRS2010_discrim_bin 
 
-discrimination_var_ELSA =  "w5discrim_bin2" 
-
-discrimination_var_HRS = "HRS2010_discrim_bin" 
+discrimination_var_ELSA = "w5discrim_bin2" 
+discrimination_var_HRS = "HRS2010_reason_discrim1_reason_age" 
 
 
 covariate1_ELSA = "w5age"
