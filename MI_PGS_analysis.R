@@ -70,7 +70,6 @@ discrimination_var_ELSA =  "w5discrim_bin2"
 
 discrimination_var_HRS = "HRS2010_discrim_bin" 
 
-
 covariate1_ELSA_pca = "pc1"
 
 covariate1_ELSA = "NA"
@@ -534,7 +533,7 @@ MI_ELSA_composite = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
 
 write.csv(MI_ELSA_composite, file = paste(OUTPUT_ROOT, "MI_ELSA_composite_unadjusted.csv", sep = ""))
 
-
+#missing 0 in unique(ELSA_data_with_PGS$MI_composite)
 
 MI_ELSA_composite_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS, 
                                           

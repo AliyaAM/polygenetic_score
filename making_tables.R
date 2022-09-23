@@ -37,3 +37,7 @@ HRS_composite_pca_adjusted_mi = read.csv(paste(directory, folder_adjusted, "MI_H
 #not adjusted for pca 
 HRS_composite_adjusted_mi = read.csv(paste(directory, folder_adjusted, "MI_HRS_composite_adjusted.csv", sep = ""))
 
+######## Table 1 
+
+HRS_composite_pca_unadjusted_mi
+HRS_composite_pca_adjusted_mi
