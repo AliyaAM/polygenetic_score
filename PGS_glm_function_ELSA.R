@@ -458,9 +458,48 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                             "CI2",
                                             "p_value")
 
+  write.csv(Interaction_findings, file = paste(OUTPUT_ROOT, folder,  "findings.csv", sep=""))
+  
 
   print("completed")
+  
+  result_table = 
+    
+    
+    result_table = data.frame(dataset,
+                              wave_number,
+                              interaction_OR_CI_pvalue)
+  
+  
+  colnames(result_table) = c(  "dataset",
+                               "wave_number",
+                               "OR",
+                               "CI1",
+                               "CI2",
+                               "p_value")
+  
+ OR_rounded = round(result_table$OR, 2) 
+ 
+ CI95_edited = paste("[", round(result_table$CI1, 2), ";", round(result_table$CI2, 2), "]")
 
+ p_value_rounded = round(result_table$p_value, 2)
+ 
+ 
+ result_table_edited = data.frame(result_table$dataset, 
+                                  result_table$wave_number, 
+                                  OR_rounded, 
+                                  CI95_edited, 
+                                  p_value_rounded)
+ 
+ 
+colnames(result_table_edited) = c("dataset", 
+                                  "wave", 
+                                  "OR", 
+                                  "95 % CI", 
+                                  "p-value") 
+
+ 
+ 
   #ELSA_OR_value,
   #ELSA_CI1,
   #ELSA_CI2,
@@ -469,7 +508,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
   #HRS_CI2)
 
 
-  return(Interaction_findings)
+  return(result_table_edited)
 }
 
 
