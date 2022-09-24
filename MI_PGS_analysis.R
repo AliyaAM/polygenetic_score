@@ -504,7 +504,11 @@ write.csv(mi_results_HRS_pca, file = paste(OUTPUT_ROOT, "mi_results_HRS_pca_unad
 
 ###### ELSA composite 
 
-ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 & ELSA_data_with_PGS$w7_MI_new_bin == 0 & ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
+
+######
+#everyone had MI or did not report it in ELSA !
+
+ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 | ELSA_data_with_PGS$w7_MI_new_bin == 0 | ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
                                             ELSA_data_with_PGS$w6_MI_new_bin == 1 | ELSA_data_with_PGS$w7_MI_new_bin == 1 | ELSA_data_with_PGS$w8_MI_new_bin == 1 ~ 1) 
 
 unique(ELSA_data_with_PGS$MI_composite)
