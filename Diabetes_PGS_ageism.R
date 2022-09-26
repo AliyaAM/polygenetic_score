@@ -38,7 +38,7 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 ###### sourcing code for the unadjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 
-source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
+#source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
 
 
@@ -531,7 +531,7 @@ write.csv(diabetes_results_HRS_pca, file = paste(OUTPUT_ROOT, "diabetes_results_
 ######
 #everyone had diabetes or did not report it in ELSA !
 
-ELSA_data_with_PGS$diabetes_composite_ELSA = case_when(ELSA_data_with_PGS$w6diabetes_new == 0 | ELSA_data_with_PGS$w7diabetes_new == 0 | ELSA_data_with_PGS$w8diabetes_new == 0 ~ 0, 
+ELSA_data_with_PGS$diabetes_composite_ELSA = case_when(ELSA_data_with_PGS$w6diabetes_new == 0 & ELSA_data_with_PGS$w7diabetes_new == 0 & ELSA_data_with_PGS$w8diabetes_new == 0 ~ 0, 
                                                        ELSA_data_with_PGS$w6diabetes_new == 1 | ELSA_data_with_PGS$w7diabetes_new == 1 | ELSA_data_with_PGS$w8diabetes_new == 1 ~ 1) 
 
 unique(ELSA_data_with_PGS$diabetes_composite_ELSA)

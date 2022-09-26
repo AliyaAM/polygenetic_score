@@ -38,7 +38,7 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 ###### sourcing code for the unadjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 
-source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
+#source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
 
 

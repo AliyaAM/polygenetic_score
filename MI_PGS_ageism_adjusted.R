@@ -38,7 +38,7 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 ###### sourcing code for the adjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 
-source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
+#source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
 
 
@@ -71,7 +71,7 @@ discrimination_var_HRS = "HRS2010_reason_discrim1_reason_age"
 
 
 covariate1_ELSA = "w5age"
-covariate2_ELSA = "w5sex_1_0"
+covariate2_ELSA = "w5sex"
 covariate3_ELSA = "w5wealth"
 covariate4_ELSA = "pc1"
 
@@ -395,7 +395,7 @@ MI_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA = ELSA_data_with_PGS,
 ###############  ELSA MI_composite
 
 
-ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 | ELSA_data_with_PGS$w7_MI_new_bin == 0 | ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
+ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 & ELSA_data_with_PGS$w7_MI_new_bin == 0 & ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
                                             ELSA_data_with_PGS$w6_MI_new_bin == 1 | ELSA_data_with_PGS$w7_MI_new_bin == 1 | ELSA_data_with_PGS$w8_MI_new_bin == 1 ~ 1) 
 
 unique(ELSA_data_with_PGS$MI_composite)
