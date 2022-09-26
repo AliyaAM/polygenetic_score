@@ -482,7 +482,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
  
  CI95_edited = paste("[", round(result_table$CI1, 2), ";", round(result_table$CI2, 2), "]")
 
- p_value_rounded = round(result_table$p_value, 2)
+ p_value_rounded = round(result_table$p_value, 4)
  
  
  result_table_edited = data.frame(result_table$dataset, 
