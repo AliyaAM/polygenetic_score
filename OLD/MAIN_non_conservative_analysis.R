@@ -31,7 +31,7 @@ DATA_ROOT = "/KCL_postDoc/Data_analysis/"
 ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
 all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 
-
+ELSA_data_with_PGS$
 #covariates
 
 ELSA_data_with_PGS$w5age
