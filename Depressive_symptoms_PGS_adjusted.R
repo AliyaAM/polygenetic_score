@@ -56,7 +56,7 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_w
 
 ######  Set the root location on the user's local machine to save output files.
 
-OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/depressive_symptoms/depressive_symptoms_unadjusted_discrim_bin/", sep = "")
+OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/depressive_symptoms/depressive_symptoms_adjusted_discrim_bin/", sep = "")
 
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
@@ -69,18 +69,15 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 discriminaiton_var_ELSA =  "w5discrim_bin2" 
 discriminaiton_var_HRS = "HRS2010_discrim_bin" 
 
-#covariate1_ELSA_pca = "pc1"
-covariate1_ELSA = "pc1"
-covariate2_ELSA = "NA"
-covariate3_ELSA = "NA"
-covariate4_ELSA = "NA"
+covariate1_ELSA = "w5age"
+covariate2_ELSA = "w5sex"
+covariate3_ELSA = "w5wealth"
+covariate4_ELSA = "pc1"
 
-#covariate1_HRS_pca = "PC1_5A"
-
-covariate1_HRS = "PC1_5A"
-covariate2_HRS = "NA"
-covariate3_HRS = "NA"
-covariate4_HRS = "NA"
+covariate1_HRS = "HRS2010_continious_age"
+covariate2_HRS = "HRS2010_sex_1_0"
+covariate3_HRS = "HRS2010_wealth_noIRA"
+covariate4_HRS = "PC1_5A"
 
 gene_HRS = "E4_DEPSYMP_SSGAC16"
 #gene_ELSA = "MDD19"
@@ -124,7 +121,7 @@ ELSA_data_with_PGS$w8cesd_bin = case_when(ELSA_data_with_PGS$w8cesd == 0 ~ 0,
                                           ELSA_data_with_PGS$w8cesd == 7 ~ 1,
                                           ELSA_data_with_PGS$w8cesd == 8 ~ 1)
 
-                                          
+
 
 
 
@@ -147,8 +144,6 @@ depressive_symptoms_ELSA_w8 = "w8cesd_bin"
 depressive_symptoms_HRS_2012 = "HRS2012_checklist_depression_bin"
 depressive_symptoms_HRS_2014 = "HRS2014_checklist_depression_bin"
 depressive_symptoms_HRS_2016 = "HRS2016_checklist_depression_bin"
-
-
 #covariate4_ELSA = "NA"
 ##### 
 #####   IMPORTANT 
@@ -307,7 +302,7 @@ depressive_symptoms_w6_HRS = PGS_glm_function_ELSA(data_ELSA = all_HRS_by_years_
                                           covariate1 = covariate1_HRS,
                                           covariate2 = covariate2_HRS,
                                           covariate3 = covariate3_HRS,
-                                          covariate4 = covariate4_ELSA,
+                                          covariate4 = covariate4_HRS,
                                           
                                           
                                           discrimination_VAR_elsa = discriminaiton_var_HRS)
@@ -369,7 +364,7 @@ depressive_symptoms_results_ELSA = data.frame(depressive_symptoms_w6_ELSA,
                                      depressive_symptoms_w7_ELSA, 
                                      depressive_symptoms_w8_ELSA)
 
-write.csv(depressive_symptoms_results_ELSA, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_ELSA_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_results_ELSA, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_ELSA_adjusted.csv", sep = ""))
 
 
 
@@ -378,7 +373,7 @@ depressive_symptoms_results_HRS = data.frame(depressive_symptoms_w6_HRS,
                                     depressive_symptoms_w7_HRS, 
                                     depressive_symptoms_w8_HRS)
 
-write.csv(depressive_symptoms_results_HRS, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_HRS_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_results_HRS, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_HRS_adjusted.csv", sep = ""))
 
 ########################################
 
@@ -555,14 +550,14 @@ depressive_symptoms_results_ELSA_pca = rbind(depressive_symptoms_w6_ELSA_pca,
                                     depressive_symptoms_w8_ELSA_pca)
 
 
-write.csv(depressive_symptoms_results_ELSA_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_ELSA_pca_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_results_ELSA_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_ELSA_pca_adjusted.csv", sep = ""))
 
 
 depressive_symptoms_results_HRS_pca = rbind(depressive_symptoms_w6_HRS_pca, 
                                    depressive_symptoms_w7_HRS_pca, 
                                    depressive_symptoms_w8_HRS_pca)
 
-write.csv(depressive_symptoms_results_HRS_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_HRS_pca_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_results_HRS_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_HRS_pca_adjusted.csv", sep = ""))
 
 ########################################
 
@@ -574,24 +569,8 @@ write.csv(depressive_symptoms_results_HRS_pca, file = paste(OUTPUT_ROOT, "depres
 ######
 #everyone had depressive_symptoms or did not report it in ELSA !
 
-
-
-#Depressive symptoms were assessed with an eight-item 
-#version of the Center for Epidemiologic Studies Depression (CES-D) scale
-#Respondents were asked to indicate (via a binary yes or no response) 
-#if they had experienced depressive symptoms 
-#(eg, restless sleep and being unhappy) during the past month. 
-#Total scores ranged from 0 to 8,
-#with higher scores suggesting more depressive symptoms. 
-#Data in ELSA were skewed for this measure, 
-#so we dichotomised scores 
-#on the basis of an established and widely used cutoff (<4 vs ≥4)
-#that suggests clinically significant symptoms
-
-
-
 ELSA_data_with_PGS$depressive_symptoms_composite_ELSA = case_when(ELSA_data_with_PGS$w6cesd_bin == 0 & ELSA_data_with_PGS$w7cesd_bin == 0 & ELSA_data_with_PGS$w8cesd_bin == 0 ~ 0, 
-                                                         ELSA_data_with_PGS$w6cesd_bin == 1 | ELSA_data_with_PGS$w7cesd_bin == 1 | ELSA_data_with_PGS$w8cesd_bin == 1 ~ 1) 
+                                                                  ELSA_data_with_PGS$w6cesd_bin == 1 | ELSA_data_with_PGS$w7cesd_bin == 1 | ELSA_data_with_PGS$w8cesd_bin == 1 ~ 1) 
 
 unique(ELSA_data_with_PGS$depressive_symptoms_composite_ELSA)
 unique(ELSA_data_with_PGS$w6_depressive_symptoms_new_bin)
@@ -616,7 +595,7 @@ depressive_symptoms_ELSA_composite = PGS_glm_function_ELSA(data_ELSA = ELSA_data
                                                   covariate4 = covariate4_ELSA, 
                                                   discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
-write.csv(depressive_symptoms_ELSA_composite, file = paste(OUTPUT_ROOT, "depressive_symptoms_ELSA_composite_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_ELSA_composite, file = paste(OUTPUT_ROOT, "depressive_symptoms_ELSA_composite_adjusted.csv", sep = ""))
 
 #depressive_symptomsssing 0 in unique(ELSA_data_with_PGS$depressive_symptoms_composite)
 
@@ -639,16 +618,15 @@ depressive_symptoms_ELSA_composite_pca = PGS_glm_function_ELSA(data_ELSA = ELSA_
                                                       covariate4 = covariate4_ELSA, 
                                                       discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
-write.csv(depressive_symptoms_ELSA_composite_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_ELSA_composite_pca_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_ELSA_composite_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_ELSA_composite_pca_adjusted.csv", sep = ""))
 
 ########################################
 unique(all_HRS_by_years_PGS$HRS2016_depressive_symptoms_bin)
 unique(all_HRS_by_years_PGS$HRS2014_depressive_symptoms_bin)
 unique(all_HRS_by_years_PGS$HRS2012_depressive_symptoms_bin)
 
-
 all_HRS_by_years_PGS$depressive_symptoms_composite_HRS = case_when(all_HRS_by_years_PGS$HRS2012_checklist_depression_bin == 0 & all_HRS_by_years_PGS$HRS2014_checklist_depression_bin == 0 & all_HRS_by_years_PGS$HRS2016_checklist_depression_bin == 0 ~ 0, 
-                                                          all_HRS_by_years_PGS$HRS2012_checklist_depression_bin == 1 | all_HRS_by_years_PGS$HRS2014_checklist_depression_bin == 1 | all_HRS_by_years_PGS$HRS2016_checklist_depression_bin == 1 ~ 1) 
+                                                                   all_HRS_by_years_PGS$HRS2012_checklist_depression_bin == 1 | all_HRS_by_years_PGS$HRS2014_checklist_depression_bin == 1 | all_HRS_by_years_PGS$HRS2016_checklist_depression_bin == 1 ~ 1) 
 
 unique(all_HRS_by_years_PGS$depressive_symptoms_composite_HRS) 
 
@@ -679,7 +657,7 @@ depressive_symptoms_HRS_composite = PGS_glm_function_ELSA(data_ELSA = all_HRS_by
                                                  covariate4 = covariate4_HRS,
                                                  discrimination_VAR_elsa = discriminaiton_var_HRS)
 
-write.csv(depressive_symptoms_HRS_composite, file = paste(OUTPUT_ROOT, "depressive_symptoms_HRS_composite_unadjusted.csv", sep = ""))
+write.csv(depressive_symptoms_HRS_composite, file = paste(OUTPUT_ROOT, "depressive_symptoms_HRS_composite_adjusted.csv", sep = ""))
 
 
 #all_HRS_by_years_PGS$HRS2012_depressive_symptoms
@@ -709,6 +687,5 @@ depressive_symptoms_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA = all_HR
 ########################################
 ########################################
 
-write.csv(depressive_symptoms_HRS_composite_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_HRS_composite_pca_unadjusted.csv", sep = ""))
-
+write.csv(depressive_symptoms_HRS_composite_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_HRS_composite_pca_adjusted.csv", sep = ""))
 
