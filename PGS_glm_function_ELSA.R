@@ -103,7 +103,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
 
     
     
-    glm_outcome_gene =  glm(outcome ~  gene, 
+    glm_outcome_gene =  glm(outcome ~  gene + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, 
                             data = data_both_countries, 
                             family = binomial)
     
@@ -112,7 +112,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
     
     print("done 8")
     
-    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination, 
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination + PC1+ PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10, 
                                         data = data_both_countries, 
                                         family = binomial)
     
@@ -142,14 +142,14 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                family = binomial)
     
     
-    glm_outcome_gene =  glm(outcome ~  gene
+    glm_outcome_gene =  glm(outcome ~  gene + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                             + data_both_countries[ ,   covariate1], 
                             
                             data = data_both_countries, 
                             family = binomial)
     
     
-    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                                         + data_both_countries[ ,   covariate1], 
                                         
                                         data = data_both_countries, 
@@ -182,7 +182,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                family = binomial)
     
     
-    glm_outcome_gene =  glm(outcome ~  gene
+    glm_outcome_gene =  glm(outcome ~  gene + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                             + data_both_countries[ ,   covariate1]
                             + data_both_countries[ ,   covariate2], 
                             
@@ -190,7 +190,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                             family = binomial)
     
     
-    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                                         + data_both_countries[ ,   covariate1]
                                         + data_both_countries[ ,   covariate2], 
                                         
@@ -228,7 +228,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                family = binomial)
     
     
-    glm_outcome_gene =  glm(outcome ~  gene
+    glm_outcome_gene =  glm(outcome ~  gene + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                             + data_both_countries[ ,   covariate1]
                             + data_both_countries[ ,   covariate2]
                             + data_both_countries[ ,   covariate3], 
@@ -237,7 +237,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                             family = binomial)
     
     
-    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                                         + data_both_countries[ ,   covariate1]
                                         + data_both_countries[ ,   covariate2]
                                         + data_both_countries[ ,   covariate3], 
@@ -280,7 +280,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                family = binomial)
     
     
-    glm_outcome_gene =  glm(outcome ~  gene
+    glm_outcome_gene =  glm(outcome ~  gene + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                             + data_both_countries[ ,   covariate1]
                             + data_both_countries[ ,   covariate2]
                             + data_both_countries[ ,   covariate3]
@@ -291,7 +291,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                             family = binomial)
     
     
-    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination
+    glm_outcome_gene_interaction =  glm(outcome ~  gene * discrimination + PC1 + PC2 + PC3 + PC4 + PC5 + PC6 + PC7 + PC8 + PC9 + PC10
                                         + data_both_countries[ ,   covariate1]
                                         + data_both_countries[ ,   covariate2]
                                         + data_both_countries[ ,   covariate3]
