@@ -43,8 +43,8 @@ names_unadjusted = c("Intercept",
 ELSA_pca_unadjusted_depressive_symptoms = cbind(names_unadjusted_pca, read.csv(paste(directory, OUTPUT, folder_unadjusted, "depressive_symptoms_results_ELSA_pca_unadjusted.csv", sep = "")))
 HRS_pca_unadjusted_depressive_symptoms = cbind(names_unadjusted_pca, read.csv(paste(directory, OUTPUT, folder_unadjusted, "depressive_symptoms_results_HRS_pca_unadjusted.csv", sep = "")))
 #not adjusted for pca 
-ELSA_unadjusted_depressive_symptoms = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT, folder_unadjusted, "depressive_symptoms_results_ELSA_unadjusted.csv", sep = "")))
-HRS_unadjusted_depressive_symptoms = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT,  folder_unadjusted, "depressive_symptoms_results_HRS_unadjusted.csv", sep = "")))
+#ELSA_unadjusted_depressive_symptoms = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT, folder_unadjusted, "depressive_symptoms_results_ELSA_unadjusted.csv", sep = "")))
+#HRS_unadjusted_depressive_symptoms = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT,  folder_unadjusted, "depressive_symptoms_results_HRS_unadjusted.csv", sep = "")))
 
 
 ############ ############ ############ ############ ############  ############ ############ ############ ############ ############  

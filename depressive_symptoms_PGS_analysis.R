@@ -70,14 +70,14 @@ discriminaiton_var_ELSA =  "w5discrim_bin2"
 discriminaiton_var_HRS = "HRS2010_discrim_bin" 
 
 #covariate1_ELSA_pca = "pc1"
-covariate1_ELSA = "pc1"
+covariate1_ELSA = "NA"
 covariate2_ELSA = "NA"
 covariate3_ELSA = "NA"
 covariate4_ELSA = "NA"
 
 #covariate1_HRS_pca = "PC1_5A"
 
-covariate1_HRS = "PC1_5A"
+covariate1_HRS = "NA"
 covariate2_HRS = "NA"
 covariate3_HRS = "NA"
 covariate4_HRS = "NA"

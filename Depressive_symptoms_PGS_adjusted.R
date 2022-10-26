@@ -47,7 +47,6 @@ DATA_ROOT = "KCL_postDoc/Data_analysis/"
 
 # harmonised_data_all_waves = read.csv(paste(directory, DATA_ROOT, "H_HRS_c.csv", sep=""))
 
-
 all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
 ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
 
@@ -72,12 +71,13 @@ discriminaiton_var_HRS = "HRS2010_discrim_bin"
 covariate1_ELSA = "w5age"
 covariate2_ELSA = "w5sex"
 covariate3_ELSA = "w5wealth"
-covariate4_ELSA = "pc1"
+covariate4_ELSA = "NA"
 
 covariate1_HRS = "HRS2010_continious_age"
 covariate2_HRS = "HRS2010_sex_1_0"
 covariate3_HRS = "HRS2010_wealth_noIRA"
-covariate4_HRS = "PC1_5A"
+#covariate4_HRS = "PC1_5A"
+covariate4_HRS = "NA"
 
 gene_HRS = "E4_DEPSYMP_SSGAC16"
 #gene_ELSA = "MDD19"

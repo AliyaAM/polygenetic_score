@@ -56,7 +56,18 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
   
 
   data_both_countries$outcome = c(data_ELSA_subset[ , outcome_ELSA])
-  
+
+  data_both_countries$PC1 = data_ELSA_subset$pc1
+  data_both_countries$PC2 = data_ELSA_subset$pc2
+  data_both_countries$PC3 = data_ELSA_subset$pc3
+  data_both_countries$PC4 = data_ELSA_subset$pc4
+  data_both_countries$PC5 = data_ELSA_subset$pc5
+  data_both_countries$PC6 = data_ELSA_subset$pc6
+  data_both_countries$PC7 = data_ELSA_subset$pc7
+  data_both_countries$PC8 = data_ELSA_subset$pc8
+  data_both_countries$PC9 = data_ELSA_subset$pc9
+  data_both_countries$PC10 = data_ELSA_subset$pc10
+
   
   data_both_countries$gene = c(data_ELSA_subset[ , gene_ELSA])
   
@@ -89,6 +100,8 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
     
     
     print("done 7")
+
+    
     
     glm_outcome_gene =  glm(outcome ~  gene, 
                             data = data_both_countries, 
