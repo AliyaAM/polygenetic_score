@@ -38,7 +38,7 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 ###### sourcing code for the adjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 
-source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
+#source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
 
 
@@ -133,6 +133,23 @@ covariate4_HRS = "PC1_5A"
 # unique(harmonised_data_all_waves$r13hrtatt)
 # unique(harmonised_data_all_waves$r14hrtatt)
 
+ELSA_data_with_PGS$age = ELSA_data_with_PGS$w5age
+ELSA_data_with_PGS$sex = ELSA_data_with_PGS$w5sex
+
+
+all_HRS_by_years_PGS$pc1 = all_HRS_by_years_PGS$PC1_5A
+all_HRS_by_years_PGS$pc2 = all_HRS_by_years_PGS$PC1_5B
+all_HRS_by_years_PGS$pc3 = all_HRS_by_years_PGS$PC1_5C
+all_HRS_by_years_PGS$pc4 = all_HRS_by_years_PGS$PC1_5D
+all_HRS_by_years_PGS$pc5 = all_HRS_by_years_PGS$PC1_5E 
+all_HRS_by_years_PGS$pc6 = all_HRS_by_years_PGS$PC6_10A
+all_HRS_by_years_PGS$pc7 = all_HRS_by_years_PGS$PC6_10B
+all_HRS_by_years_PGS$pc8 = all_HRS_by_years_PGS$PC6_10C
+all_HRS_by_years_PGS$pc9 = all_HRS_by_years_PGS$PC6_10D
+all_HRS_by_years_PGS$pc10 = all_HRS_by_years_PGS$PC6_10E
+
+all_HRS_by_years_PGS$age = all_HRS_by_years_PGS$HRS2010_continious_age
+all_HRS_by_years_PGS$sex = all_HRS_by_years_PGS$HRS2010_sex_1_0
 
 
 print("unique(all_HRS_by_years_PGS$HRS2012_hypertension_new_bin) # all answers are either 1 or N, check") 
