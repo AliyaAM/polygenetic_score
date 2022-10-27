@@ -64,18 +64,20 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
 ######### HRS 
 #all_HRS_by_years_PGS$HRS2010_discrim_bin 
+ELSA_data_with_PGS$age = ELSA_data_with_PGS$w5age
+ELSA_data_with_PGS$sex = ELSA_data_with_PGS$w5sex
 
 discriminaiton_var_ELSA =  "w5discrim_bin2" 
 discriminaiton_var_HRS = "HRS2010_discrim_bin" 
 
-covariate1_ELSA = "w5age"
-covariate2_ELSA = "w5sex"
-covariate3_ELSA = "w5wealth"
+covariate1_ELSA = "w5wealth"
+covariate2_ELSA = "NA"
+covariate3_ELSA = "NA"
 covariate4_ELSA = "NA"
 
-covariate1_HRS = "HRS2010_continious_age"
-covariate2_HRS = "HRS2010_sex_1_0"
-covariate3_HRS = "HRS2010_wealth_noIRA"
+covariate1_HRS = "HRS2010_wealth_noIRA"
+covariate2_HRS = "NA"
+covariate3_HRS = "NA"
 #covariate4_HRS = "PC1_5A"
 covariate4_HRS = "NA"
 
@@ -125,9 +127,9 @@ ELSA_data_with_PGS$w8cesd_bin = case_when(ELSA_data_with_PGS$w8cesd == 0 ~ 0,
 
 
 
-depressive_symptoms_ELSA_w6 = "w6cesd_bin"
-depressive_symptoms_ELSA_w7 = "w7cesd_bin"
-depressive_symptoms_ELSA_w8 = "w8cesd_bin"
+depressive_symptoms_ELSA_w6 = "w6cesd"
+depressive_symptoms_ELSA_w7 = "w7cesd"
+depressive_symptoms_ELSA_w8 = "w8cesd"
 
 #Depressive symptoms were assessed with an eight-item 
 #version of the Center for Epidemiologic Studies Depression (CES-D) scale
@@ -144,6 +146,23 @@ depressive_symptoms_ELSA_w8 = "w8cesd_bin"
 depressive_symptoms_HRS_2012 = "HRS2012_checklist_depression_bin"
 depressive_symptoms_HRS_2014 = "HRS2014_checklist_depression_bin"
 depressive_symptoms_HRS_2016 = "HRS2016_checklist_depression_bin"
+
+
+all_HRS_by_years_PGS$pc1 = all_HRS_by_years_PGS$PC1_5A
+all_HRS_by_years_PGS$pc2 = all_HRS_by_years_PGS$PC1_5B
+all_HRS_by_years_PGS$pc3 = all_HRS_by_years_PGS$PC1_5C
+all_HRS_by_years_PGS$pc4 = all_HRS_by_years_PGS$PC1_5D
+all_HRS_by_years_PGS$pc5 = all_HRS_by_years_PGS$PC1_5E 
+all_HRS_by_years_PGS$pc6 = all_HRS_by_years_PGS$PC6_10A
+all_HRS_by_years_PGS$pc7 = all_HRS_by_years_PGS$PC6_10B
+all_HRS_by_years_PGS$pc8 = all_HRS_by_years_PGS$PC6_10C
+all_HRS_by_years_PGS$pc9 = all_HRS_by_years_PGS$PC6_10D
+all_HRS_by_years_PGS$pc10 = all_HRS_by_years_PGS$PC6_10E
+
+
+all_HRS_by_years_PGS$age = all_HRS_by_years_PGS$HRS2010_continious_age
+all_HRS_by_years_PGS$sex = all_HRS_by_years_PGS$HRS2010_sex_1_0
+
 #covariate4_ELSA = "NA"
 ##### 
 #####   IMPORTANT 

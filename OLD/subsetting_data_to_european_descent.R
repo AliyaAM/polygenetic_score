@@ -109,6 +109,11 @@ ELSA_data_with_PGS$w6sex
 test = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10 + ELSA_data_with_PGS$w6sex + ELSA_data_with_PGS$w6age) 
 summary(test)
 
+
+test_interaction = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS * ELSA_data_with_PGS$w5discrim_bin + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10 + ELSA_data_with_PGS$w6sex + ELSA_data_with_PGS$w6age) 
+summary(test_interaction)
+
+
 test_noage_no_sex = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10) 
 summary(test_noage_no_sex)
 

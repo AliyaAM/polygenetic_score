@@ -92,6 +92,9 @@ outcome_name = "depressive_symptoms"
 ######  the total score 
 #unique(ELSA_data_with_PGS$w6cesd)
 #[1]  4  1  8  0  3  2  5  7  6 NA
+ELSA_data_with_PGS$age = ELSA_data_with_PGS$w5age
+ELSA_data_with_PGS$sex = ELSA_data_with_PGS$w5sex
+
 ELSA_data_with_PGS$w6cesd_bin = case_when(ELSA_data_with_PGS$w6cesd == 0 ~ 0, 
                                           ELSA_data_with_PGS$w6cesd == 1 ~ 0, 
                                           ELSA_data_with_PGS$w6cesd == 2 ~ 0,
@@ -124,13 +127,15 @@ ELSA_data_with_PGS$w8cesd_bin = case_when(ELSA_data_with_PGS$w8cesd == 0 ~ 0,
                                           ELSA_data_with_PGS$w8cesd == 7 ~ 1,
                                           ELSA_data_with_PGS$w8cesd == 8 ~ 1)
 
-                                          
+
+unique(ELSA_data_with_PGS$w6cesd)         
+
+ELSA_data_with_PGS$w6cesd_rev = rev(ELSA_data_with_PGS$w6cesd)
 
 
-
-depressive_symptoms_ELSA_w6 = "w6cesd_bin"
-depressive_symptoms_ELSA_w7 = "w7cesd_bin"
-depressive_symptoms_ELSA_w8 = "w8cesd_bin"
+depressive_symptoms_ELSA_w6 = "w6cesd"
+depressive_symptoms_ELSA_w7 = "w7cesd"
+depressive_symptoms_ELSA_w8 = "w8cesd"
 
 #Depressive symptoms were assessed with an eight-item 
 #version of the Center for Epidemiologic Studies Depression (CES-D) scale
@@ -143,6 +148,22 @@ depressive_symptoms_ELSA_w8 = "w8cesd_bin"
 #so we dichotomised scores 
 #on the basis of an established and widely used cutoff (<4 vs ≥4)
 #that suggests clinically significant symptoms
+
+
+all_HRS_by_years_PGS$pc1 = all_HRS_by_years_PGS$PC1_5A
+all_HRS_by_years_PGS$pc2 = all_HRS_by_years_PGS$PC1_5B
+all_HRS_by_years_PGS$pc3 = all_HRS_by_years_PGS$PC1_5C
+all_HRS_by_years_PGS$pc4 = all_HRS_by_years_PGS$PC1_5D
+all_HRS_by_years_PGS$pc5 = all_HRS_by_years_PGS$PC1_5E 
+all_HRS_by_years_PGS$pc6 = all_HRS_by_years_PGS$PC6_10A
+all_HRS_by_years_PGS$pc7 = all_HRS_by_years_PGS$PC6_10B
+all_HRS_by_years_PGS$pc8 = all_HRS_by_years_PGS$PC6_10C
+all_HRS_by_years_PGS$pc9 = all_HRS_by_years_PGS$PC6_10D
+all_HRS_by_years_PGS$pc10 = all_HRS_by_years_PGS$PC6_10E
+
+all_HRS_by_years_PGS$age = all_HRS_by_years_PGS$HRS2010_continious_age
+all_HRS_by_years_PGS$sex = all_HRS_by_years_PGS$HRS2010_sex_1_0
+
 
 depressive_symptoms_HRS_2012 = "HRS2012_checklist_depression_bin"
 depressive_symptoms_HRS_2014 = "HRS2014_checklist_depression_bin"
