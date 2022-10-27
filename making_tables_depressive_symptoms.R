@@ -5,56 +5,17 @@ OUTPUT = "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/depressive_symptom
 folder_unadjusted = paste("depressive_symptoms_unadjusted_discrim_bin/", sep = "")
 folder_adjusted = paste("depressive_symptoms_adjusted_discrim_bin/", sep = "")
 
-names_adjusted_pca = c("Intercept", 
-                       "gene", 
+names_adjusted_pca = c("gene", 
                        "discrimination", 
-                       "wealth", 
-                       "PC1",
-                       "PC2",
-                       "PC3",
-                       "PC4",
-                       "PC5",
-                       "PC6",
-                       "PC7",
-                       "PC8",
-                       "PC9",
-                       "PC10",
-                       "age",
-                       "sex", 
                        "gene x discrimination") 
 
 
-names_adjusted = c("Intercept", 
-                   "gene", 
-                   "discrimination", 
-                   "age", 
-                   "sex", 
-                   "wealth", 
-                   "gene x discrimination") 
 
-
-names_unadjusted_pca = c("Intercept", 
-                         "gene", 
+names_unadjusted_pca = c("gene", 
                          "discrimination", 
-                         "PC1",
-                         "PC2",
-                         "PC3",
-                         "PC4",
-                         "PC5",
-                         "PC6",
-                         "PC7",
-                         "PC8",
-                         "PC9",
-                         "PC10", 
-                         "age",
-                         "sex",
                          "gene x discrimination") 
 
 
-names_unadjusted = c("Intercept", 
-                     "gene", 
-                     "discrimination", 
-                     "gene x discrimination") 
 
 ############ ############ ############ ############ ############  ############ ############ ############ ############ ############  
 ####  ####  #### unadjusted 

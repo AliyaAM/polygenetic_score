@@ -105,15 +105,41 @@ ELSA_data_with_PGS$w6age
 ELSA_data_with_PGS$w6sex
 
 # the continious is significant but the binary is not: 
+test_discrimination = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$w5discrim_bin) 
+summary_discrimination = summary(test_discrimination)
+summary_discrimination_coefficients = as.data.frame(summary_discrimination$coefficients)
+discrimination_result = slice(summary_discrimination_coefficients, 2)
 
-test = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10 + ELSA_data_with_PGS$w6sex + ELSA_data_with_PGS$w6age) 
-summary(test)
-
+test_gene = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10 + ELSA_data_with_PGS$w6sex + ELSA_data_with_PGS$w6age) 
+summary_gene = summary(test_gene)
+library(dplyr)
+summary_gene_coefficients = as.data.frame(summary_gene$coefficients)
+gene_result = slice(summary_gene_coefficients, 2)
 
 test_interaction = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS * ELSA_data_with_PGS$w5discrim_bin + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10 + ELSA_data_with_PGS$w6sex + ELSA_data_with_PGS$w6age) 
-summary(test_interaction)
+summary_interaction = summary(test_interaction)
+interaction_result = tail(summary_interaction$coefficients, 1)
+
+results = rbind(gene_result, 
+                discrimination_result,
+                interaction_result)
 
 
-test_noage_no_sex = glm(ELSA_data_with_PGS$w6cesd ~ ELSA_data_with_PGS$DS + ELSA_data_with_PGS$pc1 +  ELSA_data_with_PGS$pc2 +  ELSA_data_with_PGS$pc3 +  ELSA_data_with_PGS$pc4 + ELSA_data_with_PGS$pc5 +ELSA_data_with_PGS$pc6 + ELSA_data_with_PGS$pc7 + ELSA_data_with_PGS$pc8 + ELSA_data_with_PGS$pc9 + ELSA_data_with_PGS$pc10) 
-summary(test_noage_no_sex)
+OR_CI_outcome_gene = exp(cbind(OR = coef(test_gene), confint(test_gene)))
+OR_CI_outcome_gene = as.data.frame(OR_CI_outcome_gene)
+OR_CI_outcome_gene_result = slice(OR_CI_outcome_gene, 2)
+
+OR_CI_outcome_discrim = exp(cbind(OR = coef(test_discrimination), confint(test_discrimination)))
+OR_CI_outcome_discrim = as.data.frame(OR_CI_outcome_discrim)
+OR_CI_outcome_discrim_result = slice(OR_CI_outcome_discrim, 2)
+
+
+OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(test_interaction), confint(test_interaction)))
+OR_CI_outcome_gene_interaction_result = tail(summary_interaction$coefficients, 1)
+
+print("done 11d")
+
+OR_CI = rbind(OR_CI_outcome_gene_result, 
+              OR_CI_outcome_discrim_result, 
+              OR_CI_outcome_gene_interaction_result)
 

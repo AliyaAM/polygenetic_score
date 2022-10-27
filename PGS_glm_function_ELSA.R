@@ -1,4 +1,4 @@
-
+library(dplyr)
 
 PGS_glm_function_ELSA = function (data_ELSA_subset, 
 
@@ -119,11 +119,22 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                         family = gaussian)
     
     
-    summary_discrim = summary(glm_outcome_discrim)
-    summary_gene = summary(glm_outcome_gene)
-    summary_interaction = summary(glm_outcome_gene_interaction)
+
+    summary_discrimination = summary(glm_outcome_discrim)
+    summary_discrimination_coefficients = as.data.frame(summary_discrimination$coefficients)
+    discrimination_result = slice(summary_discrimination_coefficients, 2)
     
-    print("done 9")
+    summary_gene = summary(glm_outcome_gene)
+    summary_gene_coefficients = as.data.frame(summary_gene$coefficients)
+    gene_result = slice(summary_gene_coefficients, 2)
+    
+    summary_interaction = summary(glm_outcome_gene_interaction)
+    interaction_result = tail(summary_interaction$coefficients, 1)
+    
+    results = rbind(gene_result, 
+                    discrimination_result,
+                    interaction_result)
+    
     
   }
   
@@ -158,9 +169,20 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                         family = gaussian)
     
     
-    summary_discrim = summary(glm_outcome_discrim)
+    summary_discrimination = summary(glm_outcome_discrim)
+    summary_discrimination_coefficients = as.data.frame(summary_discrimination$coefficients)
+    discrimination_result = slice(summary_discrimination_coefficients, 2)
+    
     summary_gene = summary(glm_outcome_gene)
+    summary_gene_coefficients = as.data.frame(summary_gene$coefficients)
+    gene_result = slice(summary_gene_coefficients, 2)
+    
     summary_interaction = summary(glm_outcome_gene_interaction)
+    interaction_result = tail(summary_interaction$coefficients, 1)
+    
+    results = rbind(gene_result, 
+                    discrimination_result,
+                    interaction_result)
     
     
   }
@@ -200,9 +222,20 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                         family = gaussian)
     
     
-    summary_discrim = summary(glm_outcome_discrim)
+    summary_discrimination = summary(glm_outcome_discrim)
+    summary_discrimination_coefficients = as.data.frame(summary_discrimination$coefficients)
+    discrimination_result = slice(summary_discrimination_coefficients, 2)
+    
     summary_gene = summary(glm_outcome_gene)
+    summary_gene_coefficients = as.data.frame(summary_gene$coefficients)
+    gene_result = slice(summary_gene_coefficients, 2)
+    
     summary_interaction = summary(glm_outcome_gene_interaction)
+    interaction_result = tail(summary_interaction$coefficients, 1)
+    
+    results = rbind(gene_result, 
+                    discrimination_result,
+                    interaction_result)
     
     
   }
@@ -247,9 +280,20 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                         data = data_both_countries, 
                                         family = gaussian)
     
-    summary_discrim = summary(glm_outcome_discrim)
+    summary_discrimination = summary(glm_outcome_discrim)
+    summary_discrimination_coefficients = as.data.frame(summary_discrimination$coefficients)
+    discrimination_result = slice(summary_discrimination_coefficients, 2)
+    
     summary_gene = summary(glm_outcome_gene)
+    summary_gene_coefficients = as.data.frame(summary_gene$coefficients)
+    gene_result = slice(summary_gene_coefficients, 2)
+    
     summary_interaction = summary(glm_outcome_gene_interaction)
+    interaction_result = tail(summary_interaction$coefficients, 1)
+    
+    results = rbind(gene_result, 
+                    discrimination_result,
+                    interaction_result)
     
     
   } 
@@ -303,9 +347,20 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
                                         family = gaussian)
     
     
-    summary_discrim = summary(glm_outcome_discrim)
+    summary_discrimination = summary(glm_outcome_discrim)
+    summary_discrimination_coefficients = as.data.frame(summary_discrimination$coefficients)
+    discrimination_result = slice(summary_discrimination_coefficients, 2)
+    
     summary_gene = summary(glm_outcome_gene)
+    summary_gene_coefficients = as.data.frame(summary_gene$coefficients)
+    gene_result = slice(summary_gene_coefficients, 2)
+    
     summary_interaction = summary(glm_outcome_gene_interaction)
+    interaction_result = tail(summary_interaction$coefficients, 1)
+    
+    results = rbind(gene_result, 
+                    discrimination_result,
+                    interaction_result)
     
     
     
@@ -320,7 +375,7 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
   
   dir.create(paste(path, folder, sep = ""))
   
-  results_interaction = as.data.frame(summary_interaction$coefficients)
+  results_interaction = as.data.frame(results)
   write.csv(results_interaction, file = paste(OUTPUT_ROOT, folder,  "results_interaction.csv", sep=""))
   
   
@@ -372,22 +427,35 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
 
 
   #OR_CI_outcome_gene_interaction = c(coefficient_inter, CI_interval_inter)
-
+  
+  
+  OR_CI_outcome_gene = exp(cbind(OR = coef(glm_outcome_gene), confint(glm_outcome_gene)))
+  OR_CI_outcome_gene = as.data.frame(OR_CI_outcome_gene)
+  OR_CI_outcome_gene_result = slice(OR_CI_outcome_gene, 2)
+  
+  OR_CI_outcome_discrim = exp(cbind(OR = coef(glm_outcome_discrim), confint(glm_outcome_discrim)))
+  OR_CI_outcome_discrim = as.data.frame(OR_CI_outcome_discrim)
+  OR_CI_outcome_discrim_result = slice(OR_CI_outcome_discrim, 2)
+  
   
   OR_CI_outcome_gene_interaction = exp(cbind(OR = coef(glm_outcome_gene_interaction), confint(glm_outcome_gene_interaction)))
+  OR_CI_outcome_gene_interaction_result = tail(OR_CI_outcome_gene_interaction, 1)
+  
   print("done 11d")
-
-  #print(OR_CI_outcome_gene_interaction)
- # p_values = ****  tail ***** (summary_interaction$coefficients[,4] **** , n = 1) ****
-  p_values = summary_interaction$coefficients[,4]
-  #p_value = tail(p_values, n = 1)
+  
+  OR_CI = rbind(OR_CI_outcome_gene_result, 
+                OR_CI_outcome_discrim_result, 
+                OR_CI_outcome_gene_interaction_result)
+  
+  print(OR_CI)
+  
   print("done 11e")
+  
+  results_all = cbind(results_interaction, OR_CI)
+  results_all = as.data.frame(results_all)
 
-  interaction_OR_CI_pvalue = cbind(OR_CI_outcome_gene_interaction, p_values)
-
-
-  print("done 12")
-
+  print("done 11f")
+  
 
   # cross_country_OR = exp(cbind(OR = coef(fm2), confint(fm2)))
   # cross_country_OR_UK = cross_country_OR[2, 1]
@@ -445,74 +513,48 @@ PGS_glm_function_ELSA = function (data_ELSA_subset,
 
 
   Interaction_findings = data.frame(analysis_variable_name,
-                                           dataset,
-                                           wave_number,
-                                           outcome_name,
-
-                                           N_ELSA_subset,
-
-                                           N_ELSA_discrimYES,
-
-
-                                    interaction_OR_CI_pvalue)
+                                    dataset,
+                                    wave_number,
+                                    outcome_name,
+                                    N_ELSA_subset,
+                                    N_ELSA_discrimYES,
+                                    results_all)
 
 
   colnames(Interaction_findings) = c("analysis_variable_name",
-                                            "dataset",
-
-                                            "wave_number",
-                                            "outcome_name",
-
-                                            "N_subset",
-
-                                            "N_discrimYES",
-
-                                            #"interaction_OR_CI_pvalue")
-                                            "OR",
-                                            "CI1",
-                                            "CI2",
-                                            "p_value")
+                                     "dataset",
+                                     "wave",
+                                     "outcome_name",
+                                     "N_subset",
+                                     "N_discrimYES",
+                                     "Estimate",
+                                     "SE",
+                                     "t value",
+                                     "p_value",
+                                     "OR",
+                                     "CI1",
+                                     "CI2")
 
   write.csv(Interaction_findings, file = paste(OUTPUT_ROOT, folder,  "findings.csv", sep=""))
   
 
-  print("completed")
-  
-  result_table = 
-    
-    
-    result_table = data.frame(dataset,
-                              wave_number,
-                              interaction_OR_CI_pvalue)
-  
-  
-  colnames(result_table) = c(  "dataset",
-                               "wave_number",
-                               "OR",
-                               "CI1",
-                               "CI2",
-                               "p_value")
-  
- OR_rounded = round(result_table$OR, 2) 
+ Estimate_rounded = round(Interaction_findings$Estimate, 2)
+ SE_rounded = round(Interaction_findings$SE, 2)
+ OR_rounded = round(Interaction_findings$OR, 2) 
+ CI95_edited = paste("[", round(Interaction_findings$CI1, 2), ";", round(Interaction_findings$CI2, 2), "]", sep = "")
+ p_value_rounded = round(Interaction_findings$p_value, 4)
  
- CI95_edited = paste("[", round(result_table$CI1, 2), ";", round(result_table$CI2, 2), "]")
-
- p_value_rounded = round(result_table$p_value, 4)
+ result_table_edited = cbind(Interaction_findings, 
+                             Estimate_rounded, 
+                             SE_rounded, 
+                             OR_rounded, 
+                             CI95_edited, 
+                             p_value_rounded) 
+                             
+ 
+ result_table_edited = data.frame(result_table_edited)
  
  
- result_table_edited = data.frame(result_table$dataset, 
-                                  result_table$wave_number, 
-                                  OR_rounded, 
-                                  CI95_edited, 
-                                  p_value_rounded)
- 
- 
-colnames(result_table_edited) = c("dataset", 
-                                  "wave", 
-                                  "OR", 
-                                  "95 % CI", 
-                                  "p-value") 
-
  
  
   #ELSA_OR_value,
