@@ -5,34 +5,22 @@ OUTPUT = "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/diabetes/"
 folder_unadjusted = paste("diabetes_unadjusted_discrim_bin/", sep = "")
 folder_adjusted = paste("diabetes_adjusted_discrim_bin/", sep = "")
 
-names_adjusted_pca = c("Intercept", 
-                       "gene", 
+names_adjusted_pca = c("gene", 
                        "discrimination", 
-                       "age", 
-                       "sex", 
-                       "wealth", 
-                       "pca", 
                        "gene x discrimination") 
 
 
-names_adjusted = c("Intercept", 
-                   "gene", 
+names_adjusted = c("gene", 
                    "discrimination", 
-                   "age", 
-                   "sex", 
-                   "wealth", 
                    "gene x discrimination") 
 
 
-names_unadjusted_pca = c("Intercept", 
-                         "gene", 
+names_unadjusted_pca = c("gene", 
                          "discrimination", 
-                         "pca", 
                          "gene x discrimination") 
 
 
-names_unadjusted = c("Intercept", 
-                     "gene", 
+names_unadjusted = c("gene", 
                      "discrimination", 
                      "gene x discrimination") 
 
@@ -43,8 +31,8 @@ names_unadjusted = c("Intercept",
 ELSA_pca_unadjusted_diabetes = cbind(names_unadjusted_pca, read.csv(paste(directory, OUTPUT, folder_unadjusted, "diabetes_results_ELSA_pca_unadjusted.csv", sep = "")))
 HRS_pca_unadjusted_diabetes = cbind(names_unadjusted_pca, read.csv(paste(directory, OUTPUT, folder_unadjusted, "diabetes_results_HRS_pca_unadjusted.csv", sep = "")))
 #not adjusted for pca 
-ELSA_unadjusted_diabetes = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT, folder_unadjusted, "diabetes_results_ELSA_unadjusted.csv", sep = "")))
-HRS_unadjusted_diabetes = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT,  folder_unadjusted, "diabetes_results_HRS_unadjusted.csv", sep = "")))
+#ELSA_unadjusted_diabetes = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT, folder_unadjusted, "diabetes_results_ELSA_unadjusted.csv", sep = "")))
+#HRS_unadjusted_diabetes = cbind(names_unadjusted, read.csv(paste(directory, OUTPUT,  folder_unadjusted, "diabetes_results_HRS_unadjusted.csv", sep = "")))
 
 
 ############ ############ ############ ############ ############  ############ ############ ############ ############ ############  
@@ -60,28 +48,10 @@ na_filler = rep("NA", 7)
 
 
 diabetes_unadjusted = rbind(ELSA_pca_unadjusted_diabetes,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler, 
-                      
-                      HRS_pca_unadjusted_diabetes, 
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler)
+                            HRS_pca_unadjusted_diabetes)
 
-diabetes_adjusted = rbind(ELSA_pca_adjusted_diabetes, HRS_pca_adjusted_diabetes)
+diabetes_adjusted = rbind(ELSA_pca_adjusted_diabetes, 
+                          HRS_pca_adjusted_diabetes)
 
 Table_diabetes = cbind(diabetes_unadjusted, diabetes_adjusted)
 write.csv(Table_diabetes, file = paste(directory, OUTPUT, "Table_diabetes_per_wave.csv", sep = ""))
@@ -132,17 +102,10 @@ ELSA_composite_pca_adjusted_diabetes = cbind(names_adjusted_pca, read.csv(paste(
 
 ######## Table 2 composite & adjusted for PCA 
 composite_diabetes_unadjusted = rbind(ELSA_composite_pca_unadjusted_diabetes,
-                                na_filler,
-                                na_filler,
-                                na_filler,
-                                
-                                
-                                HRS_composite_pca_unadjusted_diabetes,
-                                na_filler,
-                                na_filler,
-                                na_filler)
+                                HRS_composite_pca_unadjusted_diabetes)
 
-composite_diabetes_adjusted = rbind(ELSA_composite_pca_adjusted_diabetes, HRS_composite_pca_adjusted_diabetes)
+composite_diabetes_adjusted = rbind(ELSA_composite_pca_adjusted_diabetes,
+                                    HRS_composite_pca_adjusted_diabetes)
 
 Table_composite_diabetes = cbind(composite_diabetes_unadjusted, composite_diabetes_adjusted)
 write.csv(Table_composite_diabetes, file = paste(directory, OUTPUT, "Table_composite_diabetes.csv", sep = ""))

@@ -84,13 +84,12 @@ covariate2_HRS = "NA"
 covariate3_HRS = "NA"
 covariate4_HRS = "NA"
 
-gene_ELSA = "Diabetes"
+gene_ELSA = "T2D_2018"
 gene_HRS = "E4_T2D_DIAGRAM12"
 
 
 
-
-
+unique(ELSA_data_with_PGS$w8diabetes_new)
 
 outcome_name = "diabetes"
 

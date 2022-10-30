@@ -70,17 +70,17 @@ discrimination_var_ELSA =  "w5discrim_bin2"
 
 discrimination_var_HRS= "HRS2010_discrim_bin" 
 
-covariate1_ELSA = "w5age"
-covariate2_ELSA = "w5sex"
-covariate3_ELSA = "w5wealth"
-covariate4_ELSA = "pc1"
+covariate1_ELSA = "w5wealth"
+covariate2_ELSA = "NA"
+covariate3_ELSA = "NA"
+covariate4_ELSA = "NA"
 
-covariate1_HRS = "HRS2010_continious_age"
-covariate2_HRS = "HRS2010_sex_1_0"
-covariate3_HRS = "HRS2010_wealth_noIRA"
-covariate4_HRS = "PC1_5A"
+covariate1_HRS = "HRS2010_wealth_noIRA"
+covariate2_HRS = "NA"
+covariate3_HRS = "NA"
+covariate4_HRS = "NA"
 
-gene_ELSA = "Diabetes"
+gene_ELSA = "T2D_2018"
 gene_HRS = "E4_T2D_DIAGRAM12"
 
 

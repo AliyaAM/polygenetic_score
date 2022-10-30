@@ -41,26 +41,7 @@ na_filler = rep("NA", 7)
 
 
 depressive_symptoms_unadjusted = rbind(ELSA_pca_unadjusted_depressive_symptoms,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler, 
-                              
-                              HRS_pca_unadjusted_depressive_symptoms, 
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler,
-                              na_filler)
+                                       HRS_pca_unadjusted_depressive_symptoms)
 
 depressive_symptoms_adjusted = rbind(ELSA_pca_adjusted_depressive_symptoms, HRS_pca_adjusted_depressive_symptoms)
 
@@ -113,17 +94,10 @@ ELSA_composite_pca_adjusted_depressive_symptoms = cbind(names_adjusted_pca, read
 
 ######## Table 2 composite & adjusted for PCA 
 composite_depressive_symptoms_unadjusted = rbind(ELSA_composite_pca_unadjusted_depressive_symptoms,
-                                        na_filler,
-                                        na_filler,
-                                        na_filler,
-                                        
-                                        
-                                        HRS_composite_pca_unadjusted_depressive_symptoms,
-                                        na_filler,
-                                        na_filler,
-                                        na_filler)
+                                                 HRS_composite_pca_unadjusted_depressive_symptoms)
 
-composite_depressive_symptoms_adjusted = rbind(ELSA_composite_pca_adjusted_depressive_symptoms, HRS_composite_pca_adjusted_depressive_symptoms)
+composite_depressive_symptoms_adjusted = rbind(ELSA_composite_pca_adjusted_depressive_symptoms,
+                                               HRS_composite_pca_adjusted_depressive_symptoms)
 
 Table_composite_depressive_symptoms = cbind(composite_depressive_symptoms_unadjusted, composite_depressive_symptoms_adjusted)
 write.csv(Table_composite_depressive_symptoms, file = paste(directory, OUTPUT, "Table_composite_depressive_symptoms.csv", sep = ""))

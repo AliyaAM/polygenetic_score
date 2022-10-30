@@ -5,30 +5,19 @@ OUTPUT = "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/MI/"
 folder_unadjusted = paste("MI_unadjusted_discrim_bin/", sep = "")
 folder_adjusted = paste("MI_adjusted_discrim_bin/", sep = "")
 
-names_adjusted_pca = c("Intercept", 
-                   "gene", 
-                   "discrimination", 
-                   "age", 
-                   "sex", 
-                   "wealth", 
-                   "pca", 
-                   "gene x discrimination") 
+names_adjusted_pca = c("gene", 
+                       "discrimination", 
+                       "gene x discrimination") 
 
 
-names_adjusted = c("Intercept", 
-                    "gene", 
+names_adjusted = c("gene", 
                     "discrimination", 
-                    "age", 
-                    "sex", 
-                    "wealth", 
                     "gene x discrimination") 
 
 
-names_unadjusted_pca = c("Intercept", 
-                   "gene", 
-                   "discrimination", 
-                   "pca", 
-                   "gene x discrimination") 
+names_unadjusted_pca = c("gene", 
+                    "discrimination", 
+                         "gene x discrimination") 
 
 
 names_unadjusted = c("Intercept", 
@@ -50,32 +39,13 @@ HRS_pca_unadjusted_mi = cbind(names_unadjusted_pca, read.csv(paste(directory, OU
 ELSA_pca_adjusted_mi = cbind(names_adjusted_pca, read.csv(paste(directory, OUTPUT, folder_adjusted, "mi_results_ELSA_pca_adjusted.csv", sep = "")))
 HRS_pca_adjusted_mi = cbind(names_adjusted_pca, read.csv(paste(directory, OUTPUT, folder_adjusted, "mi_results_HRS_pca_adjusted.csv", sep = "")))
 
-na_filler = rep("NA", 7)
 
 
 MI_unadjusted = rbind(ELSA_pca_unadjusted_mi,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler, 
-                      
-                      HRS_pca_unadjusted_mi, 
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler,
-                      na_filler)
+                      HRS_pca_unadjusted_mi)
 
-MI_adjusted = rbind(ELSA_pca_adjusted_mi, HRS_pca_adjusted_mi)
+MI_adjusted = rbind(ELSA_pca_adjusted_mi, 
+                    HRS_pca_adjusted_mi)
 
 Table_MI = cbind(MI_unadjusted, MI_adjusted)
 write.csv(Table_MI, file = paste(directory, OUTPUT, "Table_MI_per_wave.csv", sep = ""))
@@ -118,17 +88,10 @@ ELSA_composite_pca_adjusted_mi = cbind(names_adjusted_pca, read.csv(paste(direct
 
 ######## Table 2 composite & adjusted for PCA 
 composite_MI_unadjusted = rbind(ELSA_composite_pca_unadjusted_mi,
-                                na_filler,
-                                na_filler,
-                                na_filler,
-                             
-                                
-                                HRS_composite_pca_unadjusted_mi,
-                                na_filler,
-                                na_filler,
-                                na_filler)
+                                 HRS_composite_pca_unadjusted_mi)
 
-composite_MI_adjusted = rbind(ELSA_composite_pca_adjusted_mi, HRS_composite_pca_adjusted_mi)
+composite_MI_adjusted = rbind(ELSA_composite_pca_adjusted_mi,
+                              HRS_composite_pca_adjusted_mi)
 
 Table_composite_MI = cbind(composite_MI_unadjusted, composite_MI_adjusted)
 write.csv(Table_composite_MI, file = paste(directory, OUTPUT, "Table_composite_MI.csv", sep = ""))
