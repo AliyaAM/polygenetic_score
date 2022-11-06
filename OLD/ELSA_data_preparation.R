@@ -54,7 +54,6 @@ ELSA_data_wave_6 = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_all
 ELSA_data_wave_7 = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_all/wave_7_elsa_data.csv", sep = ""))
 ELSA_data_wave_8 = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_all/wave8.csv", sep = ""))
 
-
 #HRS polygenic scores data: 
 polygenic_scores_data = read.csv(paste(directory, DATA_ROOT, "/HRS_polygenetic_scores_biomarkers/pgenscore4e_r.csv", sep = ""))
 
@@ -66,7 +65,7 @@ polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/pol
 #polygenic_scores_ELSA_data = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/polygenic_scores_ELSA_data_standardized.csv", sep = "")) 
 
 
-principal_component_ELSA = read.csv("/Users/aliya/my_docs/KCL_postDoc/polygenetic_score/ELSA_PGS_data/Principal_Component_ELSA_2019.csv") 
+principal_component_ELSA = read.csv("/Users/aliya/my_docs/KCL_postDoc/polygenetic_score_reading/ELSA_PGS_data/Principal_Component_ELSA_2019.csv") 
 #principal_component_ELSA = principal_component_ELSA[principal_component_ELSA$IQAUNIQ %in% ID_ELSA,]
 polygenic_scores_ELSA_data = bind_cols(polygenic_scores_ELSA_data, principal_component_ELSA) 
 
@@ -150,24 +149,35 @@ ELSA_data_wave_7 = ELSA_data_wave_7[ELSA_data$idauniq %in% ID_ELSA,]
 ELSA_data_wave_8 = ELSA_data_wave_8[ELSA_data$idauniq %in% ID_ELSA,]
 
 unique(ELSA_data$henmmi)
+table(ELSA_data$henmmi)
+summary(ELSA_data$henmmi)
 
-w5_MI_new = case_when(ELSA_data$henmmi == 0 ~ 0, 
+w5_MI_new = case_when(ELSA_data$henmmi == -1 ~ 0,
+                      ELSA_data$henmmi == 0 ~ 0, 
                       ELSA_data$henmmi == 1 ~ 1, 
                       ELSA_data$henmmi == 2 ~ 2, 
                       ELSA_data$henmmi == 3 ~ 3)
 
-
+unique(w5_MI_new)
+table(w5_MI_new)
 w5_MI_new_bin = case_when(w5_MI_new == 0 ~ 0, 
                           w5_MI_new == 1 ~ 1,
                           w5_MI_new == 2 ~ 1,
                           w5_MI_new == 3 ~ 1)
                       
 #ELSA_data_wave_6$HeNmMI
+unique(ELSA_data_wave_6$HeNmMI)
+table(ELSA_data_wave_6$HeNmMI)
+summary(ELSA_data_wave_6$HeNmMI)
 
-w6_MI_new = case_when(ELSA_data_wave_6$HeNmMI == 0 ~ 0, 
+w6_MI_new = case_when(ELSA_data_wave_6$HeNmMI == -1 ~ 0, 
+                      ELSA_data_wave_6$HeNmMI == 0 ~ 0, 
                       ELSA_data_wave_6$HeNmMI == 1 ~ 1, 
                       ELSA_data_wave_6$HeNmMI == 2 ~ 2, 
                       ELSA_data_wave_6$HeNmMI == 3 ~ 3)
+
+unique(w6_MI_new)
+table(w6_MI_new)
 
 
 w6_MI_new_bin = case_when(w6_MI_new == 0 ~ 0, 
@@ -178,7 +188,8 @@ w6_MI_new_bin = case_when(w6_MI_new == 0 ~ 0,
 
 #ELSA_data_wave_7$HeNmMI
 
-w7_MI_new = case_when(ELSA_data_wave_7$HeNmMI == 0 ~ 0, 
+w7_MI_new = case_when(ELSA_data_wave_7$HeNmMI == -1 ~ 0,
+                      ELSA_data_wave_7$HeNmMI == 0 ~ 0, 
                       ELSA_data_wave_7$HeNmMI == 1 ~ 1, 
                       ELSA_data_wave_7$HeNmMI == 2 ~ 2, 
                       ELSA_data_wave_7$HeNmMI == 3 ~ 3)
@@ -191,7 +202,8 @@ w7_MI_new_bin = case_when(w7_MI_new == 0 ~ 0,
 
 #ELSA_data_wave_8$henmmi
 
-w8_MI_new = case_when(ELSA_data_wave_8$henmmi == 0 ~ 0, 
+w8_MI_new = case_when(ELSA_data_wave_8$henmmi == -1 ~ 0,
+                      ELSA_data_wave_8$henmmi == 0 ~ 0, 
                       ELSA_data_wave_8$henmmi == 1 ~ 1, 
                       ELSA_data_wave_8$henmmi == 2 ~ 2, 
                       ELSA_data_wave_8$henmmi == 3 ~ 3)

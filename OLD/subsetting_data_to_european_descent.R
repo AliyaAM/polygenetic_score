@@ -10,6 +10,7 @@ all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_H
 ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS_before_subsetting_toEUDesc.csv", sep = ""))
 
 
+
 #save these existing files under another name (just in case)
 #write.csv(all_HRS_by_years_PGS, paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS_before_subsetting_toEUDesc.csv", sep = ""))
 #write.csv(ELSA_data_with_PGS, paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS_before_subsetting_toEUDesc.csv", sep = ""))

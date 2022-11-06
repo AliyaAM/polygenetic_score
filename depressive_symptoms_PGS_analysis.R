@@ -132,7 +132,7 @@ unique(ELSA_data_with_PGS$w6cesd)
 
 ELSA_data_with_PGS$w6cesd_rev = rev(ELSA_data_with_PGS$w6cesd)
 
-
+check you are using the right depressive symptoms var 
 depressive_symptoms_ELSA_w6 = "w6cesd"
 depressive_symptoms_ELSA_w7 = "w7cesd"
 depressive_symptoms_ELSA_w8 = "w8cesd"
