@@ -153,7 +153,7 @@ table(ELSA_data$henmmi)
 summary(ELSA_data$henmmi)
 
 w5_MI_new = case_when(ELSA_data$henmmi == -1 ~ 0,
-                      ELSA_data$henmmi == 0 ~ 0, 
+                      ELSA_data$henmmi == 0 ~ 1, 
                       ELSA_data$henmmi == 1 ~ 1, 
                       ELSA_data$henmmi == 2 ~ 2, 
                       ELSA_data$henmmi == 3 ~ 3)
@@ -170,11 +170,16 @@ unique(ELSA_data_wave_6$HeNmMI)
 table(ELSA_data_wave_6$HeNmMI)
 summary(ELSA_data_wave_6$HeNmMI)
 
-w6_MI_new = case_when(ELSA_data_wave_6$HeNmMI == -1 ~ 0, 
-                      ELSA_data_wave_6$HeNmMI == 0 ~ 0, 
+
+w6_MI_new = case_when(ELSA_data_wave_6$HeNmMI == -1 ~ 0,
+                      ELSA_data_wave_6$HeNmMI == 0 ~ 1, 
                       ELSA_data_wave_6$HeNmMI == 1 ~ 1, 
                       ELSA_data_wave_6$HeNmMI == 2 ~ 2, 
                       ELSA_data_wave_6$HeNmMI == 3 ~ 3)
+
+
+
+
 
 unique(w6_MI_new)
 table(w6_MI_new)
@@ -188,11 +193,13 @@ w6_MI_new_bin = case_when(w6_MI_new == 0 ~ 0,
 
 #ELSA_data_wave_7$HeNmMI
 
+
 w7_MI_new = case_when(ELSA_data_wave_7$HeNmMI == -1 ~ 0,
-                      ELSA_data_wave_7$HeNmMI == 0 ~ 0, 
+                      ELSA_data_wave_7$HeNmMI== 0 ~ 1, 
                       ELSA_data_wave_7$HeNmMI == 1 ~ 1, 
                       ELSA_data_wave_7$HeNmMI == 2 ~ 2, 
                       ELSA_data_wave_7$HeNmMI == 3 ~ 3)
+
 
 
 w7_MI_new_bin = case_when(w7_MI_new == 0 ~ 0, 
@@ -202,8 +209,10 @@ w7_MI_new_bin = case_when(w7_MI_new == 0 ~ 0,
 
 #ELSA_data_wave_8$henmmi
 
+
+
 w8_MI_new = case_when(ELSA_data_wave_8$henmmi == -1 ~ 0,
-                      ELSA_data_wave_8$henmmi == 0 ~ 0, 
+                      ELSA_data_wave_8$henmmi == 0 ~ 1, 
                       ELSA_data_wave_8$henmmi == 1 ~ 1, 
                       ELSA_data_wave_8$henmmi == 2 ~ 2, 
                       ELSA_data_wave_8$henmmi == 3 ~ 3)
