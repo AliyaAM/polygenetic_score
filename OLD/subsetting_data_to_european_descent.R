@@ -6,9 +6,10 @@ DATA_ROOT = "KCL_postDoc/Data_analysis/"
 
 
 
-all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS_before_subsetting_toEUDesc.csv", sep = ""))
-ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS_before_subsetting_toEUDesc.csv", sep = ""))
+#all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS_before_subsetting_toEUDesc.csv", sep = ""))
+#ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS_before_subsetting_toEUDesc.csv", sep = ""))
 
+#ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = ""))
 
 
 #save these existing files under another name (just in case)
