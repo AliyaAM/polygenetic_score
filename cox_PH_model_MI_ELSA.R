@@ -600,6 +600,13 @@ plot_M_5_int = plot_model(title = "",
                           M_5_interaction,
                           terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
 
+Model_5 = c("Model_5",
+            "Model_5",
+            "Model_5")
+
+data_5 = cbind(Model_5, plot_M_5_int$data[1:3], plot_M_5_int$data[5:6], plot_M_5_int$data[9]) 
+
+
 # merge plots with models heading 
 
 print(plot_M_uni_int)

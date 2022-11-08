@@ -1,6 +1,9 @@
-cox_model_PGS = function(data_cox_input,  outcome)
+cox_model_PGS = function(data_cox_input,  baseline_discriminaition, outcome, PGS)
   {
 
+  data_cox_input$PGS = data_cox_input[ ,   PGS]
+  
+  data_cox_input$baseline_discriminaition = data_cox_input[ ,   baseline_discriminaition]
 
 Univariate_outcome_discrim = summary( coxph( Surv(follow_up, data_cox_input[ ,   outcome]) ~ baseline_discriminaition, data_cox_input))
 M_uni_interaction = coxph( Surv(follow_up, data_cox_input[ ,   outcome]) ~ PGS*baseline_discriminaition, data_cox_input)
@@ -346,7 +349,113 @@ print(plot_M_3_int)
 print(plot_M_4_int)
 print(plot_M_5_int)
 
-return(params = output_result)
+
+data_uni = cbind(plot_M_uni_int$data[1:3], plot_M_uni_int$data[5:6], plot_M_uni_int$data[9]) 
+
+###########################
+
+
+
+data_1 = cbind(plot_M_1_int$data[1:3], plot_M_1_int$data[5:6], plot_M_1_int$data[9]) 
+
+###########################
+
+
+data_2 = cbind(plot_M_2_int$data[1:3], plot_M_2_int$data[5:6], plot_M_2_int$data[9]) 
+
+###########################
+
+
+data_2a = cbind(plot_M_2a_int$data[1:3], plot_M_2a_int$data[5:6], plot_M_2a_int$data[9]) 
+
+###########################
+
+
+data_2s = cbind(plot_M_2s_int$data[1:3], plot_M_2s_int$data[5:6], plot_M_2s_int$data[9]) 
+
+###########################
+
+
+data_2pa = cbind(plot_M_2pa_int$data[1:3], plot_M_2pa_int$data[5:6], plot_M_2pa_int$data[9]) 
+
+###########################
+
+
+data_3 = cbind(plot_M_3_int$data[1:3], plot_M_3_int$data[5:6], plot_M_3_int$data[9]) 
+
+
+###########################
+
+data_4 = cbind(plot_M_4_int$data[1:3], plot_M_4_int$data[5:6], plot_M_4_int$data[9]) 
+
+
+################
+
+###########################
+
+data_5 = cbind(plot_M_5_int$data[1:3], plot_M_5_int$data[5:6], plot_M_5_int$data[9]) 
+
+
+Model = c("Univariate",
+          "Univariate",
+          "Univariate",
+          "Model_1",
+          "Model_1",
+          "Model_1",
+          "Model_2",
+          "Model_2",
+          "Model_2",
+          "Model_2a",
+          "Model_2a",
+          "Model_2a",
+          "Model_2s",
+          "Model_2s",
+          "Model_2s",
+          "Model_2pa",
+          "Model_2pa",
+          "Model_2pa",
+          "Model_3",
+          "Model_3",
+          "Model_3",
+          "Model_4",
+          "Model_4",
+          "Model_4",
+          "Model_5",
+          "Model_5",
+          "Model_5")
+
+
+print(plot_M_uni_int)
+print(plot_M_1_int)
+print(plot_M_2_int)
+print(plot_M_2a_int)
+print(plot_M_2s_int)
+print(plot_M_2pa_int)
+print(plot_M_3_int)
+print(plot_M_4_int)
+print(plot_M_5_int)
+
+
+
+#output_results = table
+
+
+output_results = rbind(data_uni, 
+                       data_1,
+                       data_2, 
+                       data_2a, 
+                       data_2s, 
+                       data_2pa,
+                       data_3, 
+                       data_4, 
+                       data_5)
+
+
+output_results = data.frame(Model, 
+                            output_results)
+
+
+return(params = output_results)
 
 }
 #plots: https://strengejacke.wordpress.com/2017/10/23/one-function-to-rule-them-all-visualization-of-regression-models-in-rstats-w-sjplot/

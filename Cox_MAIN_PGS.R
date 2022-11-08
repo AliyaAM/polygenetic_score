@@ -26,9 +26,11 @@ SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
 
 
+
 ###### sourcing code for the unadjusted analysis 
 source(paste(SOURCE_ROOT, "PGS_glm_function_ELSA.R", sep=""))
 source(paste(SOURCE_ROOT, "cox_model_PGS.R", sep=""))
+source(paste(SOURCE_ROOT, "glm_model_PGS.R", sep=""))
 
 #source(paste(SOURCE_ROOT, "subsetting_function.R", sep=""))
 
@@ -52,58 +54,14 @@ ELSA_data_with_PGS  = ELSA_data_with_PGS_before_subsetting_to_baseline_free
 all_HRS_by_years_PGS = all_HRS_by_years_PGS_before_subsetting_to_baseline_free
 
 
-######### HRS 
-#all_HRS_by_years_PGS$HRS2010_discrim_bin 
-
-discrimination_var_ELSA =  "w5discrim_bin2" 
-
-discrimination_var_HRS = "HRS2010_discrim_bin" 
-
-covariate1_ELSA_pca = "pc1"
-
-covariate1_ELSA = "NA"
-covariate2_ELSA = "NA"
-covariate3_ELSA = "NA"
-covariate4_ELSA = "NA"
-
-covariate1_HRS_pca = "PC1_5A"
-
-covariate1_HRS = "NA"
-covariate2_HRS = "NA"
-covariate3_HRS = "NA"
-covariate4_HRS = "NA"
-
-
-all_HRS_by_years_PGS$PGS_mi = all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15
-ELSA_data_with_PGS$PGS_mi = ELSA_data_with_PGS$MI 
-
-#gene_ELSA = "MI"
-#gene_HRS = "E4_MI_CARDIOGRAM15"
-
-
-ELSA_data_with_PGS$age = ELSA_data_with_PGS$w5age
-ELSA_data_with_PGS$sex = ELSA_data_with_PGS$w5sex
-
-
-all_HRS_by_years_PGS$pc1 = all_HRS_by_years_PGS$PC1_5A
-all_HRS_by_years_PGS$pc2 = all_HRS_by_years_PGS$PC1_5B
-all_HRS_by_years_PGS$pc3 = all_HRS_by_years_PGS$PC1_5C
-all_HRS_by_years_PGS$pc4 = all_HRS_by_years_PGS$PC1_5D
-all_HRS_by_years_PGS$pc5 = all_HRS_by_years_PGS$PC1_5E 
-all_HRS_by_years_PGS$pc6 = all_HRS_by_years_PGS$PC6_10A
-all_HRS_by_years_PGS$pc7 = all_HRS_by_years_PGS$PC6_10B
-all_HRS_by_years_PGS$pc8 = all_HRS_by_years_PGS$PC6_10C
-all_HRS_by_years_PGS$pc9 = all_HRS_by_years_PGS$PC6_10D
-all_HRS_by_years_PGS$pc10 = all_HRS_by_years_PGS$PC6_10E
-
-all_HRS_by_years_PGS$age = all_HRS_by_years_PGS$HRS2010_continious_age
-all_HRS_by_years_PGS$sex = all_HRS_by_years_PGS$HRS2010_sex_1_0
-
-
-ELSA_data_with_PGS$idauniq = ELSA_data_with_PGS$idauniq...4
 
 # reorganise the dataset so there is time variable and other columns include outcomes at all time points 
-##### ELSA 
+##### ELSA data preparation 
+
+
+#gene_ELSA = "MI"
+ELSA_data_with_PGS$idauniq = ELSA_data_with_PGS$idauniq...4
+
 ID_ELSA = c(ELSA_data_with_PGS$idauniq, 
                              ELSA_data_with_PGS$idauniq, 
                              ELSA_data_with_PGS$idauniq, 
@@ -145,10 +103,10 @@ data_cox_ELSA_initial$sex = c(ELSA_data_with_PGS$w5sex,
         ELSA_data_with_PGS$w7sex, 
         ELSA_data_with_PGS$w8sex)
 
-data_cox_ELSA_initial$PGS = c(ELSA_data_with_PGS$MI, 
-        ELSA_data_with_PGS$MI, 
-        ELSA_data_with_PGS$MI, 
-        ELSA_data_with_PGS$MI) 
+data_cox_ELSA_initial$PGS_mi = c(ELSA_data_with_PGS$MI, 
+                                 ELSA_data_with_PGS$MI, 
+                                 ELSA_data_with_PGS$MI,
+                                 ELSA_data_with_PGS$MI) 
 
 
 data_cox_ELSA_initial$wealth = c(ELSA_data_with_PGS$w5wealth, 
@@ -157,15 +115,15 @@ data_cox_ELSA_initial$wealth = c(ELSA_data_with_PGS$w5wealth,
            ELSA_data_with_PGS$w7wealth)
 
 data_cox_ELSA_initial$baseline_discriminaition = c(ELSA_data_with_PGS$w5discrim_bin, 
-                             ELSA_data_with_PGS$w5discrim_bin, 
-                             ELSA_data_with_PGS$w5discrim_bin, 
-                             ELSA_data_with_PGS$w5discrim_bin)
+                                                   ELSA_data_with_PGS$w5discrim_bin, 
+                                                   ELSA_data_with_PGS$w5discrim_bin, 
+                                                   ELSA_data_with_PGS$w5discrim_bin)
 
 
 data_cox_ELSA_initial$discriminaition =  c(ELSA_data_with_PGS$w5discrim_bin, 
-                     ELSA_data_with_PGS$w6discrim_bin, 
-                     ELSA_data_with_PGS$w7discrim_bin, 
-                     ELSA_data_with_PGS$w8discrim_bin) 
+                                           ELSA_data_with_PGS$w6discrim_bin, 
+                                           ELSA_data_with_PGS$w7discrim_bin, 
+                                           ELSA_data_with_PGS$w8discrim_bin) 
 
 unique(data_cox_ELSA_initial$discriminaition)
 
@@ -281,25 +239,41 @@ unique(data_cox_ELSA_initial$depression_original)
 
 data_cox_ELSA_initial$depression = 8 - data_cox_ELSA_initial$depression_original
 
+data_cox_ELSA_initial$PGS_diab = c(ELSA_data_with_PGS$T2D_2018, 
+                                   ELSA_data_with_PGS$T2D_2018, 
+                                   ELSA_data_with_PGS$T2D_2018, 
+                                   ELSA_data_with_PGS$T2D_2018)
+
+
+data_cox_ELSA_initial$diabetes_outcome = c(ELSA_data_with_PGS$w5diabetes_new, 
+                                           ELSA_data_with_PGS$w6diabetes_new,
+                                           ELSA_data_with_PGS$w7diabetes_new,
+                                           ELSA_data_with_PGS$w8diabetes_new)
+
 
 length(unique(data_cox_ELSA_initial$ID))
 summary(data_cox_ELSA_initial)
 
-data_cox_ELSA_table = data.table(data_cox_ELSA_initial)
 
-data_cox_ELSA = na.omit(data_cox_ELSA_table, cols = c("MI_outcome", "PGS", "baseline_discriminaition"))
-data_cox_ELSA = as.data.frame(data_cox_ELSA)
-length(unique(data_cox_ELSA$ID))
-summary(data_cox_ELSA)
-data_cox_ELSA$MI_outcome
+##########################################
 
-ELSA_results = cox_model_PGS(data_cox_input = data_cox_ELSA, outcome = "MI_outcome")
+##### HRS data preparation 
 
 
-#######################################
-#######################################
+all_HRS_by_years_PGS$pc1 = all_HRS_by_years_PGS$PC1_5A
+all_HRS_by_years_PGS$pc2 = all_HRS_by_years_PGS$PC1_5B
+all_HRS_by_years_PGS$pc3 = all_HRS_by_years_PGS$PC1_5C
+all_HRS_by_years_PGS$pc4 = all_HRS_by_years_PGS$PC1_5D
+all_HRS_by_years_PGS$pc5 = all_HRS_by_years_PGS$PC1_5E 
+all_HRS_by_years_PGS$pc6 = all_HRS_by_years_PGS$PC6_10A
+all_HRS_by_years_PGS$pc7 = all_HRS_by_years_PGS$PC6_10B
+all_HRS_by_years_PGS$pc8 = all_HRS_by_years_PGS$PC6_10C
+all_HRS_by_years_PGS$pc9 = all_HRS_by_years_PGS$PC6_10D
+all_HRS_by_years_PGS$pc10 = all_HRS_by_years_PGS$PC6_10E
 
-##### HRS 
+
+#gene_HRS = "E4_MI_CARDIOGRAM15"
+
 
 ID_HRS = c(all_HRS_by_years_PGS$HHIDPN, 
            all_HRS_by_years_PGS$HHIDPN, 
@@ -343,10 +317,10 @@ data_cox_HRS_initial$sex = c(all_HRS_by_years_PGS$HRS2010_sex_1_0,
                              all_HRS_by_years_PGS$HRS2014_sex_1_0)
 
 
-data_cox_HRS_initial$PGS = c(all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15, 
-                             all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15, 
-                             all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15, 
-                             all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15) 
+data_cox_HRS_initial$PGS_mi = c(all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15, 
+                                all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15, 
+                                all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15, 
+                                all_HRS_by_years_PGS$E4_MI_CARDIOGRAM15) 
 
 
 data_cox_HRS_initial$wealth = c(all_HRS_by_years_PGS$HRS2010_wealth_noIRA, 
@@ -471,23 +445,224 @@ unique(data_cox_HRS_initial$diabetes_history)
 #add: hypertension_history stressful_event 
 
 data_cox_HRS_initial$depression = c(all_HRS_by_years_PGS$HRS2010_checklist_depression_bin, 
-                                             all_HRS_by_years_PGS$HRS2012_checklist_depression_bin, 
-                                             all_HRS_by_years_PGS$HRS2014_checklist_depression_bin, 
-                                             all_HRS_by_years_PGS$HRS2016_checklist_depression_bin) 
+                                    all_HRS_by_years_PGS$HRS2012_checklist_depression_bin, 
+                                    all_HRS_by_years_PGS$HRS2014_checklist_depression_bin, 
+                                    all_HRS_by_years_PGS$HRS2016_checklist_depression_bin) 
 
 
 
 
-length(unique(data_cox_HRS_initial$ID))
+data_cox_HRS_initial$PGS_diab = c(all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
+                                   all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
+                                   all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
+                                   all_HRS_by_years_PGS$E4_T2D_DIAGRAM12)
+
+
+data_cox_HRS_initial$diabetes_outcome = c(all_HRS_by_years_PGS$HRS2010_diabetes_new, 
+                                          all_HRS_by_years_PGS$HRS2012_diabetes_new,
+                                          all_HRS_by_years_PGS$HRS2014_diabetes_new,
+                                          all_HRS_by_years_PGS$HRS2016_diabetes_new)
+
+
+length(unique(data_cox_HRS_initial$ID_HRS))
 summary(data_cox_HRS_initial)
+
+########################################## ANALYSIS 
+##########################################
+########################################## ANALYSIS 
+##########################################
+
+#### ELSA, MI, discrim_bin
+#omiting NA in the outcome, discrim, and relevant PGS 
+
+data_cox_ELSA_table = data.table(data_cox_ELSA_initial)
+data_cox_ELSA = na.omit(data_cox_ELSA_table, cols = c("baseline_discriminaition",
+                                                      "MI_outcome",
+                                                      "PGS_mi"))
+data_cox_ELSA = as.data.frame(data_cox_ELSA)
+length(unique(data_cox_ELSA$ID))
+summary(data_cox_ELSA)
+data_cox_ELSA$MI_outcome
+
+#cox_model_PGS
+ELSA_results_mi = cox_model_PGS(data_cox_input = data_cox_ELSA,
+                             baseline_discriminaition = "baseline_discriminaition", 
+                             outcome = "MI_outcome",  
+                             PGS = "PGS_mi")
+
+#######################################
+
+#### HRS, MI, discrim_bin
+#omiting NA in the outcome, discrim, and relevant PGS 
 
 data_cox_HRS_table = data.table(data_cox_HRS_initial)
 
-data_cox_HRS = na.omit(data_cox_HRS_table, cols = c("MI_outcome", "PGS", "baseline_discriminaition"))
+data_cox_HRS = na.omit(data_cox_HRS_table, cols = c("baseline_discriminaition",
+                                                    "MI_outcome",
+                                                    "PGS_mi"))
 data_cox_HRS = as.data.frame(data_cox_HRS)
 length(unique(data_cox_HRS$ID))
 summary(data_cox_HRS)
 data_cox_HRS$MI_outcome
 
+#cox_model_PGS
+HRS_results_mi = cox_model_PGS(data_cox_input = data_cox_HRS, 
+                            baseline_discriminaition = "baseline_discriminaition", 
+                            outcome = "MI_outcome",  
+                            PGS = "PGS_mi")
 
-HRS_results = cox_model_PGS(data_cox_input = data_cox_HRS, outcome = "MI_outcome")
+
+
+
+HRS_results_mi_glm = glm_model_PGS(data_glm_input = data_cox_HRS, 
+                                                    baseline_discriminaition = "baseline_discriminaition", 
+                                                    outcome = "MI_outcome",  
+                                                    PGS = "PGS_mi")
+
+
+data_glm_HRS_baseline_cases_mi = subset(data_cox_HRS, data_cox_HRS$time_point == 0 & data_cox_HRS$MI_outcome == 1) 
+baseline_cases_mi_uniqueIDs = unique(data_glm_HRS_baseline_cases_mi$ID)
+
+data_glm_HRS_NObaseline_cases_mi <- data_cox_HRS[ !(data_cox_HRS$ID %in% c(baseline_cases_mi_uniqueIDs)), ]
+
+
+HRS_results_mi_glm_nobaseline = glm_model_PGS(data_glm_input = data_glm_HRS_NObaseline_cases_mi, 
+                                              baseline_discriminaition = "baseline_discriminaition", 
+                                              outcome = "MI_outcome",  
+                                              PGS = "PGS_mi")
+
+#########################################  diabetes 
+
+#omiting NA in the outcome, discrim, and relevant PGS 
+
+data_cox_ELSA_table = data.table(data_cox_ELSA_initial)
+data_cox_ELSA = na.omit(data_cox_ELSA_table, cols = c("baseline_discriminaition",
+                                                      "diabetes_outcome",
+                                                      "PGS_diab"))
+data_cox_ELSA = as.data.frame(data_cox_ELSA)
+length(unique(data_cox_ELSA$ID))
+summary(data_cox_ELSA)
+data_cox_ELSA$MI_outcome
+
+#cox_model_PGS
+ELSA_results_diabetes_cox = cox_model_PGS(data_cox_input = data_cox_ELSA,
+                             baseline_discriminaition = "baseline_discriminaition", 
+                             outcome = "diabetes_outcome",  
+                             PGS = "PGS_diab")
+
+
+ELSA_results_diabetes_cox$Estimate_rounded = round(ELSA_results_diabetes_cox$estimate, 2)
+ELSA_results_diabetes_cox$SE_rounded = round(ELSA_results_diabetes_cox$std.error, 2)
+
+ELSA_results_diabetes_cox$CI95_edited = paste("[", round(ELSA_results_diabetes_cox), ";", round(ELSA_results_diabetes_cox$conf.high, 2), "]", sep = "")
+ELSA_results_diabetes_cox$p_value_rounded = round(ELSA_results_diabetes_cox$p.value, 4)
+
+ELSA_results_diabetes_cox_table_edited  = data.frame(ELSA_results_diabetes_cox$Model, 
+                                                     ELSA_results_diabetes_cox$term, 
+                                                     ELSA_results_diabetes_cox$Estimate_rounded,
+                                                     ELSA_results_diabetes_cox$SE_rounded,
+                                                     ELSA_results_diabetes_cox$CI95_edited,
+                                                     ELSA_results_diabetes_cox$p_value_rounded)
+
+
+
+data_glm_ELSA_baseline_cases = subset(data_cox_ELSA, data_cox_ELSA$time_point == 0 & data_cox_ELSA$diabetes_outcome == 1) 
+baseline_cases_uniqueIDs = unique(data_glm_ELSA_baseline_cases$ID)
+
+data_glm_ELSA_NObaseline_cases <- data_cox_ELSA[ !(data_cox_ELSA$ID %in% c(baseline_cases_uniqueIDs)), ]
+
+ELSA_results_diabetes_glm_nobaseline = glm_model_PGS(data_glm_input = data_glm_ELSA_NObaseline_cases, 
+                                         baseline_discriminaition = "baseline_discriminaition", 
+                                         outcome = "diabetes_outcome",  
+                                         PGS = "PGS_diab")
+
+
+ELSA_results_diabetes_glm_nobaseline$Estimate_rounded = round(ELSA_results_diabetes_glm_nobaseline$estimate, 2)
+ELSA_results_diabetes_glm_nobaseline$SE_rounded = round(ELSA_results_diabetes_glm_nobaseline$std.error, 2)
+
+ELSA_results_diabetes_glm_nobaseline$CI95_edited = paste("[", round(ELSA_results_diabetes_glm_nobaseline), ";", round(ELSA_results_diabetes_glm_nobaseline$conf.high, 2), "]", sep = "")
+ELSA_results_diabetes_glm_nobaseline$p_value_rounded = round(ELSA_results_diabetes_glm_nobaseline$p.value, 4)
+
+ELSA_results_diabetes_glm_nobaseline_table_edited  = data.frame(ELSA_results_diabetes_glm_nobaseline$Model, 
+                                                                ELSA_results_diabetes_glm_nobaseline$term, 
+                                                                ELSA_results_diabetes_glm_nobaseline$Estimate_rounded,
+                                                                ELSA_results_diabetes_glm_nobaseline$SE_rounded,
+                                                                ELSA_results_diabetes_glm_nobaseline$CI95_edited,
+                                                                ELSA_results_diabetes_glm_nobaseline$p_value_rounded)
+
+#######################################
+
+#### HRS, diabetes, discrim_bin
+#omiting NA in the outcome, discrim, and relevant PGS 
+
+#ID_diabebtes_free = 
+#HRS2010_diabetes_new
+#HRS2010_diabetes_ever
+
+
+data_cox_HRS_table = data.table(data_cox_HRS_initial)
+
+data_cox_HRS = na.omit(data_cox_HRS_table, cols = c("baseline_discriminaition",
+                                                    "diabetes_outcome",
+                                                    "PGS_diab"))
+data_cox_HRS = as.data.frame(data_cox_HRS)
+length(unique(data_cox_HRS$ID))
+summary(data_cox_HRS)
+data_cox_HRS$MI_outcome
+
+#cox_model_PGS
+HRS_results_diabetes = cox_model_PGS(data_cox_input = data_cox_HRS, 
+                            baseline_discriminaition = "baseline_discriminaition", 
+                            outcome = "diabetes_outcome",  
+                            PGS = "PGS_diab")
+
+
+
+HRS_results_diabetes$Estimate_rounded = round(HRS_results_diabetes$estimate, 2)
+HRS_results_diabetes$SE_rounded = round(HRS_results_diabetes$std.error, 2)
+
+HRS_results_diabetes$CI95_edited = paste("[", round(HRS_results_diabetes$conf.low, 2), ";", round(HRS_results_diabetes$conf.high, 2), "]", sep = "")
+HRS_results_diabetes$p_value_rounded = round(HRS_results_diabetes$p.value, 4)
+
+HRS_results_diabetes_table_edited  = data.frame(HRS_results_diabetes$Model, 
+                                                HRS_results_diabetes$term, 
+                                                HRS_results_diabetes$Estimate_rounded,
+                                                HRS_results_diabetes$SE_rounded,
+                                                HRS_results_diabetes$CI95_edited,
+                                                HRS_results_diabetes$p_value_rounded)
+
+
+#glm model 
+
+HRS_results_diabetes_glm = glm_model_PGS(data_glm_input = data_cox_HRS, 
+                                     baseline_discriminaition = "baseline_discriminaition", 
+                                     outcome = "diabetes_outcome",  
+                                     PGS = "PGS_diab")
+
+
+data_glm_HRS_baseline_cases = subset(data_cox_HRS, data_cox_HRS$time_point == 0 & data_cox_HRS$diabetes_outcome == 1) 
+baseline_cases_uniqueIDs = unique(data_glm_HRS_baseline_cases$ID)
+
+data_glm_HRS_NObaseline_cases <- data_cox_HRS[ !(data_cox_HRS$ID %in% c(baseline_cases_uniqueIDs)), ]
+
+HRS_results_diabetes_glm_nobaseline = glm_model_PGS(data_glm_input = data_glm_HRS_NObaseline_cases, 
+                                          baseline_discriminaition = "baseline_discriminaition", 
+                                          outcome = "diabetes_outcome",  
+                                          PGS = "PGS_diab")
+
+
+
+HRS_results_diabetes_glm_nobaseline$Estimate_rounded = round(HRS_results_diabetes_glm_nobaseline$estimate, 2)
+HRS_results_diabetes_glm_nobaseline$SE_rounded = round(HRS_results_diabetes_glm_nobaseline$std.error, 2)
+
+HRS_results_diabetes_glm_nobaseline$CI95_edited = paste("[", round(HRS_results_diabetes_glm_nobaseline$conf.low, 2), ";", round(HRS_results_diabetes_glm_nobaseline$conf.high, 2), "]", sep = "")
+HRS_results_diabetes_glm_nobaseline$p_value_rounded = round(HRS_results_diabetes_glm_nobaseline$p.value, 4)
+
+HRS_results_diabetes_glm_nobaseline_table_edited  = data.frame(HRS_results_diabetes_glm_nobaseline$Model, 
+                                                               HRS_results_diabetes_glm_nobaseline$term, 
+                                                               HRS_results_diabetes_glm_nobaseline$Estimate_rounded,
+                                                               HRS_results_diabetes_glm_nobaseline$SE_rounded,
+                                                               HRS_results_diabetes_glm_nobaseline$CI95_edited,
+                                                               HRS_results_diabetes_glm_nobaseline$p_value_rounded)
+
+
