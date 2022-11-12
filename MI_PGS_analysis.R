@@ -48,13 +48,16 @@ DATA_ROOT = "KCL_postDoc/Data_analysis/"
 # harmonised_data_all_waves = read.csv(paste(directory, DATA_ROOT, "H_HRS_c.csv", sep=""))
 
 
-all_HRS_by_years_PGS_before_subsetting_to_baseline_free = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
-ELSA_data_with_PGS_before_subsetting_to_baseline_free = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+#all_HRS_by_years_PGS_before_subsetting_to_baseline_free = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
+#ELSA_data_with_PGS_before_subsetting_to_baseline_free = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
 #all_HRS_by_years_PGS_before_subsetting_to_baseline_free$HRS2010_diabetes_ever
 #all_HRS_by_years_PGS_before_subsetting_to_baseline_free$HRS2010_diabetes_new
 
-ELSA_data_with_PGS  = subset(ELSA_data_with_PGS_before_subsetting_to_baseline_free, ELSA_data_with_PGS_before_subsetting_to_baseline_free$ == 0 & ELSA_data_with_PGS_before_subsetting_to_baseline_free$ == 0)
-all_HRS_by_years_PGS  = subset(all_HRS_by_years_PGS_before_subsetting_to_baseline_free, all_HRS_by_years_PGS_before_subsetting_to_baseline_free$ == 0 & all_HRS_by_years_PGS_before_subsetting_to_baseline_free$ == 0)
+all_HRS_by_years_PGS = read.csv(paste(directory, DATA_ROOT, "HRS_2008_data/all_HRS_by_years_PGS.csv", sep = "")) 
+ELSA_data_with_PGS  = read.csv(paste(directory, DATA_ROOT, "DATA_ELSA/ELSA_data_with_PGS.csv", sep = "")) 
+
+#ELSA_data_with_PGS  = subset(ELSA_data_with_PGS_before_subsetting_to_baseline_free, ELSA_data_with_PGS_before_subsetting_to_baseline_free$ == 0 & ELSA_data_with_PGS_before_subsetting_to_baseline_free$ == 0)
+#all_HRS_by_years_PGS  = subset(all_HRS_by_years_PGS_before_subsetting_to_baseline_free, all_HRS_by_years_PGS_before_subsetting_to_baseline_free$ == 0 & all_HRS_by_years_PGS_before_subsetting_to_baseline_free$ == 0)
 
 ######  Set the root location on the user's local machine to save output files.
 
@@ -530,7 +533,7 @@ write.csv(mi_results_HRS_pca, file = paste(OUTPUT_ROOT, "mi_results_HRS_pca_unad
 ######
 #everyone had MI or did not report it in ELSA !
 
-ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 | ELSA_data_with_PGS$w7_MI_new_bin == 0 | ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
+ELSA_data_with_PGS$MI_composite = case_when(ELSA_data_with_PGS$w6_MI_new_bin == 0 & ELSA_data_with_PGS$w7_MI_new_bin == 0 & ELSA_data_with_PGS$w8_MI_new_bin == 0 ~ 0, 
                                             ELSA_data_with_PGS$w6_MI_new_bin == 1 | ELSA_data_with_PGS$w7_MI_new_bin == 1 | ELSA_data_with_PGS$w8_MI_new_bin == 1 ~ 1) 
 
 unique(ELSA_data_with_PGS$MI_composite)
