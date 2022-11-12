@@ -661,18 +661,18 @@ ELSA_results_mi = AFT_model_PGS(data_AFT_input = data_AFT_ELSA,
 
 
 
-ELSA_results_mi$Estimate_rounded = round(ELSA_results_mi$estimate, 2)
-ELSA_results_mi$SE_rounded = round(ELSA_results_mi$std.error, 2)
-
-ELSA_results_mi$CI95_edited = paste("[", round(ELSA_results_mi$conf.low), ";", round(ELSA_results_mi$conf.high, 2), "]", sep = "")
-ELSA_results_mi$p_value_rounded = round(ELSA_results_mi$p.value, 4)
-
-ELSA_results_mi_table_edited  = data.frame(ELSA_results_mi$Model, 
-                                           ELSA_results_mi$term, 
-                                           ELSA_results_mi$Estimate_rounded,
-                                           ELSA_results_mi$SE_rounded,
-                                           ELSA_results_mi$CI95_edited,
-                                           ELSA_results_mi$p_value_rounded)
+# ELSA_results_mi$Estimate_rounded = round(ELSA_results_mi$estimate, 2)
+# ELSA_results_mi$SE_rounded = round(ELSA_results_mi$std.error, 2)
+# 
+# ELSA_results_mi$CI95_edited = paste("[", round(ELSA_results_mi$conf.low), ";", round(ELSA_results_mi$conf.high, 2), "]", sep = "")
+# ELSA_results_mi$p_value_rounded = round(ELSA_results_mi$p.value, 4)
+# 
+# ELSA_results_mi_table_edited  = data.frame(ELSA_results_mi$Model, 
+#                                            ELSA_results_mi$term, 
+#                                            ELSA_results_mi$Estimate_rounded,
+#                                            ELSA_results_mi$SE_rounded,
+#                                            ELSA_results_mi$CI95_edited,
+#                                            ELSA_results_mi$p_value_rounded)
 
 
 #### ELSA, MI, discrim_bin glm model 
@@ -763,18 +763,18 @@ HRS_results_mi = AFT_model_PGS(data_AFT_input = data_AFT_HRS,
                                plot_name = "HRS, MI, AFT regression: ")
 
 
-HRS_results_mi$Estimate_rounded = round(HRS_results_mi$estimate, 2)
-HRS_results_mi$SE_rounded = round(HRS_results_mi$std.error, 2)
-
-HRS_results_mi$CI95_edited = paste("[", round(HRS_results_mi$conf.low), ";", round(HRS_results_mi$conf.high, 2), "]", sep = "")
-HRS_results_mi$p_value_rounded = round(HRS_results_mi$p.value, 4)
-
-HRS_results_mi_table_edited  = data.frame(HRS_results_mi$Model, 
-                                          HRS_results_mi$term, 
-                                          HRS_results_mi$Estimate_rounded,
-                                          HRS_results_mi$SE_rounded,
-                                          HRS_results_mi$CI95_edited,
-                                          HRS_results_mi$p_value_rounded)
+# HRS_results_mi$Estimate_rounded = round(HRS_results_mi$estimate, 2)
+# HRS_results_mi$SE_rounded = round(HRS_results_mi$std.error, 2)
+# 
+# HRS_results_mi$CI95_edited = paste("[", round(HRS_results_mi$conf.low), ";", round(HRS_results_mi$conf.high, 2), "]", sep = "")
+# HRS_results_mi$p_value_rounded = round(HRS_results_mi$p.value, 4)
+# 
+# HRS_results_mi_table_edited  = data.frame(HRS_results_mi$Model, 
+#                                           HRS_results_mi$term, 
+#                                           HRS_results_mi$Estimate_rounded,
+#                                           HRS_results_mi$SE_rounded,
+#                                           HRS_results_mi$CI95_edited,
+#                                           HRS_results_mi$p_value_rounded)
 
 
 #### HRS, MI, discrim_bin, glm model 
@@ -861,18 +861,18 @@ ELSA_results_diabetes_AFT = AFT_model_PGS(data_AFT_input = data_AFT_ELSA,
                                           plot_name = "ELSA, T2DM, AFT regression: ")
 
 
-ELSA_results_diabetes_AFT$Estimate_rounded = round(ELSA_results_diabetes_AFT$estimate, 2)
-ELSA_results_diabetes_AFT$SE_rounded = round(ELSA_results_diabetes_AFT$std.error, 2)
-
-ELSA_results_diabetes_AFT$CI95_edited = paste("[", round(ELSA_results_diabetes_AFT$conf.low, 2), ";", round(ELSA_results_diabetes_AFT$conf.high, 2), "]", sep = "")
-ELSA_results_diabetes_AFT$p_value_rounded = round(ELSA_results_diabetes_AFT$p.value, 2)
-
-ELSA_results_diabetes_AFT_table_edited  = data.frame(ELSA_results_diabetes_AFT$Model, 
-                                                     ELSA_results_diabetes_AFT$term, 
-                                                     ELSA_results_diabetes_AFT$Estimate_rounded,
-                                                     ELSA_results_diabetes_AFT$SE_rounded,
-                                                     ELSA_results_diabetes_AFT$CI95_edited,
-                                                     ELSA_results_diabetes_AFT$p_value_rounded)
+# ELSA_results_diabetes_AFT$Estimate_rounded = round(ELSA_results_diabetes_AFT$estimate, 2)
+# ELSA_results_diabetes_AFT$SE_rounded = round(ELSA_results_diabetes_AFT$std.error, 2)
+# 
+# ELSA_results_diabetes_AFT$CI95_edited = paste("[", round(ELSA_results_diabetes_AFT$conf.low, 2), ";", round(ELSA_results_diabetes_AFT$conf.high, 2), "]", sep = "")
+# ELSA_results_diabetes_AFT$p_value_rounded = round(ELSA_results_diabetes_AFT$p.value, 2)
+# 
+# ELSA_results_diabetes_AFT_table_edited  = data.frame(ELSA_results_diabetes_AFT$Model, 
+#                                                      ELSA_results_diabetes_AFT$term, 
+#                                                      ELSA_results_diabetes_AFT$Estimate_rounded,
+#                                                      ELSA_results_diabetes_AFT$SE_rounded,
+#                                                      ELSA_results_diabetes_AFT$CI95_edited,
+#                                                      ELSA_results_diabetes_AFT$p_value_rounded)
 
 #### ELSA, diabetes, discrim_bin, glm model ADD 
 
@@ -969,18 +969,18 @@ HRS_results_diabetes = AFT_model_PGS(data_AFT_input = data_AFT_HRS,
 
 
 
-HRS_results_diabetes$Estimate_rounded = round(HRS_results_diabetes$estimate, 2)
-HRS_results_diabetes$SE_rounded = round(HRS_results_diabetes$std.error, 2)
-
-HRS_results_diabetes$CI95_edited = paste("[", round(HRS_results_diabetes$conf.low, 2), ";", round(HRS_results_diabetes$conf.high, 2), "]", sep = "")
-HRS_results_diabetes$p_value_rounded = round(HRS_results_diabetes$p.value, 4)
-
-HRS_results_diabetes_table_edited  = data.frame(HRS_results_diabetes$Model, 
-                                                HRS_results_diabetes$term, 
-                                                HRS_results_diabetes$Estimate_rounded,
-                                                HRS_results_diabetes$SE_rounded,
-                                                HRS_results_diabetes$CI95_edited,
-                                                HRS_results_diabetes$p_value_rounded)
+# HRS_results_diabetes$Estimate_rounded = round(HRS_results_diabetes$estimate, 2)
+# HRS_results_diabetes$SE_rounded = round(HRS_results_diabetes$std.error, 2)
+# 
+# HRS_results_diabetes$CI95_edited = paste("[", round(HRS_results_diabetes$conf.low, 2), ";", round(HRS_results_diabetes$conf.high, 2), "]", sep = "")
+# HRS_results_diabetes$p_value_rounded = round(HRS_results_diabetes$p.value, 4)
+# 
+# HRS_results_diabetes_table_edited  = data.frame(HRS_results_diabetes$Model, 
+#                                                 HRS_results_diabetes$term, 
+#                                                 HRS_results_diabetes$Estimate_rounded,
+#                                                 HRS_results_diabetes$SE_rounded,
+#                                                 HRS_results_diabetes$CI95_edited,
+#                                                 HRS_results_diabetes$p_value_rounded)
 
 
 ##### HRS, diabetes, discrim_bin  glm model 

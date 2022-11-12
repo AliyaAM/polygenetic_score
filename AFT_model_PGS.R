@@ -145,6 +145,9 @@ AFT_model_PGS = function(data_AFT_input,
   
   print("M_5_interaction done")
   
+  M_5_interaction$res
+  
+  print(M_5_interaction$res)
  # Model_5_outcome_gene_interaction = summary( M_5_interaction)
   
   
@@ -160,7 +163,7 @@ AFT_model_PGS = function(data_AFT_input,
   plot_M_4_int = plot(M_4_interaction, ylim = c(0.90, 1))
   plot_M_5_int = plot(M_5_interaction, ylim = c(0.90, 1))
   
-  plot_grid(list(plot_M_uni_int, plot_M_1_int, plot_M_2_int, plot_M_3_int, plot_M_4_int, plot_M_5_int))
+  #plot_grid(list(plot_M_uni_int, plot_M_1_int, plot_M_2_int, plot_M_3_int, plot_M_4_int, plot_M_5_int))
   
   # plot_M_uni_int = plot_model(#title(main = NULL), 
   #   title = "", #title = paste(plot_name, "Univariate", sep =""),
@@ -275,51 +278,53 @@ AFT_model_PGS = function(data_AFT_input,
   
   #print(all_models)
   
+  # print("model 3 data output")
+  # print(plot_M_3_int) 
+  # 
+  # data_uni = cbind(plot_M_uni_int$data[1:3], plot_M_uni_int$data[5:6], plot_M_uni_int$data[9]) 
+  # 
+  # ###########################
+  # 
+  # 
+  # 
+  # data_1 = cbind(plot_M_1_int$data[1:3], plot_M_1_int$data[5:6], plot_M_1_int$data[9]) 
+  # 
+  # ###########################
+  # 
+  # 
+  # data_2 = cbind(plot_M_2_int$data[1:3], plot_M_2_int$data[5:6], plot_M_2_int$data[9]) 
+  # 
+  ###########################
   
-  data_uni = cbind(plot_M_uni_int$data[1:3], plot_M_uni_int$data[5:6], plot_M_uni_int$data[9]) 
+  
+  #data_2a = cbind(plot_M_2a_int$data[1:3], plot_M_2a_int$data[5:6], plot_M_2a_int$data[9]) 
   
   ###########################
   
   
-  
-  data_1 = cbind(plot_M_1_int$data[1:3], plot_M_1_int$data[5:6], plot_M_1_int$data[9]) 
-  
-  ###########################
-  
-  
-  data_2 = cbind(plot_M_2_int$data[1:3], plot_M_2_int$data[5:6], plot_M_2_int$data[9]) 
+  #data_2s = cbind(plot_M_2s_int$data[1:3], plot_M_2s_int$data[5:6], plot_M_2s_int$data[9]) 
   
   ###########################
   
   
-  data_2a = cbind(plot_M_2a_int$data[1:3], plot_M_2a_int$data[5:6], plot_M_2a_int$data[9]) 
+  #data_2pa = cbind(plot_M_2pa_int$data[1:3], plot_M_2pa_int$data[5:6], plot_M_2pa_int$data[9]) 
   
   ###########################
   
-  
-  data_2s = cbind(plot_M_2s_int$data[1:3], plot_M_2s_int$data[5:6], plot_M_2s_int$data[9]) 
-  
-  ###########################
-  
-  
-  data_2pa = cbind(plot_M_2pa_int$data[1:3], plot_M_2pa_int$data[5:6], plot_M_2pa_int$data[9]) 
-  
-  ###########################
-  
-  
-  data_3 = cbind(plot_M_3_int$data[1:3], plot_M_3_int$data[5:6], plot_M_3_int$data[9]) 
-  
-  
-  ###########################
-  
-  data_4 = cbind(plot_M_4_int$data[1:3], plot_M_4_int$data[5:6], plot_M_4_int$data[9]) 
-  
-  
-  ################
-  
-  ###########################
-  
-  data_5 = cbind(plot_M_5_int$data[1:3], plot_M_5_int$data[5:6], plot_M_5_int$data[9]) 
+  # 
+  # data_3 = cbind(plot_M_3_int$data[1:3], plot_M_3_int$data[5:6], plot_M_3_int$data[9]) 
+  # 
+  # 
+  # ###########################
+  # 
+  # data_4 = cbind(plot_M_4_int$data[1:3], plot_M_4_int$data[5:6], plot_M_4_int$data[9]) 
+  # 
+  # 
+  # ################
+  # 
+  # ###########################
+  # 
+  # data_5 = cbind(plot_M_5_int$data[1:3], plot_M_5_int$data[5:6], plot_M_5_int$data[9]) 
   
   
   Model = c("Univariate",
@@ -331,15 +336,15 @@ AFT_model_PGS = function(data_AFT_input,
             "Model_2",
             "Model_2",
             "Model_2",
-            "Model_2a",
-            "Model_2a",
-            "Model_2a",
-            "Model_2s",
-            "Model_2s",
-            "Model_2s",
-            "Model_2pa",
-            "Model_2pa",
-            "Model_2pa",
+            #"Model_2a",
+            #"Model_2a",
+            #"Model_2a",
+            #"Model_2s",
+           # "Model_2s",
+            #"Model_2s",
+            #"Model_2pa",
+            #"Model_2pa",
+            #"Model_2pa",
             "Model_3",
             "Model_3",
             "Model_3",
@@ -365,38 +370,41 @@ AFT_model_PGS = function(data_AFT_input,
   
   #output_results = table
   
-  
-  output_results = rbind(data_uni, 
-                         data_1,
-                         data_2, 
-                         data_2a, 
-                         data_2s, 
-                         data_2pa,
-                         data_3, 
-                         data_4, 
-                         data_5)
-  
-  
-  output_results = data.frame(Model, 
-                              output_results)
-  
-  
+  # 
+  # output_results = rbind(data_uni, 
+  #                        data_1,
+  #                        data_2, 
+  #                        #data_2a, 
+  #                        #data_2s, 
+  #                        #data_2pa,
+  #                        data_3, 
+  #                        data_4, 
+  #                        data_5)
+  # 
+  # 
+  # output_results = data.frame(Model, 
+  #                             output_results)
   
   
-  output_results$Estimate_rounded = round(output_results$estimate, 4)
-  output_results$SE_rounded = round(output_results$std.error, 4)
   
-  output_results$CI95_edited = paste("[", round(output_results$conf.low, 4), ";", round(output_results$conf.high, 4), "]", sep = "")
-  output_results$p_value_rounded = round(output_results$p.value, 4)
   
-  output_results_table_edited  = data.frame(output_results$Model, 
-                                            output_results$term,
-                                            output_results$Estimate_rounded,
-                                            output_results$SE_rounded,
-                                            output_results$CI95_edited,
-                                            output_results$p_value_rounded)
+  # output_results$Estimate_rounded = round(output_results$est, 4)
+  # output_results$SE_rounded = round(output_results$std.error, 4)
+  # 
+  # output_results$CI95_edited = paste("[", round(output_results$conf.low, 4), ";", round(output_results$conf.high, 4), "]", sep = "")
+  # output_results$p_value_rounded = round(output_results$p.value, 4)
+  # 
+  # output_results_table_edited  = data.frame(output_results$Model, 
+  #                                           output_results$term,
+  #                                           output_results$Estimate_rounded,
+  #                                           output_results$SE_rounded,
+  #                                           output_results$CI95_edited,
+  #                                           output_results$p_value_rounded)
   
- # write.csv(output_results_table_edited, file = paste(folder, analysis_name, ".csv", sep = ""))
+  output_results = rbind(M_uni_interaction$res, M_1_interaction$res, M_2_interaction$res, M_3_interaction$res, M_4_interaction$res, M_5_interaction$res)
+  
+  
+  write.csv(output_results, file = paste(folder, analysis_name, ".csv", sep = ""))
   
   
   return(params = output_results)
