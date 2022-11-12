@@ -238,7 +238,7 @@ data_cox_ELSA_initial$physical_activity  = c(ELSA_data_with_PGS$w5pacomb1,
 
 unique(data_cox_ELSA_initial$physical_activity)
 
-print("add BMI variable from the harmonised ELSA data file")
+print("  bmi was taken in w4, w6, w8, but not the other waves ")
 data_cox_ELSA_initial$BMI = c(ELSA_data_with_PGS$w4_bmi, 
                               ELSA_data_with_PGS$w4_bmi, 
                               ELSA_data_with_PGS$w6_bmi, 
@@ -304,6 +304,56 @@ data_cox_ELSA_initial$depressive_symptoms = c(ELSA_data_with_PGS$w5cesd,
 
 length(unique(data_cox_ELSA_initial$ID))
 summary(data_cox_ELSA_initial)
+
+####### stressful event: 
+# w4_jobstress
+# life_stress_event
+# chldhd_stress_event
+# w9_loneliness3
+# w9_loneliness
+
+#summary score
+
+data_cox_ELSA_initial$loneliness = c(ELSA_data_with_PGS$w5_loneliness, 
+                                      ELSA_data_with_PGS$w6_loneliness, 
+                                      ELSA_data_with_PGS$w7_loneliness, 
+                                      ELSA_data_with_PGS$w8_loneliness)
+
+
+#summary score (three-item scale, shorter)
+
+data_cox_ELSA_initial$loneliness3 = c(ELSA_data_with_PGS$w5_loneliness3, 
+                                            ELSA_data_with_PGS$w6_loneliness3, 
+                                            ELSA_data_with_PGS$w7_loneliness3, 
+                                            ELSA_data_with_PGS$w8_loneliness3)
+
+#summary score
+
+data_cox_ELSA_initial$life_stress_event = c(ELSA_data_with_PGS$life_stress_event, 
+                                    ELSA_data_with_PGS$life_stress_event, 
+                                    ELSA_data_with_PGS$life_stress_event, 
+                                    ELSA_data_with_PGS$life_stress_event)
+
+
+unique(data_cox_ELSA_initial$life_stress_event)
+
+
+#summary score
+data_cox_ELSA_initial$chldhd_stress_event = c(ELSA_data_with_PGS$chldhd_stress_event, 
+                                            ELSA_data_with_PGS$chldhd_stress_event, 
+                                            ELSA_data_with_PGS$chldhd_stress_event, 
+                                            ELSA_data_with_PGS$chldhd_stress_event)
+
+unique(data_cox_ELSA_initial$chldhd_stress_event)
+
+
+#summary score
+
+data_cox_ELSA_initial$jobstress = c(ELSA_data_with_PGS$w5_jobstress, 
+                                              ELSA_data_with_PGS$w6_jobstress, 
+                                              ELSA_data_with_PGS$w7_jobstress, 
+                                              ELSA_data_with_PGS$w8_jobstress)
+
 
 
 ##########################################
@@ -523,7 +573,49 @@ data_cox_HRS_initial$PGS_depres_symp = c(all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16
 
 
 
-# depressive symptoms: r10cesd in RAND file ADD (also run the other analysis per wave and )
+# depressive symptoms: 
+
+data_cox_HRS_initial$depressive_symptoms = c(all_HRS_by_years_PGS$HRS2010_cesd, 
+                                             all_HRS_by_years_PGS$HRS2012_cesd, 
+                                             all_HRS_by_years_PGS$HRS2014_cesd,
+                                             all_HRS_by_years_PGS$HRS2016_cesd)
+
+
+
+data_cox_HRS_initial$loneliness = c(all_HRS_by_years_PGS$HRS2010_loneliness, 
+                                      all_HRS_by_years_PGS$HRS2012_loneliness, 
+                                      all_HRS_by_years_PGS$HRS2014_loneliness, 
+                                      all_HRS_by_years_PGS$HRS2016_loneliness)
+
+
+#summary score
+
+data_cox_HRS_initial$life_stress_event = c(all_HRS_by_years_PGS$life_stress_event, 
+                                            all_HRS_by_years_PGS$life_stress_event, 
+                                            all_HRS_by_years_PGS$life_stress_event, 
+                                            all_HRS_by_years_PGS$life_stress_event)
+
+
+unique(data_cox_HRS_initial$life_stress_event)
+
+
+#summary score
+data_cox_HRS_initial$chldhd_stress_event = c(all_HRS_by_years_PGS$chldhd_stress_event, 
+                                              all_HRS_by_years_PGS$chldhd_stress_event, 
+                                              all_HRS_by_years_PGS$chldhd_stress_event, 
+                                              all_HRS_by_years_PGS$chldhd_stress_event)
+
+unique(data_cox_HRS_initial$chldhd_stress_event)
+
+
+#summary score: no data for 2014, 2016 and 2018
+
+data_cox_HRS_initial$jobstress = c(all_HRS_by_years_PGS$HRS2008_jobstress, 
+                                    all_HRS_by_years_PGS$HRS2010_jobstress, 
+                                    all_HRS_by_years_PGS$HRS2012_jobstress, 
+                                    all_HRS_by_years_PGS$HRS2012_jobstress)
+
+
 
 length(unique(data_cox_HRS_initial$ID_HRS))
 summary(data_cox_HRS_initial)
@@ -939,4 +1031,162 @@ plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
 file.copy(from=plots.png.paths, to=OUTPUT_ROOT)
 
 #################################### Depressive symptoms ############################################
+
+#PGS_depres_symp
+#depressive_symptoms
+
+data_cox_ELSA_initial = data.table(data_cox_ELSA_initial)
+
+data_glm_gaussian_ELSA = na.omit(data_cox_ELSA_initial, cols = c("baseline_discriminaition",
+                                                                 "depressive_symptoms",
+                                                                 "PGS_depres_symp"))
+data_glm_gaussian_ELSA = as.data.frame(data_glm_gaussian_ELSA)
+length(unique(data_glm_gaussian_ELSA$ID))
+summary(data_glm_gaussian_ELSA)
+data_glm_gaussian_ELSA$MI_outcome
+
+
+##### ELSA, depressive_symp, discrim_bin  glm model 
+
+ELSA_results_depressive_symp_glm = glm_gaussian_PGS(data_glm_input = data_glm_gaussian_ELSA, 
+                                                    baseline_discriminaition = "baseline_discriminaition", 
+                                                    outcome = "depressive_symptoms",  
+                                                    PGS = "PGS_depres_symp",
+                                                    OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                    alternative_cov = "life_stress_event", 
+                                                    
+                                                    analysis_name = "ELSA_results_depressive_glm", 
+                                                    plot_name = "ELSA, T2DM, GLM: ")
+
+
+
+ELSA_results_depressive_symp_glm$Estimate_rounded = round(ELSA_results_depressive_symp_glm$estimate, 4)
+ELSA_results_depressive_symp_glm$SE_rounded = round(ELSA_results_depressive_symp_glm$std.error, 4)
+
+ELSA_results_depressive_symp_glm$CI95_edited = paste("[", round(ELSA_results_depressive_symp_glm$conf.low, 4), ";", round(ELSA_results_depressive_symp_glm$conf.high, 4), "]", sep = "")
+ELSA_results_depressive_symp_glm$p_value_rounded = round(ELSA_results_depressive_symp_glm$p.value, 4)
+
+ELSA_results_depressive_symp_glm_table_edited  = data.frame(ELSA_results_depressive_symp_glm$Model, 
+                                                            ELSA_results_depressive_symp_glm$term, 
+                                                            ELSA_results_depressive_symp_glm$Estimate_rounded,
+                                                            ELSA_results_depressive_symp_glm$SE_rounded,
+                                                            ELSA_results_depressive_symp_glm$CI95_edited,
+                                                            ELSA_results_depressive_symp_glm$p_value_rounded)
+
+
+##### ELSA, depressive_symp, discrim_bin  glm model no baseline (depressive symptoms are gaussian not binary)
+# 
+# data_glm_ELSA_baseline_cases = subset(data_glm_gaussian_ELSA, data_glm_gaussian_ELSA$time_point == 0 & data_glm_gaussian_ELSA$depressive_symptoms == 1) 
+# baseline_cases_uniqueIDs = unique(data_glm_ELSA_baseline_cases$ID)
+# 
+# data_glm_ELSA_NObaseline_cases <- data_glm_gaussian_ELSA[ !(data_glm_gaussian_ELSA$ID %in% c(baseline_cases_uniqueIDs)), ]
+# 
+# ELSA_results_diabetes_glm_nobaseline = glm_gaussian_PGS(data_glm_input = data_glm_ELSA_NObaseline_cases, 
+#                                                         baseline_discriminaition = "baseline_discriminaition", 
+#                                                         outcome = "depressive_symptoms",  
+#                                                         PGS = "PGS_depres_symp",
+#                                                         OUTPUT_ROOT = OUTPUT_ROOT, 
+#                                                         alternative_cov = "life_stress_event", 
+#                                                         
+#                                                         analysis_name = "ELSA_results_depressive_glm_no_baseline", 
+#                                                         plot_name = "ELSA, T2DM, GLM (no baseline): ")
+# 
+# 
+# 
+# ELSA_results_depressive_symp_glm_nobaseline$Estimate_rounded = round(ELSA_results_depressive_symp_glm_nobaseline$estimate, 4)
+# ELSA_results_depressive_symp_glm_nobaseline$SE_rounded = round(ELSA_results_depressive_symp_glm_nobaseline$std.error, 4)
+# 
+# ELSA_results_depressive_symp_glm_nobaseline$CI95_edited = paste("[", round(ELSA_results_depressive_symp_glm_nobaseline$conf.low, 4), ";", round(ELSA_results_depressive_symp_glm_nobaseline$conf.high, 4), "]", sep = "")
+# ELSA_results_depressive_symp_glm_nobaseline$p_value_rounded = round(ELSA_results_depressive_symp_glm_nobaseline$p.value, 4)
+# 
+# ELSA_results_depressive_symp_glm_nobaseline_table_edited  = data.frame(ELSA_results_depressive_symp_glm_nobaseline$Model, 
+#                                                                        ELSA_results_depressive_symp_glm_nobaseline$term, 
+#                                                                        ELSA_results_depressive_symp_glm_nobaseline$Estimate_rounded,
+#                                                                        ELSA_results_depressive_symp_glm_nobaseline$SE_rounded,
+#                                                                        ELSA_results_depressive_symp_glm_nobaseline$CI95_edited,
+#                                                                        ELSA_results_depressive_symp_glm_nobaseline$p_value_rounded)
+# 
+# plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE); 
+# plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
+# file.copy(from=plots.png.paths, to=OUTPUT_ROOT)
+
+
+############# ############# #############  
+############# ############# ############# #############  HRS 
+############# ############# #############
+
+data_cox_HRS_initial = data.table(data_cox_HRS_initial)
+
+data_glm_gaussian_HRS = na.omit(data_cox_HRS_initial, cols = c("baseline_discriminaition",
+                                                    "depressive_symptoms",
+                                                    "PGS_depres_symp"))
+data_glm_gaussian_HRS = as.data.frame(data_glm_gaussian_HRS)
+length(unique(data_glm_gaussian_HRS$ID))
+summary(data_glm_gaussian_HRS)
+data_glm_gaussian_HRS$MI_outcome
+
+
+##### HRS, depressive_symp, discrim_bin  glm model 
+
+HRS_results_depressive_symp_glm = glm_gaussian_PGS(data_glm_input = data_glm_gaussian_HRS, 
+                                         baseline_discriminaition = "baseline_discriminaition", 
+                                         outcome = "depressive_symptoms",  
+                                         PGS = "PGS_depres_symp",
+                                         OUTPUT_ROOT = OUTPUT_ROOT, 
+                                         alternative_cov = "life_stress_event", 
+                                         
+                                         analysis_name = "HRS_results_depressive_glm", 
+                                         plot_name = "HRS, T2DM, GLM: ")
+
+
+
+HRS_results_depressive_symp_glm$Estimate_rounded = round(HRS_results_depressive_symp_glm$estimate, 4)
+HRS_results_depressive_symp_glm$SE_rounded = round(HRS_results_depressive_symp_glm$std.error, 4)
+
+HRS_results_depressive_symp_glm$CI95_edited = paste("[", round(HRS_results_depressive_symp_glm$conf.low, 4), ";", round(HRS_results_depressive_symp_glm$conf.high, 4), "]", sep = "")
+HRS_results_depressive_symp_glm$p_value_rounded = round(HRS_results_depressive_symp_glm$p.value, 4)
+
+HRS_results_depressive_symp_glm_table_edited  = data.frame(HRS_results_depressive_symp_glm$Model, 
+                                                    HRS_results_depressive_symp_glm$term, 
+                                                    HRS_results_depressive_symp_glm$Estimate_rounded,
+                                                    HRS_results_depressive_symp_glm$SE_rounded,
+                                                    HRS_results_depressive_symp_glm$CI95_edited,
+                                                    HRS_results_depressive_symp_glm$p_value_rounded)
+
+
+##### HRS, depressive_symp, discrim_bin  glm model no baseline 
+# fix the baseline exclusion below: 
+# data_glm_HRS_baseline_cases = subset(data_glm_gaussian_HRS, data_glm_gaussian_HRS$time_point == 0 & data_glm_gaussian_HRS$depressive_symptoms == 1) 
+# baseline_cases_uniqueIDs = unique(data_glm_HRS_baseline_cases$ID)
+# 
+# data_glm_HRS_NObaseline_cases <- data_glm_gaussian_HRS[ !(data_glm_gaussian_HRS$ID %in% c(baseline_cases_uniqueIDs)), ]
+# 
+# HRS_results_diabetes_glm_nobaseline = glm_gaussian_PGS(data_glm_input = data_glm_HRS_NObaseline_cases, 
+#                                                     baseline_discriminaition = "baseline_discriminaition", 
+#                                                     outcome = "depressive_symptoms",  
+#                                                     PGS = "PGS_depres_symp",
+#                                                     OUTPUT_ROOT = OUTPUT_ROOT, 
+#                                                     alternative_cov = "life_stress_event", 
+#                                                     
+#                                                     analysis_name = "HRS_results_depressive_glm_no_baseline", 
+#                                                     plot_name = "HRS, T2DM, GLM (no baseline): ")
+# 
+# 
+# 
+# HRS_results_depressive_symp_glm_nobaseline$Estimate_rounded = round(HRS_results_depressive_symp_glm_nobaseline$estimate, 4)
+# HRS_results_depressive_symp_glm_nobaseline$SE_rounded = round(HRS_results_depressive_symp_glm_nobaseline$std.error, 4)
+# 
+# HRS_results_depressive_symp_glm_nobaseline$CI95_edited = paste("[", round(HRS_results_depressive_symp_glm_nobaseline$conf.low, 4), ";", round(HRS_results_depressive_symp_glm_nobaseline$conf.high, 4), "]", sep = "")
+# HRS_results_depressive_symp_glm_nobaseline$p_value_rounded = round(HRS_results_depressive_symp_glm_nobaseline$p.value, 4)
+# 
+# HRS_results_depressive_symp_glm_nobaseline_table_edited  = data.frame(HRS_results_depressive_symp_glm_nobaseline$Model, 
+#                                                                HRS_results_depressive_symp_glm_nobaseline$term, 
+#                                                                HRS_results_depressive_symp_glm_nobaseline$Estimate_rounded,
+#                                                                HRS_results_depressive_symp_glm_nobaseline$SE_rounded,
+#                                                                HRS_results_depressive_symp_glm_nobaseline$CI95_edited,
+#                                                                HRS_results_depressive_symp_glm_nobaseline$p_value_rounded)
+
+plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE); 
+plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
+file.copy(from=plots.png.paths, to=OUTPUT_ROOT)
 

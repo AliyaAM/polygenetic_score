@@ -1,5 +1,16 @@
-glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS)
-{
+glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS, OUTPUT_ROOT, analysis_name, plot_name, alternative_cov){
+  
+  folder <- paste(OUTPUT_ROOT, analysis_name, "/", sep = "")
+  
+  if (file.exists(folder)) {
+    
+    cat("The folder already exists")
+    
+  } else {
+    
+    dir.create(folder)
+    
+  }
   
   data_glm_input$PGS = data_glm_input[ ,   PGS]
   
@@ -103,10 +114,10 @@ glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS
   
   #Model 3: 
   #+ BMI, (height separately) systolic blood pressure, antihypertensive medication, Diabetes/fasting blood glucose status, total cholesterol, high-density lipoprotein cholesterol, low-density lipoprotein cholesterol, triglycerides, and use of lipid lowering medication, history of diabetes and hypertension. 	
-  Model_3_outcome_gene = summary( glm(data_glm_input[ ,   outcome] ~ PGS + age + sex + wealth +  diabetes_history + pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input))
-  Model_3_outcome_discrim = summary( glm(data_glm_input[ ,   outcome] ~ baseline_discriminaition + age + sex + wealth + diabetes_history, family = binomial(link = "logit"), data_glm_input))
+  Model_3_outcome_gene = summary( glm(data_glm_input[ ,   outcome] ~ PGS + age + sex + wealth +  data_glm_input[ ,   alternative_cov] + pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input))
+  Model_3_outcome_discrim = summary( glm(data_glm_input[ ,   outcome] ~ baseline_discriminaition + age + sex + wealth + data_glm_input[ ,   alternative_cov], family = binomial(link = "logit"), data_glm_input))
   
-  M_3_interaction = glm(data_glm_input[ ,   outcome] ~ PGS*baseline_discriminaition + age + sex + wealth + diabetes_history + pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input)
+  M_3_interaction = glm(data_glm_input[ ,   outcome] ~ PGS*baseline_discriminaition + age + sex + wealth + data_glm_input[ ,   alternative_cov] + pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input)
   
   Model_3_outcome_gene_interaction = summary( M_3_interaction)
   
@@ -139,10 +150,10 @@ glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS
   
   #Model 5: all 
   
-  Model_5_outcome_gene = summary( glm(data_glm_input[ ,   outcome] ~ PGS + age + sex + wealth + alcohol + smoking + physical_activity + diabetes_history + depression + pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input))
-  Model_5_outcome_discrim = summary( glm(data_glm_input[ ,   outcome] ~ baseline_discriminaition + age + sex + wealth + alcohol + smoking + physical_activity + diabetes_history + depression, family = binomial(link = "logit"), data_glm_input))
+  Model_5_outcome_gene = summary( glm(data_glm_input[ ,   outcome] ~ PGS + age + sex + wealth + alcohol + smoking + physical_activity + data_glm_input[ ,   alternative_cov] + depression + pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input))
+  Model_5_outcome_discrim = summary( glm(data_glm_input[ ,   outcome] ~ baseline_discriminaition + age + sex + wealth + alcohol + smoking + physical_activity + data_glm_input[ ,   alternative_cov] + depression, family = binomial(link = "logit"), data_glm_input))
   
-  M_5_interaction = glm(data_glm_input[ ,   outcome] ~ PGS*baseline_discriminaition + age + sex + wealth + alcohol + smoking + physical_activity + diabetes_history + depression +  pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input)
+  M_5_interaction = glm(data_glm_input[ ,   outcome] ~ PGS*baseline_discriminaition + age + sex + wealth + alcohol + smoking + physical_activity + data_glm_input[ ,   alternative_cov] + depression +  pc1 + pc2 + pc3 + pc4 + pc5 + pc6 + pc7 + pc8 + pc9 + pc10, family = binomial(link = "logit"), data_glm_input)
   
   Model_5_outcome_gene_interaction = summary( M_5_interaction)
   
@@ -289,88 +300,97 @@ glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS
   
   ####### plots 
   
-  plot_M_uni_int = plot_model(title = "",
+  plot_M_uni_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Univariate", sep =""),
                               axis.title = "Odds Ratio",
                               show.values = TRUE, 
                               show.p = TRUE, 
+                              digits = 4, 
                               M_uni_interaction,
                               terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
-  plot_M_1_int = plot_model(title = "",
+  plot_M_1_int = plot_model(#title(main = NULL), 
+    title = "",#title = paste(plot_name, "Model 1", sep =""),
                             axis.title = "Odds Ratio",
                             show.values = TRUE, 
                             show.p = TRUE, 
+                            digits = 4, 
                             M_1_interaction,
                             terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
-  
-  ##########################
-  #interaction model: 
-    
-    plot_M_1_int = plot_model(title = "",
-                              axis.title = "Odds Ratio",
-                              show.values = TRUE, 
-                              show.p = TRUE, 
-                              M_1_interaction,
-                              terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
-  
-  
-  
-  #########################
-  
-  plot_M_2_int = plot_model(title = "",
+  plot_M_2_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 2", sep =""),
                             axis.title = "Odds Ratio",
                             show.values = TRUE, 
                             show.p = TRUE, 
+                            digits = 4, 
                             M_2_interaction,
                             terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
   #alcohol
-  plot_M_2a_int = plot_model(title = "",
+  plot_M_2a_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 2 (alcohol)", sep =""),
                              axis.title = "Odds Ratio",
                              show.values = TRUE, 
                              show.p = TRUE, 
+                             digits = 4, 
                              M_2a_interaction,
                              terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
   #smoking
-  plot_M_2s_int = plot_model(title = "",
+  plot_M_2s_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 2 (smoking)", sep =""),
                              axis.title = "Odds Ratio",
                              show.values = TRUE, 
                              show.p = TRUE, 
+                             digits = 4, 
                              M_2s_interaction, 
                              terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
   #physical activity
-  plot_M_2pa_int = plot_model(title = "",
+  plot_M_2pa_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 2 (physical activity)", sep =""),
                               axis.title = "Odds Ratio",
                               show.values = TRUE, 
                               show.p = TRUE, 
+                              digits = 4, 
                               M_2pa_interaction, 
                               terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
-  plot_M_3_int = plot_model(title = "",
+  plot_M_3_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 3", sep =""),
                             axis.title = "Odds Ratio",
                             show.values = TRUE, 
                             show.p = TRUE, 
+                            digits = 4, 
                             M_3_interaction, 
                             terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
-  plot_M_4_int = plot_model(title = "",
+  plot_M_4_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 4", sep =""),
                             axis.title = "Odds Ratio",
                             show.values = TRUE, 
                             show.p = TRUE, 
+                            digits = 4, 
                             M_4_interaction,
                             terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
-  plot_M_5_int = plot_model(title = "",
+  plot_M_5_int = plot_model(#title(main = NULL), 
+    title = "", #title = paste(plot_name, "Model 5", sep =""),
                             axis.title = "Odds Ratio",
                             show.values = TRUE, 
                             show.p = TRUE, 
+                            digits = 4, 
+                            #axis.lim = c(-0.011, 0.011), 
+                            #grid.breaks = 0.001, 
+                          
+                            
                             M_5_interaction,
                             terms = c("PGS", "baseline_discriminaition", "PGS:baseline_discriminaition"))
   
+  
   # merge plots with models heading 
+  plot_grid(list(plot_M_uni_int, plot_M_1_int, plot_M_2_int, plot_M_3_int, plot_M_4_int, plot_M_5_int), tags = TRUE)
   
 
   
@@ -448,16 +468,16 @@ glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS
               "Model_5",
               "Model_5")
   
-  
-  print(plot_M_uni_int)
-  print(plot_M_1_int)
-  print(plot_M_2_int)
-  print(plot_M_2a_int)
-  print(plot_M_2s_int)
-  print(plot_M_2pa_int)
-  print(plot_M_3_int)
-  print(plot_M_4_int)
-  print(plot_M_5_int)
+  # 
+  # print(plot_M_uni_int)
+  # print(plot_M_1_int)
+  # print(plot_M_2_int)
+  # print(plot_M_2a_int)
+  # print(plot_M_2s_int)
+  # print(plot_M_2pa_int)
+  # print(plot_M_3_int)
+  # print(plot_M_4_int)
+  # print(plot_M_5_int)
   
 
   
@@ -479,7 +499,23 @@ glm_model_PGS = function(data_glm_input,  baseline_discriminaition, outcome, PGS
                               output_results)
   
 
-  # 
+  
+  
+  output_results$Estimate_rounded = round(output_results$estimate, 4)
+  output_results$SE_rounded = round(output_results$std.error, 4)
+  
+  output_results$CI95_edited = paste("[", round(output_results$conf.low, 4), ";", round(output_results$conf.high, 4), "]", sep = "")
+  output_results$p_value_rounded = round(output_results$p.value, 4)
+  
+  output_results_table_edited  = data.frame(output_results$Model, 
+                                            output_results$term,
+                                            output_results$Estimate_rounded,
+                                            output_results$SE_rounded,
+                                            output_results$CI95_edited,
+                                            output_results$p_value_rounded)
+  
+  write.csv(output_results_table_edited, file = paste(folder, analysis_name, ".csv", sep = ""))
+  
   
   return(params = output_results)
   

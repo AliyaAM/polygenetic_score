@@ -24,7 +24,7 @@ directory = "/Users/aliya/my_docs/"
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
 
-OUTPUT_ROOT = paste(directory, "proj/polygenetic_score/OUTPUT/", sep = "")
+OUTPUT_ROOT = paste(directory, "proj/polygenetic_score/OUTPUT/sexism", sep = "")
 
 folder <- OUTPUT_ROOT
 
@@ -74,9 +74,9 @@ list(ELSA_data_with_PGS)
 #gene_ELSA = "MI"
 
 ID_ELSA = c(ELSA_data_with_PGS$idauniq, 
-                             ELSA_data_with_PGS$idauniq, 
-                             ELSA_data_with_PGS$idauniq, 
-                             ELSA_data_with_PGS$idauniq)
+            ELSA_data_with_PGS$idauniq, 
+            ELSA_data_with_PGS$idauniq, 
+            ELSA_data_with_PGS$idauniq)
 
 data_cox_ELSA_initial = data.frame(ID_ELSA)
 
@@ -117,15 +117,15 @@ data_cox_ELSA_initial$follow_up = data_cox_ELSA_initial$years
 
 
 data_cox_ELSA_initial$age = c(ELSA_data_with_PGS$w5age,
-        ELSA_data_with_PGS$w6age, 
-        ELSA_data_with_PGS$w7age, 
-        ELSA_data_with_PGS$w8age)
+                              ELSA_data_with_PGS$w6age, 
+                              ELSA_data_with_PGS$w7age, 
+                              ELSA_data_with_PGS$w8age)
 
 
 data_cox_ELSA_initial$sex = c(ELSA_data_with_PGS$w5sex,
-        ELSA_data_with_PGS$w6sex, 
-        ELSA_data_with_PGS$w7sex, 
-        ELSA_data_with_PGS$w8sex)
+                              ELSA_data_with_PGS$w6sex, 
+                              ELSA_data_with_PGS$w7sex, 
+                              ELSA_data_with_PGS$w8sex)
 
 data_cox_ELSA_initial$PGS_mi = c(ELSA_data_with_PGS$MI, 
                                  ELSA_data_with_PGS$MI, 
@@ -135,85 +135,87 @@ data_cox_ELSA_initial$PGS_mi = c(ELSA_data_with_PGS$MI,
 
 
 data_cox_ELSA_initial$wealth = c(ELSA_data_with_PGS$w5wealth, 
-           ELSA_data_with_PGS$w6wealth, 
-           ELSA_data_with_PGS$w7wealth, 
-           ELSA_data_with_PGS$w7wealth)
-
-data_cox_ELSA_initial$baseline_discriminaition = c(ELSA_data_with_PGS$w5discrim_bin, 
-                                                   ELSA_data_with_PGS$w5discrim_bin, 
-                                                   ELSA_data_with_PGS$w5discrim_bin, 
-                                                   ELSA_data_with_PGS$w5discrim_bin)
+                                 ELSA_data_with_PGS$w6wealth, 
+                                 ELSA_data_with_PGS$w7wealth, 
+                                 ELSA_data_with_PGS$w7wealth)
 
 
-data_cox_ELSA_initial$discriminaition =  c(ELSA_data_with_PGS$w5discrim_bin, 
-                                           ELSA_data_with_PGS$w6discrim_bin, 
-                                           ELSA_data_with_PGS$w7discrim_bin, 
-                                           ELSA_data_with_PGS$w8discrim_bin) 
+print("change the discirm_bin to sexism")
+# data_cox_ELSA_initial$baseline_discriminaition = c(ELSA_data_with_PGS$w5discrim_bin, 
+#                                                    ELSA_data_with_PGS$w5discrim_bin, 
+#                                                    ELSA_data_with_PGS$w5discrim_bin, 
+#                                                    ELSA_data_with_PGS$w5discrim_bin)
+
+
+# data_cox_ELSA_initial$discriminaition =  c(ELSA_data_with_PGS$w5discrim_bin, 
+#                                            ELSA_data_with_PGS$w6discrim_bin, 
+#                                            ELSA_data_with_PGS$w7discrim_bin, 
+#                                            ELSA_data_with_PGS$w8discrim_bin) 
 
 unique(data_cox_ELSA_initial$discriminaition)
 
 data_cox_ELSA_initial$pc1 = c(ELSA_data_with_PGS$pc1, 
-        ELSA_data_with_PGS$pc1, 
-        ELSA_data_with_PGS$pc1, 
-        ELSA_data_with_PGS$pc1) 
+                              ELSA_data_with_PGS$pc1, 
+                              ELSA_data_with_PGS$pc1, 
+                              ELSA_data_with_PGS$pc1) 
 
 
 data_cox_ELSA_initial$pc2 = c(ELSA_data_with_PGS$pc2, 
-        ELSA_data_with_PGS$pc2, 
-        ELSA_data_with_PGS$pc2, 
-        ELSA_data_with_PGS$pc2) 
+                              ELSA_data_with_PGS$pc2, 
+                              ELSA_data_with_PGS$pc2, 
+                              ELSA_data_with_PGS$pc2) 
 
 
 data_cox_ELSA_initial$pc3 = c(ELSA_data_with_PGS$pc3, 
-        ELSA_data_with_PGS$pc3, 
-        ELSA_data_with_PGS$pc3, 
-        ELSA_data_with_PGS$pc3) 
+                              ELSA_data_with_PGS$pc3, 
+                              ELSA_data_with_PGS$pc3, 
+                              ELSA_data_with_PGS$pc3) 
 
 
 data_cox_ELSA_initial$pc4 = c(ELSA_data_with_PGS$pc4, 
-        ELSA_data_with_PGS$pc4, 
-        ELSA_data_with_PGS$pc4, 
-        ELSA_data_with_PGS$pc4) 
+                              ELSA_data_with_PGS$pc4, 
+                              ELSA_data_with_PGS$pc4, 
+                              ELSA_data_with_PGS$pc4) 
 
 
 
 data_cox_ELSA_initial$pc5 = c(ELSA_data_with_PGS$pc5, 
-        ELSA_data_with_PGS$pc5, 
-        ELSA_data_with_PGS$pc5, 
-        ELSA_data_with_PGS$pc5) 
+                              ELSA_data_with_PGS$pc5, 
+                              ELSA_data_with_PGS$pc5, 
+                              ELSA_data_with_PGS$pc5) 
 
 data_cox_ELSA_initial$pc6 = c(ELSA_data_with_PGS$pc6, 
-        ELSA_data_with_PGS$pc6, 
-        ELSA_data_with_PGS$pc6, 
-        ELSA_data_with_PGS$pc6) 
+                              ELSA_data_with_PGS$pc6, 
+                              ELSA_data_with_PGS$pc6, 
+                              ELSA_data_with_PGS$pc6) 
 
 data_cox_ELSA_initial$pc7 = c(ELSA_data_with_PGS$pc7, 
-        ELSA_data_with_PGS$pc7, 
-        ELSA_data_with_PGS$pc7, 
-        ELSA_data_with_PGS$pc7) 
+                              ELSA_data_with_PGS$pc7, 
+                              ELSA_data_with_PGS$pc7, 
+                              ELSA_data_with_PGS$pc7) 
 
 
 data_cox_ELSA_initial$pc8 = c(ELSA_data_with_PGS$pc8, 
-        ELSA_data_with_PGS$pc8, 
-        ELSA_data_with_PGS$pc8, 
-        ELSA_data_with_PGS$pc8) 
+                              ELSA_data_with_PGS$pc8, 
+                              ELSA_data_with_PGS$pc8, 
+                              ELSA_data_with_PGS$pc8) 
 
 
 data_cox_ELSA_initial$pc9 = c(ELSA_data_with_PGS$pc9, 
-        ELSA_data_with_PGS$pc9, 
-        ELSA_data_with_PGS$pc9, 
-        ELSA_data_with_PGS$pc9) 
+                              ELSA_data_with_PGS$pc9, 
+                              ELSA_data_with_PGS$pc9, 
+                              ELSA_data_with_PGS$pc9) 
 
 
 data_cox_ELSA_initial$pc10 = c(ELSA_data_with_PGS$pc10, 
-         ELSA_data_with_PGS$pc10, 
-         ELSA_data_with_PGS$pc10, 
-         ELSA_data_with_PGS$pc10) 
+                               ELSA_data_with_PGS$pc10, 
+                               ELSA_data_with_PGS$pc10, 
+                               ELSA_data_with_PGS$pc10) 
 
 data_cox_ELSA_initial$alcohol = c(ELSA_data_with_PGS$w5alcunits, 
-            ELSA_data_with_PGS$w6alcunits, 
-            ELSA_data_with_PGS$w7alcunits,
-            ELSA_data_with_PGS$w7alcunits) 
+                                  ELSA_data_with_PGS$w6alcunits, 
+                                  ELSA_data_with_PGS$w7alcunits,
+                                  ELSA_data_with_PGS$w7alcunits) 
 
 
 
@@ -223,31 +225,31 @@ unique(ELSA_data_with_PGS$w5smokec)
 unique(ELSA_data_with_PGS$w5smoket)
 
 data_cox_ELSA_initial$smoking = c(ELSA_data_with_PGS$w5smokenum, 
-            ELSA_data_with_PGS$w6smokenum,
-            ELSA_data_with_PGS$w7smokenum,
-            ELSA_data_with_PGS$w7smokenum)
+                                  ELSA_data_with_PGS$w6smokenum,
+                                  ELSA_data_with_PGS$w7smokenum,
+                                  ELSA_data_with_PGS$w7smokenum)
 
 
 unique(data_cox_ELSA_initial$smoking)
 
 
 data_cox_ELSA_initial$physical_activity  = c(ELSA_data_with_PGS$w5pacomb1, 
-                       ELSA_data_with_PGS$w6pacomb1,
-                       ELSA_data_with_PGS$w7pacomb1,
-                       ELSA_data_with_PGS$w7pacomb1)
+                                             ELSA_data_with_PGS$w6pacomb1,
+                                             ELSA_data_with_PGS$w7pacomb1,
+                                             ELSA_data_with_PGS$w7pacomb1)
 
 unique(data_cox_ELSA_initial$physical_activity)
 
-print("add BMI variable from the harmonised ELSA data file")
+print("  bmi was taken in w4, w6, w8, but not the other waves ")
 data_cox_ELSA_initial$BMI = c(ELSA_data_with_PGS$w4_bmi, 
                               ELSA_data_with_PGS$w4_bmi, 
                               ELSA_data_with_PGS$w6_bmi, 
                               ELSA_data_with_PGS$w8_bmi)
 
 data_cox_ELSA_initial$diabetes_history = c(ELSA_data_with_PGS$w5diabetes_ever,
-                     ELSA_data_with_PGS$w6diabetes_ever,
-                     ELSA_data_with_PGS$w7diabetes_ever,
-                     ELSA_data_with_PGS$w8diabetes_ever) 
+                                           ELSA_data_with_PGS$w6diabetes_ever,
+                                           ELSA_data_with_PGS$w7diabetes_ever,
+                                           ELSA_data_with_PGS$w8diabetes_ever) 
 
 
 unique(data_cox_ELSA_initial$diabetes_history)
@@ -257,9 +259,9 @@ unique(data_cox_ELSA_initial$diabetes_history)
 
 #add: hypertension_history stressful_event 
 data_cox_ELSA_initial$depression_original = c(ELSA_data_with_PGS$w5cesd, 
-                        ELSA_data_with_PGS$w6cesd, 
-                        ELSA_data_with_PGS$w7cesd, 
-                        ELSA_data_with_PGS$w8cesd) 
+                                              ELSA_data_with_PGS$w6cesd, 
+                                              ELSA_data_with_PGS$w7cesd, 
+                                              ELSA_data_with_PGS$w8cesd) 
 
 unique(data_cox_ELSA_initial$depression_original)
 
@@ -503,9 +505,9 @@ data_cox_HRS_initial$depression = c(all_HRS_by_years_PGS$HRS2010_checklist_depre
 
 
 data_cox_HRS_initial$PGS_diab = c(all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
-                                   all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
-                                   all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
-                                   all_HRS_by_years_PGS$E4_T2D_DIAGRAM12)
+                                  all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
+                                  all_HRS_by_years_PGS$E4_T2D_DIAGRAM12, 
+                                  all_HRS_by_years_PGS$E4_T2D_DIAGRAM12)
 
 
 data_cox_HRS_initial$diabetes_outcome = c(all_HRS_by_years_PGS$HRS2010_diabetes_new, 
@@ -517,9 +519,9 @@ data_cox_HRS_initial$diabetes_outcome = c(all_HRS_by_years_PGS$HRS2010_diabetes_
 
 
 data_cox_HRS_initial$PGS_depres_symp = c(all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16, 
-                                          all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16, 
-                                          all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16, 
-                                          all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16)
+                                         all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16, 
+                                         all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16, 
+                                         all_HRS_by_years_PGS$E4_DEPSYMP_SSGAC16)
 
 
 
@@ -574,13 +576,13 @@ ELSA_results_mi_table_edited  = data.frame(ELSA_results_mi$Model,
 #### ELSA, MI, discrim_bin glm model 
 
 ELSA_results_mi_glm = glm_model_PGS(data_glm_input = data_cox_ELSA, 
-                                   baseline_discriminaition = "baseline_discriminaition", 
-                                   outcome = "MI_outcome",  
-                                   PGS = "PGS_mi",
-                                   OUTPUT_ROOT = OUTPUT_ROOT, 
-                                   alternative_cov = "diabetes_history", 
-                                   analysis_name = "ELSA_results_mi_glm", 
-                                   plot_name = "ELSA, MI, GLM: ")
+                                    baseline_discriminaition = "baseline_discriminaition", 
+                                    outcome = "MI_outcome",  
+                                    PGS = "PGS_mi",
+                                    OUTPUT_ROOT = OUTPUT_ROOT, 
+                                    alternative_cov = "diabetes_history", 
+                                    analysis_name = "ELSA_results_mi_glm", 
+                                    plot_name = "ELSA, MI, GLM: ")
 
 
 ELSA_results_mi_glm$Estimate_rounded = round(ELSA_results_mi_glm$estimate, 4)
@@ -590,11 +592,11 @@ ELSA_results_mi_glm$CI95_edited = paste("[", round(ELSA_results_mi_glm$conf.low,
 ELSA_results_mi_glm$p_value_rounded = round(ELSA_results_mi_glm$p.value, 4)
 
 ELSA_results_mi_glm_table_edited  = data.frame(ELSA_results_mi_glm$Model, 
-                                              ELSA_results_mi_glm$term, 
-                                              ELSA_results_mi_glm$Estimate_rounded,
-                                              ELSA_results_mi_glm$SE_rounded,
-                                              ELSA_results_mi_glm$CI95_edited,
-                                              ELSA_results_mi_glm$p_value_rounded)
+                                               ELSA_results_mi_glm$term, 
+                                               ELSA_results_mi_glm$Estimate_rounded,
+                                               ELSA_results_mi_glm$SE_rounded,
+                                               ELSA_results_mi_glm$CI95_edited,
+                                               ELSA_results_mi_glm$p_value_rounded)
 
 
 
@@ -607,13 +609,13 @@ data_glm_ELSA_NObaseline_cases_mi <- data_cox_ELSA[ !(data_cox_ELSA$ID %in% c(ba
 
 
 ELSA_results_mi_glm_nobaseline = glm_model_PGS(data_glm_input = data_glm_ELSA_NObaseline_cases_mi, 
-                                              baseline_discriminaition = "baseline_discriminaition", 
-                                              outcome = "MI_outcome",  
-                                              PGS = "PGS_mi",
-                                              OUTPUT_ROOT = OUTPUT_ROOT, 
-                                              alternative_cov = "diabetes_history", 
-                                              analysis_name = "ELSA_results_mi_glm_no_baseline_cases", 
-                                              plot_name = "ELSA, MI, GLM (baseline cases excluded): ")
+                                               baseline_discriminaition = "baseline_discriminaition", 
+                                               outcome = "MI_outcome",  
+                                               PGS = "PGS_mi",
+                                               OUTPUT_ROOT = OUTPUT_ROOT, 
+                                               alternative_cov = "diabetes_history", 
+                                               analysis_name = "ELSA_results_mi_glm_no_baseline_cases", 
+                                               plot_name = "ELSA, MI, GLM (baseline cases excluded): ")
 
 
 ELSA_results_mi_glm_nobaseline$Estimate_rounded = round(ELSA_results_mi_glm_nobaseline$estimate, 4)
@@ -623,11 +625,11 @@ ELSA_results_mi_glm_nobaseline$CI95_edited = paste("[", round(ELSA_results_mi_gl
 ELSA_results_mi_glm_nobaseline$p_value_rounded = round(ELSA_results_mi_glm_nobaseline$p.value, 4)
 
 ELSA_results_mi_glm_nobaseline_table_edited  = data.frame(ELSA_results_mi_glm_nobaseline$Model, 
-                                                         ELSA_results_mi_glm_nobaseline$term, 
-                                                         ELSA_results_mi_glm_nobaseline$Estimate_rounded,
-                                                         ELSA_results_mi_glm_nobaseline$SE_rounded,
-                                                         ELSA_results_mi_glm_nobaseline$CI95_edited,
-                                                         ELSA_results_mi_glm_nobaseline$p_value_rounded)
+                                                          ELSA_results_mi_glm_nobaseline$term, 
+                                                          ELSA_results_mi_glm_nobaseline$Estimate_rounded,
+                                                          ELSA_results_mi_glm_nobaseline$SE_rounded,
+                                                          ELSA_results_mi_glm_nobaseline$CI95_edited,
+                                                          ELSA_results_mi_glm_nobaseline$p_value_rounded)
 
 
 
@@ -649,13 +651,13 @@ data_cox_HRS$MI_outcome
 
 #### HRS, MI, discrim_bin, Cox model 
 HRS_results_mi = cox_model_PGS(data_cox_input = data_cox_HRS, 
-                            baseline_discriminaition = "baseline_discriminaition", 
-                            outcome = "MI_outcome",  
-                            PGS = "PGS_mi",
-                            OUTPUT_ROOT = OUTPUT_ROOT, 
-                            alternative_cov = "diabetes_history", 
-                            analysis_name = "HRS_results_mi_cox", 
-                            plot_name = "HRS, MI, Cox regression: ")
+                               baseline_discriminaition = "baseline_discriminaition", 
+                               outcome = "MI_outcome",  
+                               PGS = "PGS_mi",
+                               OUTPUT_ROOT = OUTPUT_ROOT, 
+                               alternative_cov = "diabetes_history", 
+                               analysis_name = "HRS_results_mi_cox", 
+                               plot_name = "HRS, MI, Cox regression: ")
 
 
 HRS_results_mi$Estimate_rounded = round(HRS_results_mi$estimate, 2)
@@ -665,19 +667,19 @@ HRS_results_mi$CI95_edited = paste("[", round(HRS_results_mi$conf.low), ";", rou
 HRS_results_mi$p_value_rounded = round(HRS_results_mi$p.value, 4)
 
 HRS_results_mi_table_edited  = data.frame(HRS_results_mi$Model, 
-                                              HRS_results_mi$term, 
-                                              HRS_results_mi$Estimate_rounded,
-                                              HRS_results_mi$SE_rounded,
-                                              HRS_results_mi$CI95_edited,
-                                              HRS_results_mi$p_value_rounded)
+                                          HRS_results_mi$term, 
+                                          HRS_results_mi$Estimate_rounded,
+                                          HRS_results_mi$SE_rounded,
+                                          HRS_results_mi$CI95_edited,
+                                          HRS_results_mi$p_value_rounded)
 
 
 #### HRS, MI, discrim_bin, glm model 
 
 HRS_results_mi_glm = glm_model_PGS(data_glm_input = data_cox_HRS, 
-                                                    baseline_discriminaition = "baseline_discriminaition", 
-                                                    outcome = "MI_outcome",  
-                                                    PGS = "PGS_mi",
+                                   baseline_discriminaition = "baseline_discriminaition", 
+                                   outcome = "MI_outcome",  
+                                   PGS = "PGS_mi",
                                    OUTPUT_ROOT = OUTPUT_ROOT, 
                                    alternative_cov = "diabetes_history", 
                                    analysis_name = "HRS_results_mi_glm", 
@@ -746,13 +748,13 @@ data_cox_ELSA$MI_outcome
 #### ELSA, diabetes, discrim_bin, cox model  
 
 ELSA_results_diabetes_cox = cox_model_PGS(data_cox_input = data_cox_ELSA,
-                             baseline_discriminaition = "baseline_discriminaition", 
-                             outcome = "diabetes_outcome",  
-                             PGS = "PGS_diab",
-                             OUTPUT_ROOT = OUTPUT_ROOT, 
-                             alternative_cov = "BMI", 
-                             analysis_name = "ELSA_results_diab_cox", 
-                             plot_name = "ELSA, T2DM, Cox regression: ")
+                                          baseline_discriminaition = "baseline_discriminaition", 
+                                          outcome = "diabetes_outcome",  
+                                          PGS = "PGS_diab",
+                                          OUTPUT_ROOT = OUTPUT_ROOT, 
+                                          alternative_cov = "BMI", 
+                                          analysis_name = "ELSA_results_diab_cox", 
+                                          plot_name = "ELSA, T2DM, Cox regression: ")
 
 
 ELSA_results_diabetes_cox$Estimate_rounded = round(ELSA_results_diabetes_cox$estimate, 2)
@@ -771,14 +773,14 @@ ELSA_results_diabetes_cox_table_edited  = data.frame(ELSA_results_diabetes_cox$M
 #### ELSA, diabetes, discrim_bin, glm model ADD 
 
 ELSA_results_diabetes_glm = glm_model_PGS(data_glm_input = data_cox_ELSA, 
-                                         baseline_discriminaition = "baseline_discriminaition", 
-                                         outcome = "diabetes_outcome",  
-                                         PGS = "PGS_diab",
-                                         OUTPUT_ROOT = OUTPUT_ROOT, 
-                                         alternative_cov = "BMI", 
-                                         
-                                         analysis_name = "ELSA_results_diab_glm", 
-                                         plot_name = "ELSA, T2DM, GLM: ")
+                                          baseline_discriminaition = "baseline_discriminaition", 
+                                          outcome = "diabetes_outcome",  
+                                          PGS = "PGS_diab",
+                                          OUTPUT_ROOT = OUTPUT_ROOT, 
+                                          alternative_cov = "BMI", 
+                                          
+                                          analysis_name = "ELSA_results_diab_glm", 
+                                          plot_name = "ELSA, T2DM, GLM: ")
 
 
 
@@ -789,11 +791,11 @@ ELSA_results_diabetes_glm$CI95_edited = paste("[", round(ELSA_results_diabetes_g
 ELSA_results_diabetes_glm$p_value_rounded = round(ELSA_results_diabetes_glm$p.value, 4)
 
 ELSA_results_diabetes_glm_table_edited  = data.frame(ELSA_results_diabetes_glm$Model, 
-                                                    ELSA_results_diabetes_glm$term, 
-                                                    ELSA_results_diabetes_glm$Estimate_rounded,
-                                                    ELSA_results_diabetes_glm$SE_rounded,
-                                                    ELSA_results_diabetes_glm$CI95_edited,
-                                                    ELSA_results_diabetes_glm$p_value_rounded)
+                                                     ELSA_results_diabetes_glm$term, 
+                                                     ELSA_results_diabetes_glm$Estimate_rounded,
+                                                     ELSA_results_diabetes_glm$SE_rounded,
+                                                     ELSA_results_diabetes_glm$CI95_edited,
+                                                     ELSA_results_diabetes_glm$p_value_rounded)
 
 
 #### ELSA, diabetes, discrim_bin, glm model, no baseline 
@@ -804,14 +806,14 @@ baseline_cases_uniqueIDs = unique(data_glm_ELSA_baseline_cases$ID)
 data_glm_ELSA_NObaseline_cases <- data_cox_ELSA[ !(data_cox_ELSA$ID %in% c(baseline_cases_uniqueIDs)), ]
 
 ELSA_results_diabetes_glm_nobaseline = glm_model_PGS(data_glm_input = data_glm_ELSA_NObaseline_cases, 
-                                         baseline_discriminaition = "baseline_discriminaition", 
-                                         outcome = "diabetes_outcome",  
-                                         PGS = "PGS_diab",
-                                         OUTPUT_ROOT = OUTPUT_ROOT, 
-                                         alternative_cov = "BMI", 
-                                         
-                                         analysis_name = "ELSA_results_diab_glm_no_baseline", 
-                                         plot_name = "ELSA, T2DM, GLM (no baseline): ")
+                                                     baseline_discriminaition = "baseline_discriminaition", 
+                                                     outcome = "diabetes_outcome",  
+                                                     PGS = "PGS_diab",
+                                                     OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                     alternative_cov = "BMI", 
+                                                     
+                                                     analysis_name = "ELSA_results_diab_glm_no_baseline", 
+                                                     plot_name = "ELSA, T2DM, GLM (no baseline): ")
 
 
 ELSA_results_diabetes_glm_nobaseline$Estimate_rounded = round(ELSA_results_diabetes_glm_nobaseline$estimate, 4)
@@ -849,14 +851,14 @@ data_cox_HRS$MI_outcome
 ##### HRS, diabetes, discrim_bin Cox model
 
 HRS_results_diabetes = cox_model_PGS(data_cox_input = data_cox_HRS, 
-                            baseline_discriminaition = "baseline_discriminaition", 
-                            outcome = "diabetes_outcome",  
-                            PGS = "PGS_diab",
-                            OUTPUT_ROOT = OUTPUT_ROOT, 
-                            alternative_cov = "BMI", 
-                            
-                            analysis_name = "HRS_results_diab_cox", 
-                            plot_name = "HRS, T2DM, Cox regression: ")
+                                     baseline_discriminaition = "baseline_discriminaition", 
+                                     outcome = "diabetes_outcome",  
+                                     PGS = "PGS_diab",
+                                     OUTPUT_ROOT = OUTPUT_ROOT, 
+                                     alternative_cov = "BMI", 
+                                     
+                                     analysis_name = "HRS_results_diab_cox", 
+                                     plot_name = "HRS, T2DM, Cox regression: ")
 
 
 
@@ -877,14 +879,14 @@ HRS_results_diabetes_table_edited  = data.frame(HRS_results_diabetes$Model,
 ##### HRS, diabetes, discrim_bin  glm model 
 
 HRS_results_diabetes_glm = glm_model_PGS(data_glm_input = data_cox_HRS, 
-                                     baseline_discriminaition = "baseline_discriminaition", 
-                                     outcome = "diabetes_outcome",  
-                                     PGS = "PGS_diab",
-                                     OUTPUT_ROOT = OUTPUT_ROOT, 
-                                     alternative_cov = "BMI", 
-                                     
-                                     analysis_name = "HRS_results_diab_glm", 
-                                     plot_name = "HRS, T2DM, GLM: ")
+                                         baseline_discriminaition = "baseline_discriminaition", 
+                                         outcome = "diabetes_outcome",  
+                                         PGS = "PGS_diab",
+                                         OUTPUT_ROOT = OUTPUT_ROOT, 
+                                         alternative_cov = "BMI", 
+                                         
+                                         analysis_name = "HRS_results_diab_glm", 
+                                         plot_name = "HRS, T2DM, GLM: ")
 
 
 
@@ -910,14 +912,14 @@ baseline_cases_uniqueIDs = unique(data_glm_HRS_baseline_cases$ID)
 data_glm_HRS_NObaseline_cases <- data_cox_HRS[ !(data_cox_HRS$ID %in% c(baseline_cases_uniqueIDs)), ]
 
 HRS_results_diabetes_glm_nobaseline = glm_model_PGS(data_glm_input = data_glm_HRS_NObaseline_cases, 
-                                          baseline_discriminaition = "baseline_discriminaition", 
-                                          outcome = "diabetes_outcome",  
-                                          PGS = "PGS_diab",
-                                          OUTPUT_ROOT = OUTPUT_ROOT, 
-                                          alternative_cov = "BMI", 
-                                          
-                                          analysis_name = "HRS_results_diab_glm_no_baseline", 
-                                          plot_name = "HRS, T2DM, GLM (no baseline): ")
+                                                    baseline_discriminaition = "baseline_discriminaition", 
+                                                    outcome = "diabetes_outcome",  
+                                                    PGS = "PGS_diab",
+                                                    OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                    alternative_cov = "BMI", 
+                                                    
+                                                    analysis_name = "HRS_results_diab_glm_no_baseline", 
+                                                    plot_name = "HRS, T2DM, GLM (no baseline): ")
 
 
 
@@ -939,4 +941,164 @@ plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
 file.copy(from=plots.png.paths, to=OUTPUT_ROOT)
 
 #################################### Depressive symptoms ############################################
+
+
+add the relevent vars
+#PGS_depres_symp
+#depressive_symptoms
+
+data_cox_ELSA_initial = data.table(data_cox_ELSA_initial)
+
+data_glm_gaussian_ELSA = na.omit(data_cox_ELSA_initial, cols = c("baseline_discriminaition",
+                                                                 "depressive_symptoms",
+                                                                 "PGS_depres_symp"))
+data_glm_gaussian_ELSA = as.data.frame(data_glm_gaussian_ELSA)
+length(unique(data_glm_gaussian_ELSA$ID))
+summary(data_glm_gaussian_ELSA)
+data_glm_gaussian_ELSA$MI_outcome
+
+
+##### ELSA, depressive_symp, discrim_bin  glm model 
+
+ELSA_results_depressive_symp_glm = glm_gaussian_PGS(data_glm_input = data_glm_gaussian_ELSA, 
+                                                    baseline_discriminaition = "baseline_discriminaition", 
+                                                    outcome = "depressive_symptoms",  
+                                                    PGS = "PGS_depres_symp",
+                                                    OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                    alternative_cov = "life_stress_event", 
+                                                    
+                                                    analysis_name = "ELSA_results_depressive_glm", 
+                                                    plot_name = "ELSA, T2DM, GLM: ")
+
+
+
+ELSA_results_depressive_symp_glm$Estimate_rounded = round(ELSA_results_depressive_symp_glm$estimate, 4)
+ELSA_results_depressive_symp_glm$SE_rounded = round(ELSA_results_depressive_symp_glm$std.error, 4)
+
+ELSA_results_depressive_symp_glm$CI95_edited = paste("[", round(ELSA_results_depressive_symp_glm$conf.low, 4), ";", round(ELSA_results_depressive_symp_glm$conf.high, 4), "]", sep = "")
+ELSA_results_depressive_symp_glm$p_value_rounded = round(ELSA_results_depressive_symp_glm$p.value, 4)
+
+ELSA_results_depressive_symp_glm_table_edited  = data.frame(ELSA_results_depressive_symp_glm$Model, 
+                                                            ELSA_results_depressive_symp_glm$term, 
+                                                            ELSA_results_depressive_symp_glm$Estimate_rounded,
+                                                            ELSA_results_depressive_symp_glm$SE_rounded,
+                                                            ELSA_results_depressive_symp_glm$CI95_edited,
+                                                            ELSA_results_depressive_symp_glm$p_value_rounded)
+
+
+##### ELSA, depressive_symp, discrim_bin  glm model no baseline 
+
+data_glm_ELSA_baseline_cases = subset(data_glm_gaussian_ELSA, data_glm_gaussian_ELSA$time_point == 0 & data_glm_gaussian_ELSA$depressive_symptoms == 1) 
+baseline_cases_uniqueIDs = unique(data_glm_ELSA_baseline_cases$ID)
+
+data_glm_ELSA_NObaseline_cases <- data_glm_gaussian_ELSA[ !(data_glm_gaussian_ELSA$ID %in% c(baseline_cases_uniqueIDs)), ]
+
+ELSA_results_diabetes_glm_nobaseline = glm_gaussian_PGS(data_glm_input = data_glm_ELSA_NObaseline_cases, 
+                                                        baseline_discriminaition = "baseline_discriminaition", 
+                                                        outcome = "depressive_symptoms",  
+                                                        PGS = "PGS_depres_symp",
+                                                        OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                        alternative_cov = "life_stress_event", 
+                                                        
+                                                        analysis_name = "ELSA_results_depressive_glm_no_baseline", 
+                                                        plot_name = "ELSA, T2DM, GLM (no baseline): ")
+
+
+
+ELSA_results_depressive_symp_glm_nobaseline$Estimate_rounded = round(ELSA_results_depressive_symp_glm_nobaseline$estimate, 4)
+ELSA_results_depressive_symp_glm_nobaseline$SE_rounded = round(ELSA_results_depressive_symp_glm_nobaseline$std.error, 4)
+
+ELSA_results_depressive_symp_glm_nobaseline$CI95_edited = paste("[", round(ELSA_results_depressive_symp_glm_nobaseline$conf.low, 4), ";", round(ELSA_results_depressive_symp_glm_nobaseline$conf.high, 4), "]", sep = "")
+ELSA_results_depressive_symp_glm_nobaseline$p_value_rounded = round(ELSA_results_depressive_symp_glm_nobaseline$p.value, 4)
+
+ELSA_results_depressive_symp_glm_nobaseline_table_edited  = data.frame(ELSA_results_depressive_symp_glm_nobaseline$Model, 
+                                                                       ELSA_results_depressive_symp_glm_nobaseline$term, 
+                                                                       ELSA_results_depressive_symp_glm_nobaseline$Estimate_rounded,
+                                                                       ELSA_results_depressive_symp_glm_nobaseline$SE_rounded,
+                                                                       ELSA_results_depressive_symp_glm_nobaseline$CI95_edited,
+                                                                       ELSA_results_depressive_symp_glm_nobaseline$p_value_rounded)
+
+plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE); 
+plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
+file.copy(from=plots.png.paths, to=OUTPUT_ROOT)
+
+
+############# ############# #############  
+############# ############# ############# #############  HRS 
+############# ############# #############
+
+data_cox_HRS_initial = data.table(data_cox_HRS_initial)
+
+data_glm_gaussian_HRS = na.omit(data_cox_HRS_initial, cols = c("baseline_discriminaition",
+                                                               "depressive_symptoms",
+                                                               "PGS_depres_symp"))
+data_glm_gaussian_HRS = as.data.frame(data_glm_gaussian_HRS)
+length(unique(data_glm_gaussian_HRS$ID))
+summary(data_glm_gaussian_HRS)
+data_glm_gaussian_HRS$MI_outcome
+
+
+##### HRS, depressive_symp, discrim_bin  glm model 
+
+HRS_results_depressive_symp_glm = glm_gaussian_PGS(data_glm_input = data_glm_gaussian_HRS, 
+                                                   baseline_discriminaition = "baseline_discriminaition", 
+                                                   outcome = "depressive_symptoms",  
+                                                   PGS = "PGS_depres_symp",
+                                                   OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                   alternative_cov = "life_stress_event", 
+                                                   
+                                                   analysis_name = "HRS_results_depressive_glm", 
+                                                   plot_name = "HRS, T2DM, GLM: ")
+
+
+
+HRS_results_depressive_symp_glm$Estimate_rounded = round(HRS_results_depressive_symp_glm$estimate, 4)
+HRS_results_depressive_symp_glm$SE_rounded = round(HRS_results_depressive_symp_glm$std.error, 4)
+
+HRS_results_depressive_symp_glm$CI95_edited = paste("[", round(HRS_results_depressive_symp_glm$conf.low, 4), ";", round(HRS_results_depressive_symp_glm$conf.high, 4), "]", sep = "")
+HRS_results_depressive_symp_glm$p_value_rounded = round(HRS_results_depressive_symp_glm$p.value, 4)
+
+HRS_results_depressive_symp_glm_table_edited  = data.frame(HRS_results_depressive_symp_glm$Model, 
+                                                           HRS_results_depressive_symp_glm$term, 
+                                                           HRS_results_depressive_symp_glm$Estimate_rounded,
+                                                           HRS_results_depressive_symp_glm$SE_rounded,
+                                                           HRS_results_depressive_symp_glm$CI95_edited,
+                                                           HRS_results_depressive_symp_glm$p_value_rounded)
+
+
+##### HRS, depressive_symp, discrim_bin  glm model no baseline 
+
+data_glm_HRS_baseline_cases = subset(data_glm_gaussian_HRS, data_glm_gaussian_HRS$time_point == 0 & data_glm_gaussian_HRS$depressive_symptoms == 1) 
+baseline_cases_uniqueIDs = unique(data_glm_HRS_baseline_cases$ID)
+
+data_glm_HRS_NObaseline_cases <- data_glm_gaussian_HRS[ !(data_glm_gaussian_HRS$ID %in% c(baseline_cases_uniqueIDs)), ]
+
+HRS_results_diabetes_glm_nobaseline = glm_gaussian_PGS(data_glm_input = data_glm_HRS_NObaseline_cases, 
+                                                       baseline_discriminaition = "baseline_discriminaition", 
+                                                       outcome = "depressive_symptoms",  
+                                                       PGS = "PGS_depres_symp",
+                                                       OUTPUT_ROOT = OUTPUT_ROOT, 
+                                                       alternative_cov = "life_stress_event", 
+                                                       
+                                                       analysis_name = "HRS_results_depressive_glm_no_baseline", 
+                                                       plot_name = "HRS, T2DM, GLM (no baseline): ")
+
+
+
+HRS_results_depressive_symp_glm_nobaseline$Estimate_rounded = round(HRS_results_depressive_symp_glm_nobaseline$estimate, 4)
+HRS_results_depressive_symp_glm_nobaseline$SE_rounded = round(HRS_results_depressive_symp_glm_nobaseline$std.error, 4)
+
+HRS_results_depressive_symp_glm_nobaseline$CI95_edited = paste("[", round(HRS_results_depressive_symp_glm_nobaseline$conf.low, 4), ";", round(HRS_results_depressive_symp_glm_nobaseline$conf.high, 4), "]", sep = "")
+HRS_results_depressive_symp_glm_nobaseline$p_value_rounded = round(HRS_results_depressive_symp_glm_nobaseline$p.value, 4)
+
+HRS_results_depressive_symp_glm_nobaseline_table_edited  = data.frame(HRS_results_depressive_symp_glm_nobaseline$Model, 
+                                                                      HRS_results_depressive_symp_glm_nobaseline$term, 
+                                                                      HRS_results_depressive_symp_glm_nobaseline$Estimate_rounded,
+                                                                      HRS_results_depressive_symp_glm_nobaseline$SE_rounded,
+                                                                      HRS_results_depressive_symp_glm_nobaseline$CI95_edited,
+                                                                      HRS_results_depressive_symp_glm_nobaseline$p_value_rounded)
+
+plots.dir.path <- list.files(tempdir(), pattern="rs-graphics", full.names = TRUE); 
+plots.png.paths <- list.files(plots.dir.path, pattern=".png", full.names = TRUE)
+file.copy(from=plots.png.paths, to=OUTPUT_ROOT)
 
