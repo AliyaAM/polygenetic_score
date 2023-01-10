@@ -54,7 +54,7 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "data_ELSA/ELSA_data_w
 
 ######  Set the root location on the user's local machine to save output files.
 
-OUTPUT_ROOT = paste(directory, SOURCE_ROOT, "OUTPUT/baseline_association_wave_5_depressive_symptoms/", sep = "")
+OUTPUT_ROOT = paste(SOURCE_ROOT, "OUTPUT/baseline_association_wave_5_depressive_symptoms/", sep = "")
 
 #OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/depressive_symptoms/depressive_symptoms_adjusted_discrim_bin/", sep = "")
 
@@ -126,8 +126,7 @@ ELSA_data_with_PGS$w8cesd_bin = case_when(ELSA_data_with_PGS$w8cesd == 0 ~ 0,
 
 
 
-
-
+depressive_symptoms_ELSA_w5 = "w5cesd"
 depressive_symptoms_ELSA_w6 = "w6cesd"
 depressive_symptoms_ELSA_w7 = "w7cesd"
 depressive_symptoms_ELSA_w8 = "w8cesd"
@@ -144,6 +143,7 @@ depressive_symptoms_ELSA_w8 = "w8cesd"
 #on the basis of an established and widely used cutoff (<4 vs ≥4)
 #that suggests clinically significant symptoms
 
+depressive_symptoms_HRS_2010 = "HRS2010_checklist_depression_bin"
 depressive_symptoms_HRS_2012 = "HRS2012_checklist_depression_bin"
 depressive_symptoms_HRS_2014 = "HRS2014_checklist_depression_bin"
 depressive_symptoms_HRS_2016 = "HRS2016_checklist_depression_bin"
