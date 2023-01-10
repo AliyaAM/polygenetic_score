@@ -232,7 +232,7 @@ head(ELSA_data_with_PGS)
 
 depressive_symptoms_w5_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                                     
-                                                    analysis_variable_name = "depressive_symptoms_wave5", 
+                                                    analysis_variable_name = outcome_name, 
                                                     wave_number = "wave 5",
                                                     outcome_name = outcome_name, 
                                                     dataset = "ELSA", 
@@ -254,7 +254,7 @@ depressive_symptoms_w5_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data
 
 depressive_symptoms_w6_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                            
-                                           analysis_variable_name = "depressive_symptoms_wave6", 
+                                           analysis_variable_name = outcome_name, 
                                            wave_number = "wave 6",
                                            outcome_name = outcome_name, 
                                            dataset = "ELSA", 
@@ -278,7 +278,7 @@ depressive_symptoms_w6_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data
 
 depressive_symptoms_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                             
-                                            analysis_variable_name = "depressive_symptoms_wave7", 
+                                            analysis_variable_name = outcome_name, 
                                             wave_number = "wave 7",
                                             outcome_name = outcome_name, 
                                             dataset = "ELSA", 
@@ -301,7 +301,7 @@ depressive_symptoms_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_dat
 
 depressive_symptoms_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                             
-                                            analysis_variable_name = "depressive_symptoms_wave8", 
+                                            analysis_variable_name = outcome_name, 
                                             wave_number = "wave 8",
                                             outcome_name = outcome_name, 
                                             dataset = "ELSA", 
@@ -330,7 +330,7 @@ depressive_symptoms_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_dat
 
 depressive_symptoms_w5_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                                    
-                                                   analysis_variable_name = "HRS2010_depressive_symptoms_bin",
+                                                   analysis_variable_name = outcome_name,
                                                    wave_number = "wave 5",
                                                    outcome_name = outcome_name,
                                                    dataset = "HRS",
@@ -353,7 +353,7 @@ depressive_symptoms_w5_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by
 #all_HRS_by_years_PGS$HRS2012_depressive_symptoms
 depressive_symptoms_w6_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                           
-                                          analysis_variable_name = "HRS2012_depressive_symptoms_bin",
+                                          analysis_variable_name = outcome_name,
                                           wave_number = "wave 6",
                                           outcome_name = outcome_name,
                                           dataset = "HRS",
@@ -376,7 +376,7 @@ depressive_symptoms_w6_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by
 
 depressive_symptoms_w7_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                           
-                                          analysis_variable_name = "HRS2014_depressive_symptoms_bin",
+                                          analysis_variable_name = outcome_name,
                                           wave_number = "wave 7",
                                           outcome_name = outcome_name,
                                           dataset = "HRS",
@@ -398,7 +398,7 @@ depressive_symptoms_w7_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by
 
 depressive_symptoms_w8_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                           
-                                          analysis_variable_name = "HRS2016_depressive_symptoms_bin",
+                                          analysis_variable_name = outcome_name,
                                           wave_number = "wave 8",
                                           outcome_name = outcome_name,
                                           dataset = "HRS",
@@ -462,7 +462,7 @@ ELSA_data_with_PGS$pc10
 
 depressive_symptoms_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                                
-                                               analysis_variable_name = "depressive_symptoms_wave6", 
+                                               analysis_variable_name = outcome_name, 
                                                wave_number = "wave 6",
                                                outcome_name = outcome_name, 
                                                dataset = "ELSA", 
@@ -483,7 +483,7 @@ depressive_symptoms_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_
 
 depressive_symptoms_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                                 
-                                                analysis_variable_name = "depressive_symptoms_wave7", 
+                                                analysis_variable_name = outcome_name, 
                                                 wave_number = "wave 7",
                                                 outcome_name = outcome_name, 
                                                 dataset = "ELSA", 
@@ -505,7 +505,7 @@ depressive_symptoms_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA
 
 depressive_symptoms_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                                 
-                                                analysis_variable_name = "depressive_symptoms_wave8", 
+                                                analysis_variable_name = outcome_name, 
                                                 wave_number = "wave 8",
                                                 outcome_name = outcome_name, 
                                                 dataset = "ELSA", 
@@ -545,7 +545,7 @@ all_HRS_by_years_PGS$PC6_10E
 #all_HRS_by_years_PGS$HRS2012_depressive_symptoms
 depressive_symptoms_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                               
-                                              analysis_variable_name = "HRS2012_depressive_symptoms_bin",
+                                              analysis_variable_name = outcome_name,
                                               wave_number = "wave 6",
                                               outcome_name = outcome_name,
                                               dataset = "HRS",
@@ -566,7 +566,7 @@ depressive_symptoms_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HR
 #gene is positively asssociated with depressive_symptoms phenotype (when only PC1_5A is included as a covariate), when al four are included still associated 
 depressive_symptoms_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                               
-                                              analysis_variable_name = "HRS2014_depressive_symptoms_bin",
+                                              analysis_variable_name = outcome_name,
                                               wave_number = "wave 7",
                                               outcome_name = outcome_name,
                                               dataset = "HRS",
@@ -587,7 +587,7 @@ depressive_symptoms_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HR
 
 depressive_symptoms_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
                                               
-                                              analysis_variable_name = "HRS2016_depressive_symptoms_bin",
+                                              analysis_variable_name = outcome_name,
                                               wave_number = "wave 8",
                                               outcome_name = outcome_name,
                                               dataset = "HRS",
