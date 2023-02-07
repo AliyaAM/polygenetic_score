@@ -27,7 +27,7 @@ print("no _new vars for CAD, ALZ, only: how old were you when you were diagnosed
 #Derive a binary variable (new depressive_symptoms over waves 6-8) 
 
 #directory = "/Users/aliyaamirova/"
-  
+
 
 directory = "/Users/aliya/my_docs/"
 
@@ -56,7 +56,7 @@ ELSA_data_with_PGS = read.csv(paste(directory, DATA_ROOT, "data_ELSA/ELSA_data_w
 
 #OUTPUT_ROOT = paste(SOURCE_ROOT, "OUTPUT/baseline_association_wave_5_depressive_symptoms/", sep = "")
 
-OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/depressive_symptoms/depressive_symptoms_adjusted_discrim_bin_6feb/", sep = "")
+OUTPUT_ROOT = paste(directory, "KCL_postDoc/Data_analysis/polygenetic_score/RESULTS/depressive_symptoms/depressive_symptoms_adjusted_discrim_bin_PGS_total_N/", sep = "")
 
 
 ###### sourcing code for the unadjusted analysis 
@@ -229,6 +229,8 @@ print("unique(all_HRS_by_years_PGS$HRS2012_hypertension_new_bin) # all answers a
 ######### depressive_symptoms
 head(ELSA_data_with_PGS)
 
+#nrow(ELSA_data_with_PGS)
+
 
 depressive_symptoms_w5_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
                                                     
@@ -253,71 +255,71 @@ depressive_symptoms_w5_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data
 
 
 depressive_symptoms_w6_ELSA = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                           
-                                           analysis_variable_name = outcome_name, 
-                                           wave_number = "wave 6",
-                                           outcome_name = outcome_name, 
-                                           dataset = "ELSA", 
-                                           
-                                           
-                                           
-                                           
-                                           outcome_ELSA = depressive_symptoms_ELSA_w6, 
-                                           
-                                           gene_ELSA = gene_ELSA, 
-                                           
-                                           
-                                           covariate1 = covariate1_ELSA, 
-                                           covariate2 = covariate2_ELSA,
-                                           covariate3 = covariate3_ELSA, 
-                                           covariate4 = covariate4_ELSA, 
-                                           discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                    
+                                                    analysis_variable_name = outcome_name, 
+                                                    wave_number = "wave 6",
+                                                    outcome_name = outcome_name, 
+                                                    dataset = "ELSA", 
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    outcome_ELSA = depressive_symptoms_ELSA_w6, 
+                                                    
+                                                    gene_ELSA = gene_ELSA, 
+                                                    
+                                                    
+                                                    covariate1 = covariate1_ELSA, 
+                                                    covariate2 = covariate2_ELSA,
+                                                    covariate3 = covariate3_ELSA, 
+                                                    covariate4 = covariate4_ELSA, 
+                                                    discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 
 
 
 depressive_symptoms_w7_ELSA  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                            
-                                            analysis_variable_name = outcome_name, 
-                                            wave_number = "wave 7",
-                                            outcome_name = outcome_name, 
-                                            dataset = "ELSA", 
-                                            
-                                            
-                                            
-                                            
-                                            outcome_ELSA = depressive_symptoms_ELSA_w7, 
-                                            
-                                            gene_ELSA = gene_ELSA, 
-                                            
-                                            
-                                            covariate1 = covariate1_ELSA, 
-                                            covariate2 = covariate2_ELSA,
-                                            covariate3 = covariate3_ELSA, 
-                                            covariate4 = covariate4_ELSA,  
-                                            discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                     
+                                                     analysis_variable_name = outcome_name, 
+                                                     wave_number = "wave 7",
+                                                     outcome_name = outcome_name, 
+                                                     dataset = "ELSA", 
+                                                     
+                                                     
+                                                     
+                                                     
+                                                     outcome_ELSA = depressive_symptoms_ELSA_w7, 
+                                                     
+                                                     gene_ELSA = gene_ELSA, 
+                                                     
+                                                     
+                                                     covariate1 = covariate1_ELSA, 
+                                                     covariate2 = covariate2_ELSA,
+                                                     covariate3 = covariate3_ELSA, 
+                                                     covariate4 = covariate4_ELSA,  
+                                                     discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 
 
 depressive_symptoms_w8_ELSA  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                            
-                                            analysis_variable_name = outcome_name, 
-                                            wave_number = "wave 8",
-                                            outcome_name = outcome_name, 
-                                            dataset = "ELSA", 
-                                            
-                                            
-                                            
-                                            outcome_ELSA = depressive_symptoms_ELSA_w8, 
-                                            
-                                            gene_ELSA = gene_ELSA, 
-                                            
-                                            
-                                            covariate1 = covariate1_ELSA, 
-                                            covariate2 = covariate2_ELSA,
-                                            covariate3 = covariate3_ELSA, 
-                                            covariate4 = covariate4_ELSA, 
-                                            discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                     
+                                                     analysis_variable_name = outcome_name, 
+                                                     wave_number = "wave 8",
+                                                     outcome_name = outcome_name, 
+                                                     dataset = "ELSA", 
+                                                     
+                                                     
+                                                     
+                                                     outcome_ELSA = depressive_symptoms_ELSA_w8, 
+                                                     
+                                                     gene_ELSA = gene_ELSA, 
+                                                     
+                                                     
+                                                     covariate1 = covariate1_ELSA, 
+                                                     covariate2 = covariate2_ELSA,
+                                                     covariate3 = covariate3_ELSA, 
+                                                     covariate4 = covariate4_ELSA, 
+                                                     discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 
 
@@ -352,67 +354,67 @@ depressive_symptoms_w5_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by
 
 #all_HRS_by_years_PGS$HRS2012_depressive_symptoms
 depressive_symptoms_w6_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                          
-                                          analysis_variable_name = outcome_name,
-                                          wave_number = "wave 6",
-                                          outcome_name = outcome_name,
-                                          dataset = "HRS",
-                                          
-                                          
-                                          
-                                          outcome_ELSA = depressive_symptoms_HRS_2012,
-                                          
-                                          gene_ELSA = gene_HRS,
-                                          
-                                          covariate1 = covariate1_HRS,
-                                          covariate2 = covariate2_HRS,
-                                          covariate3 = covariate3_HRS,
-                                          covariate4 = covariate4_HRS,
-                                          
-                                          
-                                          discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                   
+                                                   analysis_variable_name = outcome_name,
+                                                   wave_number = "wave 6",
+                                                   outcome_name = outcome_name,
+                                                   dataset = "HRS",
+                                                   
+                                                   
+                                                   
+                                                   outcome_ELSA = depressive_symptoms_HRS_2012,
+                                                   
+                                                   gene_ELSA = gene_HRS,
+                                                   
+                                                   covariate1 = covariate1_HRS,
+                                                   covariate2 = covariate2_HRS,
+                                                   covariate3 = covariate3_HRS,
+                                                   covariate4 = covariate4_HRS,
+                                                   
+                                                   
+                                                   discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 
 depressive_symptoms_w7_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                          
-                                          analysis_variable_name = outcome_name,
-                                          wave_number = "wave 7",
-                                          outcome_name = outcome_name,
-                                          dataset = "HRS",
-                                          
-                                          
-                                          
-                                          outcome_ELSA = depressive_symptoms_HRS_2014,
-                                          
-                                          gene_ELSA = gene_HRS,
-                                          
-                                          covariate1 = covariate1_HRS,
-                                          covariate2 = covariate2_HRS,
-                                          covariate3 = covariate3_HRS,
-                                          covariate4 = covariate4_HRS,
-                                          discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                   
+                                                   analysis_variable_name = outcome_name,
+                                                   wave_number = "wave 7",
+                                                   outcome_name = outcome_name,
+                                                   dataset = "HRS",
+                                                   
+                                                   
+                                                   
+                                                   outcome_ELSA = depressive_symptoms_HRS_2014,
+                                                   
+                                                   gene_ELSA = gene_HRS,
+                                                   
+                                                   covariate1 = covariate1_HRS,
+                                                   covariate2 = covariate2_HRS,
+                                                   covariate3 = covariate3_HRS,
+                                                   covariate4 = covariate4_HRS,
+                                                   discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 
 
 depressive_symptoms_w8_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                          
-                                          analysis_variable_name = outcome_name,
-                                          wave_number = "wave 8",
-                                          outcome_name = outcome_name,
-                                          dataset = "HRS",
-                                          
-                                          
-                                          outcome_ELSA = depressive_symptoms_HRS_2016,
-                                          
-                                          gene_ELSA = gene_HRS,
-                                          
-                                          covariate1 = covariate1_HRS,
-                                          covariate2 = covariate2_HRS,
-                                          covariate3 = covariate3_HRS,
-                                          covariate4 = covariate4_HRS,
-                                          discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                   
+                                                   analysis_variable_name = outcome_name,
+                                                   wave_number = "wave 8",
+                                                   outcome_name = outcome_name,
+                                                   dataset = "HRS",
+                                                   
+                                                   
+                                                   outcome_ELSA = depressive_symptoms_HRS_2016,
+                                                   
+                                                   gene_ELSA = gene_HRS,
+                                                   
+                                                   covariate1 = covariate1_HRS,
+                                                   covariate2 = covariate2_HRS,
+                                                   covariate3 = covariate3_HRS,
+                                                   covariate4 = covariate4_HRS,
+                                                   discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 ########################################
@@ -427,8 +429,8 @@ depressive_symptoms_w8_HRS = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by
 
 depressive_symptoms_results_ELSA = data.frame(depressive_symptoms_w5_ELSA,
                                               depressive_symptoms_w6_ELSA, 
-                                     depressive_symptoms_w7_ELSA, 
-                                     depressive_symptoms_w8_ELSA)
+                                              depressive_symptoms_w7_ELSA, 
+                                              depressive_symptoms_w8_ELSA)
 
 write.csv(depressive_symptoms_results_ELSA, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_ELSA_adjusted.csv", sep = ""))
 
@@ -437,8 +439,8 @@ write.csv(depressive_symptoms_results_ELSA, file = paste(OUTPUT_ROOT, "depressiv
 
 depressive_symptoms_results_HRS = data.frame(depressive_symptoms_w5_HRS,
                                              depressive_symptoms_w6_HRS, 
-                                    depressive_symptoms_w7_HRS, 
-                                    depressive_symptoms_w8_HRS)
+                                             depressive_symptoms_w7_HRS, 
+                                             depressive_symptoms_w8_HRS)
 
 write.csv(depressive_symptoms_results_HRS, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_HRS_adjusted.csv", sep = ""))
 
@@ -482,66 +484,66 @@ depressive_symptoms_w5_ELSA_pca = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_
 
 
 depressive_symptoms_w6_ELSA_pca = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                               
-                                               analysis_variable_name = outcome_name, 
-                                               wave_number = "wave 6",
-                                               outcome_name = outcome_name, 
-                                               dataset = "ELSA", 
-                                               
-                                               
-                                               
-                                               outcome_ELSA = depressive_symptoms_ELSA_w6, 
-                                               
-                                               gene_ELSA = gene_ELSA, 
-                                               
-                                               covariate1 = covariate1_ELSA, 
-                                               covariate2 = covariate2_ELSA,
-                                               covariate3 = covariate3_ELSA, 
-                                               covariate4 = covariate4_ELSA, 
-                                               discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                        
+                                                        analysis_variable_name = outcome_name, 
+                                                        wave_number = "wave 6",
+                                                        outcome_name = outcome_name, 
+                                                        dataset = "ELSA", 
+                                                        
+                                                        
+                                                        
+                                                        outcome_ELSA = depressive_symptoms_ELSA_w6, 
+                                                        
+                                                        gene_ELSA = gene_ELSA, 
+                                                        
+                                                        covariate1 = covariate1_ELSA, 
+                                                        covariate2 = covariate2_ELSA,
+                                                        covariate3 = covariate3_ELSA, 
+                                                        covariate4 = covariate4_ELSA, 
+                                                        discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 
 
 depressive_symptoms_w7_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                                
-                                                analysis_variable_name = outcome_name, 
-                                                wave_number = "wave 7",
-                                                outcome_name = outcome_name, 
-                                                dataset = "ELSA", 
-                                                
-                                                
-                                                outcome_ELSA = depressive_symptoms_ELSA_w7, 
-                                                
-                                                gene_ELSA = gene_ELSA, 
-                                                
-                                                
-                                                covariate1 = covariate1_ELSA, 
-                                                covariate2 = covariate2_ELSA,
-                                                covariate3 = covariate3_ELSA, 
-                                                covariate4 = covariate4_ELSA, 
-                                                discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                         
+                                                         analysis_variable_name = outcome_name, 
+                                                         wave_number = "wave 7",
+                                                         outcome_name = outcome_name, 
+                                                         dataset = "ELSA", 
+                                                         
+                                                         
+                                                         outcome_ELSA = depressive_symptoms_ELSA_w7, 
+                                                         
+                                                         gene_ELSA = gene_ELSA, 
+                                                         
+                                                         
+                                                         covariate1 = covariate1_ELSA, 
+                                                         covariate2 = covariate2_ELSA,
+                                                         covariate3 = covariate3_ELSA, 
+                                                         covariate4 = covariate4_ELSA, 
+                                                         discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 
 
 
 depressive_symptoms_w8_ELSA_pca  = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                                
-                                                analysis_variable_name = outcome_name, 
-                                                wave_number = "wave 8",
-                                                outcome_name = outcome_name, 
-                                                dataset = "ELSA", 
-                                                
-                                                
-                                                outcome_ELSA = depressive_symptoms_ELSA_w8, 
-                                                
-                                                gene_ELSA = gene_ELSA, 
-                                                
-                                                
-                                                covariate1 = covariate1_ELSA, 
-                                                covariate2 = covariate2_ELSA,
-                                                covariate3 = covariate3_ELSA, 
-                                                covariate4 = covariate4_ELSA,  
-                                                discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                         
+                                                         analysis_variable_name = outcome_name, 
+                                                         wave_number = "wave 8",
+                                                         outcome_name = outcome_name, 
+                                                         dataset = "ELSA", 
+                                                         
+                                                         
+                                                         outcome_ELSA = depressive_symptoms_ELSA_w8, 
+                                                         
+                                                         gene_ELSA = gene_ELSA, 
+                                                         
+                                                         
+                                                         covariate1 = covariate1_ELSA, 
+                                                         covariate2 = covariate2_ELSA,
+                                                         covariate3 = covariate3_ELSA, 
+                                                         covariate4 = covariate4_ELSA,  
+                                                         discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 
 
@@ -584,64 +586,64 @@ depressive_symptoms_w5_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HR
 
 
 depressive_symptoms_w6_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                              
-                                              analysis_variable_name = outcome_name,
-                                              wave_number = "wave 6",
-                                              outcome_name = outcome_name,
-                                              dataset = "HRS",
-                                              
-                                              
-                                              outcome_ELSA = depressive_symptoms_HRS_2012,
-                                              
-                                              gene_ELSA = gene_HRS,
-                                              
-                                              covariate1 = covariate1_HRS,
-                                              covariate2 = covariate2_HRS,
-                                              covariate3 = covariate3_HRS,
-                                              covariate4 = covariate4_HRS,
-                                              discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                       
+                                                       analysis_variable_name = outcome_name,
+                                                       wave_number = "wave 6",
+                                                       outcome_name = outcome_name,
+                                                       dataset = "HRS",
+                                                       
+                                                       
+                                                       outcome_ELSA = depressive_symptoms_HRS_2012,
+                                                       
+                                                       gene_ELSA = gene_HRS,
+                                                       
+                                                       covariate1 = covariate1_HRS,
+                                                       covariate2 = covariate2_HRS,
+                                                       covariate3 = covariate3_HRS,
+                                                       covariate4 = covariate4_HRS,
+                                                       discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 
 #gene is positively asssociated with depressive_symptoms phenotype (when only PC1_5A is included as a covariate), when al four are included still associated 
 depressive_symptoms_w7_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                              
-                                              analysis_variable_name = outcome_name,
-                                              wave_number = "wave 7",
-                                              outcome_name = outcome_name,
-                                              dataset = "HRS",
-                                              
-                                              
-                                              outcome_ELSA = depressive_symptoms_HRS_2014,
-                                              
-                                              gene_ELSA = gene_HRS,
-                                              
-                                              covariate1 = covariate1_HRS,
-                                              covariate2 = covariate2_HRS,
-                                              covariate3 = covariate3_HRS,
-                                              covariate4 = covariate4_HRS,
-                                              discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                       
+                                                       analysis_variable_name = outcome_name,
+                                                       wave_number = "wave 7",
+                                                       outcome_name = outcome_name,
+                                                       dataset = "HRS",
+                                                       
+                                                       
+                                                       outcome_ELSA = depressive_symptoms_HRS_2014,
+                                                       
+                                                       gene_ELSA = gene_HRS,
+                                                       
+                                                       covariate1 = covariate1_HRS,
+                                                       covariate2 = covariate2_HRS,
+                                                       covariate3 = covariate3_HRS,
+                                                       covariate4 = covariate4_HRS,
+                                                       discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 
 
 depressive_symptoms_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                              
-                                              analysis_variable_name = outcome_name,
-                                              wave_number = "wave 8",
-                                              outcome_name = outcome_name,
-                                              dataset = "HRS",
-                                              
-                                              
-                                              outcome_ELSA = depressive_symptoms_HRS_2016,
-                                              
-                                              gene_ELSA = gene_HRS,
-                                              
-                                              covariate1 = covariate1_HRS,
-                                              covariate2 = covariate2_HRS,
-                                              covariate3 = covariate3_HRS,
-                                              covariate4 = covariate4_HRS,
-                                              discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                       
+                                                       analysis_variable_name = outcome_name,
+                                                       wave_number = "wave 8",
+                                                       outcome_name = outcome_name,
+                                                       dataset = "HRS",
+                                                       
+                                                       
+                                                       outcome_ELSA = depressive_symptoms_HRS_2016,
+                                                       
+                                                       gene_ELSA = gene_HRS,
+                                                       
+                                                       covariate1 = covariate1_HRS,
+                                                       covariate2 = covariate2_HRS,
+                                                       covariate3 = covariate3_HRS,
+                                                       covariate4 = covariate4_HRS,
+                                                       discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 ########################################
@@ -652,8 +654,8 @@ depressive_symptoms_w8_HRS_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HR
 
 depressive_symptoms_results_ELSA_pca = rbind(depressive_symptoms_w5_ELSA_pca,
                                              depressive_symptoms_w6_ELSA_pca, 
-                                    depressive_symptoms_w7_ELSA_pca, 
-                                    depressive_symptoms_w8_ELSA_pca)
+                                             depressive_symptoms_w7_ELSA_pca, 
+                                             depressive_symptoms_w8_ELSA_pca)
 
 
 write.csv(depressive_symptoms_results_ELSA_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_ELSA_pca_adjusted.csv", sep = ""))
@@ -661,8 +663,8 @@ write.csv(depressive_symptoms_results_ELSA_pca, file = paste(OUTPUT_ROOT, "depre
 
 depressive_symptoms_results_HRS_pca = rbind(depressive_symptoms_w5_HRS_pca, 
                                             depressive_symptoms_w6_HRS_pca, 
-                                   depressive_symptoms_w7_HRS_pca, 
-                                   depressive_symptoms_w8_HRS_pca)
+                                            depressive_symptoms_w7_HRS_pca, 
+                                            depressive_symptoms_w8_HRS_pca)
 
 write.csv(depressive_symptoms_results_HRS_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_results_HRS_pca_adjusted.csv", sep = ""))
 
@@ -685,45 +687,45 @@ unique(ELSA_data_with_PGS$w7_depressive_symptoms_new_bin)
 unique(ELSA_data_with_PGS$w8_depressive_symptoms_new_bin)
 
 depressive_symptoms_ELSA_composite = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                                  
-                                                  analysis_variable_name = outcome_name, 
-                                                  wave_number = "wave 6",
-                                                  outcome_name = outcome_name, 
-                                                  dataset = "ELSA", 
-                                                  
-                                                  
-                                                  outcome_ELSA = "depressive_symptoms_composite_ELSA", 
-                                                  
-                                                  gene_ELSA = gene_ELSA, 
-                                                  
-                                                  covariate1 = covariate1_ELSA, 
-                                                  covariate2 = covariate2_ELSA,
-                                                  covariate3 = covariate3_ELSA, 
-                                                  covariate4 = covariate4_ELSA, 
-                                                  discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                           
+                                                           analysis_variable_name = outcome_name, 
+                                                           wave_number = "wave 6",
+                                                           outcome_name = outcome_name, 
+                                                           dataset = "ELSA", 
+                                                           
+                                                           
+                                                           outcome_ELSA = "depressive_symptoms_composite_ELSA", 
+                                                           
+                                                           gene_ELSA = gene_ELSA, 
+                                                           
+                                                           covariate1 = covariate1_ELSA, 
+                                                           covariate2 = covariate2_ELSA,
+                                                           covariate3 = covariate3_ELSA, 
+                                                           covariate4 = covariate4_ELSA, 
+                                                           discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 write.csv(depressive_symptoms_ELSA_composite, file = paste(OUTPUT_ROOT, "depressive_symptoms_ELSA_composite_adjusted.csv", sep = ""))
 
 #depressive_symptomsssing 0 in unique(ELSA_data_with_PGS$depressive_symptoms_composite)
 
 depressive_symptoms_ELSA_composite_pca = PGS_glm_function_ELSA(data_ELSA_subset = ELSA_data_with_PGS, 
-                                                      
-                                                      analysis_variable_name = outcome_name, 
-                                                      wave_number = "wave 6",
-                                                      outcome_name = outcome_name, 
-                                                      dataset = "ELSA", 
-                                                      
-                                                      
-                                                      
-                                                      outcome_ELSA = "depressive_symptoms_composite_ELSA", 
-                                                      
-                                                      gene_ELSA = gene_ELSA, 
-                                                      
-                                                      covariate1 = covariate1_ELSA, 
-                                                      covariate2 = covariate2_ELSA,
-                                                      covariate3 = covariate3_ELSA, 
-                                                      covariate4 = covariate4_ELSA, 
-                                                      discrimination_VAR_elsa = discriminaiton_var_ELSA)
+                                                               
+                                                               analysis_variable_name = outcome_name, 
+                                                               wave_number = "wave 6",
+                                                               outcome_name = outcome_name, 
+                                                               dataset = "ELSA", 
+                                                               
+                                                               
+                                                               
+                                                               outcome_ELSA = "depressive_symptoms_composite_ELSA", 
+                                                               
+                                                               gene_ELSA = gene_ELSA, 
+                                                               
+                                                               covariate1 = covariate1_ELSA, 
+                                                               covariate2 = covariate2_ELSA,
+                                                               covariate3 = covariate3_ELSA, 
+                                                               covariate4 = covariate4_ELSA, 
+                                                               discrimination_VAR_elsa = discriminaiton_var_ELSA)
 
 write.csv(depressive_symptoms_ELSA_composite_pca, file = paste(OUTPUT_ROOT, "depressive_symptoms_ELSA_composite_pca_adjusted.csv", sep = ""))
 
@@ -746,46 +748,46 @@ table(all_HRS_by_years_PGS$HRS2012_depressive_symptoms_bin)
 
 #all_HRS_by_years_PGS$HRS2012_depressive_symptoms
 depressive_symptoms_HRS_composite = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                                 
-                                                 analysis_variable_name = outcome_name,
-                                                 wave_number = "wave 6",
-                                                 outcome_name = outcome_name,
-                                                 dataset = "HRS",
-                                                 
-                                                 
-                                                 
-                                                 outcome_ELSA = "depressive_symptoms_composite_HRS",
-                                                 
-                                                 gene_ELSA = gene_HRS,
-                                                 
-                                                 covariate1 = covariate1_HRS,
-                                                 covariate2 = covariate2_HRS,
-                                                 covariate3 = covariate3_HRS,
-                                                 covariate4 = covariate4_HRS,
-                                                 discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                          
+                                                          analysis_variable_name = outcome_name,
+                                                          wave_number = "wave 6",
+                                                          outcome_name = outcome_name,
+                                                          dataset = "HRS",
+                                                          
+                                                          
+                                                          
+                                                          outcome_ELSA = "depressive_symptoms_composite_HRS",
+                                                          
+                                                          gene_ELSA = gene_HRS,
+                                                          
+                                                          covariate1 = covariate1_HRS,
+                                                          covariate2 = covariate2_HRS,
+                                                          covariate3 = covariate3_HRS,
+                                                          covariate4 = covariate4_HRS,
+                                                          discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 write.csv(depressive_symptoms_HRS_composite, file = paste(OUTPUT_ROOT, "depressive_symptoms_HRS_composite_adjusted.csv", sep = ""))
 
 
 #all_HRS_by_years_PGS$HRS2012_depressive_symptoms
 depressive_symptoms_HRS_composite_pca = PGS_glm_function_ELSA(data_ELSA_subset = all_HRS_by_years_PGS,
-                                                     
-                                                     analysis_variable_name = outcome_name,
-                                                     wave_number = "wave 6",
-                                                     outcome_name = outcome_name,
-                                                     dataset = "HRS",
-                                                     
-                                                     
-                                                     
-                                                     outcome_ELSA = "depressive_symptoms_composite_HRS",
-                                                     
-                                                     gene_ELSA = gene_HRS,
-                                                     
-                                                     covariate1 = covariate1_HRS,
-                                                     covariate2 = covariate2_HRS,
-                                                     covariate3 = covariate3_HRS,
-                                                     covariate4 = covariate4_HRS,
-                                                     discrimination_VAR_elsa = discriminaiton_var_HRS)
+                                                              
+                                                              analysis_variable_name = outcome_name,
+                                                              wave_number = "wave 6",
+                                                              outcome_name = outcome_name,
+                                                              dataset = "HRS",
+                                                              
+                                                              
+                                                              
+                                                              outcome_ELSA = "depressive_symptoms_composite_HRS",
+                                                              
+                                                              gene_ELSA = gene_HRS,
+                                                              
+                                                              covariate1 = covariate1_HRS,
+                                                              covariate2 = covariate2_HRS,
+                                                              covariate3 = covariate3_HRS,
+                                                              covariate4 = covariate4_HRS,
+                                                              discrimination_VAR_elsa = discriminaiton_var_HRS)
 
 
 ########################################

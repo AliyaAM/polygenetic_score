@@ -17,11 +17,11 @@ library("sjlabelled")
 
 print("data files saved on this computer are missing: bmi, loneliness, stressful events, and DS (PGS for depressive symptoms)")
 
-#directory = "/Users/aliya/my_docs/"
+directory = "/Users/aliya/my_docs/"
 
 #/Users/aliyaamirova/proj/polygenetic_score/OUTPUT
 
-directory = "/Users/aliyaamirova/"
+#directory = "/Users/aliyaamirova/"
 
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
@@ -50,8 +50,9 @@ source(paste(SOURCE_ROOT, "glm_gaussian_PGS.R", sep=""))
 
 
 
-DATA_ROOT = "Documents/KCL_postDoc/Data_analysis/"
+#DATA_ROOT = "Documents/KCL_postDoc/Data_analysis/"
 
+DATA_ROOT = "KCL_postDoc/Data_analysis/"
 
 ###########################
 
