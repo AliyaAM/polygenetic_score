@@ -12,7 +12,7 @@ library(survminer)
 #add anxiety to all years 
 #add depressive_symptoms new bin to all years (NEW)
 #need to add CVD to all years 
-#check smoking 
+#check smoking  
 #add PTSD for all years  
 #add Alzheimer's for all years   
 #add kidney disease for all years    
