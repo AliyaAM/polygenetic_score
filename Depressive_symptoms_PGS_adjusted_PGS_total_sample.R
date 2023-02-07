@@ -22,7 +22,7 @@ print("no _new vars for CAD, ALZ, only: how old were you when you were diagnosed
 
 ######### to do: 
 
-#Simply control for age, sex and wealth (done) 
+#Simply control for age, sex and wealth (done)   
 #Once you introduce the polygenic score control for principal components 
 #Derive a binary variable (new depressive_symptoms over waves 6-8) 
 
