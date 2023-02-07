@@ -26,9 +26,9 @@ print("no _new vars for CAD, ALZ, only: how old were you when you were diagnosed
 #Once you introduce the polygenic score control for principal components 
 #Derive a binary variable (new depression over waves 6-8) 
 
-directory = "/Users/aliya/my_docs/"
+#directory = "/Users/aliya/my_docs/"
 
-#"/Users/aliyaadepressionrova/"
+directory = "/Users/aliyaamirova/"
 
 ###### Set the source location on the user's local machine  for sourcing functions 
 SOURCE_ROOT = paste(directory, "proj/polygenetic_score/", sep = "")
